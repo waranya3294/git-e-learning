@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Content</title>
+</head>
+<body>
+    <div id="content"></div>
+    <script>
+        fetch('content.json')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('content').innerHTML = data.content;
+            })
+            .catch(error => console.error('Error loading content:', error));
