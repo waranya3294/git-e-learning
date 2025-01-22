@@ -16,13 +16,12 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
    
-    //ตรวจสอบว่าข้อมูล
+    //ตรวจสอบว่าข้อมูลteset
     if(!$result){
         $response = array('icon' => 'warning','title' => 'เกิดข้อผิดพลาด','text' => 'ไม่พบผู้ใช้งานนี้','btnColor' => 'yellow');
     }else{
         $response = array('icon'=> 'success',);
     }
-
 }else{
 $response = array('icon' => 'error','title' => 'เกิดข้อผิดพลาด','text' => 'การร้องขอผิดพลาด','btnColor' => 'red');
 }
