@@ -8107,6 +8107,8 @@ textarea.form-control-lg {
 }
 
 .text-muted {
+  border-top: 1px solid #d2d6de;
+  padding: 15px;
   --bs-text-opacity: 1;
   color: #6c757d !important;
 }
@@ -10997,8 +10999,8 @@ body {
   font-size: 18px;
   display: flex;
   align-items: center;
-  padding-top: 0.75rem;
-  padding-bottom: 0.75rem;
+  /* padding-top: 0.75rem;
+  padding-bottom: 0.75rem; */
   position: relative;
 }
 .sb-sidenav .sb-sidenav-menu .nav .nav-link .sb-nav-link-icon {
@@ -11013,7 +11015,7 @@ body {
   transform: rotate(-90deg);
 }
 .sb-sidenav .sb-sidenav-menu .nav .sb-sidenav-menu-nested {
-  margin-left: 1.5rem;
+  /* margin-left: 1.5rem; */
   flex-direction: column;
 }
 .sb-sidenav .sb-sidenav-footer {

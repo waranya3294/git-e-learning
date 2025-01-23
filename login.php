@@ -20,13 +20,6 @@ session_start();
     <link rel="stylesheet" href="assets/lib/fontawsome/css/fontawesome.css">
 
 </head>
-<style>
-
-    body{
-        background-color:lightgray;
-    }
-</style>
-
 
 <body>
 

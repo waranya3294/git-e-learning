@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="row">
+        <div class="col mt-3">
+            <label for="">เนื้อหาบทเรียน:<span class="text-danger">*</span></label>
+            <div>
+                <textarea id="tiny"></textarea>
+            </div>
+        </div>
+    </div>
+
+    <!-- เพิ่มปุ่ม "แสดง" -->
+    <button id="show-btn" class="btn btn-primary mt-3">แสดง</button>
+
+    <!-- เพิ่มพื้นที่สำหรับแสดงผล -->
+    <div id="content-display" class="mt-3" style="border: 1px solid #ccc; padding: 10px;">
+
+    <script src="https://cdn.tiny.cloud/1/xit6jhfuib4qtdnwba6inewnmyk72x2w0wxqdkd6kwxf6oan/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+
+    <script>
+        tinymce.init({
+            branding: false,
+            selector: 'textarea#tiny',
+            plugins: 'image link media text preview importword fullscreen lists fontsizeinput color textcolor',
+            toolbar: 'undo redo | fontsizeinput fontsizeselect | image link media importword bold italic backcolor forecolor |\
+            bullist numlist checklist | alignleft aligncenter alignright alignjustify preview fullscreen',
+            image_title: true,
+            automatic_uploads: true,
+            file_picker_types: 'image media file',
+            file_picker_callback: (cb, value, meta) => {
+                const input = document.createElement('input');
+                input.setAttribute('type', 'file');
+                input.setAttribute('accept', 'image/*,video/*'); // Accept both image and video files
+
+                input.addEventListener('change', (e) => {
+                    const file = e.target.files[0];
+                    const reader = new FileReader();
+                    reader.addEventListener('load', () => {
+                        const id = 'blobid' + (new Date()).getTime();
+                        const blobCache = tinymce.activeEditor.editorUpload.blobCache;
+                        const base64 = reader.result.split(',')[1];
+                        const blobInfo = blobCache.create(id, file, base64);
+                        blobCache.add(blobInfo);
+
+                        /* call the callback and populate the Title field with the file name */
+                        cb(blobInfo.blobUri(), {
+                            title: file.name
+                        });
+                    });
+
+                    if (file.type.startsWith('image/')) {
+                        reader.readAsDataURL(file);
+                    } else if (file.type.startsWith('video/')) {
+                        reader.readAsDataURL(file);
+                    }
+                });
+
+                input.click();
+            },
+        });
+
+        // Prevent Bootstrap dialog from blocking focusin
+        document.addEventListener('focusin', (e) => {
+            if (e.target.closest(".tox-tinymce, .tox-tinymce-aux, .moxman-window, .tam-assetmanager-root") !== null) {
+                e.stopImmediatePropagation();
+            }
+        });
+
+        // เพิ่ม Event Listener สำหรับปุ่ม "แสดง"
+        document.getElementById('show-btn').addEventListener('click', () => {
+            const content = tinymce.get('tiny').getContent();
+            $.ajax({
+                {
+                    //.....Code
+                    success: function({\
+                        
+                    })
+                }
+            })
+            console.log(content);
+        });
+    </script>
+</body>
+</html>

@@ -1,4 +1,4 @@
-<div class="container mt-4 ">
+<div class="container mt-4 mb-4">
 <h2 class="mb-3">รายชื่อพนักงานทั้งหมด</h2>
     <div class="card shadow-sm rounded-1 mb-3" style="border: none; border-top: 4px solid #00adb0;">
         <div class="card-body">
@@ -38,7 +38,7 @@
 
             <div class="row text-center mt-2">
                 <div class="col" >
-                    <table id="data-table" class="table table-bordered " style="color:blue">
+                    <table id="data-table" class="table table-bordered">
                         <thead >
                             <tr>
                                 <th><b>#</b></th>
@@ -53,11 +53,20 @@
                             <tr>
                                 <th>1</th>
                                 <th>0000</th>
-                                <th>สมหมาย สมสม</th>
+                                <th>นายสมหมาย สมสม</th>
                                 <th>สี</th>
                                 <th>5 คะแนน</th>
                                 <th>5 คะแนน</th>
-                                <th><button class="btn btn-success btn-sm" style="font-size:14px;">สอบเสร็จแล้ว</button></th>
+                                <th><span class="badge text-bg-success " style="font-size:14px;">สอบเสร็จแล้ว</span></th>
+                            </tr>
+                            <tr>
+                                <th>2</th>
+                                <th>0000</th>
+                                <th>นายเอ บี</th>
+                                <th>สี</th>
+                                <th>5 คะแนน</th>
+                                <th>5 คะแนน</th>
+                                <th><span class="badge text-bg-danger " style="font-size:14px;">ยังไม่สอบ</span></th>
                             </tr>
                         </thead>
                     </table>
@@ -127,7 +136,7 @@
     </div>
 </div>
 <!-- กราฟ -->
-<div class="container mt-3">
+<div class="container mt-3 mb-4">
     <div class="card shadow-sm rounded-1 mb-3" style="border: none;border-top: 4px solid #00adb0;">
         <div class="card-body">
             <div class="col">

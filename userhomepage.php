@@ -1,7 +1,7 @@
 <div class="container mt-4">
     <div class="card shadow-sm rounded-1" style="border: none;border-top: 4px solid #00adb0;">
         <div class="card-body">
-            <h3 style="color:blue">สอบก่อนเรียน บทเรียนที่ 1 </h3>
+            <h3 style="color:#121212">สอบก่อนเรียน บทเรียนที่ 1 </h3>
             <p style="font-size:20px;">เรื่อง ความปลอดภัยของการพ่นสี</p>
             <hr>
             <div class="row">
@@ -30,7 +30,6 @@
     Swal.fire({
       allowOutsideClick: false,
       width: 700,
-      confirmButtonColor:'#3CB371',
       html: `<div class="row">
         <div class="col text-start">
             <h3>&nbsp;&nbsp;<u>คำอธิบายรายวิชา</u></h3>
@@ -68,6 +67,7 @@
     </div>`,
 
       confirmButtonText: 'ต่อไป',
+      confirmButtonColor:'green',
     })
   });
 

@@ -214,6 +214,7 @@
         clone.querySelectorAll('input[type="text"], textarea').forEach(input => input.value = '');
         clone.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
         clone.querySelectorAll('.option-image-preview').forEach(preview => preview.remove());
+        clone.querySelectorAll('#showimage').forEach(showimage => showimage.innerHTML = '');
 
         // สร้าง unique ID สำหรับคำถามใหม่
         const uniqueId = `question-${Date.now()}`;
@@ -248,8 +249,7 @@
         const lastQuestionBox = document.querySelector('.question-box:last-child');
         lastQuestionBox.parentNode.insertBefore(clone, lastQuestionBox.nextSibling);
     }
-
-
+    
     // ฟังก์ชันสำหรับการลบคำถาม
     function removeQuestion(button) {
         const questionBox = button.closest('.question-box');
@@ -288,9 +288,9 @@
         if (file) {
             const reader = new FileReader();
             reader.onload = function(e) {
-                var showimage;
+                let showimage;
                 if (type === 'question') {
-                    showimage = document.getElementById('showimage');
+                    showimage = input.closest('.question-box').querySelector('#showimage');
                 } else if (type === 'option') {
                     showimage = input.closest('.row').querySelector('.option-image-preview');
                     if (!showimage) {
@@ -301,15 +301,14 @@
                 }
 
                 const imgContainer = document.createElement('div');
+
                 imgContainer.classList = '';
                 imgContainer.id = 'image';
 
 
+                
                 const imgElement = document.createElement('img');
                 imgElement.src = e.target.result;
-
-                //     imgElement.classList.add('img-thumbnail');
-                //     imgElement.style.cursor = 'pointer';
                 const removeButton = document.createElement('button');
                 removeButton.classList.add('btn', 'btn-danger', 'btn-sm');
                 removeButton.innerText = 'ลบ';

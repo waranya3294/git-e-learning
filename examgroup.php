@@ -15,7 +15,7 @@
             <hr>
             <div class="row text-center mt-4">
                 <div class="col">
-                    <table class="table">
+                    <table id="data-table" class="table table-bordered " >
                         <thead>
                             <tr>
                                 <th><b>ลำดับ</b></th>

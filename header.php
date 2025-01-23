@@ -130,7 +130,7 @@
     <div id="layoutSidenav_nav">
 
 
-      <nav class="sb-sidenav accordion sb-sidenav-dark " id="sidenavAccordion">
+      <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion" style="overflow-y: auto; width:230px;">
         <div class="sb-sidenav-menu">
           <div class="nav mt-4">
             <div class="menu-profile mt-3">
@@ -139,7 +139,7 @@
               </div>
               <div class="profile-info ms-3" style="color:white;">
                 <p>รหัสพนักงาน : xxxx</p>
-                <p>ชื่อ-นามสกุล : xxxx xxxxx</p>
+                <p>ชื่อ-นามสกุล :<p class="text-wrap">วรัญญา หันจางสิทธิ์</p></p>
                 <p>แผนก : สี</p>
               </div>
             </div>
@@ -170,7 +170,7 @@
               <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
             </a>
             <div class="collapse" id="collapsePages2" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-              <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
+              <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages" >
                 <a class="nav-link" href="report_maincontent.php"> รายชื่อผู้เข้าสอบ</a>
               </nav>
             </div>
@@ -181,7 +181,7 @@
     </div>
     <div id="layoutSidenav_content">
       <main>
-        <div class="container-fluid p-0 ">
+        <div class="container-fluid px-4">
           <!-- 
           <div class="card mt-4">
             <div class="container "> -->

@@ -16,7 +16,7 @@ if($_SERVER['REQUEST_METHOD'] === 'POST'){
 
     $result = $stmt->fetch(PDO::FETCH_ASSOC);
    
-    //ตรวจสอบว่าข้อมูลteset
+    //ตรวจสอบว่าข้อมูล
     if(!$result){
         $response = array('icon' => 'warning','title' => 'เกิดข้อผิดพลาด','text' => 'ไม่พบผู้ใช้งานนี้','btnColor' => 'yellow');
     }else{

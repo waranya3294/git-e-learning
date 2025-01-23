@@ -13,7 +13,7 @@ $_SESSION['user_type'] = $type;
       <div class="row">
         <div class="col mt-3">
           <div class="btn btn-success" onclick="window.location.href='exam_room_maincontent.php'" style="font-size:18px; border: none;">
-            <i class="fas fa-plus"></i> สร้างเข้าห้องสอบ
+            <i class="fas fa-plus"></i> สร้างห้องเข้าสอบ
           </div>
         </div>
       </div>

@@ -1,4 +1,4 @@
-<div class="container mt-4" style="color:#585858;">
+<div class="container mt-4 mb-4" style="color:#585858;">
     <h3><i class="bi bi-book-half" style="color:#00adb0;"></i> บทเรียนที่ 1 ความปลอดภัยของการพ่นสี</h3>
 
     <div class="container">

@@ -13,13 +13,32 @@
         </div>
     </div>
     <hr>
+<?php
+require ("connection.php");
+$conn = new MyConnection();
+$pdo = $conn->getPdo();
+$response = array();
+
+$query = "SELECT story_id, story_detail FROM tbl_story ";
+$stmt = $pdo->prepare($query);
+$stmt->execute();
+$result = $stmt->fetch(PDO::FETCH_ASSOC);
+
+echo json_encode($response);
+?>
+
+
+<div>
+    <?php echo $result['story_detail']; ?>
+</div>
+
 
     <div class="container mt-3 p-0">
         <div class="card shadow-sm rounded-0">
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h4>ชื่อบทเรียน</h4>
+                        <h4>ชื่อบทเรียน1</h4>
                     </div>
                     <div class="col text-end">
                         <button class="btn btn-warning" onclick="" title="แก้ไขข้อมูล">
@@ -36,7 +55,7 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h4>ชื่อบทเรียน</h4>
+                        <h4>ชื่อบทเรียน2</h4>
                     </div>
                     <div class="col text-end ">
                         <button class="btn btn-warning" onclick="" title="แก้ไขข้อมูล">

@@ -1,5 +1,5 @@
-<div class="container mt-5">
-    <div class="card shadow p-3 mb-5 bg-body rounded">
+<div class="container mt-4 mb-4">
+    <div class="card shadow-sm rounded-1">
         <div class="card-body">
             <div style="color:#18B0BD">
                 <h3 class="display-4"><i class="fa-regular fa-file"></i> ลงเนื้อหาบทเรียน</h3>

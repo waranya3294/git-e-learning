@@ -122,7 +122,7 @@
     <div id="layoutSidenav_nav">
 
 
-      <nav class="sb-sidenav accordion sb-sidenav-dark " id="sidenavAccordion">
+      <nav class="sb-sidenav accordion sb-sidenav-dark" style="overflow-y: auto; width:230px;" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
           <div class="nav mt-4">
             <div class="menu-profile mt-3">
@@ -131,7 +131,7 @@
               </div>
               <div class="profile-info ms-3" style="color:white;">
                 <p>รหัสพนักงาน : xxxx</p>
-                <p>ชื่อ-นามสกุล : xxxx xxxxx</p>
+                <p>ชื่อ-นามสกุล : <p class="text-warp">วัรญญา หันจางสิทธิ์</p></p>
                 <p>แผนก : สี</p>
               </div>
             </div>
@@ -145,10 +145,10 @@
             </a>
             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
               <nav class="sb-sidenav-menu-nested nav">
-                <a class="nav-link" href="userhomepage_maincontent.php"><i class="fa-solid fa-book-open me-2 "></i> แบบทดสอบก่อนเรียน</a>
-                <a class="nav-link" href="learning_maincontent.php">- ประเภทของการพ่นสี</a>
-                <a class="nav-link">- วิธีการสวมใส่ชุด PPE</a>
-                <a class="nav-link" href="posttest_maincontent.php"><i class="fa-regular fa-circle-check me-2"></i> แบบทดสอบหลังเรียน</a>
+                <a class="nav-link text-wrap" href="userhomepage_maincontent.php"><i class="fa-regular fa-circle fa-sm me-2" style="font-size: 0.8rem;"></i> แบบทดสอบก่อนเรียนบทที่ 1</a>
+                <a class="nav-link text-wrap" href="learning_maincontent.php"><i class="fa-regular fa-circle fa-sm me-2" style="font-size: 0.8rem;"></i>ประเภทของการพ่นสี</a>
+                <a class="nav-link text-wrap"><i class="fa-regular fa-circle fa-sm me-2" style="font-size: 0.8rem;"></i> วิธีการสวมใส่ชุด PPE</a>
+                <a class="nav-link text-wrap" href="posttest_maincontent.php"><i class="fa-regular fa-circle fa-sm me-2" style="font-size: 0.8rem;"></i> แบบทดสอบหลังเรียนบทเรียนที่ 1</a>
 
               </nav>
             </div>
@@ -160,13 +160,13 @@
             </a>
             <div class="collapse" id="collapsePages2" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
               <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                <a class="nav-link">- แบบทดสอบก่อนเรียน</a>
-                <a class="nav-link">- แบบทดสอบหลังเรียน</a>
+                <a class="nav-link text-wrap "><i class="fa-regular fa-circle fa-sm me-2" style="font-size: 0.8rem;"></i> แบบทดสอบก่อนเรียน</a>
+                <a class="nav-link text-wrap"><i class="fa-regular fa-circle fa-sm me-2" style="font-size: 0.8rem;"></i> แบบทดสอบหลังเรียน</a>
               </nav>
             </div>
 
-            <a class="nav-link collapsed" onclick="window.location.href='summary_maincontent.php'" data-bs-toggle="collapse" data-bs-target="#collapsePages3" aria-expanded="false" aria-controls="collapsePages3">
-              <div class="sb-nav-link-icon"></div>
+            <a class="nav-link collapsed" style="cursor: pointer" onclick="window.location.href='summary_maincontent.php'" data-bs-toggle="collapse" data-bs-target="#collapsePages3" aria-expanded="false" aria-controls="collapsePages3">
+              <div class="sb-nav-link-icon" ></div>
               สรุปผลคะแนน
               <div class="sb-sidenav-collapse-arrow"></div>
             </a>
