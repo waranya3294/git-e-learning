@@ -8,34 +8,34 @@
             </div>
             <div class="row">
                 <div class="col mt-3 text-end">
-                    <button class="btn btn-success" onclick="window.location.href='exam_form_maincontent.php'">
+                    <button type="text" class="btn btn-success" onclick="window.location.href='exam_form_maincontent.php'">
                         <i class="bi bi-plus-circle-fill" style="color:white"></i> เพิ่มข้อมูลใหม่</button>
                 </div>
             </div>
             <hr>
-            <div class="row text-center mt-4">
+
+            <div class="row text-center">
                 <div class="col">
-                    <table id="data-table" class="table table-bordered " >
-                        <thead>
+                    <table class="table">
+                        <thead class="thead-light">
                             <tr>
-                                <th><b>ลำดับ</b></th>
+                                <th scope="row"><b>ลำดับ</b></th>
                                 <th><b>ชื่อหมวดหมู่</b></th>
                                 <th><b>จำนวนข้อสอบ</b></th>
                                 <th><b>คำสั่ง</b></th>
-
                             </tr>
                         </thead>
-                        <thead>
+                        <tbody>
                             <tr>
                                 <th>1</th>
                                 <th>ความปลอดภัยในการพ่นสี</th>
                                 <th>5 ข้อ</th>
-                                <th> <button class="btn btn-warning" title="แก้ไขข้อมูล"><i class="bi bi-pencil-square"></i></button>
-                                    <button class="btn btn-danger" title="ลบข้อมูล" onclick="showDelete() "><i class="bi bi-trash"></i></button>
+                                <th>
+                                    <button class="btn btn-warning btn-sm" title="แก้ไขข้อมูล" onclick="showForm()"><i class="bi bi-pencil-square"></i></button>
+                                    <button class="btn btn-danger btn-sm" title="ลบข้อมูล" onclick="showDelete() "><i class="bi bi-trash"></i></button>
                                 </th>
-
                             </tr>
-                        </thead>
+                        </tbody>
                     </table>
                 </div>
             </div>
@@ -61,5 +61,21 @@
                 });
             }
         });
+    }
+
+    function showForm() {
+        Swal.fire({
+            title: "แก้ไขข้อมูล",
+            confirmButtonColor: "green",
+            allowOutsideClick: false,
+            html: `
+            <div class="row">
+            <div class="col text-start mb-3">
+            <label for="text">ชื่อชุดข้อสอบ</label>
+            <input type="text" name="question" class="form-control" placeholder="ชื่อชุดข้อสอบ">
+            </div>
+            <label for="text">แสดงชุดข้อสอบ</label>
+            </div>`,
+        })
     }
 </script>

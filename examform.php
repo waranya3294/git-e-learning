@@ -13,7 +13,8 @@
         </div>
     </div>
     <hr>
-<?php
+    
+<!-- <?php
 require ("connection.php");
 $conn = new MyConnection();
 $pdo = $conn->getPdo();
@@ -30,7 +31,7 @@ echo json_encode($response);
 
 <div>
     <?php echo $result['story_detail']; ?>
-</div>
+</div> -->
 
 
     <div class="container mt-3 p-0">
@@ -41,7 +42,7 @@ echo json_encode($response);
                         <h4>ชื่อบทเรียน1</h4>
                     </div>
                     <div class="col text-end">
-                        <button class="btn btn-warning" onclick="" title="แก้ไขข้อมูล">
+                        <button class="btn btn-warning" onclick="showForm()" title="แก้ไขข้อมูล">
                             <i class="bi bi-pencil-square"></i>
                         </button>
                         <button class="btn btn-danger" onclick="showDelete()" title="ลบข้อมูล"><i class="bi bi-trash3"></i></button>
@@ -58,7 +59,7 @@ echo json_encode($response);
                         <h4>ชื่อบทเรียน2</h4>
                     </div>
                     <div class="col text-end ">
-                        <button class="btn btn-warning" onclick="" title="แก้ไขข้อมูล">
+                        <button class="btn btn-warning" onclick="showForm()" title="แก้ไขข้อมูล">
                             <i class="bi bi-pencil-square"></i>
                         </button>
                         <button class="btn btn-danger" onclick="showDelete()" title="ลบข้อมูล"><i class="bi bi-trash3"></i></button>
@@ -89,6 +90,27 @@ echo json_encode($response);
           icon: "success"
         });
       }
+    });
+  }
+
+  function showForm() {
+    Swal.fire({
+      allowOutsideClick: false,
+      width: 700,
+      confirmButtonColor:'green',
+      html: `
+     <div class="col">
+                    <div class="text-start">
+                        <label for="exam_id">ชื่อบทเรียน</label>
+                    </div>
+                    <input type="text" name="title" id="title" class="form-control mb-3" placeholder="ชื่อบทเรียน" required-1>
+                </div>
+                <div class="col">
+                    <div class="text-start">
+                        <label for="exam_id">เนื้อหาบทเรียน</label>
+                    </div>
+                    <textarea type="text" name="title" id="title" class="form-control mb-3" placeholder="ชื่อชุดข้อสอบ" required-1>
+            `,
     });
   }
 </script>

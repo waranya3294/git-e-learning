@@ -25,7 +25,7 @@
                 <label for="text">ตั้งชื่อบทเรียน: <span class="text-danger">*</span></label>
                 <input type="text" name="title" id="title" class="form-control mb-3" required>
 
-                <label for="exam_id">เลือกชุดข้อสอบก่อนเรียน - หลังเรียน</label>
+                <label for="exam_id">เลือกชุดข้อสอบก่อนเรียน - หลังเรียน: <span class="text-danger">*</span></label>
                 <select class="form-control mb-3" id="exam_id">
                   <option value=""></option>
                   <option value="">ประเภทของการพ่นสี</option>
@@ -33,7 +33,7 @@
                   <option value="">Test</option>
                 </select>
 
-                <label for="exam_id">เลือกเนื้อหาบทเรียน</label>
+                <label for="exam_id">เลือกเนื้อหาบทเรียน: <span class="text-danger">*</span></label>
                 <div class="d-flex align-items-center">
                   <span class="me-2">1</span>
                   <select class="form-control" id="exam_id">
@@ -115,18 +115,7 @@
   </div>
 </div>
 
-
 <script>
-  // function showData() {
-  //   Swal.fire({
-  //     allowOutsideClick: false,
-  //     title: "แสดงบทเรียนและข้อสอบที่เลือกไว้",
-  //     html: `
-  //   <!-- Add your content here -->
-  // `,
-  //   });
-  // }
-  // ลบข้อมูล
   function showDelete() {
     Swal.fire({
       title: "คุณต้องการลบข้อมูลนี้หรือไม่",
@@ -149,6 +138,7 @@
   function show_select_data_form() {
     Swal.fire({
       allowOutsideClick: false,
+      confirmButtonColor: 'green',
       width: 700,
       html: `
      <div class="col">
@@ -164,24 +154,29 @@
                     <input type="text" name="title" id="title" class="form-control mb-3" placeholder="ชื่อชุดข้อสอบ" required-1>
                 </div>
             </div>
-
-            <div class="text-start mt-2">
+              <div class="col text-start mt-2">
                 <label for="exam_id">ชื่อเนื้อหา</label>
+              </div>
+          <div>
+                <input type="text" name="title" id="title" class="form-control mb-2" placeholder="ชื่อบทเรียนของเนื้อหา" required-1>
             </div>
-            <div >
-                <input type="text" name="title" id="title" class="form-control mb-3" placeholder="ชื่อบทเรียนของเนื้อหา" required-1>
-                <!-- <button type="button" name="content" class="btn btn-outline-secondary ms-2" onclick="addContent()" title="เพิ่มเนื้อหา">
-                    <i class="fas fa-plus"></i>
-                </button> -->
+            <input type="text" name="title" id="title" class="form-control mb-2" placeholder="ชื่อบทเรียนของเนื้อหา" required-1>
+           
+            <div class="row">
+            <div class="col-md-9">
+              <input type="text" name="title" id="title" class="form-control mb-2" placeholder="ชื่อบทเรียนของเนื้อหา" required-1>
             </div>
-            <input type="text" name="title" id="title" class="form-control mb-3" placeholder="ชื่อบทเรียนของเนื้อหา" required-1>
-            <div>
-                <input type="text" name="title" id="title" class="form-control mb-3" placeholder="ชื่อบทเรียนของเนื้อหา" required-1>
-            </div>
+               <div class="col text-end">
+                <button type="button" name="content" class="btn btn-outline-primary" onclick="addContent()" title="เพิ่มเนื้อหา">
+                  <i class="fas fa-plus">เพิ่มเนื้อหา</i>
+                </button>
+            </div>    
+              </div>
+                <div id="content-container" class="mt-2"></div>
             <div class="text-start">
-                        <label for="exam_id">เวลาในการทำข้อสอบ</label>
-                    </div>
-                    <input type="text" name="title" id="title" class="form-control mb-3" placeholder="เวลาในการทำข้อสอบ" required-1>
+              <label for="exam_id">เวลาในการทำข้อสอบ</label>
+            </div>
+              <input type="text" name="title" id="title" class="form-control mb-3" placeholder="เวลาในการทำข้อสอบ" required-1>
             `,
     });
   }
@@ -192,6 +187,7 @@
     const contentContainer = document.getElementById('content-container');
     const newContent = document.createElement('div');
     newContent.className = 'content-box mt-2';
+    
     newContent.innerHTML = `
       <div class="d-flex align-items-center">
         <span class="me-2" >${pageCounter}</span>
@@ -214,15 +210,4 @@
     button.parentElement.parentElement.remove();
   }
 
-  // function toggleSidebar() {
-  //   var sidebar = document.getElementById('sidebar');
-  //   sidebar.classList.toggle('collapsed');
-
-  //   var toggleBtn = document.querySelector('.toggle-btn');
-  //   if (sidebar.classList.contains('collapsed')) {
-  //     toggleBtn.innerHTML = '&#x2192;';
-  //   } else {
-  //     toggleBtn.innerHTML = '&#x2190;';
-  //   }
-  // }
 </script>

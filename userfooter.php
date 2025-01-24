@@ -3,7 +3,7 @@
 </main>
 <footer class=" bg-light mt-auto">
   <div class="container-fluid p-0">
-    <div class="text-muted">KOBELCO CONSTRUTION MACHINERY SOUTHEAST ASIA CO.,LTD.</div>
+    <div class="text-muted text-center">KOBELCO CONSTRUTION MACHINERY SOUTHEAST ASIA CO.,LTD.</div>
   </div>
 </footer>
 

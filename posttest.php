@@ -224,7 +224,7 @@
     $(document).ready(function() {
       Swal.fire({
         allowOutsideClick: false,
-        confirmButtonColor:'#6633CC;',
+        confirmButtonColor:'green',
         html: `<div style="text-align: left;">
           <h3 style="color: black;">สอบหลังเรียน บทเรียนที่ 1</h3>
           <p style="font-size: 18px;">เรื่อง ความปลอดภัยของการพ่นสี</p>

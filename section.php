@@ -22,7 +22,7 @@
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <label for="text">ชื่อส่วนงาน:</label>
+                                <label for="text">ชื่อส่วนงาน:<span class="text-danger">*</span></label>
                                 <input type="text" name="title" id="title" class="form-control" required>
                             </div>
                             <div class="modal-footer mt-5">
@@ -56,7 +56,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 <script>

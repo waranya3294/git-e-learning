@@ -1,6 +1,6 @@
 <form action="create-room.php" method="POST">
-    <div class="container mt-5">
-        <div class="card shadow-sm mb-5">
+    <div class="container mt-4">
+        <div class="card shadow-sm mb-4">
             <div class="card-body">
                 <div class="" style="color: #18B0BD;">
                     <h1 class="display-4"> สร้างห้องเข้าสอบ</h1>
@@ -47,7 +47,6 @@
                 </div>
             </div>
         </div>
-
     </div>
 </form>
 

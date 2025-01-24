@@ -9,14 +9,13 @@
             <!-- button นำข้อมูลเข้า -->
             <div class="row">
                 <div class="col-12 text-end mb-4">
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    <button type="button" class="btn btn-primary" id="uploadBtn" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         <i class="bi bi-file-earmark-arrow-down-fill"></i> นำเข้าข้อมูลจาก Excel
                     </button>
                     <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#previewModal" title="แสดงตัวอย่าง" onclick="previewExam()">
                         <i class="fas fa-eye"></i>
                     </button>
                 </div>
-
                 <!-- นำไฟล์ excel เข้า -->
                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -38,7 +37,6 @@
                                                 <br>3. รองรับไฟล์ Excel ที่มีนามสกุล .xls เท่านั้น
                                             </div>
                                         </div>
-
                                         <div class="form-group">
                                             <label>เลือกไฟล์ Excel เพื่อนำเข้าข้อสอบ (นามสกุล .xls เท่านั้น)</label>
                                             <input type="file" class="form-control" id="file_excel" name="file_excel">
@@ -47,7 +45,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" onclick="importExcelData()">
+                                <button type="button" class="btn btn-primary" onclick="upload()">
                                     <i class=" fas fa-file-import"></i> นำข้อมูลเข้า
                                 </button>
                             </div>
@@ -57,7 +55,6 @@
 
                 <div class="md-3">
                     <input type="text" name="title" class="form-control" onclick="showToolbar(this)" placeholder="ตั้งชื่อหัวข้อสอบ" required>
-
                 </div>
 
                 <div class="mt-3 mb-2">
@@ -68,7 +65,7 @@
                 <div class="question-box mb-4">
                     <div class="row mt-3 mb-3">
                         <div class="col-10">
-                            <label for="title">ตั้งคำถาม</label>
+                            <label for="title">ตั้งคำถาม:<span class="text-danger">*</span></label>
                             <input type="text" name="question" class="form-control" placeholder="เพิ่มคำถาม ?" onclick="showToolbar(this)">
                             <span class="text-danger required-asterisk" style="display: none;">*</span>
                         </div>
@@ -121,7 +118,6 @@
                                 <button class="btn btn-danger me-2" onclick="removeQuestion(this)" title="นำออก">
                                     <i class="bi bi-trash"></i>
                                 </button>
-
                             </div>
                         </div>
                     </div>
@@ -159,8 +155,23 @@
     </div>
 </div>
 
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
 <script>
+    function upload(){
+        const fileExcel = document.getElementById('file-excel');
+        const newfileExcel = document.createElement('div');
+        fileExcel.classList ='';
+        // fileExcel.id='file';
+
+
+        
+
+        fileExcel.appendChild();
+
+
+    }
+
+
     // เพิ่มตัวเลือก
     function addOption(button) {
         const questionBox = button.closest('.question-box');
@@ -249,7 +260,7 @@
         const lastQuestionBox = document.querySelector('.question-box:last-child');
         lastQuestionBox.parentNode.insertBefore(clone, lastQuestionBox.nextSibling);
     }
-    
+
     // ฟังก์ชันสำหรับการลบคำถาม
     function removeQuestion(button) {
         const questionBox = button.closest('.question-box');
@@ -306,7 +317,7 @@
                 imgContainer.id = 'image';
 
 
-                
+
                 const imgElement = document.createElement('img');
                 imgElement.src = e.target.result;
                 const removeButton = document.createElement('button');
