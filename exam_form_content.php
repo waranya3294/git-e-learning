@@ -45,7 +45,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" onclick="upload()">
+                                <button type="button" class="btn btn-primary" id="excel_data">
                                     <i class=" fas fa-file-import"></i> นำข้อมูลเข้า
                                 </button>
                             </div>
@@ -60,7 +60,8 @@
                 <div class="mt-3 mb-2">
                     <textarea type="text" name="description" id="description" class="form-control" placeholder="รายละเอียดแบบทดสอบ"></textarea>
                 </div>
-
+                <!-- แสดงข้อมูล excel -->
+                <div id="excel_display_area" class="mt-4"></div>
 
                 <div class="question-box mb-4">
                     <div class="row mt-3 mb-3">
@@ -155,21 +156,62 @@
     </div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
+
 <script>
-    function upload(){
-        const fileExcel = document.getElementById('file-excel');
-        const newfileExcel = document.createElement('div');
-        fileExcel.classList ='';
-        // fileExcel.id='file';
+    // นำเข้าไฟล์ excel
+    const file_excel = document.getElementById('file_excel');
+    const previewContent = document.getElementById('previewContent');
 
+    file_excel.addEventListener('change', (event) => {
+        if (!['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel'].includes(event.target.files[0].type)) {
+            alert('อนุญาตเฉพาะไฟล์ .xlsx หรือ .xls เท่านั้น');
+            file_excel.value = '';
+            return;
+        }
 
-        
+        var reader = new FileReader();
+        reader.readAsArrayBuffer(event.target.files[0]);
 
-        fileExcel.appendChild();
+        reader.onload = function() {
+            var data = new Uint8Array(reader.result);
+            var work_book = XLSX.read(data, {
+                type: 'array'
+            });
+            var sheet_name = work_book.SheetNames[0];
+            var sheet_data = XLSX.utils.sheet_to_json(work_book.Sheets[sheet_name], {
+                header: 1
+            });
 
+            if (sheet_data.length > 0) {
+                var table_output = '<table class="table table-striped table-bordered">';
+                for (var row = 0; row < sheet_data.length; row++) {
+                    table_output += '<tr>';
+                    for (var cell = 0; cell < sheet_data[row].length; cell++) {
+                        if (row === 0) {
+                            table_output += '<th>' + sheet_data[row][cell] + '</th>';
+                        } else {
+                            table_output += '<td>' + sheet_data[row][cell] + '</td>';
+                        }
+                    }
+                    table_output += '</tr>';
+                }
+                table_output += '</table>';
 
-    }
+                // แสดงผลในพื้นที่ข้างนอก modal
+                document.getElementById('excel_display_area').innerHTML = table_output;
+
+                // ปิด modal หลังนำเข้าข้อมูล
+                const modal = bootstrap.Modal.getInstance(document.getElementById('exampleModal'));
+                modal.hide();
+            }
+
+            // รีเซ็ตค่าของ input file
+            file_excel.value = '';
+        };
+    });
 
 
     // เพิ่มตัวเลือก
@@ -178,7 +220,13 @@
         const optionsContainer = questionBox.querySelector('.options-container');
 
         if (optionsContainer.children.length >= 4) {
-            alert("เพิ่มได้สูงสุดแค่ 4 ตัวเลือก");
+            Swal.fire({
+                allowOutsideClick: false,
+                icon: 'warning',
+                title: 'เพิ่มตัวเลือกได้สูงสุด 4 ตัวเลือก',
+                confirmButtonText: 'ตกลง',
+                confirmButtonColor: 'green'
+            });
             return;
         }
         const optionDiv = document.createElement('div');
@@ -214,7 +262,13 @@
     function addNewQuestion() {
         const questionBoxes = document.querySelectorAll('.question-box');
         if (questionBoxes.length >= 5) {
-            alert("เพิ่มคำถามได้สูงสุด 5 ข้อ");
+            Swal.fire({
+                allowOutsideClick: false,
+                icon: 'warning',
+                title: 'เพิ่มคำถามได้สูงสุด 5 ข้อ',
+                confirmButtonText: 'ตกลง',
+                confirmButtonColor: 'green'
+            });
             return;
         }
 
@@ -299,29 +353,28 @@
         if (file) {
             const reader = new FileReader();
             reader.onload = function(e) {
-                let showimage;
+                let imageContainer;
                 if (type === 'question') {
-                    showimage = input.closest('.question-box').querySelector('#showimage');
+                    imageContainer = input.closest('.question-box').querySelector('#showimage');
+                    imageContainer.innerHTML = ''; // Clear existing content
                 } else if (type === 'option') {
-                    showimage = input.closest('.row').querySelector('.option-image-preview');
-                    if (!showimage) {
-                        showimage = document.createElement('div');
-                        showimage.classList.add('option-image-preview');
-                        input.closest('.row').appendChild(showimage);
+                    const optionRow = input.closest('.row');
+                    imageContainer = optionRow.querySelector('.option-image-preview');
+                    if (!imageContainer) {
+                        imageContainer = document.createElement('div');
+                        imageContainer.classList.add('option-image-preview', 'mt-2');
+                        optionRow.appendChild(imageContainer);
                     }
+                    imageContainer.innerHTML = ''; // Clear existing content
                 }
-
-                const imgContainer = document.createElement('div');
-
-                imgContainer.classList = '';
-                imgContainer.id = 'image';
-
-
 
                 const imgElement = document.createElement('img');
                 imgElement.src = e.target.result;
+                imgElement.classList.add('img-thumbnail');
+                imgElement.style.maxWidth = type === 'question' ? '200px' : '100px';
+
                 const removeButton = document.createElement('button');
-                removeButton.classList.add('btn', 'btn-danger', 'btn-sm');
+                removeButton.classList.add('btn', 'btn-danger', 'btn-sm', 'ms-2');
                 removeButton.innerText = 'ลบ';
                 removeButton.onclick = function() {
                     if (confirm('ต้องการลบรูปภาพนี้หรือไม่?')) {
@@ -331,9 +384,8 @@
                     }
                 };
 
-                imgContainer.appendChild(imgElement);
-                imgContainer.appendChild(removeButton);
-                showimage.appendChild(imgContainer);
+                imageContainer.appendChild(imgElement);
+                imageContainer.appendChild(removeButton);
             };
             reader.readAsDataURL(file);
         }
