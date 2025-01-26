@@ -8,24 +8,26 @@
       </div>
       <div class="row text-center mt-4">
         <div class="col">
-          <table id="data-table" class="table table-bordered" style="color:blue">
-            <thead>
-              <tr style="font-size:20px">
-                <th><b>บทเรียน</b></th>
-                <th><b>คะแนนก่อนสอบ</b></th>
-                <th><b>คะแนนหลังสอบ</b></th>
-                <th><b>เวลาที่ทำ</b></th>
-                <th><b>สถานะ</b></th>
-              </tr>
-              <tr>
-                <th>บทเรียนที่ 1 ความปลอดภัยของการพ่นสี</th>
-                <th>5 คะแนน </th>
-                <th>5 คะแนน</th>
-                <th><i class="fa-regular fa-clock"></i> 8 นาที</th>
-                <th style="color:green;"><i class="fa-solid fa-check"></i></th>
-              </tr>
-            </thead>
-          </table>
+          <div class="table-responsive">
+            <table id="data-table" class="table table-bordered" style="color:blue">
+              <thead>
+                <tr style="font-size:20px">
+                  <th><b>บทเรียน</b></th>
+                  <th><b>คะแนนก่อนสอบ</b></th>
+                  <th><b>คะแนนหลังสอบ</b></th>
+                  <th><b>เวลาที่ทำ</b></th>
+                  <th><b>สถานะ</b></th>
+                </tr>
+                <tr>
+                  <th>บทเรียนที่ 1 ความปลอดภัยของการพ่นสี</th>
+                  <th>5 คะแนน </th>
+                  <th>5 คะแนน</th>
+                  <th><i class="fa-regular fa-clock"></i> 8 นาที</th>
+                  <th><span class="badge text-bg-success " style="font-size:14px;">ผ่าน</span></th>
+                </tr>
+              </thead>
+            </table>
+          </div>
         </div>
       </div>
     </div>
@@ -131,7 +133,7 @@
   //   series.columns.template.adapters.add("stroke", function(stroke, target) {
   //     return chart.get("colors").getIndex(series.columns.indexOf(target));
   //   });
-    
+
   //   // Set data
   //   var data = [{
   //     country: "1",

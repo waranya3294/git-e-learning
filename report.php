@@ -1,5 +1,5 @@
 <div class="container mt-4 mb-4">
-<h2 class="mb-3">รายชื่อพนักงานทั้งหมด</h2>
+    <h2 class="mb-3">รายชื่อพนักงานทั้งหมด</h2>
     <div class="card shadow-sm rounded-1 mb-3" style="border: none; border-top: 4px solid #00adb0;">
         <div class="card-body">
             <div class="row">
@@ -37,19 +37,20 @@
 
 
             <div class="row text-center mt-2">
-                <div class="col" >
-                    <table id="data-table" class="table table-bordered">
-                        <thead >
-                            <tr>
-                                <th><b>#</b></th>
-                                <th><b>รหัสพนักงาน</b></th>
-                                <th><b>ชื่อ-นามสกุล</b></th>
-                                <th><b>แผนก</b></th>
-                                <th><b>สอบก่อนเรียน</b></th>
-                                <th><b>สอบหลังเรียน</b></th>
-                                <th><b>สถานะ</b></th>
-                            </tr>
-                        </thead>
+                <div class="col">
+                    <div class="table-responsive">
+                        <table id="data-table" class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th><b>#</b></th>
+                                    <th><b>รหัสพนักงาน</b></th>
+                                    <th><b>ชื่อ-นามสกุล</b></th>
+                                    <th><b>แผนก</b></th>
+                                    <th><b>สอบก่อนเรียน</b></th>
+                                    <th><b>สอบหลังเรียน</b></th>
+                                    <th><b>สถานะ</b></th>
+                                </tr>
+                            </thead>
                             <tr>
                                 <th>1</th>
                                 <th>0000</th>
@@ -68,8 +69,10 @@
                                 <th>5 คะแนน</th>
                                 <th><span class="badge text-bg-danger " style="font-size:14px;">ยังไม่สอบ</span></th>
                             </tr>
-                        </thead>
-                    </table>
+                            </thead>
+                        </table>
+                    </div>
+
                 </div>
             </div>
 

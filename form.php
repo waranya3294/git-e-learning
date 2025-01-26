@@ -12,8 +12,8 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col mt-3">
-                    <label for="">เนื้อหาบทเรียน:<span class="text-danger">*</span></label>
+                <div class="col-12 mt-3">
+                    <label for="description">เนื้อหาบทเรียน:<span class="text-danger">*</span></label>
                     <div>
                         <textarea id="tiny"></textarea>
                     </div>

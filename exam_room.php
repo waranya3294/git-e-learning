@@ -16,8 +16,8 @@
                                 </div>
 
                                 <div class="row">
-                                    <div class="col mt-3 mb-3">
-                                        <label for="">คำอธิบายรายวิชา:<span class="text-danger">*</span></label>
+                                    <div class="col-12 mt-3 mb-3">
+                                        <label for="description">คำอธิบายรายวิชา:<span class="text-danger">*</span></label>
                                         <div>
                                             <textarea id="tiny"></textarea>
                                         </div>

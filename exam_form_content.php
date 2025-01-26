@@ -261,6 +261,7 @@
     // ฟังก์ชันเพิ่มคำถาม
     function addNewQuestion() {
         const questionBoxes = document.querySelectorAll('.question-box');
+        const optionsContainer = document.querySelectorAll('.options-container .row');
         if (questionBoxes.length >= 5) {
             Swal.fire({
                 allowOutsideClick: false,
@@ -333,13 +334,13 @@
         questionBoxes.forEach((box, index) => {
             const question = box.querySelector('input[name="question"]').value;
             const questionImagePreview = box.querySelector('#showimage img');
-            const questionImageHtml = questionImagePreview ? `<div><img src="${questionImagePreview.src}" class="img-thumbnail" style="max-width: 200px; margin: 5px;"></div>` : '';
+            const questionImageHtml = questionImagePreview ? `<div><img src="${questionImagePreview.src}" class="img-thumbnail" style="max-width: 300px; margin: 5px;"></div>` : '';
             const options = box.querySelectorAll('.options-container .row');
             previewContent += `${questionImageHtml}<p>ข้อที่ ${index + 1} : ${question}</p><ul>`;
             options.forEach((option, optIndex) => {
                 const optionText = option.querySelector('input[type="text"]').value;
                 const optionImagePreview = option.querySelector('.option-image-preview img');
-                const optionImageHtml = optionImagePreview ? `<div><img src="${optionImagePreview.src}" class="img-thumbnail" style="max-width: 50px; margin-top: 5px;"></div>` : '';
+                const optionImageHtml = optionImagePreview ? `<div><img src="${optionImagePreview.src}" class="img-thumbnail" style="max-width: 100px; margin-top: 5px;"></div>` : '';
                 previewContent += `<input type="radio" name="previewQuestion${index}" value="option${optIndex}"> ${optionText} ${optionImageHtml}`;
             });
             previewContent += `</ul>`;
@@ -356,7 +357,9 @@
                 let imageContainer;
                 if (type === 'question') {
                     imageContainer = input.closest('.question-box').querySelector('#showimage');
-                    imageContainer.innerHTML = ''; // Clear existing content
+
+                    imageContainer.innerHTML = ''; 
+
                 } else if (type === 'option') {
                     const optionRow = input.closest('.row');
                     imageContainer = optionRow.querySelector('.option-image-preview');
@@ -365,13 +368,13 @@
                         imageContainer.classList.add('option-image-preview', 'mt-2');
                         optionRow.appendChild(imageContainer);
                     }
-                    imageContainer.innerHTML = ''; // Clear existing content
+                    imageContainer.innerHTML = ''; 
                 }
 
                 const imgElement = document.createElement('img');
                 imgElement.src = e.target.result;
                 imgElement.classList.add('img-thumbnail');
-                imgElement.style.maxWidth = type === 'question' ? '200px' : '100px';
+                imgElement.style.maxWidth = type === 'question' ? '400px' : '400px';
 
                 const removeButton = document.createElement('button');
                 removeButton.classList.add('btn', 'btn-danger', 'btn-sm', 'ms-2');
