@@ -65,9 +65,9 @@
 
                 <div class="question-box mb-4">
                     <div class="row mt-3 mb-3">
+                        <label for="title">ตั้งคำถาม:<span class="text-danger">*</span></label>
                         <div class="col-10">
-                            <label for="title">ตั้งคำถาม:<span class="text-danger">*</span></label>
-                            <input type="text" name="question" class="form-control" placeholder="เพิ่มคำถาม ?" onclick="showToolbar(this)">
+                            <input type="text" id="question-box" name="question" class="form-control" placeholder="เพิ่มคำถาม ?" onclick="showToolbar(this)">
                             <span class="text-danger required-asterisk" style="display: none;">*</span>
                         </div>
                         <div class="col-2 d-flex align-items-end justify-content-start">
@@ -82,7 +82,7 @@
                     <!-- ตัวเลือก -->
                     <div id="options-container" class="mb-4 options-container">
                         <!-- ตัวเลือกตัวอย่าง -->
-                        <div class="row align-items-center mb-2 g-2">
+                        <div class="row d-flex align-items-center justify-content-center mb-2 g-2">
                             <div class="col-auto">
                                 <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios1" value="option1" checked>
                             </div>
@@ -92,7 +92,7 @@
                                 </label>
                                 <input type="file" id="option_image_1" class="d-none" onchange="previewImage(this, 'option')">
                             </div>
-                            <div class="col">
+                            <div class="col-auto flex-grow-1">
                                 <input type="text" class="form-control" placeholder="ตัวเลือกที่ 1">
                             </div>
                             <div class="col-auto">
@@ -141,7 +141,7 @@
 
         <!-- Preview Modal -->
         <div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-lg">
+            <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
                         <h1 class="modal-title fs-5" id="previewModalLabel">แสดงตัวอย่าง</h1>
@@ -155,8 +155,6 @@
         </div>
     </div>
 </div>
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
 <script type="text/javascript" src="https://unpkg.com/xlsx@0.15.1/dist/xlsx.full.min.js"></script>
 
@@ -225,174 +223,186 @@
                 icon: 'warning',
                 title: 'เพิ่มตัวเลือกได้สูงสุด 4 ตัวเลือก',
                 confirmButtonText: 'ตกลง',
-                confirmButtonColor: 'green'
+                confirmButtonColor: 'green',
             });
             return;
         }
+
+        const optionId = `${Date.now()}-${Math.random()}`; // สร้าง ID แบบไม่ซ้ำ
         const optionDiv = document.createElement('div');
         optionDiv.classList.add('row', 'align-items-center', 'mb-2', 'g-2');
         optionDiv.innerHTML = `
-            <div class="col-auto">
-                <input class="form-check-input" type="radio" name="exampleRadios" value="option${optionsContainer.children.length + 1}">
-            </div>
-            <div class="col-auto">
-                <label for="option_image_${optionsContainer.children.length + 1}" class="btn btn-outline-primary d-flex align-items-center">
-                    <i class="bi bi-image" title="แทรกรูปภาพ"></i>
-                </label>
-                <input type="file" id="option_image_${optionsContainer.children.length + 1}" class="d-none" onchange="previewImage(this, 'option')">
-            </div>
-            <div class="col">
-                <input type="text" class="form-control" placeholder="ตัวเลือกที่ ${optionsContainer.children.length + 1}">
-            </div>
-            <div class="col-auto">
-                <button class="btn" onclick="removeOption(this)" title="ลบตัวเลือก">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>`;
+        <div class="col-auto">
+            <input class="form-check-input" type="radio" name="exampleRadios_${optionId}" value="${optionId}">
+        </div>
+        <div class="col-auto">
+            <label for="option_image_${optionId}" class="btn btn-outline-primary d-flex align-items-center">
+                <i class="bi bi-image" title="แทรกรูปภาพ"></i>
+            </label>
+            <input type="file" id="option_image_${optionId}" class="d-none" onchange="previewImage(this, 'option')">
+        </div>
+        <div class="col">
+            <input type="text" class="form-control" placeholder="ตัวเลือก">
+        </div>
+        <div class="col-auto">
+            <button class="btn" onclick="removeOption(this)" title="ลบตัวเลือก">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>`;
         optionsContainer.appendChild(optionDiv);
     }
+
     // ลบตัวเลือก
     function removeOption(button) {
         const optionDiv = button.closest('.row');
         optionDiv.remove();
     }
 
-
-    // ฟังก์ชันเพิ่มคำถาม
+    // เพิ่มคำถามใหม่
     function addNewQuestion() {
-        const questionBoxes = document.querySelectorAll('.question-box');
-        const optionsContainer = document.querySelectorAll('.options-container .row');
+        const questionContainer = document.querySelector('.question-box').parentNode;
+        const questionBoxes = questionContainer.querySelectorAll('.question-box');
+
         if (questionBoxes.length >= 5) {
             Swal.fire({
                 allowOutsideClick: false,
                 icon: 'warning',
                 title: 'เพิ่มคำถามได้สูงสุด 5 ข้อ',
                 confirmButtonText: 'ตกลง',
-                confirmButtonColor: 'green'
+                confirmButtonColor: 'green',
             });
             return;
         }
 
-        const questionBox = document.querySelector('.question-box');
-        const clone = questionBox.cloneNode(true);
-
-        // รีเซ็ตค่าของ input และ textarea
-        clone.querySelectorAll('input[type="text"], textarea').forEach(input => input.value = '');
-        clone.querySelectorAll('input[type="radio"]').forEach(radio => radio.checked = false);
-        clone.querySelectorAll('.option-image-preview').forEach(preview => preview.remove());
-        clone.querySelectorAll('#showimage').forEach(showimage => showimage.innerHTML = '');
-
-        // สร้าง unique ID สำหรับคำถามใหม่
-        const uniqueId = `question-${Date.now()}`;
-        const questionInput = clone.querySelector('input[name="question"]');
-        const questionImageInput = clone.querySelector('#question_image');
-        const questionImageLabel = clone.querySelector('#question_image_label');
-        const showImageDiv = clone.querySelector('#showimage');
-
-        // อัปเดต ID และการเชื่อมโยงของ label กับ input
-        questionInput.setAttribute('id', `${uniqueId}-input`);
-        questionImageInput.setAttribute('id', `${uniqueId}-image`);
-        questionImageLabel.setAttribute('for', `${uniqueId}-image`);
-        showImageDiv.setAttribute('id', `${uniqueId}-showimage`);
-
-        // อัปเดต ID ของตัวเลือกทั้งหมดภายในคำถามใหม่
-        const options = clone.querySelectorAll('.options-container .row');
-        options.forEach((option, index) => {
-            const optionImageInput = option.querySelector('input[type="file"]');
-            const optionImageLabel = option.querySelector('label');
-            const optionImagePreview = option.querySelector('.option-image-preview');
-
-            // อัปเดต ID และ for ให้ไม่ซ้ำ
-            const optionUniqueId = `${uniqueId}-option-${index + 1}`;
-            optionImageInput.setAttribute('id', optionUniqueId);
-            optionImageLabel.setAttribute('for', optionUniqueId);
-
-            // ลบ preview ของรูปภาพ 
-            if (optionImagePreview) optionImagePreview.remove();
-        });
-
-        // เพิ่มคำถามใหม่หลังคำถามล่าสุด
-        const lastQuestionBox = document.querySelector('.question-box:last-child');
-        lastQuestionBox.parentNode.insertBefore(clone, lastQuestionBox.nextSibling);
+        const newQuestionBox = document.createElement('div');
+        newQuestionBox.classList.add('question-box', 'mb-4');
+        newQuestionBox.innerHTML = `
+    <div class="row mt-3 mb-3">
+        <label for="title">ตั้งคำถาม:<span class="text-danger">*</span></label>
+        <div class="col-10">
+            <input type="text" name="question" class="form-control" placeholder="เพิ่มคำถาม ?" onclick="showToolbar(this)">
+        </div>
+        <div class="col-2 d-flex align-items-end justify-content-start">
+            <label for="question_image_${questionBoxes.length + 1}" class="btn btn-outline-primary">
+                <i class="bi bi-image" title="แทรกรูปภาพ"></i>
+            </label>
+            <input type="file" id="question_image_${questionBoxes.length + 1}" class="d-none" onchange="previewImage(this, 'question')">
+        </div>
+    </div>
+    <div class="mb-4" id="showimage"></div>
+    <div id="options-container" class="mb-4 options-container">
+        <div class="row d-flex align-items-center mb-2 g-2">
+            <div class="col-auto">
+                <input class="form-check-input" type="radio" name="exampleRadios_${questionBoxes.length + 1}" value="option1" checked>
+            </div>
+            <div class="col-auto">
+                <label for="option_image_${questionBoxes.length + 1}_1" class="btn btn-outline-primary d-flex align-items-center">
+                    <i class="bi bi-image" title="แทรกรูปภาพ"></i>
+                </label>
+                <input type="file" id="option_image_${questionBoxes.length + 1}_1" class="d-none" onchange="previewImage(this, 'option')">
+            </div>
+            <div class="col flex-grow-1">
+                <input type="text" class="form-control" placeholder="ตัวเลือกที่ 1">
+            </div>
+            <div class="col-auto">
+                <button class="btn" onclick="removeOption(this)" title="ลบตัวเลือก">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-default" onclick="addOption(this)"><i class="fas fa-plus"></i> เพิ่มตัวเลือก</button>
+    <hr>
+    <button class="btn btn-secondary me-2" onclick="addNewQuestion()" title="เพิ่มคำถาม">
+        <i class="bi bi-plus-circle"></i>
+    </button>
+    <button class="btn btn-danger" onclick="removeQuestion(this)" title="นำออก"><i class="bi bi-trash"></i></button>
+    `;
+        questionContainer.appendChild(newQuestionBox);
     }
 
-    // ฟังก์ชันสำหรับการลบคำถาม
     function removeQuestion(button) {
-        const questionBox = button.closest('.question-box');
-        questionBox.remove();
+        const questionBoxDiv = button.closest('.question-box');
+        questionBoxDiv.remove();
     }
 
     // แสดงตัวอย่าง
     function previewExam() {
-        const title = document.querySelector('input[name="title"]').value;
-        const description = document.querySelector('textarea[name="description"]').value;
+    const title = document.querySelector('input[name="title"]').value.trim();
+    const description = document.querySelector('textarea[name="description"]').value.trim();
+    const questionBoxes = document.querySelectorAll('.question-box');
 
-        const questionBoxes = document.querySelectorAll('.question-box');
+    let previewHtml = `<h3>${title}</h3><p>${description}</p>`;
 
-        let previewContent = `<h3>${title}</h3><p>${description}</p>`;
+    questionBoxes.forEach((box, index) => {
+        const question = box.querySelector('input[name="question"]').value.trim();
+        const questionImage = box.querySelector('#showimage img');
+        const options = box.querySelectorAll('.options-container .row');
 
-        questionBoxes.forEach((box, index) => {
-            const question = box.querySelector('input[name="question"]').value;
-            const questionImagePreview = box.querySelector('#showimage img');
-            const questionImageHtml = questionImagePreview ? `<div><img src="${questionImagePreview.src}" class="img-thumbnail" style="max-width: 300px; margin: 5px;"></div>` : '';
-            const options = box.querySelectorAll('.options-container .row');
-            previewContent += `${questionImageHtml}<p>ข้อที่ ${index + 1} : ${question}</p><ul>`;
-            options.forEach((option, optIndex) => {
-                const optionText = option.querySelector('input[type="text"]').value;
-                const optionImagePreview = option.querySelector('.option-image-preview img');
-                const optionImageHtml = optionImagePreview ? `<div><img src="${optionImagePreview.src}" class="img-thumbnail" style="max-width: 100px; margin-top: 5px;"></div>` : '';
-                previewContent += `<input type="radio" name="previewQuestion${index}" value="option${optIndex}"> ${optionText} ${optionImageHtml}`;
-            });
-            previewContent += `</ul>`;
+        previewHtml += `
+        <p><b>ข้อที่ ${index + 1}:</b> ${question}</p>
+        ${questionImage ? `<img src="${questionImage.src}" class="img-thumbnail" style="max-width: 400px;">` : ''}
+        <ul>`;
+        
+        options.forEach((option, optIndex) => {
+            const optionText = option.querySelector('input[type="text"]').value.trim();
+            const optionImage = option.querySelector('.option-image-preview img');
+
+            previewHtml += `
+            <ul>
+                <input type="radio" name="question${index}" id="question${index}-option${optIndex}">
+                <label for="question${index}-option${optIndex}">
+                    ${optionText}
+                    ${optionImage ? `<img src="${optionImage.src}" class="img-thumbnail" style="max-width: 100px;">` : ''}
+                </label>
+           </ul> `;
         });
 
-        document.getElementById('previewContent').innerHTML = previewContent;
-    }
+        previewHtml += `</ul>`;
+    });
+
+    previewContent.innerHTML = previewHtml;
+}
 
     function previewImage(input, type) {
         const file = input.files[0];
-        if (file) {
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                let imageContainer;
-                if (type === 'question') {
-                    imageContainer = input.closest('.question-box').querySelector('#showimage');
+        if (!file) return;
 
-                    imageContainer.innerHTML = ''; 
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            let imageContainer;
 
-                } else if (type === 'option') {
-                    const optionRow = input.closest('.row');
-                    imageContainer = optionRow.querySelector('.option-image-preview');
-                    if (!imageContainer) {
-                        imageContainer = document.createElement('div');
-                        imageContainer.classList.add('option-image-preview', 'mt-2');
-                        optionRow.appendChild(imageContainer);
-                    }
-                    imageContainer.innerHTML = ''; 
+            if (type === 'question') {
+                imageContainer = input.closest('.question-box').querySelector('#showimage');
+            } else if (type === 'option') {
+                const optionRow = input.closest('.row');
+                imageContainer = optionRow.querySelector('.option-image-preview');
+                if (!imageContainer) {
+                    imageContainer = document.createElement('div');
+                    imageContainer.classList.add('option-image-preview', 'mt-2');
+                    optionRow.appendChild(imageContainer);
                 }
+            }
 
-                const imgElement = document.createElement('img');
-                imgElement.src = e.target.result;
-                imgElement.classList.add('img-thumbnail');
-                imgElement.style.maxWidth = type === 'question' ? '400px' : '400px';
-
-                const removeButton = document.createElement('button');
-                removeButton.classList.add('btn', 'btn-danger', 'btn-sm', 'ms-2');
-                removeButton.innerText = 'ลบ';
-                removeButton.onclick = function() {
-                    if (confirm('ต้องการลบรูปภาพนี้หรือไม่?')) {
-                        imgElement.remove();
-                        removeButton.remove();
-                        input.value = ''; // Clear the input value
-                    }
-                };
-
-                imageContainer.appendChild(imgElement);
-                imageContainer.appendChild(removeButton);
-            };
-            reader.readAsDataURL(file);
-        }
+            imageContainer.innerHTML = `
+            <div class="d-flex align-items-center">
+                <img src="${e.target.result}" class="img-thumbnail" style="max-width: 400px; margin-right: 10px;">
+                <button class="btn btn-danger btn-sm" onclick="removeImage(this, '${type}')">ลบ</button>
+            </div>`;
+        };
+        reader.readAsDataURL(file);
     }
+
+    function removeImage(button, type) {
+        const container = button.closest('.d-flex');
+        const inputFile = type === 'question' ?
+            container.closest('.question-box').querySelector(`#question_image`) :
+            container.closest('.row').querySelector(`input[type="file"]`);
+
+        container.remove();
+        inputFile.value = ''; // ล้างค่าของ input file
+    }
+
 
     function toggleRequired(checkbox) {
         const questionBox = checkbox.closest('.question-box');
