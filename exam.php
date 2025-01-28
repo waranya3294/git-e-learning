@@ -22,41 +22,41 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body mb-3">
-                <label for="text">ตั้งชื่อบทเรียน: <span class="text-danger">*</span></label>
-                <input type="text" name="title" id="title" class="form-control mb-3" required>
+                <label for="lesson-title">ตั้งชื่อบทเรียน: <span class="text-danger">*</span></label>
+                <input type="text" name="title" id="lesson-title" class="form-control mb-3" required>
 
                 <label for="exam_id">เลือกชุดข้อสอบก่อนเรียน - หลังเรียน: <span class="text-danger">*</span></label>
                 <select class="form-control mb-3" id="exam_id">
-                  <option value=""></option>
-                  <option value="">ประเภทของการพ่นสี</option>
-                  <option value="">การสวมใส่ชุด PPE</option>
-                  <option value="">Test</option>
+                  <option value="">-- เลือกชุดข้อสอบ --</option>
+                  <option value="exam1">ประเภทของการพ่นสี</option>
+                  <option value="exam2">การสวมใส่ชุด PPE</option>
+                  <option value="exam3">Test</option>
                 </select>
 
-                <label for="exam_id">เลือกเนื้อหาบทเรียน: <span class="text-danger">*</span></label>
+                <label for="lesson-content">เลือกเนื้อหาบทเรียน: <span class="text-danger">*</span></label>
                 <div class="d-flex align-items-center">
                   <span class="me-2">1</span>
-                  <select class="form-control" id="exam_id">
-                    <option value=""></option>
-                    <option value="">Test</option>
-                    <option value="">Test</option>
-                    <option value="">Test</option>
+                  <select class="form-control" id="lesson-content">
+                    <option value="">-- เลือกเนื้อหา --</option>
+                    <option value="content1">Test</option>
+                    <option value="content2">Test</option>
+                    <option value="content3">Test</option>
                   </select>
-                  <button type="button" name="content" class="btn btn-outline-secondary ms-2" onclick="addContent()" title="เพิ่มเนื้อหา">
+                  <button type="button" name="content" class="btn btn-outline-secondary ms-2" onclick="addContent('content-container')" title="เพิ่มเนื้อหา">
                     <i class="fas fa-plus"></i>
                   </button>
                 </div>
                 <div id="content-container" class="mt-2"></div>
 
-                <label for="text" class="mt-3">เวลาทำข้อสอบ: <span class="text-danger">*</span></label>
+                <label for="exam-minute" class="mt-3">เวลาทำข้อสอบ: <span class="text-danger">*</span></label>
                 <div class="input-group">
-                  <input type="number" id="exam_minute" value="" name="exam_minute" class="form-control" data-fv-field="exam_minute"><span class="input-group-text">นาที</span>
+                  <input type="number" id="exam-minute" value="" name="exam_minute" class="form-control" data-fv-field="exam_minute"><span class="input-group-text">นาที</span>
 
                 </div>
               </div>
 
               <div class="modal-footer mt-5">
-                <button type="button" class="btn btn-success" title="save" onclick=""><i class="fa-solid fa-floppy-disk"></i> บันทึกข้อมูล </button>
+                <button type="button" class="btn btn-success" title="save" onclick="window.location.href='exam_maincontent.php'"><i class="fa-solid fa-floppy-disk"></i> บันทึกข้อมูล </button>
               </div>
             </div>
           </div>
@@ -66,7 +66,7 @@
         <div class="card shadow-sm">
           <div class="card-body" style="cursor: pointer;">
             <div class="row">
-              <div class="col-6 d-flex align-items-center">
+              <div class="col-6 d-flexalign-items-center">
                 <h4 class="m-0" onclick="showData()">Topic 1</h4>
               </div>
               <div class="row mt-2">
@@ -77,16 +77,70 @@
             </div>
             <div class="row mt-5">
               <div class="col-12 text-end">
-                <button class="btn btn-outline-warning" onclick="show_select_data_form()" title="จัดการข้อมูล">
+                <button class="btn btn-outline-warning" title="จัดการข้อมูล" data-bs-toggle="modal" data-bs-target="#exampleModal1">
                   <i class="bi bi-pencil-square"></i>
                 </button>
                 <button class="btn btn-outline-danger" onclick="showDelete()" title="ลบข้อมูล"><i class="bi bi-trash3"></i></button>
               </div>
+            </div>
 
+            <!-- แก้ไขข้อมูล -->
+            <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <div class="col">
+                      <button type="button" name="content" class="btn btn-warning ms-2" style="color:white;" onclick="addContent('content-container-modal')" title="เพิ่มเนื้อหา">
+                        <i class="fas fa-plus"> เพิ่มเนื้อหา</i>
+                      </button>
+                    </div>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <div class="text-start">
+                      <label for="lesson-title">ชื่อบทเรียน</label>
+                    </div>
+                    <input type="text" name="title" id="lesson-title-modal" class="form-control mb-3" placeholder="ชื่อบทเรียน" required>
+                    <div class="text-start">
+                      <label for="exam_id">ชุดข้อสอบก่อนเรียน - หลังเรียน</label>
+                    </div>
+                    <input type="text" name="exam" id="exam-title-modal" class="form-control mb-3" placeholder="ชื่อชุดข้อสอบ" required>
+                    <div class="col text-start mt-2">
+                      <label for="content-title">ชื่อเนื้อหา</label>
+                    </div>
+                    <div>
+                      <input type="text" name="content_title" id="content-title-modal" class="form-control mb-2" placeholder="ชื่อบทเรียนของเนื้อหา" required>
+                    </div>
+                    <input type="text" name="content_title" id="content-title-modal" class="form-control mb-2" placeholder="ชื่อบทเรียนของเนื้อหา" required>
+                    <!-- <label for="lesson-content">เลือกเนื้อหาบทเรียน: <span class="text-danger">*</span></label> -->
+                    <!-- <div class="d-flex align-items-center mt-4 mb-4"> -->
+                    <!-- <span class="me-2">1</span>
+                      <select class="form-control" id="lesson-content">
+                        <option value="">-- เลือกเนื้อหา --</option>
+                        <option value="content1">Test</option>
+                        <option value="content2">Test</option>
+                        <option value="content3">Test</option>
+                      </select> -->
+                    <!-- <button type="button" name="content" class="btn btn-warning ms-2" style="color:white;" onclick="addContent('content-container-modal')" title="เพิ่มเนื้อหา">
+                        <i class="fas fa-plus"> เพิ่มเนื้อหา</i>
+                      </button> -->
+                    <!-- </div> -->
+                    <div id="content-container-modal" class="mt-2"></div>
+                    <div class="text-start">
+                      <label for="exam-minute-modal">เวลาในการทำข้อสอบ</label>
+                    </div>
+                    <input type="text" name="exam_time" id="exam-minute-modal" class="form-control mb-3" placeholder="เวลาในการทำข้อสอบ" required>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" onclick="window.location.href='exam_maincontent.php'">บันทึกข้อมูล</button>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
       </div>
+
       <div class="container mb-3">
         <div class="card shadow-sm">
           <div class="card-body" style="cursor: pointer;">
@@ -102,7 +156,7 @@
             </div>
             <div class="row mt-5">
               <div class="col-12 text-end">
-                <button class="btn btn-outline-warning" onclick="show_select_data_form()" title="จัดการข้อมูล">
+                <button class="btn btn-outline-warning" title="จัดการข้อมูล" data-bs-toggle="modal" data-bs-target="#exampleModal1">
                   <i class="bi bi-pencil-square"></i>
                 </button>
                 <button class="btn btn-outline-danger" onclick="showDelete()" title="ลบข้อมูล"><i class="bi bi-trash3"></i></button>
@@ -129,85 +183,85 @@
       if (result.isConfirmed) {
         Swal.fire({
           text: "เรียบร้อย",
+          confirmButtonColor: "#3085d6",
           icon: "success"
         });
       }
     });
   }
 
-  function show_select_data_form() {
-    Swal.fire({
-      allowOutsideClick: false,
-      confirmButtonColor: 'green',
-      width: 700,
-      html: `
-     <div class="col">
-                    <div class="text-start">
-                        <label for="exam_id">ชื่อบทเรียน</label>
-                    </div>
-                    <input type="text" name="title" id="title" class="form-control mb-3" placeholder="ชื่อบทเรียน" required-1>
-                </div>
-                <div class="col">
-                    <div class="text-start">
-                        <label for="exam_id">ชุดข้อสอบก่อนเรียน - หลังเรียน</label>
-                    </div>
-                    <input type="text" name="title" id="title" class="form-control mb-3" placeholder="ชื่อชุดข้อสอบ" required-1>
-                </div>
-            </div>
-              <div class="col text-start mt-2">
-                <label for="exam_id">ชื่อเนื้อหา</label>
-              </div>
-          <div>
-                <input type="text" name="title" id="title" class="form-control mb-2" placeholder="ชื่อบทเรียนของเนื้อหา" required-1>
-            </div>
-            <input type="text" name="title" id="title" class="form-control mb-2" placeholder="ชื่อบทเรียนของเนื้อหา" required-1>
-           
-            <div class="row">
-            <div class="col-md-9">
-              <input type="text" name="title" id="title" class="form-control mb-2" placeholder="ชื่อบทเรียนของเนื้อหา" required-1>
-            </div>
-               <div class="col text-end">
-                <button type="button" name="content" class="btn btn-outline-primary" onclick="addContent()" title="เพิ่มเนื้อหา">
-                  <i class="fas fa-plus">เพิ่มเนื้อหา</i>
-                </button>
-            </div>    
-              </div>
-                <div id="content-container" class="mt-2"></div>
-            <div class="text-start">
-              <label for="exam_id">เวลาในการทำข้อสอบ</label>
-            </div>
-              <input type="text" name="title" id="title" class="form-control mb-3" placeholder="เวลาในการทำข้อสอบ" required-1>
-            `,
-    });
-  }
+  // function show_select_data_form() {
+  //   Swal.fire({
+  //     allowOutsideClick: false,
+  //     confirmButtonColor: 'green',
+  //     width: 700,
+  //     html: `
+  //    <div class="col">
+  //                   <div class="text-start">
+  //                       <label for="lesson-title">ชื่อบทเรียน</label>
+  //                   </div>
+  //                   <input type="text" name="title" id="lesson-title-modal" class="form-control mb-3" placeholder="ชื่อบทเรียน" required>
+  //               </div>
+  //               <div class="col">
+  //                   <div class="text-start">
+  //                       <label for="exam_id">ชุดข้อสอบก่อนเรียน - หลังเรียน</label>
+  //                   </div>
+  //                   <input type="text" name="exam" id="exam-title-modal" class="form-control mb-3" placeholder="ชื่อชุดข้อสอบ" required>
+  //               </div>
+  //           </div>
+  //             <div class="col text-start mt-2">
+  //               <label for="content-title">ชื่อเนื้อหา</label>
+  //             </div>
+  //         <div>
+  //               <input type="text" name="content_title" id="content-title-modal" class="form-control mb-2" placeholder="ชื่อบทเรียนของเนื้อหา" required>
+  //           </div>
+  //           <input type="text" name="content_title" id="content-title-modal" class="form-control mb-2" placeholder="ชื่อบทเรียนของเนื้อหา" required>
 
+  //           <div class="row">
+  //           <div class="col-md-9">
+  //             <input type="text" name="content_title" id="content-title-modal" class="form-control mb-2" placeholder="ชื่อบทเรียนของเนื้อหา" required>
+  //           </div>
+  //              <div class="col text-end">
+  //               <button type="button" id="addContentBtn"  class="btn btn-outline-primary" onclick="addContent()" title="เพิ่มเนื้อหา">
+  //                 <i class="fas fa-plus">เพิ่มเนื้อหา</i>
+  //               </button>
+  //           </div>    
+  //             </div>
+  //               <div id="content-container-modal" class="mt-2"></div>
+  //           <div class="text-start">
+  //             <label for="exam-minute-modal">เวลาในการทำข้อสอบ</label>
+  //           </div>
+  //             <input type="text" name="exam_time" id="exam-minute-modal" class="form-control mb-3" placeholder="เวลาในการทำข้อสอบ" required>
+  //           `,
+  //   });
+  // }
   let pageCounter = 2;
 
-  function addContent() {
-    const contentContainer = document.getElementById('content-container');
-    const newContent = document.createElement('div');
-    newContent.className = 'content-box mt-2';
-    
-    newContent.innerHTML = `
-      <div class="d-flex align-items-center">
-        <span class="me-2" >${pageCounter}</span>
-        <select class="form-control" id="exam_id">
-          <option value=""></option>
-          <option value="">Test</option>
-          <option value="">Test</option>
-          <option value="">Test</option>
-        </select>
-        <button type="button" class="btn btn-outline-danger ms-2" onclick="removeContent(this)" title="ลบเนื้อหา" style="flex: 1;">
-          <i class="bi bi-trash"></i>
-        </button>
-      </div>
-    `;
-    contentContainer.appendChild(newContent);
-    pageCounter++;
-  }
-  // ลบ
-  function removeContent(button) {
-    button.parentElement.parentElement.remove();
-  }
+  function addContent(containerId) {
+  const contentContainer = document.getElementById(containerId);
+  const newContent = document.createElement('div');
+  newContent.className = 'content-box mt-2';
+
+  newContent.innerHTML = `
+    <div class="d-flex align-items-center">
+      <span class="me-2">${pageCounter}</span>
+      <select class="form-control" name="content_${pageCounter}" style="flex: 1;">
+        <option value="">-- เลือกเนื้อหา --</option>
+        <option value="content1">เนื้อหาที่ 1</option>
+        <option value="content2">เนื้อหาที่ 2</option>
+        <option value="content3">เนื้อหาที่ 3</option>
+      </select>
+      <button type="button" class="btn btn-outline-danger ms-2" onclick="removeContent(this)" title="ลบเนื้อหา">
+        <i class="bi bi-trash"></i>
+      </button>
+    </div>
+  `;
+  contentContainer.appendChild(newContent);
+  pageCounter++;
+}
+
+function removeContent(button) {
+  button.parentElement.parentElement.remove();
+}
 
 </script>
