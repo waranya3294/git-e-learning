@@ -75,66 +75,7 @@
 
                 </div>
             </div>
-
-            <!-- <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel">ใบรายงานผลการเข้าสอบ</h1>
-                            <div id="downloadBtn" class="btn btn-primary"><i class="fa-solid fa-download"></i> ดาวน์โหลด</div>
-                        </div>
-                        <div class="modal-body mb-3">
-                            <div class="row text-center mt-4">
-                                <div class="col">
-                                    <table id="modal-data-table" class="table table-bordered" style="color:blue">
-                                        <thead class="table-dark">
-                                            <tr>
-                                                <th><b>รหัสพนักงาน</b></th>
-                                                <th><b>ชื่อ-นามสกุล</b></th>
-                                                <th><b>แผนก</b></th>
-                                                <th><b>สอบก่อนเรียน</b></th>
-                                                <th><b>สอบหลังเรียน</b></th>
-                                                <th><b>สถานะ</b></th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            Add your table rows here
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-                </div> -->
-            <div class="row">
-                <div class="col-sm-5">
-                    <p id="rowInfo">แสดง 1 ถึง 10 จาก 000 แถว</p>
-                </div>
-                <div class="col-sm-7">
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-end">
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Previous">
-                                    <span aria-hidden="true">&laquo;</span>
-                                    <span class="sr-only">Previous</span>
-                                </a>
-                            </li>
-                            <li class="page-item"><a class="page-link" href="#">1</a></li>
-                            <li class="page-item"><a class="page-link" href="#">2</a></li>
-                            <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item"><a class="page-link" href="#">4</a></li>
-                            <li class="page-item"><a class="page-link" href="#">5</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#" aria-label="Next">
-                                    <span aria-hidden="true">&raquo;</span>
-                                    <span class="sr-only">Next</span>
-                                </a>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
-            </div>
+            
         </div>
     </div>
 </div>
@@ -157,6 +98,10 @@
 <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
 
 <script>
+    // let table = new DataTable('#data-table',{
+
+    // });
+
     document.getElementById("downloadBtn").addEventListener("click", function() {
         const table = document.getElementById("data-table");
         const rows = table.querySelectorAll("tr");

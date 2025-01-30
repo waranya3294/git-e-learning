@@ -3,13 +3,13 @@
         <div class="card-body">
             <div class="row">
                 <div class="col mt-3">
-                    <h3 style="color:blue;">หมวดหมู่ข้อสอบ</h3>
+                    <h3 >หมวดหมู่ข้อสอบ</h3>
                 </div>
             </div>
             <div class="row">
                 <div class="col mt-3 text-end">
                     <button type="text" class="btn btn-success" onclick="window.location.href='exam_form_maincontent.php'">
-                        <i class="bi bi-plus-circle-fill" style="color:white"></i> เพิ่มข้อมูลใหม่</button>
+                    <i class="fas fa-plus"></i> เพิ่มชุดข้อสอบใหม่</button>
                 </div>
             </div>
             <hr>
@@ -31,8 +31,8 @@
                                 <th>ความปลอดภัยในการพ่นสี</th>
                                 <th>5 ข้อ</th>
                                 <th>
-                                    <button class="btn btn-warning btn-sm" title="แก้ไขข้อมูล" onclick="showForm()"><i class="bi bi-pencil-square"></i></button>
-                                    <button class="btn btn-danger btn-sm" title="ลบข้อมูล" onclick="showDelete() "><i class="bi bi-trash"></i></button>
+                                    <button class="btn btn-outline-warning btn-sm" title="แก้ไขข้อมูล" onclick="window.location.href='exam_form_maincontent.php'"><i class="bi bi-pencil-square"></i></button>
+                                    <button class="btn btn-outline-danger btn-sm" title="ลบข้อมูล" onclick="showDelete() "><i class="bi bi-trash"></i></button>
                                 </th>
                             </tr>
                         </tbody>
@@ -49,7 +49,7 @@
             title: "คุณต้องการลบข้อมูลนี้หรือไม่",
             icon: "warning",
             showCancelButton: true,
-            confirmButtonColor: "#3085d6",
+            confirmButtonColor: "green",
             cancelButtonColor: "#d33",
             confirmButtonText: "ใช่",
             cancelButtonText: "ไม่ใช่"
@@ -57,7 +57,9 @@
             if (result.isConfirmed) {
                 Swal.fire({
                     text: "เรียบร้อย",
-                    icon: "success"
+                    icon: "success",
+                    timer: 1500,
+                    showConfirmButton: false,
                 });
             }
         });

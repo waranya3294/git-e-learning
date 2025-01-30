@@ -39,8 +39,8 @@
     tinymce.init({
         branding: false,
         selector: 'textarea#tiny',
-        plugins: 'image link media text preview importword fullscreen lists fontsizeinput color textcolor',
-        toolbar: 'undo redo | fontsizeinput fontsizeselect | image link media importword bold italic backcolor forecolor |\
+        plugins: 'image link media text preview  fullscreen lists fontsizeinput color textcolor',
+        toolbar: 'undo redo | fontsizeinput fontsizeselect | image link media bold italic backcolor forecolor |\
         bullist numlist checklist | alignleft aligncenter alignright alignjustify preview fullscreen',
         image_title: true,
         automatic_uploads: true,

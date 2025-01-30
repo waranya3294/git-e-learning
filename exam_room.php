@@ -25,7 +25,7 @@
                                     </div>
                                 </div>
 
-                                <label for="datetimes">วันที่เปิดห้องสอบ:<spen class="text-danger">*</spen></label>
+                                <label for="datetimes">ระยะเวลาเปิดห้องสอบ:<spen class="text-danger">*</spen></label>
                                 <div class="input-group mb-5">
                                     <input type="text" id="datetimes" name="datetimes" class="form-control" aria-describedby="exam_starttime_endtime">
                                     <span class="input-group-text" id="exam_starttime_endtime">
@@ -37,6 +37,7 @@
                     </div>
                 </div>
                 <hr>
+                
                 <div class="row mb-3">
                     <div class="col text-end">
                         <div class="btn btn-success" onclick="window.location.href='room_maincontent.php'">
@@ -58,8 +59,8 @@
     tinymce.init({
         branding: false,
         selector: 'textarea#tiny',
-        plugins: 'image link media table  preview importword fullscreen lists fontsizeinput color textcolor',
-        toolbar: 'undo redo | fontsizeinput fontsizeselect | image link media importword bold italic backcolor forecolor |\
+        plugins: 'image link media table  preview  fullscreen lists fontsizeinput color textcolor',
+        toolbar: 'undo redo | fontsizeinput fontsizeselect | image link media  bold italic backcolor forecolor |\
              bullist numlist checklist table | alignleft aligncenter alignright alignjustify preview fullscreen',
         image_title: true,
         automatic_uploads: true,
@@ -169,7 +170,6 @@
             }
         });
 
-        // เพิ่มการตั้งค่า event เพื่ออัปเดตค่าหลังจากที่ผู้ใช้เลือก
         $('input[name="datetimes"]').on('apply.daterangepicker', function(ev, picker) {
             $(this).val(picker.startDate.format('DD MMM YYYY HH:mm') + ' - ' + picker.endDate.format('DD MMM YYYY HH:mm'));
         });
@@ -179,4 +179,5 @@
         });
 
     });
+
 </script>

@@ -3,13 +3,13 @@
         <div class="card-body ">
         <div class="row">
         <div class="col mt-3">
-            <h4 style="color:blue;">สร้างเนื้อหา</h4>
+            <h2>สร้างเนื้อหา</h2>
         </div>
     </div>
     <div class="row">
         <div class="col mt-3  text-end">
             <button class="btn btn-success" onclick="window.location.href='form_maincontent.php'">
-                <i class="bi bi-plus-circle-fill" style="color:white"></i> เพิ่มเนื้อหาใหม่</button>
+            <i class="fas fa-plus"></i> เพิ่มเนื้อหาใหม่</button>
         </div>
     </div>
     <hr>
@@ -39,13 +39,13 @@ echo json_encode($response);
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h4>ชื่อบทเรียน1</h4>
+                        <p style="font-size:20px;">ความรู้พื้นฐานของการพ่นสี</p>
                     </div>
                     <div class="col text-end">
-                        <button class="btn btn-warning" onclick="showForm()" title="แก้ไขข้อมูล">
+                        <button class="btn btn-outline-warning" onclick="showForm()" title="แก้ไขข้อมูล">
                             <i class="bi bi-pencil-square"></i>
                         </button>
-                        <button class="btn btn-danger" onclick="showDelete()" title="ลบข้อมูล"><i class="bi bi-trash3"></i></button>
+                        <button class="btn btn-outline-danger" onclick="showDelete()" title="ลบข้อมูล"><i class="bi bi-trash3"></i></button>
                     </div>
                 </div>
             </div>
@@ -56,13 +56,13 @@ echo json_encode($response);
             <div class="card-body">
                 <div class="row">
                     <div class="col">
-                        <h4>ชื่อบทเรียน2</h4>
+                        <p style="font-size:20px;">การสวมใส่ชุด PPE</p>
                     </div>
                     <div class="col text-end ">
-                        <button class="btn btn-warning" onclick="showForm()" title="แก้ไขข้อมูล">
+                        <button class="btn btn-outline-warning" onclick="showForm()" title="แก้ไขข้อมูล">
                             <i class="bi bi-pencil-square"></i>
                         </button>
-                        <button class="btn btn-danger" onclick="showDelete()" title="ลบข้อมูล"><i class="bi bi-trash3"></i></button>
+                        <button class="btn btn-outline-danger" onclick="showDelete()" title="ลบข้อมูล"><i class="bi bi-trash3"></i></button>
                     </div>
                 </div>
             </div>
@@ -79,7 +79,7 @@ echo json_encode($response);
       title: "คุณต้องการลบข้อมูลนี้หรือไม่",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
+      confirmButtonColor: "green",
       cancelButtonColor: "#d33",
       confirmButtonText: "ใช่",
       cancelButtonText: "ไม่ใช่"
@@ -97,6 +97,7 @@ echo json_encode($response);
     Swal.fire({
       allowOutsideClick: false,
       width: 700,
+      confirmButtonText:'ตกลง',
       confirmButtonColor:'green',
       html: `
      <div class="col">

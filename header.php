@@ -45,6 +45,11 @@
   <link rel="stylesheet" href="assets/lib/fontawsome/css/regular.css">
   <link rel="stylesheet" href="assets/lib/fontawsome/css/fontawesome.css">
 
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
+  <script src="https://cdn.datatables.net/2.2.1/js/dataTables.bootstrap5.js"></script> -->
+
+
   <!-- sheetJS CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
   <style>
@@ -117,7 +122,7 @@
     <!-- Navbar-->
     <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
       <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <a class="nav-link dropdown-toggle" id="navbarDropdown" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
           <i class="fas fa-user fa-fw"></i></a>
 
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -133,7 +138,7 @@
       <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion" style="overflow-y: auto; width:230px;">
         <div class="sb-sidenav-menu">
           <div class="nav mt-4">
-            <div class="menu-profile mt-3">
+            <!-- <div class="menu-profile mt-3">
               <div class="profile-image mb-3">
                 <img src="images/5.jpg" alt="Profile Picture">
               </div>
@@ -143,7 +148,7 @@
                 <p>แผนก : สี</p>
               </div>
             </div>
-            <hr>
+            <hr> -->
 
             <a class="nav-link" href="dashboard_maibcontent.php">
               <div class="sb-nav-link-icon"><i class="bi bi-speedometer2" style="color:white"></i></div>

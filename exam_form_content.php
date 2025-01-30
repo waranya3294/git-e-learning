@@ -3,7 +3,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-12 mb-4">
-                    <h2><i class="bi bi-folder"></i> ลงข้อสอบ</h2>
+                    <h2> ลงข้อสอบ</h2>
                 </div>
             </div>
             <!-- button นำข้อมูลเข้า -->
@@ -170,7 +170,7 @@
     document.getElementById('downloadBtn').addEventListener('click', () => {
         // สร้างข้อมูลสำหรับเทมเพลต
         const templateData = [
-            ['ข้อ', 'คำถาม', 'ตัวเลือกที่ 1', 'ตัวเลือกที่ 2', 'ตัวเลือกที่ 3', 'ตัวเลือกที่ 4'],
+            ['ข้อ', 'คำถาม', 'คำตอบที่ถูก', 'คำตอบที่ผิด', 'คำตอบที่ผิด', 'คำตอบที่ผิด'],
             ['1', 'การเตรียมพื้นผิวก่อนพ่นสีมีวัตถุประสงค์หลักเพื่ออะไร', '1. ป้องกันพื้นผิวจากความร้อน', '2. เพิ่มการยึดเกาะของสี',
                 '3. ลดระยะเวลาในการพ่นสี', '4. ทำให้สีแห้งเร็วขึ้น'
             ],
@@ -215,7 +215,7 @@
                     list_output += '<h5>' + 'ข้อที่ ' + [row] + '.' + ' ' + sheet_data[row][1] + '</h5>'; //แสดงชื่อคำถาม
                     list_output += '<ul>';
                     for (var cell = 2; cell < sheet_data[row].length; cell++) {
-                        list_output += '<ul><label><input type="radio" name="exampleModal" class="me-2">' + sheet_data[row][cell] + '</label></ul>'; //แสดงชื่อตัวเลือก
+                        list_output += '<ul><label><input type="radio" name="exampleModal" class="me-2" style="font-size:18;">' + sheet_data[row][cell] + '</label></ul>'; //แสดงชื่อตัวเลือก
                     }
                     list_output += '</ul>';
                     list_output += '</div>';
@@ -229,7 +229,6 @@
                 const modal = bootstrap.Modal.getInstance(document.getElementById('exampleModal'));
                 modal.hide();
             }
-
             // รีเซ็ตค่าของ input file
             file_excel.value = '';
         };
@@ -370,37 +369,37 @@
     }
 
     // แสดงตัวอย่าง
-   // แสดงตัวอย่าง
-function previewExam() {
-    const title = document.querySelector('input[name="title"]').value.trim();
-    const description = document.querySelector('textarea[name="description"]').value.trim();
-    const questionBoxes = document.querySelectorAll('.question-box');
-    const excelDisplayArea = document.getElementById('excel_display_area');
+    function previewExam() {
+        const title = document.querySelector('input[name="title"]').value.trim();
+        const description = document.querySelector('textarea[name="description"]').value.trim();
+        const questionBoxes = document.querySelectorAll('.question-box');
 
-    let previewHtml = `<h3>${title}</h3><p>${description}</p>`;
+        const excelDisplayArea = document.getElementById('excel_display_area');
 
-    // แสดงข้อมูลจาก excel_display_area ที่ถูกโหลด
-    if (excelDisplayArea.innerHTML.trim()) {
-        previewHtml += excelDisplayArea.innerHTML;
-    }
+        let previewHtml = `<h3>${title}</h3><p>${description}</p>`;
 
-    // แสดงคำถามที่กรอกในฟอร์ม
-    questionBoxes.forEach((box, index) => {
-        const question = box.querySelector('input[name="question"]').value.trim();
-        const questionImage = box.querySelector('#showimage img');
-        const options = box.querySelectorAll('.options-container .row');
+        // แสดงข้อมูลจาก excel_display_area 
+        if (excelDisplayArea.innerHTML.trim()) {
+            previewHtml += excelDisplayArea.innerHTML;
+        }
 
-        previewHtml += `
+        // แสดงคำถามที่กรอกในฟอร์ม
+        questionBoxes.forEach((box, index) => {
+            const question = box.querySelector('input[name="question"]').value.trim();
+            const questionImage = box.querySelector('#showimage img');
+            const options = box.querySelectorAll('.options-container .row');
+
+            previewHtml += `
              ${questionImage ? `<img src="${questionImage.src}" class="img-thumbnail" style="width: 500px; height:500px;">` : ''}
         <h3 class="mt-3"><b>ข้อที่ ${index + 1}:</b> ${question}</h3>
         <ul>`;
 
 
-        options.forEach((option, optIndex) => {
-            const optionText = option.querySelector('input[type="text"]').value.trim();
-            const optionImage = option.querySelector('.option-image-preview img');
+            options.forEach((option, optIndex) => {
+                const optionText = option.querySelector('input[type="text"]').value.trim();
+                const optionImage = option.querySelector('.option-image-preview img');
 
-            previewHtml += `
+                previewHtml += `
                 <ul>
                 <input type="radio" name="question${index}" id="question${index}-option${optIndex}">
                 <label style="font-size:28px;" for="question${index}-option${optIndex}">
@@ -411,13 +410,13 @@ function previewExam() {
                  </ul>
                 
            </ul> `;
+            });
+
+            previewHtml += `</ul>`;
         });
 
-        previewHtml += `</ul>`;
-    });
-
-    document.getElementById('previewContent').innerHTML = previewHtml;
-}
+        document.getElementById('previewContent').innerHTML = previewHtml;
+    }
 
 
     function previewImage(input, type) {
@@ -459,13 +458,4 @@ function previewExam() {
         inputFile.value = ''; // ล้างค่าของ input file
     }
 
-    function toggleRequired(checkbox) {
-        const questionBox = checkbox.closest('.question-box');
-        const requiredAsterisk = questionBox.querySelector('.required-asterisk');
-        if (checkbox.checked) {
-            requiredAsterisk.style.display = 'inline';
-        } else {
-            requiredAsterisk.style.display = 'none';
-        }
-    }
-</script>
+   </script>

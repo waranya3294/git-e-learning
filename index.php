@@ -72,11 +72,11 @@
         <div class="row">
             <div class="col-12 col-md-6 mb-3">
                 <button type="submit" class="btn btn-primary rounded-pill btn-lg w-100" onclick="window.location.href='login.php'">
-                    <i class="fa-solid fa-floppy-disk"></i> ผู้เข้าสอบ
+                    <i class="fa-solid fa-floppy-disk"></i> พนักงาน
                 </button>
             </div>
             <div class="col-12 col-md-6">
-                <button class="btn btn-light rounded-pill btn-lg w-100" onclick="window.location.href='homepage.php'">ผู้ลงข้อสอบ</button>
+                <button class="btn btn-light rounded-pill btn-lg w-100" onclick="window.location.href='homepage.php'">Admin</button>
             </div>
         </div>
     </div>

@@ -26,6 +26,14 @@
                 <h3 style="cursor: pointer"><i class="fas fa-tools icon-shadow"></i> ทดสอบวัดค่าฝีมือแรงงาน</h3>
                 <div class="row">
                     <div class="col-md-4 mt-3">
+                        <div class="card card-hover" onclick="window.location.href='room_maincontent.php'" style="background-color: #DDF2D1; border: none; cursor: pointer;">
+                            <i class="bi bi-card-heading p-3 icon-shadow" style="font-size: 2rem;color:green;"></i>
+                            <div class="card-body p-3" style="font-size:18px;color:green;">
+                                <b>สร้างห้องสอบ</b>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mt-3">
                         <div class="card card-hover" onclick="window.location.href='examform_maincontent.php'" style="background-color:#c9f7f5; border: none; cursor: pointer">
                             <i class="bi bi-card-heading p-3 icon-shadow" style="font-size: 2rem;"></i>
                             <div class="card-body p-3" style="font-size:18px;color:blue;">
@@ -41,14 +49,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-4 mt-3">
-                        <div class="card card-hover" onclick="window.location.href='room_maincontent.php'" style="background-color: #DDF2D1; border: none; cursor: pointer;">
-                            <i class="bi bi-card-heading p-3 icon-shadow" style="font-size: 2rem;color:green;"></i>
-                            <div class="card-body p-3" style="font-size:18px;color:green;">
-                                <b>สร้างห้องสอบ</b>
-                            </div>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -58,63 +58,84 @@
         <div class="row">
             <div class="col-md-6 mt-3">
                 <div class="card shadow-sm rounded-1" style="border: none;border-top: 4px solid #00adb0;">
-                    <div class="card-body">
+                    <div class="card-body" style="height: 400px;">
                         <div class="row">
                             <div class="col">
-                                <h4><b>ตารางสอบวันนี้</b></h4>
+                                <h4><b>สรุปผลการสอบ</b></h4>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
             <div class="col-md-6 mt-3">
+                <div class="card shadow-sm rounded-1 mb-2" style="border: none;border-top: 4px solid #00adb0;">
+                    <div class="card-body" style="height: 400px;">
+                        <h4 style="cursor: pointer"><b>ปฏิทินการสอบ</b></h4>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mt-3">
+                <div class="card shadow-sm rounded-1" style="border: none;border-top: 4px solid #00adb0;">
+                    <div class="card-body" style="height: 400px;">
+                        <div class="row">
+                            <div class="col">
+                                <h4><b>จองคิวสอบ</b></h4>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col mt-3">
                 <div class="card shadow-sm rounded-1 mb-2" style="border: none;border-top: 4px solid #00adb0;">
                     <div class="card-body">
                         <h4 style="cursor: pointer"><b>สถิติห้องสอบ</b></h4>
                         <div class="row">
                             <div class="col-md-6 mt-3">
                                 <div class="card card-hover" style="background-color:#fff4de; border: none; cursor: pointer">
-                                    <i class="bi bi-envelope-paper-fill p-3 icon-shadow" style=" font-size: 2rem; color:orange;"></i>
+                                    <i class="bi bi-envelope-paper-fill p-3 icon-shadow" style=" font-size: 2rem; color:orange;"> สี</i>
                                     <div class="card-body p-3" style="font-size:26px;color:orange"><b>0 ชุด</b></div>
                                     <div class="card-body p-3" style="font-size:18px;color:orange">
-                                        <b>ชุดข้อสอบทั้งหมด</b>
+                                        <b>ชุดข้อสอบทั้งหมด </b>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6 mt-3">
                                 <div class="card card-hover" style="background-color:#ffe2e5; border: none; cursor: pointer">
-                                    <i class="bi bi-people-fill p-3 icon-shadow" style="font-size: 2rem; color:red;"></i>
-                                    <div class="card-body p-3" style="font-size:26px;color:red"><b>0 คน</b></div>
+                                    <i class="bi bi-envelope-paper-fill p-3 icon-shadow" style="font-size: 2rem; color:red;"> เชื่อม</i>
+                                    <div class="card-body p-3" style="font-size:26px;color:red"><b>0 ชุด</b></div>
                                     <div class="card-body p-3" style="font-size:18px;color:red;">
-                                        <b>สมาชิกทั้งหมด</b>
+                                        <b>ชุดข้อสอบทั้งหมด </b>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mt-3">
+                                <div class="card card-hover" style="background-color:#e1f0ff; border: none; cursor: pointer">
+                                    <i class="bi bi-envelope-paper-fill p-3 icon-shadow" style=" font-size: 2rem; color:#00a12b;"> ประกอบ</i>
+                                    <div class="card-body p-3" style="font-size:26px;color:#00a12b"><b>0 ชุด</b></div>
+                                    <div class="card-body p-3" style="font-size:18px;color:#00a12b">
+                                        <b>ชุดข้อสอบทั้งหมด </b>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6 mt-3">
                                 <div class="card card-hover" style="background-color:#c9f7f5; border: none; cursor: pointer">
-                                    <i class="bi bi-envelope-paper-fill p-3 icon-shadow" style="font-size: 2rem; color:green;"></i>
-                                    <div class="card-body p-3" style="font-size:26px;color:green"><b>0 ชุด</b></div>
-                                    <div class="card-body p-3" style="font-size:18px;color:green;">
-                                        <b>รอเปิดให้สอบ</b>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mt-3">
-                                <div class="card card-hover" style="background-color:#e1f0ff; border: none; cursor: pointer">
-                                    <i class="bi bi-envelope-paper-fill p-3 icon-shadow" style="font-size: 2rem; color:blue;"></i>
-                                    <div class="card-body p-3" style="font-size:26px;color:blue"><b>0 ชุด</b></div>
-                                    <div class="card-body p-3" style="font-size:18px;color:blue;">
-                                        <b>กำลังเปิดสอบ</b>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mt-3">
-                                <div class="card card-hover" style="background-color:#FCF6BD; border: none; cursor: pointer">
-                                    <i class="bi bi-envelope-paper-fill p-3 icon-shadow" style="font-size: 2rem; color:brown;"></i>
-                                    <div class="card-body p-3" style="font-size:26px;color:brown"><b>0 ชุด</b></div>
-                                    <div class="card-body p-3" style="font-size:18px;color:brown;">
-                                        <b>สอบเสร็จแล้ว</b>
+                                    <i class="bi bi-envelope-paper-fill p-3 icon-shadow" style="font-size: 2rem; color:blue;"> CNC</i>
+                                    <div class="card-body p-3" style="font-size:26px;color:blue;"><b>0 ชุด</b></div>
+                                    <div class="card-body p-3" style="font-size:18px;color:blue;;">
+                                        <b>ชุดข้อสอบทั้งหมด</b>
                                     </div>
                                 </div>
                             </div>
@@ -125,7 +146,7 @@
         </div>
     </div>
 
-    <div class="container mt-3 mb-4">
+    <div class="container mt-4 mb-4">
         <div class="col mt-3 ">
             <div class="card shadow-sm rounded-1" style="border: none;border-top: 4px solid #00adb0;">
                 <div class="card-body">

@@ -2,13 +2,13 @@
 <div class="container mt-4">
     <div class="card shadow-sm rounded-1 mb-4" style="border: none;border-top: 4px solid #00adb0;">
         <div class="card-body">
-            <div class="row text-center mt-4">
-                <h2 style="color:blue;">section</h3>
+            <div class="row">
+                <h2>section</h2>
             </div>
             <div class="row">
-                <div class="col  mt-4 mb-3">
+                <div class="col text-end mt-4 mb-3">
                     <button type="button" class="btn btn-success" style="font-size: 18px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <i class="fas fa-plus" onclick=""></i> เพิ่มส่วนงาน
+                        <i class="fas fa-plus" onclick=""></i> เพิ่มส่วนงาน**
                     </button>
                 </div>
                 <hr>
@@ -39,7 +39,91 @@
                     <div class="card-body">
                         <div class="row">
                             <div class="col d-flex align-items-center">
-                                <h4 onclick="window.location.href='exam_maincontent.php'">ส่วนงาน
+                                <h4 onclick="window.location.href='exam_maincontent.php'">Top coat
+                                </h4>
+                            </div>
+                            <div class="col text-end">
+                                <i class="fa-regular fa-trash-can" style="color: red;" onclick="showDelete()" title="ลบข้อมูล"></i>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col text-end mt-2">
+                                <button type="button" class="btn btn-outline-primary" onclick="window.location.href='exam_maincontent.php'">เพิ่มบทเรียน</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="containar mt-3 p-lg-2 mb-3">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col d-flex align-items-center">
+                                <h4 onclick="window.location.href='exam_maincontent.php'"> Small Part
+                                </h4>
+                            </div>
+                            <div class="col text-end">
+                                <i class="fa-regular fa-trash-can" style="color: red;" onclick="showDelete()" title="ลบข้อมูล"></i>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col text-end mt-2">
+                                <button type="button" class="btn btn-outline-primary" onclick="window.location.href='exam_maincontent.php'">เพิ่มบทเรียน</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="containar mt-3 p-lg-2 mb-3">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col d-flex align-items-center">
+                                <h4 onclick="window.location.href='exam_maincontent.php'">Under Coat
+                                </h4>
+                            </div>
+                            <div class="col text-end">
+                                <i class="fa-regular fa-trash-can" style="color: red;" onclick="showDelete()" title="ลบข้อมูล"></i>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col text-end mt-2">
+                                <button type="button" class="btn btn-outline-primary" onclick="window.location.href='exam_maincontent.php'">เพิ่มบทเรียน</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="containar mt-3 p-lg-2 mb-3">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col d-flex align-items-center">
+                                <h4 onclick="window.location.href='exam_maincontent.php'">Final Paint
+                                </h4>
+                            </div>
+                            <div class="col text-end">
+                                <i class="fa-regular fa-trash-can" style="color: red;" onclick="showDelete()" title="ลบข้อมูล"></i>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col text-end mt-2">
+                                <button type="button" class="btn btn-outline-primary" onclick="window.location.href='exam_maincontent.php'">เพิ่มบทเรียน</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="containar mt-3 p-lg-2 mb-3">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col d-flex align-items-center">
+                                <h4 onclick="window.location.href='exam_maincontent.php'">Painting
                                 </h4>
                             </div>
                             <div class="col text-end">
