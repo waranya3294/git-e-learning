@@ -69,8 +69,48 @@
                     <div class="card">
                         <div class="card-body">
                             <h4><b>สถิติห้องสอบ</b></h4>
+        </div>
+    </div>
+
+    <div class="container mt-3">
+        <div class="card rounded-1 shadow-sm" style="border: none;border-top: 4px solid #00adb0;">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <h4><b>ปฏิทินการสอบ</b></h4>
+                        <div id="calendar" style="height: 800px"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mt-3">
+                <div class="card shadow-sm rounded-1" style="border: none;border-top: 4px solid #00adb0;">
+                    <div class="card-body" style="height: 400px;">
+                        <div class="row">
+                            <div class="col">
+                                <h4><b>จองคิวสอบ</b></h4>
+                            </div>
                         </div>
                         <div class="row justify-content-center p-3">
+                        <div class="col text-end">
+                            <select class="from-control" id="">
+                                <option value="">--เลือกโรงงาน--</option>
+                                <option value="">PD</option>
+                                <option value="">TS</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col mt-3">
+                <div class="card shadow-sm rounded-1 mb-2" style="border: none;border-top: 4px solid #00adb0;">
+                    <div class="card-body">
+                        <h4 style="cursor: pointer"><b>สถิติห้องสอบ</b></h4>
+                        <div class="row">
                             <div class="col-md-6 mt-3">
                                 <div class="card card " style="background-color:#fff4de; border: none; cursor: pointer">
                                     <i class="bi bi-envelope-paper-fill p-3 icon-shadow" style=" font-size: 2rem; color:orange;"> สี</i>
@@ -136,6 +176,28 @@
         </div>
     </div>
 </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- สรุปผลการสอบ -->
+    <div class="container mt-2">
+        <div class="row">
+            <div class="col-md-6 mt-3">
+                <div class="card shadow-sm rounded-1" style="border: none;border-top: 4px solid #00adb0;">
+                    <div class="card-body" style="height: 400px;">
+                        <div class="row">
+                            <div class="col">
+                                <h4><b>สรุปผลการสอบ</b></h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
 <div class="container mt-4 mb-4">
     <div class="card">
@@ -212,7 +274,7 @@
     </div>
 </div> -->
 
-
+<!-- 
 <script>
     $(document).ready(function() {
         $('#calendar').fullCalendar({
@@ -263,6 +325,47 @@
         var root = am5.Root.new("chartdiv");
         // เอาโลโก้ออก
         root._logo.dispose();
+
+        // import Calendar from '@toast-ui/calendar';
+        // import '@toast-ui/calendar/dist/toastui-calendar.min.css';
+        // const Calendar = require('@toast-ui/calendar');
+        // require('@toast-ui/calendar/dist/toastui-calendar.min.css');
+        // const Calendar = tui.Calendar;
+        // const calendar = new Calendar('#calendar', {
+        //     usageStatistics: false,
+        //     defaultView: 'week',
+        //     template: {
+        //         time(event) {
+        //             const {
+        //                 start,
+        //                 end,
+        //                 title
+        //             } = event;
+
+        //             return `<span style="color: white;">${formatTime(start)}~${formatTime(end)} ${title}</span>`;
+        //         },
+        //         allday(event) {
+        //             return `<span style="color: gray;">${event.title}</span>`;
+        //         },
+        //     },
+        //     calendars: [{
+        //             id: 'cal1',
+        //             name: 'Personal',
+        //             backgroundColor: '#03bd9e',
+        //         },
+        //         {
+        //             id: 'cal2',
+        //             name: 'Work',
+        //             backgroundColor: '#00a9ff',
+        //         },
+        //     ],
+        // });
+
+
+        am5.ready(function() {
+            var root = am5.Root.new("chartdiv");
+            // เอาโลโก้ออก
+            root._logo.dispose();
 
 
         root.setThemes([
@@ -376,4 +479,4 @@
         series.appear(1000);
         chart.appear(1000, 1);
     });
-</script>
+</script> -->
