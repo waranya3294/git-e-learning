@@ -2,7 +2,7 @@
   <div class="card shadow-sm rounded-1" style="border: none;border-top: 4px solid #00adb0;">
     <div class="card-body">
       <div class="col mb-3">
-        <h3> สร้างบทเรียนใหม่</h3>
+        <h3>สร้างบทเรียนใหม่</h3>
       </div>
 
       <div class="row">

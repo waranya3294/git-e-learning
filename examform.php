@@ -35,7 +35,7 @@ echo json_encode($response);
 
 
     <div class="container mt-3 p-0">
-        <div class="card shadow-sm rounded-0">
+        <div class="card shadow-sm rounded">
             <div class="card-body">
                 <div class="row">
                     <div class="col">
@@ -52,7 +52,7 @@ echo json_encode($response);
         </div>
     </div>
     <div class="container mt-3 p-0">
-        <div class="card shadow-sm rounded-0">
+        <div class="card shadow-sm rounded">
             <div class="card-body">
                 <div class="row">
                     <div class="col">
@@ -70,7 +70,6 @@ echo json_encode($response);
     </div>
         </div>
     </div>
-   
 </div>
 
 <script>
