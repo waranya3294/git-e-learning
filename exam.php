@@ -1,5 +1,5 @@
-<div class="container mt-4 mb-4">
-  <div class="card shadow-sm rounded-1" style="border: none;border-top: 4px solid #00adb0;">
+<div class="container-fluid mt-4 mb-4">
+  <div class="card shadow-sm rounded-1" style="border: none;">
     <div class="card-body">
       <div class="col mb-3">
         <h3>สร้างบทเรียนใหม่</h3>
@@ -25,7 +25,20 @@
                 <label for="lesson-title">ตั้งชื่อบทเรียน: <span class="text-danger">*</span></label>
                 <input type="text" name="title" id="lesson-title" class="form-control mb-3" required>
 
-                <label for="exam_id">เลือกชุดข้อสอบก่อนเรียน - หลังเรียน: <span class="text-danger">*</span></label>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                  <label class="form-check-label" for="flexCheckDefault">
+                    สอบก่อนเรียน
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked">
+                  <label class="form-check-label" for="flexCheckChecked">
+                    สอบหลังเรียน
+                  </label>
+                </div>
+
+                <label for="exam_id">เลือกชุดข้อสอบ: <span class="text-danger">*</span></label>
                 <select class="form-control mb-3" id="exam_id">
                   <option value="">-- เลือกชุดข้อสอบ --</option>
                   <option value="exam1">ความปลอดภัยของการพ่นสี</option>
@@ -63,7 +76,7 @@
           </div>
         </div>
       </div>
-      <div class="container mt-4 mb-3">
+      <div class="container-fluid mt-4 mb-3">
         <div class="card shadow-sm">
           <div class="card-body" style="cursor: pointer;">
             <div class="row">
@@ -137,7 +150,7 @@
         </div>
       </div>
 
-      <div class="container mb-3">
+      <div class="container-fluid mb-3">
         <div class="card shadow-sm">
           <div class="card-body" style="cursor: pointer;">
             <div class="row">

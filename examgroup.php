@@ -1,5 +1,5 @@
 <div class="container mt-3">
-    <div class="card shadow-sm mb-3" style="border: none;border-top: 4px solid #00adb0;">
+    <div class="card shadow-sm mb-3" style="border: none;">
         <div class="card-body">
             <div class="row">
                 <div class="col mt-3">

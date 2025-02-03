@@ -1,14 +1,14 @@
 
-<div class="container mt-4">
-    <div class="card shadow-sm rounded-1 mb-4" style="border: none;border-top: 4px solid #00adb0;">
+<div class="container-fluid mt-4">
+    <div class="card shadow-sm rounded-1 mb-4" style="border: none;">
         <div class="card-body">
             <div class="row">
-                <h2>section</h2>
+                <h2>Workplace</h2>
             </div>
             <div class="row">
                 <div class="col text-end mt-4 mb-3">
                     <button type="button" class="btn btn-success" style="font-size: 18px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <i class="fas fa-plus" onclick=""></i> เพิ่มส่วนงาน**
+                        <i class="fas fa-plus" onclick=""></i> เพิ่มส่วนงาน
                     </button>
                 </div>
                 <hr>
@@ -34,7 +34,7 @@
                 </div>
             </div>
 
-            <div class="containar mt-3 p-lg-2 mb-3">
+            <div class="container-fluid mt-3 p-lg-2 mb-3">
                 <div class="card shadow-sm">
                     <div class="card-body">
                         <div class="row">
@@ -55,7 +55,7 @@
                 </div>
             </div>
 
-            <div class="containar mt-3 p-lg-2 mb-3">
+            <div class="container-fluid mt-3 p-lg-2 mb-3">
                 <div class="card shadow-sm">
                     <div class="card-body">
                         <div class="row">
@@ -76,7 +76,7 @@
                 </div>
             </div>
 
-            <div class="containar mt-3 p-lg-2 mb-3">
+            <div class="container-fluid mt-3 p-lg-2 mb-3">
                 <div class="card shadow-sm">
                     <div class="card-body">
                         <div class="row">
@@ -97,7 +97,7 @@
                 </div>
             </div>
 
-            <div class="containar mt-3 p-lg-2 mb-3">
+            <div class="container-fluid mt-3 p-lg-2 mb-3">
                 <div class="card shadow-sm">
                     <div class="card-body">
                         <div class="row">
@@ -118,7 +118,7 @@
                 </div>
             </div>
 
-            <div class="containar mt-3 p-lg-2 mb-3">
+            <div class="container-fluid mt-3 p-lg-2 mb-3">
                 <div class="card shadow-sm">
                     <div class="card-body">
                         <div class="row">

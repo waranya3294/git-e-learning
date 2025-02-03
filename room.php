@@ -6,8 +6,8 @@ $_SESSION['user_type'] = $type;
 
 ?>
 
-<div class="container mt-4 " style="color: #333;">
-  <div class="card shadow-sm rounded-1 mb-4" style="border: none;border-top: 4px solid #00adb0;">
+<div class="container-fluid mt-4 " style="color: #333;">
+  <div class="card shadow-sm rounded-1 mb-4" style="border: none;">
     <div class="card-body">
       <h3>สร้างห้องสอบ</h3>
       <div class="row">
@@ -20,7 +20,7 @@ $_SESSION['user_type'] = $type;
       <hr>
     </div>
 
-    <div class="containar  p-lg-2 mb-2">
+    <div class="container-fluid p-lg-2 mb-2">
       <div class="card card shadow-sm rounded-1">
         <div class="card-body">
           <div class="row">
@@ -49,7 +49,7 @@ $_SESSION['user_type'] = $type;
       </div>
     </div>
 
-    <div class="containar p-lg-2 mb-2" style="cursor: pointer">
+    <div class="container-fluid p-lg-2 mb-2" style="cursor: pointer">
     <div class="card card shadow-sm rounded-1">
         <div class="card-body">
           <div class="row">
@@ -78,7 +78,7 @@ $_SESSION['user_type'] = $type;
       </div>
     </div>
 
-    <div class="containar p-lg-2 mb-3" style="cursor: pointer">
+    <div class="container-fluid p-lg-2 mb-3" style="cursor: pointer">
     <div class="card card shadow-sm rounded-1 ">
         <div class="card-body">
           <div class="row">
@@ -107,7 +107,7 @@ $_SESSION['user_type'] = $type;
       </div>
     </div>
 
-    <div class="containar p-lg-2 mb-3" style="cursor: pointer">
+    <div class="container-fluid p-lg-2 mb-3" style="cursor: pointer">
     <div class="card card shadow-sm rounded-1 ">
         <div class="card-body">
           <div class="row">

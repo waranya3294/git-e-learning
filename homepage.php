@@ -37,7 +37,7 @@
                         </div>
                         <div class="d-grid mt-5 mb-3">
                             <button class="btn btn-login fw-bold text-white" id="login-btn" style="background-color: rgba(0, 179, 192, 1);" type="submit" onclick="window.location.href='dashboard_maibcontent.php'">
-                                <i class="fa-solid fa-right-to-bracket"></i>  เข้าสู่ระบบ
+                                <i class="fa-solid fa-right-to-bracket"></i> เข้าสู่ระบบ
                             </button>
                         </div>
                     <!-- </form> -->

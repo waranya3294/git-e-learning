@@ -1,4 +1,4 @@
-<div class="container mt-4 mb-4">
+<div class="container-fluid mt-4 mb-4">
     <div class="card shadow-sm rounded-1">
         <div class="card-body">
             <div style="color:#18B0BD">

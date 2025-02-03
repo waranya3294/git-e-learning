@@ -100,7 +100,6 @@
       /* เส้นขอบ */
 
     }
-
     #chartdiv {
       width: 100%;
       height: 500px;

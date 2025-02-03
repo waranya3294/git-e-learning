@@ -1,5 +1,5 @@
-<div class="container mt-4">
-    <div class="card shadow-sm rounded-1" style="border: none;border-top: 4px solid #00adb0;" >
+<div class="container-fluid mt-4">
+    <div class="card shadow-sm rounded-1" style="border: none;" >
         <div class="card-body ">
         <div class="row">
         <div class="col mt-3">
@@ -34,7 +34,7 @@ echo json_encode($response);
 </div> -->
 
 
-    <div class="container mt-3 p-0">
+    <div class="container-fluid mt-3 p-0">
         <div class="card shadow-sm rounded">
             <div class="card-body">
                 <div class="row">
@@ -51,7 +51,7 @@ echo json_encode($response);
             </div>
         </div>
     </div>
-    <div class="container mt-3 p-0">
+    <div class="container-fluid mt-3 p-0">
         <div class="card shadow-sm rounded">
             <div class="card-body">
                 <div class="row">
