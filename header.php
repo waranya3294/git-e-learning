@@ -10,6 +10,7 @@
   <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
   <title>ห้องสอบ</title>
 
+  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
   <!-- amcharts -->
   <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
@@ -18,7 +19,6 @@
   <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
   <!-- Quill -->
@@ -45,10 +45,10 @@
   <link rel="stylesheet" href="assets/lib/fontawsome/css/regular.css">
   <link rel="stylesheet" href="assets/lib/fontawsome/css/fontawesome.css">
 
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+ <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
   <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
-  <script src="https://cdn.datatables.net/2.2.1/js/dataTables.bootstrap5.js"></script> -->
-  
+  <script src="https://cdn.datatables.net/2.2.1/js/dataTables.bootstrap5.js"></script>
+   -->
   <!-- calendar -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
@@ -190,7 +190,7 @@
     </div>
     <div id="layoutSidenav_content">
       <main>
-        <div class="container-fluid px-4">
+        <div class="container-fluid px-4" style="width: 100%; height: 100%;">
           <!-- 
           <div class="card mt-4">
             <div class="container "> -->

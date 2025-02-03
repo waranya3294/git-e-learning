@@ -1,6 +1,6 @@
 <div class="container-fluid mt-4 mb-4">
     <h2 class="mb-3">รายชื่อพนักงานทั้งหมด</h2>
-    <div class="card shadow-sm rounded-1 mb-3" style="border: none; border-top: 4px solid #00adb0;">
+    <div class="card shadow-sm rounded-1 mb-3" style="border: none; ">
         <div class="card-body">
             <div class="row">
                 <div class="col d-flex align-items-center ">
