@@ -61,12 +61,6 @@
                   </button>
                 </div>
                 <div id="content-container" class="mt-2"></div>
-
-                <label for="exam-minute" class="mt-3">เวลาทำข้อสอบ: <span class="text-danger">*</span></label>
-                <div class="input-group">
-                  <input type="number" id="exam-minute" value="" name="exam_minute" class="form-control" data-fv-field="exam_minute"><span class="input-group-text">นาที</span>
-
-                </div>
               </div>
 
               <div class="modal-footer mt-5">

@@ -10,8 +10,8 @@
   <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
   <title>ห้องสอบ</title>
 
-  
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  
   <!-- amcharts -->
   <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
   <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
@@ -174,7 +174,7 @@
 
 
             <a class="nav-link collapsed" href="summary.php" data-bs-toggle="collapse" data-bs-target="#collapsePages2" aria-expanded="false" aria-controls="collapsePages2">
-              <div class="sb-nav-link-icon"><i class="fas fa-book-open" style="color:white"></i></div>
+              <div class="sb-nav-link-icon"><i class="fas fa-edit" style="color:white"></i></div>
               ข้อมูลผู้เข้าสอบ
               <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
             </a>
@@ -183,6 +183,13 @@
                 <a class="nav-link" href="report_maincontent.php"> รายชื่อผู้เข้าสอบ</a>
               </nav>
             </div>
+
+            <a class="nav-link collapsed" href="summary.php" data-bs-toggle="collapse" data-bs-target="#collapsePages3" aria-expanded="false" aria-controls="collapsePages3">
+              <div class="sb-nav-link-icon"><i class="fas fa-edit" style="color:white"></i></div>
+              จัดการผู้เข้าสอบ
+              <div class="sb-sidenav-collapse-arrow"></div>
+            </a>
+           
           </div>
         </div>
       </nav>

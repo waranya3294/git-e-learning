@@ -1,9 +1,9 @@
 <form action="create-room.php" method="POST">
-    <div class="container mt-4">
+    <div class="container-fluid mt-4">
         <div class="card shadow-sm mb-4">
             <div class="card-body">
-                <div class="" style="color: #18B0BD;">
-                    <h1 class="display-4"> สร้างห้องเข้าสอบ</h1>
+                <div style="color: #18B0BD;">
+                    <h1 class="display-4">สร้างห้องเข้าสอบ</h1>
                 </div>
                 <hr>
                 <div class="row">
@@ -11,39 +11,43 @@
                         <div class="card border-0">
                             <div class="card-body">
                                 <div class="mb-3">
-                                    <label for="name">ชื่อห้องสอบ:<spen class="text-danger">*</spen></label>
-                                    <input type="text" name="text" id="name" class="form-control">
+                                    <label for="name">ชื่อห้องสอบ: <span class="text-danger">*</span></label>
+                                    <input type="text" name="exam_name" id="name" class="form-control" required placeholder="กรอกชื่อห้องสอบ">
                                 </div>
 
-                                <div class="row">
-                                    <div class="col-12 mt-3 mb-3">
-                                        <label for="description">คำอธิบายรายวิชา:<span class="text-danger">*</span></label>
-                                        <div>
-                                            <textarea id="tiny"></textarea>
+                                <div class="mb-3">
+                                    <label for="description">คำอธิบายรายวิชา: <span class="text-danger">*</span></label>
+                                    <textarea id="tiny"></textarea>
+                                </div>
+
+                                <label for="datetimes">ระยะเวลาเปิดห้องสอบ: <span class="text-danger">*</span></label>
+                                <div class="row  justify-content-center" id="dateFieldsContainer">
+                                    <div class="col-lg-11 d-flex align-items-center">
+                                        <div class="input-group mb-3">
+                                            <input type="text" id="datetimes" name="datetimes" class="form-control" required placeholder="เลือกช่วงเวลา" aria-describedby="exam_starttime_endtime">
+                                            <span class="input-group-text" id="exam_starttime_endtime" style="cursor: pointer;">
+                                                <i class="fa-solid fa-calendar-days"></i>
+                                            </span>
                                         </div>
-
                                     </div>
-                                </div>
-
-                                <label for="datetimes">ระยะเวลาเปิดห้องสอบ:<spen class="text-danger">*</spen></label>
-                                <div class="input-group mb-5">
-                                    <input type="text" id="datetimes" name="datetimes" class="form-control" aria-describedby="exam_starttime_endtime">
-                                    <span class="input-group-text" id="exam_starttime_endtime">
-                                        <i class="fa-solid fa-calendar-days"></i>
-                                    </span>
+                                    <div class="col">
+                                        <button type="button" name="content" class="btn btn-outline-secondary ms-2" onclick="addDatatimes()">
+                                            <i class="fas fa-plus"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
                 <hr>
-                
+
                 <div class="row mb-3">
                     <div class="col text-end">
-                        <div class="btn btn-success" onclick="window.location.href='room_maincontent.php'">
+                        <button type="submit" class="btn btn-success">
                             <i class="fa-solid fa-floppy-disk"></i> บันทึก
-                        </div>
-                        <div class="btn btn-secondary" onclick="window.location.href='room_maincontent.php'">ยกเลิก</div>
+                        </button>
+                        <button type="button" class="btn btn-secondary" onclick="window.location.href='room_maincontent.php'">ยกเลิก</button>
                     </div>
                 </div>
             </div>
@@ -53,9 +57,61 @@
 
 <script src="https://cdn.tiny.cloud/1/xit6jhfuib4qtdnwba6inewnmyk72x2w0wxqdkd6kwxf6oan/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
 
-
-
 <script>
+    function addDatatimes() {
+        const dateFieldsContainer = document.getElementById('dateFieldsContainer');
+        const dateField = document.createElement('div');
+        dateField.classList.add('col-lg-11', 'd-flex', );
+        dateField.innerHTML = `
+       <div class="input-group mb-3">
+            <input type="text" name="datetimes" class="form-control new-datetime" required placeholder="เลือกช่วงเวลา" aria-describedby="exam_starttime_endtime">
+            <span class="input-group-text" id="exam_starttime_endtime" style="cursor: pointer;">
+                <i class="fa-solid fa-calendar-days"></i>
+            </span>
+        </div>
+    `;
+        dateFieldsContainer.appendChild(dateField);
+
+        // เรียกใช้ daterangepicker สำหรับฟิลด์ใหม่ที่ถูกเพิ่ม
+        $('.new-datetime').daterangepicker({
+            timePicker: true,
+            timePicker24Hour: true,
+            autoUpdateInput: false,
+            locale: {
+                format: 'DD MMM YYYY HH:mm',
+                cancelLabel: 'Clear'
+            }
+        });
+        $('.new-datetime').on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('DD MMM YYYY HH:mm') + ' - ' + picker.endDate.format('DD MMM YYYY HH:mm'));
+        });
+
+        $('.new-datetime').on('cancel.daterangepicker', function() {
+            $(this).val(''); // ล้างค่าถ้าผู้ใช้กด Clear
+        });
+    }
+
+    $(document).ready(function() {
+        $('input[name="datetimes"]').daterangepicker({
+            timePicker: true,
+            timePicker24Hour: true,
+            autoUpdateInput: false,
+            locale: {
+                format: 'DD MMM YYYY HH:mm',
+                cancelLabel: 'Clear'
+            }
+        });
+
+        $('input[name="datetimes"]').on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('DD MMM YYYY HH:mm') + ' - ' + picker.endDate.format('DD MMM YYYY HH:mm'));
+        });
+
+        $('input[name="datetimes"]').on('cancel.daterangepicker', function() {
+            $(this).val(''); // ล้างค่าถ้าผู้ใช้กด Clear
+        });
+    });
+
+
     tinymce.init({
         branding: false,
         selector: 'textarea#tiny',
@@ -157,27 +213,4 @@
                 console.error('Error:', error);
             });
     });
-
-
-    $(function() {
-        $('input[name="datetimes"]').daterangepicker({
-            timePicker24Hour: true,
-            timePicker: true,
-            autoUpdateInput: false, // ป้องกันการอัปเดตค่าอัตโนมัติในอินพุต
-            locale: {
-                format: 'DD MMM YYYY HH:mm ',
-                cancelLabel: 'Clear'
-            }
-        });
-
-        $('input[name="datetimes"]').on('apply.daterangepicker', function(ev, picker) {
-            $(this).val(picker.startDate.format('DD MMM YYYY HH:mm') + ' - ' + picker.endDate.format('DD MMM YYYY HH:mm'));
-        });
-
-        $('input[name="datetimes"]').on('cancel.daterangepicker', function(ev, picker) {
-            $(this).val(''); // เคลียร์ค่าถ้าผู้ใช้กดปุ่ม Clear
-        });
-
-    });
-
 </script>
