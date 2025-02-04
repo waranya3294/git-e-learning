@@ -11,7 +11,7 @@
   <title>ห้องสอบ</title>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
-  
+
   <!-- amcharts -->
   <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
   <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
@@ -45,10 +45,12 @@
   <link rel="stylesheet" href="assets/lib/fontawsome/css/regular.css">
   <link rel="stylesheet" href="assets/lib/fontawsome/css/fontawesome.css">
 
- <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <!-- datatable -->
+  <link href="https://cdn.datatables.net/2.2.1/css/dataTables.bootstrap5.css" rel="stylesheet">
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script> -->
   <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
   <script src="https://cdn.datatables.net/2.2.1/js/dataTables.bootstrap5.js"></script>
-   -->
+
   <!-- calendar -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
@@ -100,6 +102,7 @@
       /* เส้นขอบ */
 
     }
+
     #chartdiv {
       width: 100%;
       height: 500px;
@@ -127,8 +130,8 @@
     <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" id="navbarDropdown" href="" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="fas fa-user fa-fw"></i></a>
-
+          <i class="fas fa-user fa-fw"></i>
+        </a>
         <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
           <li><a class="dropdown-item" href="logout.php"><i class="fa-solid fa-right-from-bracket pe-2"></i>Logout</a></li>
         </ul>
@@ -160,18 +163,17 @@
             </a>
 
             <a class="nav-link collapsed" href="exam_room_maincontent.php" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
-              <div class="sb-nav-link-icon "><i class="bi bi-tools" style="color:white"></i></div>
+              <div class="sb-nav-link-icon "><i class="bi bi-house-gear-fill" style="color:white"></i></div>
               จัดการห้องสอบ
               <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
             </a>
             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
-              <nav class="sb-sidenav-menu-nested nav">
-                <a class="nav-link" href="room_maincontent.php"><i class="bi bi-laptop pe-2"></i>สร้างห้องเข้าสอบ</a>
-                <a class="nav-link" href="section_maincontent.php"><i class="bi bi-pencil pe-2"></i>สร้างsection</a>
-                <a class="nav-link" href="exam_maincontent.php"><i class="bi bi-envelope-paper pe-2"></i>สร้างชุดทดสอบ</a>
+              <nav class="sb-sidenav-menu-nested nav ms-2">
+                <a class="nav-link" href="room_maincontent.php"><i class="fa-regular fa-circle fa-sm me-2"></i>สร้างห้องเข้าสอบ</a>
+                <a class="nav-link" href="section_maincontent.php"><i class="fa-regular fa-circle fa-sm me-2"></i>สร้างsection</a>
+                <a class="nav-link" href="exam_maincontent.php"><i class="fa-regular fa-circle fa-sm me-2"></i>สร้างชุดทดสอบ</a>
               </nav>
             </div>
-
 
             <a class="nav-link collapsed" href="summary.php" data-bs-toggle="collapse" data-bs-target="#collapsePages2" aria-expanded="false" aria-controls="collapsePages2">
               <div class="sb-nav-link-icon"><i class="fas fa-edit" style="color:white"></i></div>
@@ -179,17 +181,17 @@
               <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
             </a>
             <div class="collapse" id="collapsePages2" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-              <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                <a class="nav-link" href="report_maincontent.php"> รายชื่อผู้เข้าสอบ</a>
+              <nav class="sb-sidenav-menu-nested nav accordion ms-2" id="sidenavAccordionPages">
+                <a class="nav-link" href="report_maincontent.php"><i class="fa-regular fa-circle fa-sm me-2"></i> รายชื่อผู้เข้าสอบ</a>
               </nav>
             </div>
 
-            <a class="nav-link collapsed" href="summary.php" data-bs-toggle="collapse" data-bs-target="#collapsePages3" aria-expanded="false" aria-controls="collapsePages3">
+            <a class="nav-link" href="edituser_maincontent.php">
               <div class="sb-nav-link-icon"><i class="fas fa-edit" style="color:white"></i></div>
               จัดการผู้เข้าสอบ
-              <div class="sb-sidenav-collapse-arrow"></div>
             </a>
-           
+
+
           </div>
         </div>
       </nav>

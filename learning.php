@@ -1,4 +1,4 @@
-<div class="container mt-4 mb-4" style="color:#585858;">
+<div class="container-fluid mt-4 mb-4" style="color:#585858;">
     <h3><i class="bi bi-book-half" style="color:#00adb0;"></i> บทเรียนที่ 1 ความปลอดภัยของการพ่นสี</h3>
 
     <div class="container">
@@ -93,3 +93,49 @@
     </div>
 </div>
 
+
+<script>
+  $(document).ready(function() {
+    Swal.fire({
+      allowOutsideClick: false,
+      width: 700,
+      html: `<div class="row">
+        <div class="col text-start">
+            <h3>&nbsp;&nbsp;<u>คำอธิบายรายวิชา</u></h3>
+            <p>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>วัตถุประสงค์ของการเรียน</b><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. เพื่อเรียนรู้ทฤษฎีพื้นฐานและการปฏิบัติเกี่ยวกับการพ่นสี<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. เพื่อพัฒนาทักษะในการเลือกและใช้อุปกรณ์สำหรับการพ่นสี<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. เพื่อเรียนรู้เรื่องความปลอดภัยและสิ่งแวดล้อมในการทำงาน
+            </p>
+            <p>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>ผลที่คาดว่าจะได้รับ</b><br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. พนักงานมีความรู้พื้นฐานและทักษะในการพ่นสี<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. พนักงานสามารถเลือกอุปกรณ์และวัสดุได้เหมาะสมกับงาน<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. พนักงานมีความตระหนักในเรื่องความปลอดภัยและสิ่งแวดล้อมในการทำงาน
+            </p>
+
+            <h3 >&nbsp;&nbsp;<u>คำชี้แจง</u></h3>
+            <p>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. ศึกษาบทเรียน อ่านหรือฟังเนื้อหาที่จัดเตรียมเกี่ยวกับหัวข้อการพ่นสี<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. เลือกคำตอบที่ถูกต้อง 1 ข้อ<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4. ใช้เวลาในการศึกษาบทเรียนให้ครบถ้วนภายใน 1 ชั่วโมง<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5. จำนวนข้อสอบทั้งหมด 5 ข้อ (ปรนัย)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6. ทำแบบทดสอบหลังเรียน (Post-Test)
+            </p>
+
+            <p class="text-danger">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;** ข้อกำหนดเพิ่มเติมสำหรับการทดสอบและการเรียนรู้</p>
+            <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>กรณีสอบผ่าน:</b><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- ผู้เรียนสามารถเข้าสู่บทเรียนถัดไปได้ทันที<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b>กรณีสอบไม่ผ่าน:</b><br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- ผู้เรียนจะต้องกลับไปเริ่มเรียนเนื้อหาบทนั้นใหม่<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;- หลังจากเรียนซ้ำ สามารถเข้าสอบซ่อมได้อีก 1 ครั้งเท่านั้น
+            </p>
+        </div>
+    </div>`,
+
+      confirmButtonText: 'ต่อไป',
+      confirmButtonColor:'green',
+    })
+  });
+</script>

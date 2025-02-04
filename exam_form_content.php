@@ -285,17 +285,6 @@
         const questionContainer = document.querySelector('.question-box').parentNode;
         const questionBoxes = questionContainer.querySelectorAll('.question-box');
 
-        if (questionBoxes.length >= 5) {
-            Swal.fire({
-                allowOutsideClick: false,
-                icon: 'warning',
-                title: 'เพิ่มคำถามได้สูงสุด 5 ข้อ',
-                confirmButtonText: 'ตกลง',
-                confirmButtonColor: 'green',
-            });
-            return;
-        }
-
         const newQuestionBox = document.createElement('div');
         newQuestionBox.classList.add('question-box', 'mb-4');
         newQuestionBox.innerHTML = `

@@ -1,5 +1,5 @@
 <div class="container-fluid mt-4">
-  <h3 style="color:#585858;"><i class="bi bi-book-half" style="color:#00adb0"></i> บทเรียนที่ 1 แบบทดสอบหลังเรียน</h3>
+  <h3 style="color:#585858;"><i class="bi bi-book-half" style="color:#00adb0"></i> เฉลยข้อสอบ</h3>
 </div>
 <div class="container mt-3 mb-4">
   <div class="card shadow-sm rounded-1" style="border: none;border-top: 4px solid #00adb0;">

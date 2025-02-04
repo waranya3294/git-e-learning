@@ -1,5 +1,5 @@
 <?php
     require("header.php");
-    require("userquiz.php");
+    require("edituser.php");
     require("footer.php");
 ?>

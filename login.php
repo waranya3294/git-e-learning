@@ -20,6 +20,20 @@ session_start();
     <link rel="stylesheet" href="assets/lib/fontawsome/css/fontawesome.css">
 
 </head>
+<style>
+     @font-face {
+            font-family: "Kanit";
+            font-weight: 400;
+            font-style: normal;
+            src: url(assets/lib/fonts/Kanit/Kanit-Regular.ttf);
+        }
+
+        * {
+            font-family: "Kanit", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+        }
+</style>
 
 <body>
 
@@ -39,7 +53,7 @@ session_start();
                             <label for="floatingPassword"><i class="fa-solid fa-key me-2"></i> Password</label>
                         </div>
                         <div class="d-grid mt-5 mb-3">
-                            <button class="btn btn-login fw-bold text-white" id="login-btn" style="background-color: rgba(0, 179, 192, 1);" type="submit" onclick="window.location.href='userhomepage_maincontent.php?GET===admin'">
+                            <button class="btn btn-login fw-bold text-white" id="login-btn" style="background-color: rgba(0, 179, 192, 1);" type="submit" onclick="window.location.href='learning_maincontent.php'">
                                 <i class="fa-solid fa-right-to-bracket"></i> เข้าสู่ระบบ
                             </button>
                         </div>

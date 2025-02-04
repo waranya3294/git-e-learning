@@ -1,5 +1,5 @@
 <div class="container-fluid mt-4">
-    <h4><b>Dashboard</b></h4>
+    <h4><b>แดชบอร์ด</b></h4>
     <hr>
     <div class="row">
         <div class="col-md-4 mt-2 mb-2">
@@ -29,7 +29,7 @@
     </div>
 </div>
 
-<div class="container-fluid mt-4 mb-3">
+<div class="container-fluid mt-3 mb-3">
     <div class="row">
         <div class="col-md-6 mb-3">
             <div class="card shadow-sm">
@@ -61,7 +61,7 @@
                                 </div>
                             </div>
                         </div>
-                    
+
                         <div class="col-lg-6 col-sm-6 mb-3">
                             <div class="card shadow-sm">
                                 <div class="card-body text-center">
@@ -83,8 +83,8 @@
                                 </div>
                             </div>
                         </div>
-                  
-                    <div class="col-lg-6 col-sm-6 mb-3">
+
+                        <div class="col-lg-6 col-sm-6 mb-3">
                             <div class="card shadow-sm">
                                 <div class="card-body text-center">
                                     <i class="bi bi-envelope-paper-fill p-3 icon-shadow" style="font-size: 2rem; color:blue;"> CNC</i>
@@ -263,20 +263,20 @@
     </div>
 </div> -->
 
-<div class="container-fluid mt-4 mb-4">
+<div class="container-fluid mt-3 mb-4">
     <h4><b>ตารางจองคิวสอบ</b></h4>
     <hr>
     <div class="card">
         <div class="card-body">
             <div class="row">
                 <div class="col text-end">
-                    <button class="btn btn-success">จองคิวสอบ</button>
+                    <button class="btn btn-success" onclick="showReserve()">จองคิวสอบ</button>
                 </div>
             </div>
-            <div class="table-responsive mt-3">
-                <table class="table table-bordered">
+            <div class="table-responsive mt-4">
+                <table class="table table-striped">
                     <thead>
-                        <tr class="text-center table-secondary" style="font-size:18px; border: 1px solid ridge;">
+                        <tr class="text-center " style="font-size:18px; border: 1px solid ridge;">
                             <th><b>รหัสพนักงาน</b></th>
                             <th><b>ชื่อ - นามสกุล</b></th>
                             <th><b>ห้องสอบ</b></th>
@@ -296,7 +296,7 @@
                             <th>Final Paint 35 Ton</th>
                             <th>TS</th>
                         </tr>
-
+                    </thead>
                 </table>
             </div>
         </div>
@@ -308,12 +308,12 @@
     <hr>
     <div class="card">
         <div class="card-body">
-            <h4>TS</h4>
+            <h4 class="text-center mb-4">TS</h4>
             <div id="chart"></div>
             <div class="table-responsive mt-3">
-                <table class="table table-bordered">
+                <table class="table">
                     <thead>
-                        <tr class="text-center table-secondary" style="font-size:18px; border: 1px solid ridge;">
+                        <tr class="text-center " style="font-size:18px; border: 1px solid ridge;">
                             <th><b>ประเภท</b></th>
                             <th><b>จำนวนผู้เข้าสอบ</b></th>
                             <th><b>สอบเสร็จแล้ว</b></th>
@@ -368,11 +368,11 @@
 
     <div class="card mt-4">
         <div class="card-body">
-            <h4>PD</h4>
+            <h4 class="text-center mb-4">PD</h4>
             <div class="table-responsive mt-3">
-                <table class="table table-bordered">
+                <table class="table">
                     <thead>
-                        <tr class="text-center table-secondary" style="font-size:18px; border: 1px solid ridge;">
+                        <tr class="text-center" style="font-size:18px; border: 1px solid ridge;">
                             <th><b>ประเภท</b></th>
                             <th><b>จำนวนผู้เข้าสอบ</b></th>
                             <th><b>สอบเสร็จแล้ว</b></th>
@@ -430,6 +430,187 @@
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
 <script>
+    async function fetchEmployeeData(empId) {
+        // จำลองข้อมูลพนักงาน
+        const employeeData = {
+            "1001": {
+                name: "สมชาย ใจดี",
+                department: "สี",
+                factory: "TS"
+            },
+            "1002": {
+                name: "มานะ มั่นคง",
+                department: "ประกอบ",
+                factory: "TS"
+            },
+            "1003": {
+                name: "สุภาพร สายใจ",
+                department: "เชื่อม",
+                factory: "PD"
+            },
+        };
+
+        return employeeData[empId] || null;
+    }
+    async function showReserve() {
+        const {
+            value: date
+        } = await Swal.fire({
+            title: "เลือกวันสอบ",
+            html: `
+             <div class="row mb-3">
+        <div class="col-lg-12">
+            <select class="form-control" id="exam_id">
+                <option value="">-- เลือกรอบวันสอบ--</option>
+                <option value="exam1">ความปลอดภัยของการพ่นสี (24 กุมภาพันธ์ 2568 - 31 มีนาคม 2568)</option>
+                <option value="exam1">ประเภทของการพ่นสี (24 กุมภาพันธ์ 2568 - 31 มีนาคม 2568)</option>
+                <option value="exam2">Test</option>
+                <option value="exam3">Test</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-lg-12 text-start">
+            <label for="datetimes">จองคิวสอบ <span class="text-danger">*</span></label>
+            <div class="input-group">
+                <input type="text" id="datetimes" name="datetimes" class="form-control" required placeholder="เลือกช่วงเวลา" aria-describedby="exam_starttime">
+                <span class="input-group-text" id="exam_starttime" style="cursor: pointer;">
+                    <i class="fa-solid fa-calendar-days"></i>
+                </span>
+            </div>
+        </div>
+    </div>`,
+            confirmButtonColor: "green",
+            confirmButtonText: "ถัดไป",
+            showCancelButton: false,
+            allowOutsideClick: false,
+            didOpen: () => {
+                // ✅ กำหนด Datepicker ใน SweetAlert2 ให้เลือกเป็นเดือน
+                $("#datetimes").daterangepicker({
+                    autoUpdateInput: false,
+                    showDropdowns: true, // แสดงตัวเลือกปี/เดือน
+                    singleDatePicker: true, // ✅ ให้เลือกได้เพียงวันเดียว
+                    minDate: moment().startOf('month'), // ✅ ป้องกันการเลือกวันเก่า
+                    locale: {
+                        format: "DD/MM/YYYY",
+                        cancelLabel: "Clear",
+                        daysOfWeek: ["อา", "จ", "อ", "พ", "พฤ", "ศ", "ส"], // แสดงวันเป็นภาษาไทย
+                        monthNames: [
+                            "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
+                            "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"
+                        ]
+                    },
+                    isInvalidDate: function(date) {
+                        // ✅ บล็อกวันเสาร์ (6) และอาทิตย์ (0)
+                        return (date.isoWeekday() === 6 || date.isoWeekday() === 7);
+                    }
+                });
+
+                $("#datetimes").on("apply.daterangepicker", function(ev, picker) {
+                    $(this).val(picker.startDate.format("DD/MM/YYYY"));
+                });
+
+                $("#datetimes").on("cancel.daterangepicker", function(ev, picker) {
+                    $(this).val("");
+                });
+
+                // เปิด Datepicker เมื่อกดไอคอน 📅
+                $("#exam_starttime").on("click", function() {
+                    $("#datetimes").focus();
+                });
+            }
+
+        });
+        const {
+            value: empData
+        } = await Swal.fire({
+            title: "กรอกรหัสพนักงาน",
+            html: `
+            <input type="text" id="id_input" class="swal2-input" placeholder="รหัสพนักงาน" onkeyup="validateID(event)"> 
+            <p id="id_warning" style="color: red; display: none;">กรุณากรอกตัวเลขเท่านั้น</p>
+            <div id="emp_info"></div>
+        `,
+            showCancelButton: true,
+            confirmButtonColor: "green",
+            confirmButtonText: "ยืนยัน",
+            cancelButtonText: "ยกเลิก",
+            preConfirm: async () => {
+                let empIdInput = document.getElementById("id_input").value;
+                if (!empIdInput || isNaN(empIdInput)) {
+                    Swal.showValidationMessage("กรุณากรอกรหัสพนักงานที่เป็นตัวเลข");
+                    return false;
+                }
+
+                let empData = await fetchEmployeeData(empIdInput);
+                if (!empData) {
+                    Swal.showValidationMessage("ไม่พบข้อมูลพนักงาน");
+                    return false;
+                }
+                return {
+                    empId: empIdInput,
+                    ...empData
+                };
+            }
+        });
+
+        if (!empData) return;
+
+        Swal.fire({
+            title: 'จองคิวสอบสำเร็จ',
+            icon: 'success',
+            timer: 3000,
+            showConfirmButton: false
+        });
+
+        console.log("วันสอบที่เลือก:", date);
+        console.log("รหัสพนักงาน:", editedData.empId);
+        console.log("ชื่อ:", editedData.name);
+        console.log("แผนก:", editedData.department);
+        console.log("โรงงาน:", editedData.factory);
+    }
+
+    function validateID(event) {
+        let idInput = document.getElementById("id_input").value;
+        let warningText = document.getElementById("id_warning");
+        let empInfo = document.getElementById("emp_info");
+
+        if (isNaN(idInput) || idInput.trim() === "") {
+            warningText.style.display = "block";
+            empInfo.innerHTML = "";
+        } else {
+            warningText.style.display = "none";
+            fetchEmployeeData(idInput).then(data => {
+                if (data) {
+                    empInfo.innerHTML = `
+                     <div class="row ">
+        <div class="col-md-12 col-lg-12 text-start mb-3">
+            <label class="form-label">ชื่อ-นามสกุล</label>
+            <input type="text" id="emp_name_preview" class="form-control" value="${data.name}" readonly>
+        </div>
+        <div class="col-md-12 col-lg-12 text-start mb-3">
+            <label class="form-label">แผนก</label>
+            <input type="text" id="emp_department_preview" class="form-control" value="${data.department}" readonly>
+        </div>
+        <div class="col-md-12 col-lg-12 text-start mb-3">
+            <label class="form-label">โรงงาน</label>
+            <input type="text" id="emp_factory_preview" class="form-control" value="${data.factory}" readonly>
+        </div>
+    </div>`;
+                } else {
+                    empInfo.innerHTML = "<span style='color: red;'>ไม่พบข้อมูลพนักงาน</span>";
+                }
+            });
+        }
+        // กด Enter เพื่อกดยืนยัน
+        if (event.key === "Enter") {
+            document.querySelector(".swal2-confirm").click();
+        }
+    }
+
+
+
+
     $(document).ready(function() {
         $('#calendar').fullCalendar({
             header: {

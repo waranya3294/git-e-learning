@@ -144,7 +144,7 @@ $_SESSION['user_type'] = $type;
       title: "คุณต้องการลบข้อมูลนี้หรือไม่",
       icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
+      confirmButtonColor: "green",
       cancelButtonColor: "#d33",
       confirmButtonText: "ใช่",
       cancelButtonText: "ไม่ใช่"
@@ -152,7 +152,9 @@ $_SESSION['user_type'] = $type;
       if (result.isConfirmed) {
         Swal.fire({
           text: "เรียบร้อย",
-          icon: "success"
+          icon: "success",
+          timer: 1500,
+          showConfirmButton: false,
         });
       }
     });
