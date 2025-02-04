@@ -59,57 +59,63 @@
 
 <script>
     function addDatatimes() {
-        const dateFieldsContainer = document.getElementById('dateFieldsContainer');
-        const dateField = document.createElement('div');
-        dateField.classList.add('col-lg-11', 'd-flex', );
-        dateField.innerHTML = `
-       <div class="input-group mb-3">
-            <input type="text" name="datetimes" class="form-control new-datetime" required placeholder="เลือกช่วงเวลา" aria-describedby="exam_starttime_endtime">
-            <span class="input-group-text" id="exam_starttime_endtime" style="cursor: pointer;">
-                <i class="fa-solid fa-calendar-days"></i>
-            </span>
+    const dateFieldsContainer = document.getElementById('dateFieldsContainer');
+    const uniqueId = 'datetimes_' + Date.now();
+
+    const dateField = document.createElement('div');
+    dateField.classList.add('col-lg-12','col-sm-12', 'd-flex', 'mb-3'); // เพิ่ม margin ให้กล่องไม่ติดกัน
+    dateField.innerHTML = `
+        <div class="col ">
+            <div class="input-group">
+                <input type="text" id="${uniqueId}" name="datetimes[]" class="form-control datetime-picker" required placeholder="เลือกช่วงเวลา" aria-describedby="exam_starttime_endtime">
+                <span class="input-group-text" style="cursor: pointer;">
+                    <i class="fa-solid fa-calendar-days"></i>
+                </span>
+            </div>
         </div>
     `;
-        dateFieldsContainer.appendChild(dateField);
+    dateFieldsContainer.appendChild(dateField);
 
-        // เรียกใช้ daterangepicker สำหรับฟิลด์ใหม่ที่ถูกเพิ่ม
-        $('.new-datetime').daterangepicker({
-            timePicker: true,
-            timePicker24Hour: true,
-            autoUpdateInput: false,
-            locale: {
-                format: 'DD MMM YYYY HH:mm',
-                cancelLabel: 'Clear'
-            }
-        });
-        $('.new-datetime').on('apply.daterangepicker', function(ev, picker) {
-            $(this).val(picker.startDate.format('DD MMM YYYY HH:mm') + ' - ' + picker.endDate.format('DD MMM YYYY HH:mm'));
-        });
-
-        $('.new-datetime').on('cancel.daterangepicker', function() {
-            $(this).val(''); // ล้างค่าถ้าผู้ใช้กด Clear
-        });
-    }
-
-    $(document).ready(function() {
-        $('input[name="datetimes"]').daterangepicker({
-            timePicker: true,
-            timePicker24Hour: true,
-            autoUpdateInput: false,
-            locale: {
-                format: 'DD MMM YYYY HH:mm',
-                cancelLabel: 'Clear'
-            }
-        });
-
-        $('input[name="datetimes"]').on('apply.daterangepicker', function(ev, picker) {
-            $(this).val(picker.startDate.format('DD MMM YYYY HH:mm') + ' - ' + picker.endDate.format('DD MMM YYYY HH:mm'));
-        });
-
-        $('input[name="datetimes"]').on('cancel.daterangepicker', function() {
-            $(this).val(''); // ล้างค่าถ้าผู้ใช้กด Clear
-        });
+    $(`#${uniqueId}`).daterangepicker({
+        timePicker: true,
+        timePicker24Hour: true,
+        autoUpdateInput: false,
+        locale: {
+            format: 'DD MMM YYYY HH:mm',
+            cancelLabel: 'Clear'
+        }
     });
+
+    $(`#${uniqueId}`).on('apply.daterangepicker', function (ev, picker) {
+        $(this).val(picker.startDate.format('DD MMM YYYY HH:mm') + ' - ' + picker.endDate.format('DD MMM YYYY HH:mm'));
+    });
+
+    $(`#${uniqueId}`).on('cancel.daterangepicker', function () {
+        $(this).val(''); // ล้างค่าถ้าผู้ใช้กด Clear
+    });
+}
+
+$(document).ready(function () {
+    // สำหรับ input แรก (ถ้ามีในหน้า)
+    $('input[name="datetimes[]"]').daterangepicker({
+        timePicker: true,
+        timePicker24Hour: true,
+        autoUpdateInput: false,
+        locale: {
+            format: 'DD MMM YYYY HH:mm',
+            cancelLabel: 'Clear'
+        }
+    });
+
+    $('input[name="datetimes[]"]').on('apply.daterangepicker', function (ev, picker) {
+        $(this).val(picker.startDate.format('DD MMM YYYY HH:mm') + ' - ' + picker.endDate.format('DD MMM YYYY HH:mm'));
+    });
+
+    $('input[name="datetimes[]"]').on('cancel.daterangepicker', function () {
+        $(this).val('');
+    });
+});
+
 
 
     tinymce.init({

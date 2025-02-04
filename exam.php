@@ -13,7 +13,7 @@
         </div>
         <hr>
 
-        <!-- popup Modal -->
+        <!-- เพิ่มเนื้อหา-->
         <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div class="modal-dialog modal-xl">
             <div class="modal-content">
@@ -136,11 +136,11 @@
                         <option value="content2">การสวนใส่ชุด PPE</option>
                         <option value="content3">Test</option>
                       </select>
-                      <button type="button" name="content" class="btn btn-outline-secondary ms-2" onclick="addContent('content-container')" title="เพิ่มเนื้อหา">
+                      <button type="button" name="content" class="btn btn-outline-secondary ms-2" onclick="addContent('content-container-new')" title="เพิ่มเนื้อหา">
                         <i class="fas fa-plus"></i>
                       </button>
                     </div>
-                    <div id="content-container" class="mt-2"></div>
+                    <div id="content-container-new" class="mt-2"></div>
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-success" onclick="window.location.href='exam_maincontent.php'">บันทึกข้อมูล</button>
@@ -201,65 +201,28 @@
     });
   }
 
-  // function show_select_data_form() {
-  //   Swal.fire({
-  //     allowOutsideClick: false,
-  //     confirmButtonColor: 'green',
-  //     width: 700,
-  //     html: `
-  //    <div class="col">
-  //                   <div class="text-start">
-  //                       <label for="lesson-title">ชื่อบทเรียน</label>
-  //                   </div>
-  //                   <input type="text" name="title" id="lesson-title-modal" class="form-control mb-3" placeholder="ชื่อบทเรียน" required>
-  //               </div>
-  //               <div class="col">
-  //                   <div class="text-start">
-  //                       <label for="exam_id">ชุดข้อสอบก่อนเรียน - หลังเรียน</label>
-  //                   </div>
-  //                   <input type="text" name="exam" id="exam-title-modal" class="form-control mb-3" placeholder="ชื่อชุดข้อสอบ" required>
-  //               </div>
-  //           </div>
-  //             <div class="col text-start mt-2">
-  //               <label for="content-title">ชื่อเนื้อหา</label>
-  //             </div>
-  //         <div>
-  //               <input type="text" name="content_title" id="content-title-modal" class="form-control mb-2" placeholder="ชื่อบทเรียนของเนื้อหา" required>
-  //           </div>
-  //           <input type="text" name="content_title" id="content-title-modal" class="form-control mb-2" placeholder="ชื่อบทเรียนของเนื้อหา" required>
-
-  //           <div class="row">
-  //           <div class="col-md-9">
-  //             <input type="text" name="content_title" id="content-title-modal" class="form-control mb-2" placeholder="ชื่อบทเรียนของเนื้อหา" required>
-  //           </div>
-  //              <div class="col text-end">
-  //               <button type="button" id="addContentBtn"  class="btn btn-outline-primary" onclick="addContent()" title="เพิ่มเนื้อหา">
-  //                 <i class="fas fa-plus">เพิ่มเนื้อหา</i>
-  //               </button>
-  //           </div>    
-  //             </div>
-  //               <div id="content-container-modal" class="mt-2"></div>
-  //           <div class="text-start">
-  //             <label for="exam-minute-modal">เวลาในการทำข้อสอบ</label>
-  //           </div>
-  //             <input type="text" name="exam_time" id="exam-minute-modal" class="form-control mb-3" placeholder="เวลาในการทำข้อสอบ" required>
-  //           `,
-  //   });
-  // }
-  let pageCounter = 2;
+  let pageCounterNew = 2;
+  let pageCounterEdit = 2;
 
   function addContent(containerId) {
     const contentContainer = document.getElementById(containerId);
+    if (!contentContainer) {
+      console.error(`ไม่พบคอนเทนเนอร์ ID: ${containerId}`);
+      return;
+    }
+
+    let currentCounter = containerId === 'content-container-new' ? pageCounterNew : pageCounterEdit;
+
     const newContent = document.createElement('div');
     newContent.className = 'content-box mt-2';
 
     newContent.innerHTML = `
     <div class="d-flex align-items-center">
-      <span class="me-2">${pageCounter}</span>
-      <select class="form-control" name="content_${pageCounter}" style="flex: 1;">
+      <span class="me-2">${currentCounter}</span>
+      <select class="form-control" name="content_${currentCounter}" style="flex: 1;">
         <option value="">-- เลือกเนื้อหา --</option>
-       <option value="content1">ประเภทของการพ่นสี</option>
-       <option value="content2">การสวนใส่ชุด PPE</option>
+        <option value="content1">ประเภทของการพ่นสี</option>
+        <option value="content2">การสวนใส่ชุด PPE</option>
         <option value="content3">เนื้อหาที่ 3</option>
       </select>
       <button type="button" class="btn btn-outline-danger ms-2" onclick="removeContent(this)" title="ลบเนื้อหา">
@@ -267,8 +230,15 @@
       </button>
     </div>
   `;
+
     contentContainer.appendChild(newContent);
-    pageCounter++;
+    console.log(`เพิ่มเนื้อหาใน: ${containerId}`);
+
+    if (containerId === 'content-container-new') {
+      pageCounterNew++;
+    } else {
+      pageCounterEdit++;
+    }
   }
 
   function removeContent(button) {
