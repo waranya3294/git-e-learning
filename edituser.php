@@ -2,6 +2,9 @@
     <h3>จัดการผู้เข้าสอบ</h3>
     <div class="card">
         <div class="card-body">
+            <div class="text-end mb-3">
+                <button class="btn btn-success"><i class="fas fa-plus"></i> เพิ่มข้อมูล</button>
+            </div>
             <div class="table-responsive">
                 <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>
@@ -28,7 +31,10 @@
                             <td>PD</td>
                             <td>KCMSA</td>
                             <td class="text-center">
-                                <div><button class="btn btn-sm btn-outline-warning" onclick="editUser()"><i class="bi bi-pencil-square"></i></button></div>
+                                <div>
+                                    <button class="btn btn-sm btn-outline-warning" onclick="editUser()"><i class="bi bi-pencil-square"></i></button>
+                                    <button class="btn btn-sm btn-outline-danger" onclick="showDelete()"><i class="bi bi-trash"></i></button>
+                                </div>
                             </td>
                         </tr>
                         <tr>
@@ -41,7 +47,10 @@
                             <td>TS</td>
                             <td>KCMSA</td>
                             <td class="text-center">
-                                <div><button class="btn btn-sm btn-outline-warning" onclick="editUser()"><i class="bi bi-pencil-square"></i></button></div>
+                                <div>
+                                    <button class="btn btn-sm btn-outline-warning" onclick="editUser()"><i class="bi bi-pencil-square"></i></button>
+                                    <button class="btn btn-sm btn-outline-danger" onclick="showDelete()"><i class="bi bi-trash"></i></button>
+                                </div>
                             </td>
                         </tr>
                     </tbody>
@@ -51,23 +60,22 @@
     </div>
 </div>
 
-
 <script>
     let table = new DataTable('#example', {
-                language: {
-                    url: "https://cdn.datatables.net/plug-ins/2.2.1/i18n/th.json",
-                    paginate: {
-                        previous: "<",
-                        next: ">",
-                        first: "<<",
-                        last: ">>"
-                    }
-                }
-                });
+        language: {
+            url: "https://cdn.datatables.net/plug-ins/2.2.1/i18n/th.json",
+            paginate: {
+                previous: "<",
+                next: ">",
+                first: "<<",
+                last: ">>"
+            }
+        }
+    });
 
-            function editUser() {
-                Swal.fire({
-                    html: `
+    function editUser() {
+        Swal.fire({
+            html: `
            <div class="row">
     <h1>แก้ไขข้อมูล</h1>
 </div>
@@ -108,11 +116,32 @@
     </div>
 </div>
             `,
-                    confirmButtonColor: '#ffc107',
-                    confirmButtonText: 'แก้ไข',
-                    showCancelButton: true,
-                    cancelButtonText: 'ยกเลิก',
-                    allowOutsideClick: false
-                })
+            confirmButtonColor: '#ffc107',
+            confirmButtonText: 'แก้ไข',
+            showCancelButton: true,
+            cancelButtonText: 'ยกเลิก',
+            allowOutsideClick: false
+        })
+    }
+
+    function showDelete() {
+        Swal.fire({
+            title: "คุณต้องการลบข้อมูลนี้หรือไม่",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "green",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "ใช่",
+            cancelButtonText: "ไม่ใช่"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    text: "เรียบร้อย",
+                    icon: "success",
+                    timer: 1500,
+                    showConfirmButton: false,
+                });
             }
+        });
+    }
 </script>

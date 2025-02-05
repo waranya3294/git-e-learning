@@ -7,10 +7,15 @@
   <meta http-equiv="Expires" content="0">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
-  <title>ห้องสอบ</title>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  <title>ห้องสอบ</title>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script> -->
+
+  <!-- jquery 3.7.1 -->
+  <script src="assets/lib/jquery/jquery-3.7.1.js"></script>
+
+  <!-- Tinymce -->
+  <script src="assets/lib/tinymce/tinymce.min.js"></script>
 
   <!-- amcharts -->
   <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
@@ -19,11 +24,8 @@
   <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script> -->
 
-  <!-- Quill -->
-  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
-  <script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
 
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
@@ -31,10 +33,11 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="assets/lib/css/styles.css">
 
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+  <script  src="assets/lib/jquery/jquery.min.js"></script>
+  <script  src="assets/lib/jquery/moment.min.js"></script>
+  <script src='https://cdn.jsdelivr.net/npm/moment-timezone@0.5.40/builds/moment-timezone-with-data.min.js'></script>
+  <script src="assets/lib/jquery/daterangepicker.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="assets/lib/jquery/daterangepicker.css" />
 
   <!-- sweetalert -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -46,20 +49,28 @@
   <link rel="stylesheet" href="assets/lib/fontawsome/css/fontawesome.css">
 
   <!-- datatable -->
-  <link href="https://cdn.datatables.net/2.2.1/css/dataTables.bootstrap5.css" rel="stylesheet">
+  <link href="assets/lib/dataTables/dataTables.bootstrap5.css" rel="stylesheet">
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script> -->
-  <script src="https://cdn.datatables.net/2.2.1/js/dataTables.js"></script>
-  <script src="https://cdn.datatables.net/2.2.1/js/dataTables.bootstrap5.js"></script>
+  <script src="assets/lib/dataTables/dataTables.js"></script>
+  <script src="assets/lib/dataTables/dataTables.bootstrap5.js"></script>
 
   <!-- calendar -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.css">
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.17.1/moment.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.1.0/fullcalendar.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.7/semantic.min.js"></script>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.2.0/dist/locale/locale-th.js"></script> -->
+  <!-- <link rel="stylesheet" href="assets/lib/calendar/fullcalendar.min.css">
+  <script src="assets/lib/calendar/moment.min.js"></script>
+  <script src="assets/lib/calendar/fullcalendar.min.js"></script>
+  <script src="assets/lib/calendar/semantic.min.js"></script> -->
+  <!--  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.2.0/dist/locale/locale-th.js"></script> -->
 
-  <!-- sheetJS CDN -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+  <!-- calendar -->
+  <script src="assets/lib/calendar/6.1.15fullcalendar.js"></script>
+  <script src="assets/lib/calendar/index.global.min.js"></script>
+
+  <!--sheetJS CDN  -->
+  <script src="assets/lib/sheetJS/xlsx.full.min.js"></script>
+
+  <!-- apexcharts -->
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
   <style>
     @font-face {
       font-family: "Kanit";

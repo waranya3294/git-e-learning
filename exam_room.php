@@ -23,7 +23,7 @@
                                 <label for="datetimes">ระยะเวลาเปิดห้องสอบ: <span class="text-danger">*</span></label>
                                 <div class="row  justify-content-center" id="dateFieldsContainer">
                                     <div class="col-lg-11 d-flex align-items-center">
-                                        <div class="input-group mb-3">
+                                        <div class="input-group mb-2">
                                             <input type="text" id="datetimes" name="datetimes" class="form-control" required placeholder="เลือกช่วงเวลา" aria-describedby="exam_starttime_endtime">
                                             <span class="input-group-text" id="exam_starttime_endtime" style="cursor: pointer;">
                                                 <i class="fa-solid fa-calendar-days"></i>
@@ -55,72 +55,70 @@
     </div>
 </form>
 
-<script src="https://cdn.tiny.cloud/1/xit6jhfuib4qtdnwba6inewnmyk72x2w0wxqdkd6kwxf6oan/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
-
 <script>
     function addDatatimes() {
-    const dateFieldsContainer = document.getElementById('dateFieldsContainer');
-    const uniqueId = 'datetimes_' + Date.now();
+        const dateFieldsContainer = document.getElementById('dateFieldsContainer');
+        const uniqueId = 'datetimes_' + Date.now();
 
-    const dateField = document.createElement('div');
-    dateField.classList.add('col-lg-12','col-sm-12', 'd-flex', 'mb-3'); // เพิ่ม margin ให้กล่องไม่ติดกัน
-    dateField.innerHTML = `
-        <div class="col ">
-            <div class="input-group">
-                <input type="text" id="${uniqueId}" name="datetimes[]" class="form-control datetime-picker" required placeholder="เลือกช่วงเวลา" aria-describedby="exam_starttime_endtime">
-                <span class="input-group-text" style="cursor: pointer;">
-                    <i class="fa-solid fa-calendar-days"></i>
-                </span>
+        const dateField = document.createElement('div');
+        dateField.classList.add('mb-2');
+        dateField.setAttribute('data-id', uniqueId);
+        dateField.innerHTML = `
+        <div class="row">
+            <div class="col-lg-11">
+                <div class="input-group">
+                    <input type="text" id="${uniqueId}" name="datetimes[]" class="form-control datetime-picker" required placeholder="เลือกช่วงเวลา">
+                    <span class="input-group-text" style="cursor: pointer;">
+                        <i class="fa-solid fa-calendar-days"></i>
+                    </span>
+                </div>
+            </div>
+            <div class="col-auto">
+                <button type="button" class="btn btn-outline-danger ms-2 remove-datetime" data-id="${uniqueId}">
+                    <i class="bi bi-trash"></i>
+                </button>
             </div>
         </div>
     `;
-    dateFieldsContainer.appendChild(dateField);
+        dateFieldsContainer.appendChild(dateField);
 
-    $(`#${uniqueId}`).daterangepicker({
-        timePicker: true,
-        timePicker24Hour: true,
-        autoUpdateInput: false,
-        locale: {
-            format: 'DD MMM YYYY HH:mm',
-            cancelLabel: 'Clear'
-        }
+        // ใช้ setTimeout เพื่อให้ input ถูกเพิ่มลง DOM ก่อน
+        setTimeout(() => {
+            initializeDateRangePicker(`#${uniqueId}`);
+        }, 100);
+    }
+
+    // ฟังก์ชันแนบ DateRangePicker กับ input ที่เพิ่มเข้ามาใหม่
+    function initializeDateRangePicker(selector) {
+        $(selector).daterangepicker({
+            timePicker: true,
+            timePicker24Hour: true,
+            autoUpdateInput: false,
+            locale: {
+                format: 'DD MMM YYYY HH:mm',
+                cancelLabel: 'Clear'
+            }
+        }).on('apply.daterangepicker', function(ev, picker) {
+            $(this).val(picker.startDate.format('DD MMM YYYY HH:mm') + ' - ' + picker.endDate.format('DD MMM YYYY HH:mm'));
+        }).on('cancel.daterangepicker', function() {
+            $(this).val('');
+        });
+    }
+
+    // ฟังก์ชันลบฟิลด์ช่วงเวลา
+    $(document).on('click', '.remove-datetime', function() {
+        const idToRemove = $(this).data('id');
+        $(`[data-id="${idToRemove}"]`).remove();
     });
 
-    $(`#${uniqueId}`).on('apply.daterangepicker', function (ev, picker) {
-        $(this).val(picker.startDate.format('DD MMM YYYY HH:mm') + ' - ' + picker.endDate.format('DD MMM YYYY HH:mm'));
+    // เรียกใช้ DateRangePicker สำหรับ input ที่มีอยู่ในหน้าแรก
+    $(document).ready(function() {
+        initializeDateRangePicker('input[name="datetimes"]');
     });
-
-    $(`#${uniqueId}`).on('cancel.daterangepicker', function () {
-        $(this).val(''); // ล้างค่าถ้าผู้ใช้กด Clear
-    });
-}
-
-$(document).ready(function () {
-    // สำหรับ input แรก (ถ้ามีในหน้า)
-    $('input[name="datetimes[]"]').daterangepicker({
-        timePicker: true,
-        timePicker24Hour: true,
-        autoUpdateInput: false,
-        locale: {
-            format: 'DD MMM YYYY HH:mm',
-            cancelLabel: 'Clear'
-        }
-    });
-
-    $('input[name="datetimes[]"]').on('apply.daterangepicker', function (ev, picker) {
-        $(this).val(picker.startDate.format('DD MMM YYYY HH:mm') + ' - ' + picker.endDate.format('DD MMM YYYY HH:mm'));
-    });
-
-    $('input[name="datetimes[]"]').on('cancel.daterangepicker', function () {
-        $(this).val('');
-    });
-});
-
-
 
     tinymce.init({
         branding: false,
-        selector: 'textarea#tiny',
+        selector: '#tiny',
         plugins: 'image link media table  preview  fullscreen lists fontsizeinput color textcolor',
         toolbar: 'undo redo | fontsizeinput fontsizeselect | image link media  bold italic backcolor forecolor |\
              bullist numlist checklist table | alignleft aligncenter alignright alignjustify preview fullscreen',
@@ -219,4 +217,5 @@ $(document).ready(function () {
                 console.error('Error:', error);
             });
     });
+
 </script>

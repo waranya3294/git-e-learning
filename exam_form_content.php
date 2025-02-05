@@ -2,8 +2,8 @@
     <div class="card shadow-sm mb-4">
         <div class="card-body">
             <div class="row">
-                <div class="col-12 mb-4">
-                    <h2> ลงข้อสอบ</h2>
+                <div class="col-12 mb-4" style="color: #18B0BD;">
+                    <h1 class="display-4"> ลงข้อสอบ</h1>
                 </div>
             </div>
             <!-- button นำข้อมูลเข้า -->
@@ -335,11 +335,10 @@
     function removeQuestion(button) {
         Swal.fire({
             title: "คุณต้องการลบข้อมูลนี้หรือไม่?",
-            icon: "error",
+            icon: "warning",
             allowOutsideClick: false,
             showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
+            confirmButtonColor: "#d33",
             confirmButtonText: "ใช่",
             cancelButtonText: "ไม่ใช่",
         }).then((result) => {

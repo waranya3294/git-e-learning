@@ -100,11 +100,9 @@
 
         let table = new DataTable('#example', {
             language: {
-                url: "https://cdn.datatables.net/plug-ins/2.2.1/i18n/th.json"
+                url: "assets/lib/dataTables/language.json"
             }
         });
-
-
 
         // กราปภาพรวม
         am5.ready(function() {
