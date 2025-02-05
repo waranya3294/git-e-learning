@@ -1,39 +1,37 @@
-<div class="container mt-3">
+<div class="container-fluid mt-4  ">
     <div class="card shadow-sm mb-3" style="border: none;">
         <div class="card-body">
-            <div class="row">
-                <div class="col mt-3">
-                    <h3 >หมวดหมู่ข้อสอบ</h3>
+            <div class="row d-flex align-items-center">
+                <div class="col">
+                    <h1 class="display-4" style="color: #18B0BD;">หมวดหมู่ข้อสอบ</h1>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col mt-3 text-end">
+                <div class="col text-end">
                     <button type="text" class="btn btn-success" onclick="window.location.href='exam_form_maincontent.php'">
-                    <i class="fas fa-plus"></i> เพิ่มชุดข้อสอบใหม่</button>
+                        <i class="fas fa-plus"></i> เพิ่มชุดข้อสอบใหม่</button>
                 </div>
             </div>
             <hr>
 
             <div class="row text-center">
-                <div class="col">
-                    <table class="table">
+                <div class="table-responsive mt-3">
+                    <table id="example" class="table table-striped table-bordered" style="width:100%">
                         <thead class="thead-light">
-                            <tr>
-                                <th scope="row"><b>ลำดับ</b></th>
-                                <th><b>ชื่อหมวดหมู่</b></th>
-                                <th><b>จำนวนข้อสอบ</b></th>
-                                <th><b>คำสั่ง</b></th>
+                            <tr >
+                                <th class="text-center"><b>ลำดับ</b></th>
+                                <th class="text-center"><b>ชื่อหมวดหมู่</b></th>
+                                <th class="text-center"><b>จำนวนข้อสอบ</b></th>
+                                <th class="text-center"><b>คำสั่ง</b></th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <th>1</th>
-                                <th>ความปลอดภัยในการพ่นสี</th>
-                                <th>5 ข้อ</th>
-                                <th>
+                            <tr class="align-middle">
+                                <td>1</td>
+                                <td>ความปลอดภัยในการพ่นสี</td>
+                                <td>5 ข้อ</td>
+                                <td>
                                     <button class="btn btn-outline-warning btn-sm" title="แก้ไขข้อมูล" onclick="window.location.href='exam_form_maincontent.php'"><i class="bi bi-pencil-square"></i></button>
                                     <button class="btn btn-outline-danger btn-sm" title="ลบข้อมูล" onclick="showDelete() "><i class="bi bi-trash"></i></button>
-                                </th>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -44,6 +42,16 @@
 </div>
 
 <script>
+   let table = new DataTable('#example', {
+    paging: false,
+    searching: false,
+    language: {
+      url: "assets/lib/dataTables/language.json",
+      info: ""
+    }
+  });
+
+
     function showDelete() {
         Swal.fire({
             title: "คุณต้องการลบข้อมูลนี้หรือไม่",

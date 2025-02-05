@@ -74,7 +74,7 @@
     paging: false,
     searching: false,
     language: {
-      url: "https://cdn.datatables.net/plug-ins/2.2.1/i18n/th.json",
+      url: "assets/lib/dataTables/language.json",
       info: ""
     }
   });

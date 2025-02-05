@@ -1,10 +1,64 @@
 <div class="container-fluid mt-4">
-    <h3>จัดการผู้เข้าสอบ</h3>
+    <h1 class="display-4" style="color: #18B0BD;">จัดการผู้เข้าสอบ</h1>
     <div class="card">
         <div class="card-body">
             <div class="text-end mb-3">
-                <button class="btn btn-success"><i class="fas fa-plus"></i> เพิ่มข้อมูล</button>
+                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-plus"></i> เพิ่มข้อมูล</button>
             </div>
+
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">เพิ่มข้อมูลพนักงาน</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row mb-2">
+                                <div class="col-6 text-start">
+                                    <label for="text">รหัสพนักงาน</label>
+                                    <input class="form-control" type="text" id="text" name="text" placeholder="รหัสพนักงาน">
+                                </div>
+                                <div class="col-6 text-start">
+                                    <label for="text">ชื่อ - นามสกุล</label>
+                                    <input class="form-control" type="text" id="text" name="text" placeholder="ชื่อ - นามสกุล">
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-6 text-start">
+                                    <label for="text">ตำแหน่ง</label>
+                                    <input class="form-control" type="text" id="position" name="position" placeholder="ตำแหน่ง">
+                                </div>
+                                <div class="col-6 text-start">
+                                    <label for="text">แผนก</label>
+                                    <input class="form-control" type="text" id="section" name="section" placeholder="แผนก">
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-6 text-start">
+                                    <label for="text">ส่วนงาน</label>
+                                    <input class="form-control" type="text" id="workplace" name="workplace" placeholder="ส่วนงาน">
+                                </div>
+                                <div class="col-6 text-start">
+                                    <label for="text">โรงงาน</label>
+                                    <input class="form-control" type="text" id="factory" name="factory" placeholder="โรงงาน">
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-6 text-start">
+                                    <label for="text">สัญญา</label>
+                                    <input class="form-control" type="text" id="group" name="group" placeholder="สัญญา">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-success">บันทึกข้อมูล</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
             <div class="table-responsive">
                 <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>
@@ -63,7 +117,7 @@
 <script>
     let table = new DataTable('#example', {
         language: {
-            url: "https://cdn.datatables.net/plug-ins/2.2.1/i18n/th.json",
+            url: "assets/lib/dataTables/language.json",
             paginate: {
                 previous: "<",
                 next: ">",

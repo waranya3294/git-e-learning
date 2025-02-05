@@ -1,13 +1,13 @@
 <div class="container-fluid mt-4 mb-4">
-    <h2 class="mb-3">รายชื่อพนักงานทั้งหมด</h2>
+    <h1 class="display-4" style="color: #18B0BD;">รายชื่อพนักงานทั้งหมด</h1>
     <div class="card shadow-sm rounded-1 mb-3" style="border: none; ">
         <div class="card-body">
             <div class="row mb-2">
-                <div class="col ms-2 d-flex align-items-center">
+                <div class="col d-flex align-items-center">
                     <h4>รายชื่อพนักงานทั้งหมด</h4>
-                    <div id="downloadBtn" class="btn btn-success"><i class="fa-solid fa-download"></i></div>
+                    <div id="downloadBtn" class="btn btn-success ms-3"><i class="fa-solid fa-download"></i></div>
                 </div>
-                <div class="col d-flex justify-content-end">
+                <div class="col d-flex align-items-center justify-content-end">
                     <select class="form-select form-select-sm" style="width: 150px;" aria-label="Small select example">
                         <option selected>--เลือกแผนก--</option>
                         <option value="1">สี</option>
@@ -20,7 +20,7 @@
 
             <hr style="margin: 0 -15px;">
 
-            <div class="table-responsive">
+            <div class="table-responsive mt-3">
                 <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>

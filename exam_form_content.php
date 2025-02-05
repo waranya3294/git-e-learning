@@ -1,7 +1,7 @@
-<div class="container mt-4">
+<div class="container-fluid mt-4 mb-4 px-4">
     <div class="card shadow-sm mb-4">
         <div class="card-body">
-            <div class="row">
+            <div class="row ">
                 <div class="col-12 mb-4" style="color: #18B0BD;">
                     <h1 class="display-4"> ลงข้อสอบ</h1>
                 </div>
@@ -252,7 +252,7 @@
 
         const optionId = `${Date.now()}-${Math.random()}`; // สร้าง ID แบบไม่ซ้ำ
         const optionDiv = document.createElement('div');
-        optionDiv.classList.add('row', 'align-items-center', 'mb-2', 'g-2');
+        optionDiv.classList.add('row', 'align-items-center', 'mb-2', 'g-2', 'm-0');
         optionDiv.innerHTML = `
         <div class="col-auto">
             <input class="form-check-input" type="radio" name="exampleModal_${optionId}" value="${optionId}">
@@ -324,12 +324,11 @@
     </div>
     <button class="btn btn-default" onclick="addOption(this)"><i class="fas fa-plus"></i> เพิ่มตัวเลือก</button>
     <hr>
-    <button class="btn btn-secondary me-2" onclick="addNewQuestion()" title="เพิ่มคำถาม">
-        <i class="bi bi-plus-circle"></i>
-    </button>
+    
     <button class="btn btn-danger" onclick="removeQuestion(this)" title="นำออก"><i class="bi bi-trash"></i></button>
     `;
         questionContainer.appendChild(newQuestionBox);
+
     }
 
     function removeQuestion(button) {
@@ -445,5 +444,4 @@
         container.remove();
         inputFile.value = ''; // ล้างค่าของ input file
     }
-
-   </script>
+</script>
