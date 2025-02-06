@@ -85,7 +85,7 @@
                 </div>
                 <div class="row">
                     <div class="col text-end">
-                        <button class="btn btn-outline-primary" onclick="window.location.href='posttest_maincontent.php'">ต่อไป</button>
+                        <button class="btn btn-success" onclick="window.location.href='posttest_maincontent.php'">ถัดไป</button>
                     </div>
                 </div>
             </div>
