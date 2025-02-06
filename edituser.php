@@ -52,12 +52,11 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-success">บันทึกข้อมูล</button>
+                            <button type="button" class="btn btn-success" onclick="window.location.href='edituser_maincontent.php'">บันทึกข้อมูล</button>
                         </div>
                     </div>
                 </div>
             </div>
-
 
             <div class="table-responsive">
                 <table id="example" class="table table-striped table-bordered" style="width:100%">
@@ -131,7 +130,8 @@
         Swal.fire({
             html: `
            <div class="row">
-    <h1>แก้ไขข้อมูล</h1>
+    <h2 class="text-start">แก้ไขข้อมูลพนักงาน</h2>
+    <hr>
 </div>
 <div class="row mb-2">
     <div class="col-6 text-start">
@@ -165,7 +165,7 @@
 </div>
 <div class="row mb-2">
     <div class="col-6 text-start">
-      <label for="text">สัญญา</label>
+      <label for="text">ประเภทสัญญา</label>
             <input class="form-control" type="text" id="group" name="group" placeholder="สัญญา">
     </div>
 </div>

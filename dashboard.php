@@ -50,7 +50,7 @@
             <div class="card shadow-sm">
                 <div class="card-body">
                     <h4><b>ปฏิทินการสอบ</b></h4>
-                    <hr>
+                    <hr style="margin: 0 -15px;" class="mb-3">
                     <div id='calendar'></div>
                 </div>
             </div>
@@ -68,11 +68,11 @@
                     <button class="btn btn-success" onclick="showReserve()">จองคิวสอบ</button>
                 </div>
             </div>
-            <div class="table-responsive mt-4">
-                <table class="table table-striped">
+            <div class="table-responsive mt-3">
+                <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr class="text-center " style="font-size:18px; border: 1px solid ridge;">
-                            <th><b>รหัสพนักงาน</b></th>
+                            <th class="text-start"><b>รหัสพนักงาน</b></th>
                             <th><b>ชื่อ - นามสกุล</b></th>
                             <th><b>ห้องสอบ</b></th>
                             <th><b>วันที่จอง</b></th>
@@ -81,17 +81,19 @@
                             <th><b>งาน</b></th>
                             <th><b>โรงงาน</b></th>
                         </tr>
-                        <tr class="text-center">
-                            <th>4284</th>
-                            <th>วรัญญา หันจางสิทธิ์</th>
-                            <th>ความปลอดภัยของการพ่นสี</th>
-                            <th>02/03/2025</th>
-                            <th>03/05/2025</th>
-                            <th>TSF</th>
-                            <th>Final Paint 35 Ton</th>
-                            <th>TS</th>
-                        </tr>
                     </thead>
+                    <tbody>
+                        <tr class="text-center">
+                            <td class="text-center">4284</td>
+                            <td>วรัญญา หันจางสิทธิ์</td>
+                            <td>ความปลอดภัยของการพ่นสี</td>
+                            <td>02/03/2025</td>
+                            <td>03/05/2025</td>
+                            <td>TSF</td>
+                            <td>Final Paint 35 Ton</td>
+                            <td>TS</td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
         </div>
@@ -106,7 +108,7 @@
             <h4 class="text-center mb-4">TS</h4>
             <div id="chart"></div>
             <div class="table-responsive mt-3">
-                <table class="table">
+                <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr class="text-center " style="font-size:18px; border: 1px solid ridge;">
                             <th><b>ประเภท</b></th>
@@ -120,40 +122,40 @@
                     </thead>
                     <tbody>
                         <tr class="text-center" style="font-size:18px; cursor: pointer;">
-                            <th>สี</th>
-                            <th>100</th>
-                            <th>0</th>
-                            <th>0</th>
-                            <th>0</th>
-                            <th>0</th>
-                            <th><button type="button" class="btn btn-success"><i class="bi bi-download"></i></button></th>
+                            <td>สี</td>
+                            <td>100</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td><button type="button" class="btn btn-success"><i class="bi bi-download"></i></button></td>
                         </tr>
                         <tr class="text-center" style="font-size:18px; cursor: pointer;">
-                            <th>เชื่อม</th>
-                            <th>100</th>
-                            <th>0</th>
-                            <th>0</th>
-                            <th>0</th>
-                            <th>0</th>
-                            <th><button type="button" class="btn btn-success"><i class="bi bi-download"></i></button></th>
+                            <td>เชื่อม</td>
+                            <td>100</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td><button type="button" class="btn btn-success"><i class="bi bi-download"></i></button></td>
                         </tr>
                         <tr class="text-center" style="font-size:18px; cursor: pointer;">
-                            <th>ประกอบ</th>
-                            <th>100</th>
-                            <th>0</th>
-                            <th>0</th>
-                            <th>0</th>
-                            <th>0</th>
-                            <th><button type="button" class="btn btn-success"><i class="bi bi-download"></i></button></th>
+                            <td>ประกอบ</td>
+                            <td>100</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td><button type="button" class="btn btn-success"><i class="bi bi-download"></i></button></td>
                         </tr>
                         <tr class="text-center" style="font-size:18px; cursor: pointer;">
-                            <th>CNC</th>
-                            <th>100</th>
-                            <th>0</th>
-                            <th>0</th>
-                            <th>0</th>
-                            <th>0</th>
-                            <th><button type="button" class="btn btn-success"><i class="bi bi-download"></i></button></th>
+                            <td>CNC</td>
+                            <td>100</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td><button type="button" class="btn btn-success"><i class="bi bi-download"></i></button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -166,7 +168,7 @@
             <h4 class="text-center mb-4">PD</h4>
             <div id="chart1"></div>
             <div class="table-responsive mt-3">
-                <table class="table">
+                <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr class="text-center" style="font-size:18px; border: 1px solid ridge;">
                             <th><b>ประเภท</b></th>
@@ -180,40 +182,40 @@
                     </thead>
                     <tbody>
                         <tr class="text-center" style="font-size:18px; cursor: pointer;">
-                            <th>สี</th>
-                            <th>100</th>
-                            <th>0</th>
-                            <th>0</th>
-                            <th>0</th>
-                            <th>0</th>
-                            <th><button type="button" class="btn btn-success"><i class="bi bi-download"></i></button></th>
+                            <td>สี</td>
+                            <td>100</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td><button type="button" class="btn btn-success"><i class="bi bi-download"></i></button></td>
                         </tr>
                         <tr class="text-center" style="font-size:18px; cursor: pointer;">
-                            <th>เชื่อม</th>
-                            <th>100</th>
-                            <th>0</th>
-                            <th>0</th>
-                            <th>0</th>
-                            <th>0</th>
-                            <th><button type="button" class="btn btn-success"><i class="bi bi-download"></i></button></th>
+                            <td>เชื่อม</td>
+                            <td>100</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td><button type="button" class="btn btn-success"><i class="bi bi-download"></i></button></td>
                         </tr>
                         <tr class="text-center" style="font-size:18px; cursor: pointer;">
-                            <th>ประกอบ</th>
-                            <th>100</th>
-                            <th>0</th>
-                            <th>0</th>
-                            <th>0</th>
-                            <th>0</th>
-                            <th><button type="button" class="btn btn-success"><i class="bi bi-download"></i></button></th>
+                            <td>ประกอบ</td>
+                            <td>100</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td><button type="button" class="btn btn-success"><i class="bi bi-download"></i></button></td>
                         </tr>
                         <tr class="text-center" style="font-size:18px; cursor: pointer;">
-                            <th>CNC</th>
-                            <th>100</th>
-                            <th>0</th>
-                            <th>0</th>
-                            <th>0</th>
-                            <th>0</th>
-                            <th><button type="button" class="btn btn-success"><i class="bi bi-download"></i></button></th>
+                            <td>CNC</td>
+                            <td>100</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td><button type="button" class="btn btn-success"><i class="bi bi-download"></i></button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -223,6 +225,15 @@
 </div>
 
 <script>
+    let table = new DataTable('#example', {
+        paging: false,
+        searching: false,
+        language: {
+            url: "assets/lib/dataTables/language.json",
+            info: ""
+        }
+    });
+
     //calendar
     document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');

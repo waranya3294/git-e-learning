@@ -254,7 +254,12 @@
     // ฟังก์ชันสำหรับลบเนื้อหา
     function removeContent(button, containerId) {
       button.parentElement.parentElement.remove();
-      updateNumbering(containerId); // เรียกใช้ฟังก์ชันอัปเดตลำดับใหม่
+      // updateNumbering(containerId); // เรียกใช้ฟังก์ชันอัปเดตลำดับใหม่
+      if (containerId === 'content-container-new') {
+        pageCounterNew--;
+      } else {
+        pageCounterEdit--;
+      }
     }
 
   </script>

@@ -27,14 +27,7 @@
   <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
   <link rel="stylesheet" href="assets/lib/css/progress_bar.css">
   <!-- SweetAlert2 -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <!-- amchart -->
-  <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
-  <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
-  <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
-  <script src="https://cdn.amcharts.com/lib/5/themes/Responsive.js"></script>
-
-  <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
+  <script src="assets/lib/sweetalert/sweetalert.js"></script>
 
 
   <!-- fontawsome -->
@@ -43,6 +36,13 @@
   <link rel="stylesheet" href="assets/lib/fontawsome/css/regular.css">
   <link rel="stylesheet" href="assets/lib/fontawsome/css/fontawesome.css">
 
+<!-- datatable -->
+<link href="assets/lib/dataTables/dataTables.bootstrap5.css" rel="stylesheet">
+<script src="assets/lib/dataTables/dataTables.js"></script>
+<script src="assets/lib/dataTables/dataTables.bootstrap5.js"></script>
+
+<!-- apexcharts -->
+<script src="assets/lib/apexcharts/apexcharts.js"></script>
 
   <style>
     @font-face {
@@ -159,7 +159,6 @@
             </a>
             <div class="collapse" id="collapsePages2" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
               <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                <a class="nav-link text-wrap "><i class="fa-regular fa-circle fa-sm me-2" style="font-size: 0.8rem;"></i> แบบทดสอบก่อนเรียน</a>
                 <a class="nav-link text-wrap"><i class="fa-regular fa-circle fa-sm me-2" style="font-size: 0.8rem;"></i> แบบทดสอบหลังเรียน</a>
               </nav>
             </div>

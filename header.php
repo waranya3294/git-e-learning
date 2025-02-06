@@ -29,18 +29,21 @@
 
   <link href='https://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link rel="stylesheet" href="assets/lib/jquery/bootstrap1.11.3-icons.min.css">
+  <link href="assets/lib/jquery/bootstrap5.3.3.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
   <link rel="stylesheet" href="assets/lib/css/styles.css">
 
+  <!-- calendar -->
   <script  src="assets/lib/jquery/jquery.min.js"></script>
   <script  src="assets/lib/jquery/moment.min.js"></script>
-  <script src='https://cdn.jsdelivr.net/npm/moment-timezone@0.5.40/builds/moment-timezone-with-data.min.js'></script>
+  <script src='assets/lib/calendar/moment-timezone-with-data.min.js'></script>
   <script src="assets/lib/jquery/daterangepicker.min.js"></script>
-  <link rel="stylesheet" type="text/css" href="assets/lib/jquery/daterangepicker.css" />
+  <link  href="assets/lib/jquery/daterangepicker.css" />
+  <script src="assets/lib/calendar/6.1.15fullcalendar.js"></script>
+  <script src="assets/lib/calendar/index.global.min.js"></script>
 
   <!-- sweetalert -->
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="assets/lib/sweetalert/sweetalert.js"></script>
 
   <!-- fontawsome -->
   <link rel="stylesheet" href="assets/lib/fontawsome/css/brands.css">
@@ -49,7 +52,7 @@
   <link rel="stylesheet" href="assets/lib/fontawsome/css/fontawesome.css">
 
   <!-- datatable -->
-  <link href="assets/lib/dataTables/dataTables.bootstrap5.css" rel="stylesheet">
+  <link href="assets/lib/dataTables/dataTables.bootstrap5.css" >
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script> -->
   <script src="assets/lib/dataTables/dataTables.js"></script>
   <script src="assets/lib/dataTables/dataTables.bootstrap5.js"></script>
@@ -61,15 +64,11 @@
   <script src="assets/lib/calendar/semantic.min.js"></script> -->
   <!--  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.2.0/dist/locale/locale-th.js"></script> -->
 
-  <!-- calendar -->
-  <script src="assets/lib/calendar/6.1.15fullcalendar.js"></script>
-  <script src="assets/lib/calendar/index.global.min.js"></script>
-
   <!--sheetJS CDN  -->
   <script src="assets/lib/sheetJS/xlsx.full.min.js"></script>
 
   <!-- apexcharts -->
-  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+  <script src="assets/lib/apexcharts/apexcharts.js"></script>
 
   <style>
     @font-face {
@@ -85,39 +84,6 @@
       font-style: normal;
     }
 
-    #editor-container {
-      height: 200px;
-      /* กำหนดความสูงให้ editor */
-    }
-
-    #display-container {
-      margin-top: 20px;
-      padding: 10px;
-      border: 1px solid #ccc;
-      background-color: #f9f9f9;
-    }
-
-    .profile-image {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-    }
-
-    .profile-image img {
-      border-radius: 50%;
-      width: 100px;
-      height: 100px;
-      object-fit: cover;
-      border: 3px solid white;
-      /* เส้นขอบ */
-
-    }
-
-    #chartdiv {
-      width: 100%;
-      height: 500px;
-    }
   </style>
 </head>
 
@@ -156,6 +122,7 @@
       <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion" style="overflow-y: auto; width:230px;">
         <div class="sb-sidenav-menu">
           <div class="nav mt-4">
+          
             <!-- <div class="menu-profile mt-3">
               <div class="profile-image mb-3">
                 <img src="images/5.jpg" alt="Profile Picture">
@@ -167,6 +134,7 @@
               </div>
             </div>
             <hr> -->
+            <hr>
 
             <a class="nav-link" href="dashboard_maibcontent.php">
               <div class="sb-nav-link-icon"><i class="bi bi-speedometer2" style="color:white"></i></div>
