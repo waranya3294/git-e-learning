@@ -1,7 +1,6 @@
 <div class="container-fluid mt-4">
   <h3 style="color:#585858;"><i class="bi bi-book-half" style="color:#00adb0"></i> บทเรียนที่ 1 แบบทดสอบหลังเรียน</h3>
-</div>
-<div class="container mt-3 mb-4">
+
   <div class="card shadow-sm rounded-1" style="border: none;">
     <div class="card-body p-5">
       <div class="stepper-wrapper">
@@ -57,8 +56,7 @@
 
 
 <script>
-  const questions = [
-    {
+  const questions = [{
       title: "ข้อที่ 1 การเตรียมพื้นผิวก่อนพ่นสีมีวัตถุประสงค์หลักเพื่ออะไร?",
       options: [
         "1. ทำให้สีแห้งเร็วขึ้น",
@@ -75,7 +73,7 @@
         "3. หมวกนิรภัย",
         "4. หน้ากากกรองอากาศแบบไส้กรองมาตรฐาน"
       ]
-     
+
     },
     {
       title: "ข้อที่ 3 สีรองพื้น(primer)มีหน้าที่อะไรในกระบวนการพ่นสี?",
@@ -180,15 +178,15 @@
       });
     } else {
       Swal.fire({
-      allowOutsideClick: false,
-      icon:'success',
-      title:'ทำข้อสอบหลังเรียนเสร็จแล้ว!',
-      text:'กรุณายืนยันคำตอบ',
-      confirmButtonText:'ตกลง',
-      confirmButtonColor:'green'
-     }).then((result) =>{
-      window.location.href = 'answer_maincontent.php'; // ไปหน้าเรียน
-     })
+        allowOutsideClick: false,
+        icon: 'success',
+        title: 'ทำข้อสอบหลังเรียนเสร็จแล้ว!',
+        text: 'กรุณายืนยันคำตอบ',
+        confirmButtonText: 'ตกลง',
+        confirmButtonColor: 'green'
+      }).then((result) => {
+        window.location.href = 'answer_maincontent.php'; // ไปหน้าเรียน
+      })
     }
   });
 
@@ -218,11 +216,11 @@
     loadQuestion(currentQuestionIndex);
   };
 
-    $(document).ready(function() {
-      Swal.fire({
-        allowOutsideClick: false,
-        confirmButtonColor:'green',
-        html: `<div style="text-align: left;">
+  $(document).ready(function() {
+    Swal.fire({
+      allowOutsideClick: false,
+      confirmButtonColor: 'green',
+      html: `<div style="text-align: left;">
           <h3 style="color: black;">สอบหลังเรียน บทเรียนที่ 1</h3>
           <p style="font-size: 18px;">เรื่อง ความปลอดภัยของการพ่นสี</p>
           <hr>
@@ -236,11 +234,11 @@
               <label style="font-size: 18px;">เวลา : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10 นาที</label>
           </div>
         </div>`,
-        preConfirm: () => {
-          var fiveMinutes = 60 * 10, //คูณนาที่ที่ให้นับถอยหลัง
-            display = document.querySelector('#timer');
-          startTimer(fiveMinutes, display);
-        }
-      });
+      preConfirm: () => {
+        var fiveMinutes = 60 * 10, //คูณนาที่ที่ให้นับถอยหลัง
+          display = document.querySelector('#timer');
+        startTimer(fiveMinutes, display);
+      }
     });
+  });
 </script>

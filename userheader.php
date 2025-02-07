@@ -146,7 +146,7 @@
             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
               <nav class="sb-sidenav-menu-nested nav">
                 <a class="nav-link text-wrap" href="learning_maincontent.php"><i class="fa-regular fa-circle fa-sm me-2" style="font-size: 0.8rem;"></i>ประเภทของการพ่นสี</a>
-                <a class="nav-link text-wrap"><i class="fa-regular fa-circle fa-sm me-2" style="font-size: 0.8rem;"></i> วิธีการสวมใส่ชุด PPE</a>
+                <a class="nav-link text-wrap" href="#"><i class="fa-regular fa-circle fa-sm me-2" style="font-size: 0.8rem;"></i> วิธีการสวมใส่ชุด PPE</a>
                 <a class="nav-link text-wrap" href="posttest_maincontent.php"><i class="fa-regular fa-circle fa-sm me-2" style="font-size: 0.8rem;"></i> แบบทดสอบหลังเรียนบทเรียนที่ 1</a>
 
               </nav>

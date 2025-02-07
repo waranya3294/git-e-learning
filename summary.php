@@ -46,7 +46,7 @@
                 </tr>
                 <tr>
                   <td>บทเรียนที่ 5</td>
-                  <td data-post="4">5 คะแนน</td>
+                  <td data-post="5">5 คะแนน</td>
                   <td><i class="fa-regular fa-clock"></i> 30 นาที </td>
                   <td class="text-center"><span class="badge text-bg-success " style="font-size:14px;">ผ่าน</span></td>
                 </tr>
