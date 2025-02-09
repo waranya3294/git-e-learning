@@ -45,13 +45,15 @@
 </div>
 
 <div class="container-fluid mt-3 mb-3">
-    <div class="row">
-        <div class="col mb-3">
-            <div class="card shadow-sm">
-                <div class="card-body">
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <div class="row">
+                <div class="col-lg-6 mb-3">
                     <h4><b>ปฏิทินการสอบ</b></h4>
-                    <hr style="margin: 0 -15px;" class="mb-3">
                     <div id='calendar'></div>
+                </div>
+                <div class="col">
+                    <h4>แสดงรายการ</h4>
                 </div>
             </div>
         </div>
@@ -233,7 +235,6 @@
             info: ""
         }
     });
-
     //calendar
     document.addEventListener('DOMContentLoaded', function() {
         var calendarEl = document.getElementById('calendar');
@@ -287,6 +288,8 @@
 
         calendar.render();
     });
+
+
 
     async function fetchEmployeeData(empId) {
         // จำลองข้อมูลพนักงาน

@@ -34,13 +34,18 @@
   <link rel="stylesheet" href="assets/lib/css/styles.css">
 
   <!-- calendar -->
-  <script  src="assets/lib/jquery/jquery.min.js"></script>
-  <script  src="assets/lib/jquery/moment.min.js"></script>
-  <script src='assets/lib/calendar/moment-timezone-with-data.min.js'></script>
+   <!-- <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/bootstrap5@6.1.15/index.global.min.js"></script> -->
+   <script src="assets/lib/calendar/6.1.15fullcalendar.js"></script>
+  <script src="assets/lib/jquery/jquery.min.js"></script>
+
+  <script src="assets/lib/jquery/moment.min.js"></script>
+  <script src="assets/lib/calendar/moment-timezone-with-data.min.js"></script>
+
+  <link rel="stylesheet" href="assets/lib/jquery/daterangepicker.css" />
   <script src="assets/lib/jquery/daterangepicker.min.js"></script>
-  <link  href="assets/lib/jquery/daterangepicker.css" />
-  <script src="assets/lib/calendar/6.1.15fullcalendar.js"></script>
+
   <script src="assets/lib/calendar/index.global.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.2.0/dist/locale/locale-th.js"></script> 
 
   <!-- sweetalert -->
   <script src="assets/lib/sweetalert/sweetalert.js"></script>
@@ -52,17 +57,12 @@
   <link rel="stylesheet" href="assets/lib/fontawsome/css/fontawesome.css">
 
   <!-- datatable -->
-  <link href="assets/lib/dataTables/dataTables.bootstrap5.css" >
+  <link href="assets/lib/dataTables/dataTables.bootstrap5.css">
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script> -->
   <script src="assets/lib/dataTables/dataTables.js"></script>
   <script src="assets/lib/dataTables/dataTables.bootstrap5.js"></script>
 
-  <!-- calendar -->
-  <!-- <link rel="stylesheet" href="assets/lib/calendar/fullcalendar.min.css">
-  <script src="assets/lib/calendar/moment.min.js"></script>
-  <script src="assets/lib/calendar/fullcalendar.min.js"></script>
-  <script src="assets/lib/calendar/semantic.min.js"></script> -->
-  <!--  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.2.0/dist/locale/locale-th.js"></script> -->
+ 
 
   <!--sheetJS CDN  -->
   <script src="assets/lib/sheetJS/xlsx.full.min.js"></script>
@@ -83,7 +83,6 @@
       font-weight: 400;
       font-style: normal;
     }
-
   </style>
 </head>
 
@@ -122,7 +121,7 @@
       <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion" style="overflow-y: auto; width:230px;">
         <div class="sb-sidenav-menu">
           <div class="nav mt-4">
-          
+
             <!-- <div class="menu-profile mt-3">
               <div class="profile-image mb-3">
                 <img src="images/5.jpg" alt="Profile Picture">
