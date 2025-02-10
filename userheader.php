@@ -36,13 +36,13 @@
   <link rel="stylesheet" href="assets/lib/fontawsome/css/regular.css">
   <link rel="stylesheet" href="assets/lib/fontawsome/css/fontawesome.css">
 
-<!-- datatable -->
-<link href="assets/lib/dataTables/dataTables.bootstrap5.css" rel="stylesheet">
-<script src="assets/lib/dataTables/dataTables.js"></script>
-<script src="assets/lib/dataTables/dataTables.bootstrap5.js"></script>
+  <!-- datatable -->
+  <link href="assets/lib/dataTables/dataTables.bootstrap5.css" rel="stylesheet">
+  <script src="assets/lib/dataTables/dataTables.js"></script>
+  <script src="assets/lib/dataTables/dataTables.bootstrap5.js"></script>
 
-<!-- apexcharts -->
-<script src="assets/lib/apexcharts/apexcharts.js"></script>
+  <!-- apexcharts -->
+  <script src="assets/lib/apexcharts/apexcharts.js"></script>
 
   <style>
     @font-face {
@@ -86,9 +86,7 @@
 
     .sb-sidenav {
       width: auto;
-      /* Adjust the width to fit the text */
       white-space: nowrap;
-      /* Prevent text from wrapping */
     }
   </style>
 </head>
@@ -121,22 +119,20 @@
   <div id="layoutSidenav">
     <div id="layoutSidenav_nav">
 
-
       <nav class="sb-sidenav accordion sb-sidenav-dark" style="overflow-y: auto; width:230px;" id="sidenavAccordion">
         <div class="sb-sidenav-menu">
-          <div class="nav mt-4">
-            <div class="menu-profile mt-3">
-              <div class="profile-image mb-3">
-                <img src="images/5.jpg" alt="Profile Picture">
+          <div class="nav mt-3">
+            <div class="menu-profile p-3 d-flex align-items-center shadow-sm rounded-0" style="background-color: #2c3e50; border: 1px solid #34495e;">
+              <div class="profile-image">
+                <img src="images/Admin.png" alt="Profile Picture" class="rounded-circle" style="width: 60px; height: 60px; object-fit: cover;">
               </div>
-              <div class="profile-info ms-3" style="color:white;">
-                <p>รหัสพนักงาน : xxxx</p>
-                <p>ชื่อ-นามสกุล : <p class="text-warp">วัรญญา หันจางสิทธิ์</p></p>
-                <p>แผนก : สี</p>
+              <div class="profile-info ms-3" style="color: #ecf0f1;">
+                <p class="mb-0 fw-bold" style="font-size: 18px;">4284</p>
+                <span style="font-size: 14px; color: #bdc3c7;">วรัญญา หันจางสิทธิ์</span><br>
+                <span style="font-size: 14px; color: #bdc3c7;">student</span>
               </div>
             </div>
             <hr>
-
 
             <a class="nav-link collapsed" href="exam_room_maincontent.php" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
               <div class="sb-nav-link-icon"></div>
@@ -164,12 +160,10 @@
             </div>
 
             <a class="nav-link collapsed" style="cursor: pointer" onclick="window.location.href='summary_maincontent.php'" data-bs-toggle="collapse" data-bs-target="#collapsePages3" aria-expanded="false" aria-controls="collapsePages3">
-              <div class="sb-nav-link-icon" ></div>
+              <div class="sb-nav-link-icon"></div>
               สรุปผลคะแนน
               <div class="sb-sidenav-collapse-arrow"></div>
             </a>
-
-
 
           </div>
         </div>

@@ -9,7 +9,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>ห้องสอบ</title>
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script> -->
 
   <!-- jquery 3.7.1 -->
   <script src="assets/lib/jquery/jquery-3.7.1.js"></script>
@@ -17,11 +16,6 @@
   <!-- Tinymce -->
   <script src="assets/lib/tinymce/tinymce.min.js"></script>
 
-  <!-- amcharts -->
-  <script src="https://cdn.amcharts.com/lib/5/percent.js"></script>
-  <script src="https://cdn.amcharts.com/lib/5/index.js"></script>
-  <script src="https://cdn.amcharts.com/lib/5/xy.js"></script>
-  <script src="https://cdn.amcharts.com/lib/5/themes/Animated.js"></script>
 
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script> -->
@@ -34,10 +28,8 @@
   <link rel="stylesheet" href="assets/lib/css/styles.css">
 
   <!-- calendar -->
-   <!-- <script src="https://cdn.jsdelivr.net/npm/@fullcalendar/bootstrap5@6.1.15/index.global.min.js"></script> -->
-   <script src="assets/lib/calendar/6.1.15fullcalendar.js"></script>
+  <script src="assets/lib/calendar/6.1.15fullcalendar.js"></script>
   <script src="assets/lib/jquery/jquery.min.js"></script>
-
   <script src="assets/lib/jquery/moment.min.js"></script>
   <script src="assets/lib/calendar/moment-timezone-with-data.min.js"></script>
 
@@ -45,7 +37,7 @@
   <script src="assets/lib/jquery/daterangepicker.min.js"></script>
 
   <script src="assets/lib/calendar/index.global.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.2.0/dist/locale/locale-th.js"></script> 
+  <!-- <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.2.0/dist/locale/locale-th.js"></script> -->
 
   <!-- sweetalert -->
   <script src="assets/lib/sweetalert/sweetalert.js"></script>
@@ -57,14 +49,11 @@
   <link rel="stylesheet" href="assets/lib/fontawsome/css/fontawesome.css">
 
   <!-- datatable -->
-  <link href="assets/lib/dataTables/dataTables.bootstrap5.css">
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script> -->
   <script src="assets/lib/dataTables/dataTables.js"></script>
   <script src="assets/lib/dataTables/dataTables.bootstrap5.js"></script>
+  <link rel="stylesheet" href="assets/lib/dataTables/dataTables.bootstrap5.css">
 
- 
-
-  <!--sheetJS CDN  -->
+<!--sheetJS CDN  -->
   <script src="assets/lib/sheetJS/xlsx.full.min.js"></script>
 
   <!-- apexcharts -->
@@ -86,8 +75,6 @@
   </style>
 </head>
 
-<?php //session_start(); 
-?>
 
 <body class="sb-nav-fixed">
   <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark shadow-sm">
@@ -117,25 +104,22 @@
   <div id="layoutSidenav">
     <div id="layoutSidenav_nav">
 
-
       <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion" style="overflow-y: auto; width:230px;">
         <div class="sb-sidenav-menu">
-          <div class="nav mt-4">
-
-            <!-- <div class="menu-profile mt-3">
-              <div class="profile-image mb-3">
-                <img src="images/5.jpg" alt="Profile Picture">
+          <div class="nav mt-3">
+            <!-- Admin -->
+            <div class="menu-profile p-3 d-flex align-items-center  rounded-0" style="background-color: #47474757; border: 1px solid #47474757;">
+              <div class="profile-image">
+                <img src="images/Admin.png" alt="Profile Picture" class="rounded-circle" style="width: 60px; height: 60px; object-fit: cover;">
               </div>
-              <div class="profile-info ms-3" style="color:white;">
-                <p>รหัสพนักงาน : xxxx</p>
-                <p>ชื่อ-นามสกุล :<p class="text-wrap">วรัญญา หันจางสิทธิ์</p></p>
-                <p>แผนก : สี</p>
+              <div class="profile-info ms-3" style="color: #ecf0f1;">
+                <p class="mb-0 fw-bold" style="font-size: 18px;">HR</p>
+                <span style="font-size: 14px; color: #bdc3c7;">Admin</span>
               </div>
             </div>
-            <hr> -->
             <hr>
 
-            <a class="nav-link" href="dashboard_maibcontent.php">
+            <a class="nav-link" href="dashboard_maincontent.php">
               <div class="sb-nav-link-icon"><i class="bi bi-speedometer2" style="color:white"></i></div>
               หน้าแรก
             </a>

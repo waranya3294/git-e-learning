@@ -1,18 +1,17 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>หน้าแรก</title>
-  <link href="assets/lib/jquery/bootstrap5.3.0.min.css" rel="stylesheet">
-  <link rel="stylesheet" href="assets/lib/jquery/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-  <!-- fontawsome -->
-  <link rel="stylesheet" href="assets/lib/fontawsome/css/brands.css">
-  <link rel="stylesheet" href="assets/lib/fontawsome/css/solid.css">
-  <link rel="stylesheet" href="assets/lib/fontawsome/css/regular.css">
-  <link rel="stylesheet" href="assets/lib/fontawsome/css/fontawesome.css">
+  <!-- Bootstrap -->
+  <link href="assets/lib/jquery/bootstrap5.3.0.min.css" rel="stylesheet">
+
+  <!-- FontAwesome (CDN) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 
   <style>
     @font-face {
@@ -29,7 +28,7 @@
     }
 
     body {
-      background-image: url('images/3.png');
+      background-image: url('images/1.jpg');
       background-size: cover;
       background-position: center;
       display: flex;
@@ -44,13 +43,14 @@
       width: 100%;
       max-width: 400px;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.8);
       backdrop-filter: blur(15px);
-      border: 2px solid rgb(255, 255, 255, 0.3);
+      /* border: 2px solid rgb(255, 255, 255, 0.3); */
     }
   </style>
 </head>
 
+<body>
 <body>
   <div class="container d-flex justify-content-center align-items-center">
     <div class="card p-4">
@@ -66,12 +66,12 @@
         </div>
         <div class="row ">
           <div class="col-lg-6 col-sm-6 mb-2 text-end">
-            <button type="submit" class="btn btn-login fw-bold text-white" style="background-color: rgba(0, 179, 192, 1);" type="submit" onclick="window.location.href='dashboard_maibcontent.php'">
+            <button type="submit" class="btn  text-white" style="background-color: rgba(0, 179, 192, 1);" type="submit" onclick="window.location.href='dashboard_maincontent.php'">
               <i class="fa-solid fa-right-to-bracket"></i> เข้าสู่ระบบ
             </button>
           </div>
           <div class="col-lg-6 col-sm-6 text-start">
-            <button class="btn btn-login text-dark" style="background-color: white; border: 1px solid #ccc;" onclick="window.location.href='login.php'">
+            <button class="btn text-dark" style="background-color: white; border: 1px solid #ccc;" onclick="window.location.href='login.php'">
               <i class="fa-solid fa-calendar-check"></i> จองคิวสอบ
             </button>
           </div>

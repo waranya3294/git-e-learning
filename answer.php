@@ -15,7 +15,7 @@
           <div class="option">
             3. เพิ่มการยึดเกาะของสี
           </div>
-          <div class="option bg-success bg-opacity-50">
+          <div class="option bg-success bg-opacity-25">
             <i class="fa-solid fa-circle-check me-2" style="color:green;"></i>ป้องกันพื้นผิวจากความร้อน
           </div>
         </div>
@@ -28,7 +28,7 @@
         <div class="option bg-danger bg-opacity-25"><i class="bi bi-x-circle-fill me-2" style="color:red;"></i>หน้ากากผ้า</div>
         <div class="option">2. แว่นกันแดด</div>
         <div class="option">3. หมวกนิรภัย</div>
-        <div class="option mb-4 bg-success bg-opacity-50"><i class="fa-solid fa-circle-check me-2" style="color:green;"></i>หน้ากากกรองอากาศแบบไส้กรองมาตรฐาน</div>
+        <div class="option mb-4 bg-success bg-opacity-25"><i class="fa-solid fa-circle-check me-2" style="color:green;"></i>หน้ากากกรองอากาศแบบไส้กรองมาตรฐาน</div>
       </div>
       <hr style="margin:0 -15px;">
 
@@ -37,7 +37,7 @@
         <h4>ข้อที่ 3 สีรองพื้น(primer)มีหน้าที่อะไร?</h4>
         <div class="option">
           1. ให้สีเงางาม</div>
-        <div class="option bg-success bg-opacity-50">
+        <div class="option bg-success bg-opacity-25">
           <i class="fa-solid fa-circle-check me-2" style="color:green;"></i>ปกป้องพื้นผิวจากสนิมและเพิ่มการยึดเกาะของสี
         </div>
         <div class="option">
@@ -56,7 +56,7 @@
         <div class="option">2. ใช้ความร้อนเร่งให้ฟองอากาศแตก</div>
         <div class="option bg-danger bg-opacity-25"><i class="bi bi-x-circle-fill me-2" style="color:red;"></i> พ่นสีใสเคลือบทับทันที
         </div>
-        <div class="option mb-4 bg-success bg-opacity-50">
+        <div class="option mb-4 bg-success bg-opacity-25">
           <i class="fa-solid fa-circle-check me-2" style="color:green;"></i>ปล่อยให้แห้งแล้วขัดพื้นผิวก่อนพ่นซ้ำ
         </div>
       </div>
@@ -67,7 +67,7 @@
         <h4>ข้อที่ 5 หน้ากากชนิดใดที่เหมาะสมที่สุดสำหรับการพ่นสี?</h4>
         <div class="option">1. หน้ากากผ้า</div>
         <div class="option">2. หน้ากากอนามัยทางการแพทย์</div>
-        <div class="option bg-success bg-opacity-50" >
+        <div class="option bg-success bg-opacity-25" >
           <i class="fa-solid fa-circle-check me-2" style="color:green;"></i>หน้ากากกรองอากาศชนิดครึ่งหน้า
         </div>
         <div class="option">4. หน้ากากกันฝุ่นทั่วไป</div>

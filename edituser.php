@@ -1,3 +1,19 @@
+<style>
+    th,
+    td {
+        text-align: center;
+        vertical-align: middle;
+        padding: 10px;
+        /* เพิ่มช่องว่างให้ดูสวยขึ้น */
+        border: 1px solid #ddd;
+    }
+
+    .middle {
+        text-align: center;
+        vertical-align: middle;
+    }
+</style>
+
 <div class="container-fluid mt-4">
     <h1 class="display-4" style="color: #18B0BD;">จัดการผู้เข้าสอบ</h1>
     <div class="card">
@@ -41,13 +57,22 @@
                                 </div>
                                 <div class="col-6 text-start">
                                     <label for="text">โรงงาน</label>
-                                    <input class="form-control" type="text" id="factory" name="factory" placeholder="โรงงาน">
+                                    <select name="factory" id="factory" class="form-control">
+                                        <option value="">--โรงงาน--</option>
+                                        <option value="1">TS</option>
+                                        <option value="2">PD</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="row mb-2">
                                 <div class="col-6 text-start">
-                                    <label for="text">สัญญา</label>
-                                    <input class="form-control" type="text" id="group" name="group" placeholder="สัญญา">
+                                    <label for="text">ประเภทสัญญา</label>
+                                    <select name="group" id="group" class="form-control">
+                                        <option value="">--ประเภทสัญญา--</option>
+                                        <option value="group1">KCAMS</option>
+                                        <option value="group2">11 M</option>
+                                        <option value="group3">SUB</option>
+                                    </select>
                                 </div>
                             </div>
                         </div>
@@ -62,21 +87,21 @@
                 <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>
-                            <th class="text-start">#</th>
-                            <th class="text-start">รหัสพนักงาน</th>
-                            <th>ชื่อ - นามสกุล</th>
-                            <th>ตำแหน่ง</th>
-                            <th>แผนก</th>
-                            <th>ส่วนงาน</th>
-                            <th>โรงงาน</th>
-                            <th>สัญญา</th>
-                            <th>Actions</th>
+                            <th class="text-center">#</th>
+                            <th class="text-center">รหัสพนักงาน</th>
+                            <th class="text-center">ชื่อ - นามสกุล</th>
+                            <th class="text-center">ตำแหน่ง</th>
+                            <th class="text-center">แผนก</th>
+                            <th class="text-center">ส่วนงาน</th>
+                            <th class="text-center">โรงงาน</th>
+                            <th class="text-center">สัญญา</th>
+                            <th class="text-center">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td class="text-start">1</td>
-                            <td class="text-start">0518</td>
+                            <td class="text-center">0518</td>
                             <td>นาย ปฏิวัฒน์ นาดี</td>
                             <td>CNC Controller</td>
                             <td>Manufacturing Pluakdaeng Factory</td>
@@ -92,7 +117,7 @@
                         </tr>
                         <tr>
                             <td class="text-start">2</td>
-                            <td class="text-start">0549</td>
+                            <td class="text-center">0549</td>
                             <td>นาย สนิท เงาใส</td>
                             <td>Painter</td>
                             <td>Manufacturing Tasith Factory</td>
@@ -159,14 +184,21 @@
             <input class="form-control" type="text" id="workplace" name="workplace" placeholder="ส่วนงาน">
     </div>
     <div class="col-6 text-start">
-        <label for="text">โรงงาน</label>
-            <input class="form-control" type="text" id="factory" name="factory" placeholder="โรงงาน">
+      <label for="text">โรงงาน</label>
+        <select name="factory" id="factory" class="form-control">
+            <option value="1">TS</option>
+            <option value="2">PD</option>
+        </select>
     </div>
 </div>
 <div class="row mb-2">
     <div class="col-6 text-start">
       <label for="text">ประเภทสัญญา</label>
-            <input class="form-control" type="text" id="group" name="group" placeholder="สัญญา">
+    <select name="group" id="group" class="form-control">
+     <option value="group1">KCAMS</option>
+    <option value="group2">11 M</option>
+     <option value="group3">SUB</option>
+    </select>
     </div>
 </div>
             `,

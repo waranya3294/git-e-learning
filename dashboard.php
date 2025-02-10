@@ -8,6 +8,20 @@
         font-size: 14px;
     }
 
+    th,
+    td {
+        text-align: center;
+        vertical-align: middle;
+        padding: 10px;
+        /* เพิ่มช่องว่างให้ดูสวยขึ้น */
+        border: 1px solid #ddd;
+    }
+
+    .middle {
+        text-align: center;
+        vertical-align: middle;
+    }
+
     #calendar {
         max-width: 600px;
     }
@@ -48,12 +62,30 @@
     <div class="card shadow-sm">
         <div class="card-body">
             <div class="row">
-                <div class="col-lg-6 mb-3">
+                <div class="col-lg-6 col-sm-6 ">
                     <h4><b>ปฏิทินการสอบ</b></h4>
-                    <div id='calendar'></div>
+                    <div id='calendar' class="mt-4"></div>
                 </div>
-                <div class="col">
+                <div class="col-lg-6 col-sm-6 mt-4">
                     <h4>แสดงรายการ</h4>
+                    <!-- <label for="text" style="font-size: 18px;">ชื่อห้องสอบ: <span id="selected-room"></span></label> -->
+                    <label for="text" style="font-size: 18px;" class="mb-2">วันที่: <span id="selected-date"></span></label>
+                    <div class="table-responsive ">
+                        <table id="employee-table" class="table table-striped " style="width:100%">
+                            <thead>
+                                <tr>
+                                    <th>รหัสพนักงาน</th>
+                                    <th>ชื่อ - นามสกุล</th>
+                                    <th>แผนก</th>
+                                    <th>ส่วนงาน</th>
+                                    <th>โรงงาน</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- แสดงข้อมูลในตาราง -->
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
@@ -73,27 +105,40 @@
             <div class="table-responsive mt-3">
                 <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>
-                        <tr class="text-center " style="font-size:18px; border: 1px solid ridge;">
-                            <th class="text-start"><b>รหัสพนักงาน</b></th>
-                            <th><b>ชื่อ - นามสกุล</b></th>
-                            <th><b>ห้องสอบ</b></th>
-                            <th><b>วันที่จอง</b></th>
-                            <th><b>วันที่เปิดสอบ</b></th>
-                            <th><b>แผนก</b></th>
-                            <th><b>งาน</b></th>
-                            <th><b>โรงงาน</b></th>
+                        <tr class="Middle" style=" font-size:18px; border: 1px solid ridge;">
+                            <th class="Middle">รหัสพนักงาน</th>
+                            <th class="Middle">ชื่อ - นามสกุล</th>
+                            <th class="Middle">ห้องสอบ</th>
+                            <th class="Middle">วันที่จอง</th>
+                            <th class="Middle">วันที่เปิดสอบ</th>
+                            <th class="Middle">แผนก</th>
+                            <th class="Middle">งาน</th>
+                            <th class="Middle">โรงงาน</th>
+                            <th class="Middle">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="text-center">
-                            <td class="text-center">4284</td>
-                            <td>วรัญญา หันจางสิทธิ์</td>
-                            <td>ความปลอดภัยของการพ่นสี</td>
-                            <td>02/03/2025</td>
-                            <td>03/05/2025</td>
-                            <td>TSF</td>
-                            <td>Final Paint 35 Ton</td>
-                            <td>TS</td>
+                        <tr class="middle">
+                            <td class="text-center middle">4284</td>
+                            <td class="middle">วรัญญา หันจางสิทธิ์</td>
+                            <td class="middle">ความปลอดภัยของการพ่นสี</td>
+                            <td class="middle">02/02/2025</td>
+                            <td class="middle">11/02/2025</td>
+                            <td class="middle">TSF</td>
+                            <td class="middle">Final Paint 35 Ton</td>
+                            <td class="middle">TS</td>
+                            <td> <button class="btn btn-sm btn-outline-danger" onclick="showDelete()"><i class="bi bi-trash"></i></button></td>
+                        </tr>
+                        <tr class="middle">
+                            <td class="text-center middle">3888</td>
+                            <td class="middle">นาย เอกอัมรินทร์ เกรัมย์ </td>
+                            <td class="middle">ประกอบ</td>
+                            <td class="middle">02/02/2025</td>
+                            <td class="middle">28/02/2025</td>
+                            <td class="middle">Manufacturing Tasith Factory</td>
+                            <td class="middle">Lower Sub</td>
+                            <td class="middle">TS</td>
+                            <td> <button class="btn btn-sm btn-outline-danger" onclick="showDelete()"><i class="bi bi-trash"></i></button></td>
                         </tr>
                     </tbody>
                 </table>
@@ -112,14 +157,14 @@
             <div class="table-responsive mt-3">
                 <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>
-                        <tr class="text-center " style="font-size:18px; border: 1px solid ridge;">
-                            <th><b>ประเภท</b></th>
-                            <th><b>จำนวนผู้เข้าสอบ</b></th>
-                            <th><b>สอบเสร็จแล้ว</b></th>
-                            <th><b>ยังไม่สอบ</b></th>
-                            <th><b>ผ่าน</b></th>
-                            <th><b>ไม่ผ่าน</b></th>
-                            <th><b>ดาวน์โหลด</b></th>
+                        <tr class="text-center" style="font-size:18px; border: 1px solid ridge;">
+                            <th class="text-center"><b>ประเภท</b></th>
+                            <th class="text-center"><b>จำนวนผู้เข้าสอบ</b></th>
+                            <th class="text-center"><b>สอบเสร็จแล้ว</b></th>
+                            <th class="text-center"><b>ยังไม่สอบ</b></th>
+                            <th class="text-center"><b>ผ่าน</b></th>
+                            <th class="text-center"><b>ไม่ผ่าน</b></th>
+                            <th class="text-center"><b>ดาวน์โหลด</b></th>
                         </tr>
                     </thead>
                     <tbody>
@@ -173,14 +218,15 @@
                 <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr class="text-center" style="font-size:18px; border: 1px solid ridge;">
-                            <th><b>ประเภท</b></th>
-                            <th><b>จำนวนผู้เข้าสอบ</b></th>
-                            <th><b>สอบเสร็จแล้ว</b></th>
-                            <th><b>ยังไม่สอบ</b></th>
-                            <th><b>ผ่าน</b></th>
-                            <th><b>ไม่ผ่าน</b></th>
-                            <th><b>ดาวน์โหลด</b></th>
+                            <th class="text-center"><b>ประเภท</b></th>
+                            <th class="text-center"><b>จำนวนผู้เข้าสอบ</b></th>
+                            <th class="text-center"><b>สอบเสร็จแล้ว</b></th>
+                            <th class="text-center"><b>ยังไม่สอบ</b></th>
+                            <th class="text-center"><b>ผ่าน</b></th>
+                            <th class="text-center"><b>ไม่ผ่าน</b></th>
+                            <th class="text-center"><b>ดาวน์โหลด</b></th>
                         </tr>
+
                     </thead>
                     <tbody>
                         <tr class="text-center" style="font-size:18px; cursor: pointer;">
@@ -227,18 +273,74 @@
 </div>
 
 <script>
-    let table = new DataTable('#example', {
-        paging: false,
-        searching: false,
-        language: {
-            url: "assets/lib/dataTables/language.json",
-            info: ""
-        }
-    });
-    //calendar
     document.addEventListener('DOMContentLoaded', function() {
-        var calendarEl = document.getElementById('calendar');
+        let tables = document.querySelectorAll('.table');
+        tables.forEach(table => {
+            new DataTable(table, {
+                paging: false,
+                searching: false,
+                language: {
+                    url: "assets/lib/dataTables/language.json",
+                    info: ""
+                }
+            });
+        });
 
+        $('#filter-date').daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            locale: {
+                format: 'DD/MM/YYYY'
+            }
+        });
+
+        $('#filter-date').on('apply.daterangepicker', function(ev, picker) {
+            let selectedDate = picker.startDate.format('YYYY-MM-DD');
+            filterEmployeesByDate(selectedDate);
+        });
+
+        // แสดงชื่อในตาราง
+        function filterEmployeesByDate(date) {
+
+            let employeeData = {
+                '2025-02-11': [{
+                    id: '4284',
+                    name: 'วรัญญา หันจางสิทธิ์',
+                    department: 'TSF',
+                    section: 'Final Paint 35 Ton',
+                    factory: 'TS',
+                }],
+                '2025-02-28': [{
+                    id: '3888',
+                    name: 'นาย เอกอัมรินทร์ เกรัมย์',
+                    department: 'Manufacturing Tasith Factory',
+                    section: 'Lower Sub',
+                    factory: 'TS',
+
+                }],
+
+            };
+
+            let employees = employeeData[date] || [];
+            let tbody = document.querySelector('#employee-table tbody');
+            tbody.innerHTML = '';
+
+
+            employees.forEach(emp => {
+                let row = `
+                <tr>
+                    <td>${emp.id}</td>
+                    <td>${emp.name}</td>
+                    <td>${emp.department}</td>
+                    <td>${emp.section}</td>
+                    <td>${emp.factory}</td>
+                </tr>`;
+                tbody.innerHTML += row;
+            });
+        }
+
+        //calendar
+        var calendarEl = document.getElementById('calendar');
         var calendar = new FullCalendar.Calendar(calendarEl, {
             timeZone: 'local',
             // locale: 'th',
@@ -250,15 +352,12 @@
                 right: 'dayGridMonth,timeGridWeek,timeGridDay'
             },
             weekNumbers: true,
-            dayMaxEvents: true, // allow "more" link when too many events
-            dateClick: function(dateStr) {
-                // Swal.fire({
-                //     icon: 'success',
-                //     title: 'วันที่เลือก',
-                //     text: 'วันที่เลือก: ' + dateStr,
-
-                // })
-                console.log('clicked on', dateStr);
+            dayMaxEvents: true,
+            dateClick: function(info) {
+                let selectedDate = info.dateStr;
+                document.getElementById('selected-date').innerText = selectedDate;
+                filterEmployeesByDate(selectedDate);
+                console.log("Test");
             },
             events: [{
                     title: 'สอบสี',
@@ -288,8 +387,6 @@
 
         calendar.render();
     });
-
-
 
     async function fetchEmployeeData(empId) {
         // จำลองข้อมูลพนักงาน
@@ -409,7 +506,7 @@
         } = await Swal.fire({
             title: "กรอกรหัสพนักงาน",
             html: `
-            <input type="text" id="id_input" class="swal2-input" placeholder="รหัสพนักงาน" onkeyup="validateID(event)"> 
+            <input type="text" id="id_input" class="swal2-input " placeholder="รหัสพนักงาน" onkeyup="validateID(event)"> 
             <p id="id_warning" style="color: red; display: none;">กรุณากรอกตัวเลขเท่านั้น</p>
             <div id="emp_info"></div>
         `,
@@ -445,11 +542,14 @@
             showConfirmButton: false
         });
 
+        document.getElementById('selected-room').innerText = empData.exam_id;
+        document.getElementById('selected-date').innerText = date.datetimes;
+
         console.log("วันสอบที่เลือก:", date);
-        console.log("รหัสพนักงาน:", editedData.empId);
-        console.log("ชื่อ:", editedData.name);
-        console.log("แผนก:", editedData.department);
-        console.log("โรงงาน:", editedData.factory);
+        console.log("รหัสพนักงาน:", empData.empId);
+        console.log("ชื่อ:", empData.name);
+        console.log("แผนก:", empData.department);
+        console.log("โรงงาน:", empData.factory);
     }
 
     function validateID(event) {
@@ -488,6 +588,27 @@
         if (event.key === "Enter") {
             document.querySelector(".swal2-confirm").click();
         }
+    }
+
+    function showDelete() {
+        Swal.fire({
+            title: "คุณต้องการลบข้อมูลนี้หรือไม่",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "green",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "ใช่",
+            cancelButtonText: "ไม่ใช่"
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    text: "เรียบร้อย",
+                    icon: "success",
+                    timer: 1500,
+                    showConfirmButton: false,
+                });
+            }
+        });
     }
 
 
@@ -591,7 +712,6 @@
             }
         }
     };
-
     // กราฟ PD
     var chart = new ApexCharts(document.querySelector("#chart1"), options);
     chart.render();

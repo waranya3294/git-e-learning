@@ -176,12 +176,12 @@
             ],
         ];
         // สร้างเวิร์กบุ๊กและชีต
-        const worksheet = XLSX.utils.aoa_to_sheet(templateData);
-        const workbook = XLSX.utils.book_new();
-        XLSX.utils.book_append_sheet(workbook, worksheet, 'Template');
+        const worksheet = XLS.utils.aoa_to_sheet(templateData);
+        const workbook = XLS.utils.book_new();
+        XLS.utils.book_append_sheet(workbook, worksheet, 'Template');
 
         // บันทึกไฟล์ Excel
-        XLSX.writeFile(workbook, 'template.xlsx');
+        XLS.writeFile(workbook, 'template.xls');
     });
 
     // นำเข้าไฟล์ excel
@@ -328,6 +328,7 @@
     <button class="btn btn-danger" onclick="removeQuestion(this)" title="นำออก"><i class="bi bi-trash"></i></button>
     `;
         questionContainer.appendChild(newQuestionBox);
+        
 
     }
 
