@@ -153,6 +153,11 @@
               จัดการผู้เข้าสอบ
             </a>
 
+            <a class="nav-link" href="">
+              <div class="sb-nav-link-icon"><i class="fas fa-edit" style="color:white"></i></div>
+              จัดการจองคิวสอบ
+            </a>
+
 
           </div>
         </div>
