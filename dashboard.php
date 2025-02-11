@@ -32,7 +32,7 @@
     <hr>
     <div class="row">
         <div class="col-md-4 mt-2 mb-2">
-            <div class="card shadow-sm " onclick="window.location.href='room_maincontent.php'" style=" border: none; cursor: pointer;">
+            <div class="card shadow-sm rounded-1" onclick="window.location.href='room_maincontent.php'" style=" border: none; cursor: pointer;">
                 <div class="icon text-success p-3 icon-shadow" style="font-size: 3rem;">🏢</div>
                 <div class="card-body p-3" style="font-size:18px;color:green;">
                     <b style="font-size:24px;">สร้างห้องสอบ</b>
@@ -40,7 +40,7 @@
             </div>
         </div>
         <div class="col-md-4 mt-2 mb-2">
-            <div class="card shadow-sm  " onclick="window.location.href='examform_maincontent.php'" style=" border: none; cursor: pointer">
+            <div class="card shadow-sm rounded-1 " onclick="window.location.href='examform_maincontent.php'" style=" border: none; cursor: pointer">
                 <div class="icon text-primary p-3 icon-shadow" style="font-size: 3rem;">📄</div>
                 <div class="card-body p-3" style="font-size:18px;color:#006f71;">
                     <b style="font-size:24px;">สร้างเนื้อหา</b>
@@ -48,7 +48,7 @@
             </div>
         </div>
         <div class="col-md-4 mt-2 ">
-            <div class="card shadow-sm " onclick="window.location.href='examgroup_maincontent.php'" style=" border: none; cursor: pointer">
+            <div class="card shadow-sm rounded-1" onclick="window.location.href='examgroup_maincontent.php'" style=" border: none; cursor: pointer">
                 <div class="icon text-danger p-3 icon-shadow" style="font-size: 3rem;color:red;">📝</div>
                 <div class="card-body p-3" style="font-size:18px;color:#7a7a7a;">
                     <b style="font-size:24px;">สร้างข้อสอบ</b>
@@ -59,12 +59,12 @@
 </div>
 
 <div class="container-fluid mt-3 mb-3">
-    <div class="card shadow-sm">
+    <div class="card shadow-sm rounded-1">
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-6 col-sm-6 ">
                     <h4><b>ปฏิทินการสอบ</b></h4>
-                    <div id='calendar' class="mt-4"></div>
+                    <div id='calendar' class="mt-4" style="cursor: pointer"></div>
                 </div>
                 <div class="col-lg-6 col-sm-6 mt-4">
                     <h4>แสดงรายการ</h4>
@@ -95,7 +95,7 @@
 <div class="container-fluid mt-3 mb-4">
     <h4><b>ตารางจองคิวสอบ</b></h4>
     <hr>
-    <div class="card">
+    <div class="card shadow-sm rounded-1">
         <div class="card-body">
             <div class="row">
                 <div class="col text-end">
@@ -105,7 +105,7 @@
             <div class="table-responsive mt-3">
                 <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>
-                        <tr class="Middle" style=" font-size:18px; border: 1px solid ridge;">
+                        <tr style=" font-size:14px;">
                             <th class="Middle">รหัสพนักงาน</th>
                             <th class="Middle">ชื่อ - นามสกุล</th>
                             <th class="Middle">ห้องสอบ</th>
@@ -150,7 +150,7 @@
 <div class="container-fluid mt-4 mb-4">
     <h4><b>สรุปผลการสอบ</b></h4>
     <hr>
-    <div class="card">
+    <div class="card shadow-sm rounded-1">
         <div class="card-body">
             <h4 class="text-center mb-4">TS</h4>
             <div id="chart"></div>
@@ -158,13 +158,13 @@
                 <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr class="text-center" style="font-size:18px; border: 1px solid ridge;">
-                            <th class="text-center"><b>ประเภท</b></th>
-                            <th class="text-center"><b>จำนวนผู้เข้าสอบ</b></th>
-                            <th class="text-center"><b>สอบเสร็จแล้ว</b></th>
-                            <th class="text-center"><b>ยังไม่สอบ</b></th>
-                            <th class="text-center"><b>ผ่าน</b></th>
-                            <th class="text-center"><b>ไม่ผ่าน</b></th>
-                            <th class="text-center"><b>ดาวน์โหลด</b></th>
+                            <th class="text-center">ประเภท</th>
+                            <th class="text-center">จำนวนผู้เข้าสอบ</th>
+                            <th class="text-center">สอบเสร็จแล้ว</th>
+                            <th class="text-center">ยังไม่สอบ</th>
+                            <th class="text-center">ผ่าน</th>
+                            <th class="text-center">ไม่ผ่าน</th>
+                            <th class="text-center">ดาวน์โหลด</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -210,7 +210,7 @@
         </div>
     </div>
 
-    <div class="card mt-4">
+    <div class="card shadow-sm rounded-1 mt-4">
         <div class="card-body">
             <h4 class="text-center mb-4">PD</h4>
             <div id="chart1"></div>
@@ -218,13 +218,13 @@
                 <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr class="text-center" style="font-size:18px; border: 1px solid ridge;">
-                            <th class="text-center"><b>ประเภท</b></th>
-                            <th class="text-center"><b>จำนวนผู้เข้าสอบ</b></th>
-                            <th class="text-center"><b>สอบเสร็จแล้ว</b></th>
-                            <th class="text-center"><b>ยังไม่สอบ</b></th>
-                            <th class="text-center"><b>ผ่าน</b></th>
-                            <th class="text-center"><b>ไม่ผ่าน</b></th>
-                            <th class="text-center"><b>ดาวน์โหลด</b></th>
+                            <th class="text-center">ประเภท</th>
+                            <th class="text-center">จำนวนผู้เข้าสอบ</th>
+                            <th class="text-center">สอบเสร็จแล้ว</th>
+                            <th class="text-center">ยังไม่สอบ</th>
+                            <th class="text-center">ผ่าน</th>
+                            <th class="text-center">ไม่ผ่าน</th>
+                            <th class="text-center">ดาวน์โหลด</th>
                         </tr>
 
                     </thead>
@@ -440,10 +440,11 @@
             </div>
         </div>
     </div>`,
-            showCancelButton: false,
+            showCancelButton: true,
+            cancelButtonText: "ยกเลิก",
             confirmButtonColor: "green",
             confirmButtonText: "ถัดไป",
-            cancelButtonText: "ยกเลิก",
+
             preConfirm: () => {
                 const exam_id = $("#exam_id").val();
                 const datetimes = $("#datetimes").val();

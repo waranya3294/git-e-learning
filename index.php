@@ -66,12 +66,12 @@
         </div>
         <div class="row ">
           <div class="col-lg-6 col-sm-6 mb-2 text-end">
-            <button type="submit" class="btn  text-white" style="background-color: rgba(0, 179, 192, 1);" type="submit" onclick="window.location.href='dashboard_maincontent.php'">
+            <button type="submit" class="btn  text-white" style="background-color: rgba(0, 179, 192, 1);" onclick="window.location.href='dashboard_maincontent.php'">
               <i class="fa-solid fa-right-to-bracket"></i> เข้าสู่ระบบ
             </button>
           </div>
           <div class="col-lg-6 col-sm-6 text-start">
-            <button class="btn text-dark" style="background-color: white; border: 1px solid #ccc;" onclick="window.location.href='login.php'">
+            <button class="btn text-dark" style="background-color: white;" onclick="window.location.href='login.php'">
               <i class="fa-solid fa-calendar-check"></i> จองคิวสอบ
             </button>
           </div>
