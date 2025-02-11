@@ -37,7 +37,7 @@
   <script src="assets/lib/jquery/daterangepicker.min.js"></script>
 
   <script src="assets/lib/calendar/index.global.min.js"></script>
-  <!-- <script src="https://cdn.jsdelivr.net/npm/fullcalendar@3.2.0/dist/locale/locale-th.js"></script> -->
+
 
   <!-- sweetalert -->
   <script src="assets/lib/sweetalert/sweetalert.js"></script>
