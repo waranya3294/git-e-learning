@@ -54,7 +54,7 @@
         }
 
         #calendar {
-            max-width: 1100px;
+            max-width: 900px;
             margin: 40px auto;
         }
 
@@ -63,80 +63,121 @@
             border-color: #FF3333;
             color: white;
         }
+
+        .fc-toolbar-title {
+            color: #FF5733;
+        }
+
+        .fc .fc-highlight {
+            background: #ffff8c;
+        }
+
+        #right-sidebar {
+            position: absolute;
+            right: 0;
+            top: 50px;
+            width: 300px;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            display: none;
+        }
     </style>
 </head>
 
 <body>
     <div class="container-fluid">
-        <div class="row mb-2">
+        <div class="row mb-2 d-none" id="test">
             <div class="col-lg-8 col-sm-8 mb-3 ">
-                <div id="calendar"></div>
+                <div class="row mt-5">
+                    <div id="calendar"></div>
+                </div>
+                <div class="row">
+                    <div class="col d-flex align-items-center justify-content-end">
+                        <button class="btn btn-success me-2"></button>
+                        <p class="mb-0">ว่าง</p>
+                    </div>
+                    <div class="col d-flex align-items-center">
+                        <button class="btn btn-danger me-2"></button>
+                        <p class="mb-0">เต็ม</p>
+                    </div>
+                </div>
             </div>
             <div class="col-lg-4 col-sm-4 mt-5">
-                <h1 class="text-end" style="color:#FF3333;">ระบบจองสอบออนไลน์</h1>
-                <div class="card" style="height: 400px; display: none;" id="right-content">
-                    <div class="card-body" id="employee-info">
-                        <div class="col">
-                            <label class="form-label">รหัสพนักงงาน</label>
-                            <input type="text" id="exam_id" class="form-control" value="">
-                        </div>
-                        <div class="col">
-                            <label class="form-label">ชื่อ-นามสกุล</label>
-                            <input type="neme" id="name" class="form-control" value="">
-                        </div>
-                        <div class="col">
-                            <label class="form-label">ตำแหน่ง</label>
-                            <input type="position" id="Position" class="form-control" value="">
-                        </div>
-                        <div class="col">
-                            <label class="form-label">ฝ่าย</label>
-                            <input type="department" id="department" class="form-control" value="">
-                        </div>
-                        <div class="col">
-                            <label class="form-label">แผนก</label>
-                            <input type="section" id="section" class="form-control" value="">
-                        </div>
-                        <div class="col">
-                            <label class="form-label">งาน</label>
-                            <input type="workplace" id="workplace" class="form-control" value="">
-                        </div>
-                        <div class="col">
-                            <label class="form-label">โรงงาน</label>
-                            <input type="factory" id="factory" class="form-control" value="">
+                <div id="rightSidebar" class="sidebar d-none">
+                    <div class="card">
+                        <div class="card-body">
+                            <h4 class="text-center" style="color:#FF3333;">ข้อมูลการจอง</h4>
+                            <div id="bookingInfo">
+                            </div>
                         </div>
                     </div>
                 </div>
+                <div id="Exam-booking-content">
+                    <h1 class="text-end" style="color:#FF3333;">ระบบจองสอบออนไลน์</h1>
+                    <div class="card" style=" height: 400px; display: none;" id="right-content">
+                        <div class="card-body" id="employee-info">
+                            <div class="col">
+                                <label class="form-label">รหัสพนักงงาน</label>
+                                <input type="text" id="exam_id" class="form-control" value="">
+                            </div>
+                            <div class="col">
+                                <label class="form-label">ชื่อ-นามสกุล</label>
+                                <input type="neme" id="name" class="form-control" value="">
+                            </div>
+                            <div class="col">
+                                <label class="form-label">ตำแหน่ง</label>
+                                <input type="position" id="Position" class="form-control" value="">
+                            </div>
+                            <div class="col">
+                                <label class="form-label">ฝ่าย</label>
+                                <input type="department" id="department" class="form-control" value="">
+                            </div>
+                            <div class="col">
+                                <label class="form-label">แผนก</label>
+                                <input type="section" id="section" class="form-control" value="">
+                            </div>
+                            <div class="col">
+                                <label class="form-label">จุดปฏิบัติงาน</label>
+                                <input type="workplace" id="workplace" class="form-control" value="">
+                            </div>
+                            <div class="col">
+                                <label class="form-label">โรงงาน</label>
+                                <input type="factory" id="factory" class="form-control" value="">
+                            </div>
+                        </div>
+                    </div>
 
-                <div class="row mt-3" id="factorySelection" style="display: none;">
-                    <h4 for="text">กรุณาเลือกโรงงานสถานที่สอบ<span style="color:red;">*</span></h4>
-                    <div class="d-flex gap-2">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="TS">
-                            <label class="form-check-label" for="inlineRadio1" style="font-size:18px;">โรงงานตาสิทธิ์</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="PD">
-                            <label class="form-check-label" for="inlineRadio2" style="font-size:18px;">โรงงานปลวกแดง</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="row mt-3" id="timeSelection" style="display: none;">
-                    <h4 for="text">กรุณาเลือกเวลาสอบ<span style="color:red;">*</span></h4>
-                    <div class="d-flex gap-2">
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="timeRadioOptions" id="timeRadio1" value="time1">
-                            <label class="form-check-label" for="timeRadio1" style="font-size:18px;">เวลา 9:00 - 10:00</label>
-                        </div>
-                        <div class="form-check form-check-inline">
-                            <input class="form-check-input" type="radio" name="timeRadioOptions" id="timeRadio2" value="time2">
-                            <label class="form-check-label" for="timeRadio2" style="font-size:18px;">เวลา 10:30 - 11:30</label>
+                    <div class="row mt-3" id="factorySelection" style="display: none;">
+                        <h4 for="text">กรุณาเลือกโรงงานสถานที่สอบ<span style="color:red;">*</span></h4>
+                        <div class="d-flex gap-2">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="TS">
+                                <label class="form-check-label" for="inlineRadio1" style="font-size:18px;">โรงงานตาสิทธิ์</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="PD">
+                                <label class="form-check-label" for="inlineRadio2" style="font-size:18px;">โรงงานปลวกแดง</label>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="row mb-4 mt-4">
-                    <div class="col text-center">
-                        <button class="btn btn-success" onclick="showData()">บันทึก</button>
-                        <button class="btn btn-danger">ยกเลิก</button>
+                    <div class="row mt-3" id="timeSelection" style="display: none;">
+                        <h4 for="text">กรุณาเลือกเวลาสอบ<span style="color:red;">*</span></h4>
+                        <div class="d-flex gap-2">
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="timeRadioOptions" id="timeRadio1" value="time1">
+                                <label class="form-check-label" for="timeRadio1" style="font-size:18px;">เวลา 9:00 - 10:00</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="timeRadioOptions" id="timeRadio2" value="time2">
+                                <label class="form-check-label" for="timeRadio2" style="font-size:18px;">เวลา 10:30 - 11:30</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row mb-4 mt-4">
+                        <div class="col text-center">
+                            <button class="btn btn-success" onclick="showData()">บันทึก</button>
+                            <button class="btn btn-danger">ยกเลิก</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -157,9 +198,10 @@
                 if (result.isConfirmed) {
                     const selectedDateElement = document.querySelector(`.fc-day[data-date="${selectedDate}"]`);
                     if (selectedDateElement) {
-                        // แสดงปุ่ม "ยกเลิกจอง" ในวันที่ที่เลือกและลบข้อมูลอื่นๆ
-                        selectedDateElement.innerHTML = `
-                            <button class="btn btn-danger" onclick="cancelBooking('${selectedDate}')">ยกเลิกจอง</button>
+                        selectedDateElement.innerHTML = `                       
+                        <div id="cancel" class=d-nome>
+                          <button class="btn btn-warning" onclick="cancelBooking('${selectedDate}')">ยกเลิกตารางสอบของคุณ</button>
+                        </div>
                         `;
                     }
                 }
@@ -167,21 +209,125 @@
         }
 
         function cancelBooking(date) {
-            Swal.fire({
-                title: 'ยืนยันการยกเลิกการจอง',
-                icon: 'warning',
-                confirmButtonText: 'ตกลง',
-                confirmButtonColor: 'red',
-                showCancelButton: true,
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    const selectedDateElement = document.querySelector(`.fc-day[data-date="${date}"]`);
-                    if (selectedDateElement) {
-                        // เปลี่ยนข้อความในวันที่ให้แสดงเป็นวันที่อีกครั้งหลังจากยกเลิกการจอง
-                        selectedDateElement.innerHTML = date;
+            // แสดงกล่องขวา
+            $("#rightSidebar").removeClass("d-none"); //แสดงข้อมูลการจอง
+            $("#Exam-booking-content").addClass("d-none"); //ซ่อนข้อมูลแถบล่าง
+            const bookingInfo = `
+        <p><strong>วันที่ :</strong> ${date}</p>
+        <p><strong>โรงงาน :</strong> ${$("input[name='inlineRadioOptions']:checked").next("label").text()}</p>
+        <p><strong>เวลาที่จอง :</strong> ${$("input[name='timeRadioOptions']:checked").next("label").text()}</p>
+        <div class="mt-3 text-center">
+            <button class="btn btn-success me-2" id="confirmCancel">ตกลง</button>
+            <button class="btn btn-secondary" id="cancelCancel">ยกเลิก</button>
+        </div>
+    `;
+
+            $("#bookingInfo").html(bookingInfo);
+            $("#confirmCancel").off().on("click", function() {
+                Swal.fire({
+                    title: "ยืนยันการยกเลิก?",
+                    text: "การจองของคุณจะถูกยกเลิก",
+                    icon: "warning",
+                    showCancelButton: true,
+                    confirmButtonText: "ตกลง",
+                    cancelButtonText: "ยกเลิก",
+                    confirmButtonColor: "green"
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        let calendarEvent = window.calendar.getEvents().find(event => event.startStr === date);
+                        if (calendarEvent) {
+                            calendarEvent.remove();
+                        }
+
+                        // Restore the event after cancellation
+                        window.calendar.addEvent({
+                            start: date,
+                            title: calendarEvent.title,
+                            color: calendarEvent.backgroundColor
+                        });
+
+                        // ซ่อนปุ่มยกเลิกการจองหลังการยกเลิกสำเร็จ
+                        const selectedDateElement = document.querySelector(`.fc-day[data-date="${date}"]`);
+                        if (selectedDateElement) {
+                            selectedDateElement.querySelector('#cancel').remove();
+                        }
+
+                        $("#confirmCancel").hide();
+                        $("#rightSidebar").hide();
+                        Swal.fire({
+                            icon: "success",
+                            title: "ยกเลิกการจองสำเร็จ",
+                            confirmButtonText: "ตกลง",
+                            confirmButtonColor: "green",
+                        });
                     }
-                }
+                });
             });
+        }
+
+        function resetEvents(calendar) {
+            calendar.getEventSources().forEach(eventSource => eventSource.remove());
+            calendar.addEventSource([{
+                    start: '2025-02-11',
+                    title: 'TS: 09:00 - 10:00',
+                    color: '#00CC00'
+                },
+                {
+                    start: '2025-02-11',
+                    title: 'TS: 10:30 - 11:30',
+                    color: '#00CC00'
+                },
+                {
+                    start: '2025-02-11',
+                    title: 'PD: 09:00 - 10:00',
+                    color: '#00CC00'
+                },
+                {
+                    start: '2025-02-11',
+                    title: 'PD: 10:30 - 11:30',
+                    color: '#00CC00'
+                },
+                {
+                    start: '2025-02-12',
+                    title: 'TS: 09:00 - 10:00 ',
+                    color: '#00CC00'
+                },
+                {
+                    start: '2025-02-12',
+                    title: 'TS: 10:30 - 11:30',
+                    color: '#00CC00'
+                },
+                {
+                    start: '2025-02-12',
+                    title: 'PD: 09:00 - 10:00',
+                    color: 'red'
+                },
+                {
+                    start: '2025-02-12',
+                    title: 'PD: 10:30 - 11:30',
+                    color: '#00CC00'
+                },
+                {
+                    start: '2025-02-13',
+                    title: 'TS: 09:00 - 10:00 ',
+                    color: '#00CC00'
+                },
+                {
+                    start: '2025-02-13',
+                    title: 'TS: 10:30 - 11:30',
+                    color: '#00CC00'
+                },
+                {
+                    start: '2025-02-13',
+                    title: 'PD: 09:00 - 10:00',
+                    color: '#00CC00'
+                },
+                {
+                    start: '2025-02-13',
+                    title: 'PD: 10:30 - 11:30',
+                    color: 'red'
+                }
+            ]);
         }
 
         $(document).ready(function() {
@@ -202,7 +348,7 @@
                     }
                     const validIds = ["518", "3790"];
                     if (!value || !validIds.includes(value)) {
-                        Swal.showValidationMessage("ไม่พบข้อมูลพนักงาน กรุณากรอกรหัสพนักงานที่ถูกต้อง");
+                        Swal.showValidationMessage("ไม่พบข้อมูลพนักงาน");
                         return false;
                     } else {
                         return value;
@@ -211,7 +357,7 @@
             }).then((result) => {
                 if (result.isConfirmed && result.value) {
                     exam_id = result.value;
-                    $("#calendar").show();
+                    $("#test").removeClass("d-none");
                     initializeCalendar(exam_id);
                 }
             });
@@ -242,6 +388,7 @@
             const calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
                 locale: 'th',
+                selectable: true,
                 dateClick: function(info) {
                     selectedDate = info.dateStr;
                     const employeeData = mockData[exam_id];
@@ -253,7 +400,7 @@
                             <p><strong>ตำแหน่ง :</strong> ${employeeData.position}</p>
                             <p><strong>ฝ่าย :</strong> ${employeeData.department}</p>
                             <p><strong>แผนก :</strong> ${employeeData.section}</p>
-                            <p><strong>งาน :</strong> ${employeeData.workplace}</p>
+                            <p><strong>จุดปฏิบัติงาน :</strong> ${employeeData.workplace}</p>
                             <p><strong>โรงงาน :</strong> ${employeeData.factory}</p>
                         `);
 
@@ -266,7 +413,6 @@
                         $("#employee-info").html(`<p>วันที่: ${selectedDate}</p>`);
 
                     }
-
                     $("#right-content, #factorySelection, #timeSelection").show();
                 },
                 timeZone: "Asia/Bangkok",
@@ -275,8 +421,6 @@
                     left: "",
                     center: "title",
                     right: "next",
-
-
                 },
                 weekNumbers: false,
                 dayMaxEvents: false,
@@ -312,10 +456,27 @@
                     start: '2025-02-12',
                     title: 'PD: 10:30 - 11:30',
                     color: '#00CC00',
+                }, {
+                    start: '2025-02-13',
+                    title: 'TS: 09:00 - 10:00 ',
+                    color: '#00CC00',
+                }, {
+                    start: '2025-02-13',
+                    title: 'TS: 10:30 - 11:30',
+                    color: '#00CC00',
+                }, {
+                    start: '2025-02-13',
+                    title: 'PD: 09:00 - 10:00',
+                    color: '#00CC00',
+                }, {
+                    start: '2025-02-13',
+                    title: 'PD: 10:30 - 11:30',
+                    color: 'red',
                 }],
             });
 
             calendar.render();
+            window.calendar = calendar; // Make calendar globally accessible
         }
     </script>
 </body>
