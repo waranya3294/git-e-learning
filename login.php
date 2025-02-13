@@ -58,6 +58,12 @@
             margin: 40px auto;
         }
 
+        .fc-prev-button {
+            background-color: #FF3333;
+            border-color: #FF3333;
+            color: white;
+        }
+
         .fc-next-button {
             background-color: #FF3333;
             border-color: #FF3333;
@@ -87,32 +93,48 @@
 <body>
     <div class="container-fluid">
         <div class="row mb-2 d-none" id="test">
-            <div class="col-lg-8 col-sm-8 mb-3 ">
-                <div class="row mt-5">
+            <div class="col-lg-8 col-sm-8 mb-3">
+                <div class="row mt-5 d-flex justify-content-center">
                     <div id="calendar"></div>
                 </div>
-                <div class="row">
-                    <div class="col d-flex align-items-center justify-content-end">
-                        <button class="btn btn-success me-2"></button>
+                <div class="row align-items-center justify-content-center">
+                    <div class="col-auto d-flex align-items-center">
+                        <button class="btn btn-success me-1"></button>
                         <p class="mb-0">ว่าง</p>
                     </div>
-                    <div class="col d-flex align-items-center">
-                        <button class="btn btn-danger me-2"></button>
+                    <div class="col-auto d-flex align-items-center">
+                        <button class="btn btn-danger me-1"></button>
                         <p class="mb-0">เต็ม</p>
+                    </div>
+                    <div class="col-auto d-flex align-items-center">
+                        <button class="btn btn-warning me-1"></button>
+                        <p class="mb-0">จองแล้ว</p>
                     </div>
                 </div>
             </div>
+
+
             <div class="col-lg-4 col-sm-4 mt-5">
-                <div id="rightSidebar" class="sidebar d-none">
+                <div id="rightSidebar" class="sidebar d-none mt-5">
+                    <h3 class="text-end mt-5" style="color:#FF3333;">ข้อมูลการจองของฉัน</h3>
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="text-center" style="color:#FF3333;">ข้อมูลการจอง</h4>
                             <div id="bookingInfo">
                             </div>
                         </div>
                     </div>
                 </div>
-                <div id="Exam-booking-content">
+                <!-- แสดงคำอธิบายกรณ๊จะเข้ามายกเลิกการจอง -->
+                <div class="col-lg-12 col-sm-12 mt-5">
+                    <div id="Exam" class=" d-none mt-5">
+                        <div class="card">
+                            <div class="card-body">
+                                <p style="color:red; font-size: 20px;"><b>กรณีต้องการยกเลิก : เลือกวันที่ที่คุณทำการจองไว้</b></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div id="Exam-booking-content" class="d-none mt-5">
                     <h1 class="text-end" style="color:#FF3333;">ระบบจองสอบออนไลน์</h1>
                     <div class="card" style=" height: 400px; display: none;" id="right-content">
                         <div class="card-body" id="employee-info">
@@ -152,31 +174,51 @@
                         <div class="d-flex gap-2">
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="TS">
-                                <label class="form-check-label" for="inlineRadio1" style="font-size:18px;">โรงงานตาสิทธิ์</label>
+                                <label class="form-check-label" for="inlineRadio1" style="font-size:18px;">TS (ตาสิทธิ์)</label>
                             </div>
                             <div class="form-check form-check-inline">
                                 <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="PD">
-                                <label class="form-check-label" for="inlineRadio2" style="font-size:18px;">โรงงานปลวกแดง</label>
+                                <label class="form-check-label" for="inlineRadio2" style="font-size:18px;">PD (ปลวกแดง)</label>
                             </div>
                         </div>
                     </div>
                     <div class="row mt-3" id="timeSelection" style="display: none;">
                         <h4 for="text">กรุณาเลือกเวลาสอบ<span style="color:red;">*</span></h4>
-                        <div class="d-flex gap-2">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="timeRadioOptions" id="timeRadio1" value="time1">
-                                <label class="form-check-label" for="timeRadio1" style="font-size:18px;">เวลา 9:00 - 10:00</label>
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body p-2">
+                                    <p class="text-center m-0" style="font-size: 18px;"><b>TS (ตาสิทธิ์)</b></p>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="timeRadioOptions" id="timeRadio1" value="time1">
+                                        <label class="form-check-label" for="timeRadio1" style="font-size:18px;">9:00 - 10:00 น.</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="timeRadioOptions" id="timeRadio2" value="time2">
+                                        <label class="form-check-label" for="timeRadio2" style="font-size:18px;">10:30 - 11:30 น.</label>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="timeRadioOptions" id="timeRadio2" value="time2">
-                                <label class="form-check-label" for="timeRadio2" style="font-size:18px;">เวลา 10:30 - 11:30</label>
+                        </div>
+                        <div class="col">
+                            <div class="card">
+                                <div class="card-body p-2">
+                                    <p class="text-center m-0" style="font-size: 18px;"><b>PD (ปลวกแดง)</b></p>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="timeRadioOptions" id="timeRadio1" value="time1">
+                                        <label class="form-check-label" for="timeRadio1" style="font-size:18px;">9:00 - 10:00 น.</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="timeRadioOptions" id="timeRadio2" value="time2">
+                                        <label class="form-check-label" for="timeRadio2" style="font-size:18px;">10:30 - 11:30 น.</label>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="row mb-4 mt-4">
                         <div class="col text-center">
                             <button class="btn btn-success" onclick="showData()">บันทึก</button>
-                            <button class="btn btn-danger">ยกเลิก</button>
+                            <button class="btn btn-danger" onclick="window.location.href='login.php'">ยกเลิก</button>
                         </div>
                     </div>
                 </div>
@@ -186,7 +228,22 @@
 
     <script>
         let selectedDate = null;
+        let exam_id = null;
 
+        // Function to format date in Thai
+        function formatDateThai(dateStr) {
+            const months = [
+                "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
+                "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"
+            ];
+            const date = new Date(dateStr);
+            const day = date.getDate();
+            const month = months[date.getMonth()];
+            const year = date.getFullYear() + 543;
+            return `${day} ${month} ${year}`;
+        }
+
+        // ฟังก์ชันสำหรับแสดงกล่องยืนยันการจอง
         function showData() {
             Swal.fire({
                 title: 'ยืนยันการจอง',
@@ -198,31 +255,53 @@
                 if (result.isConfirmed) {
                     const selectedDateElement = document.querySelector(`.fc-day[data-date="${selectedDate}"]`);
                     if (selectedDateElement) {
-                        selectedDateElement.innerHTML = `                       
-                        <div id="cancel" class=d-nome>
-                          <button class="btn btn-warning" onclick="cancelBooking('${selectedDate}')">ยกเลิกตารางสอบของคุณ</button>
-                        </div>
-                        `;
+                        saveBooking(selectedDate); // ฟังก์ชันสำหรับบันทึกการจอง
                     }
                 }
             });
         }
 
-        function cancelBooking(date) {
-            // แสดงกล่องขวา
-            $("#rightSidebar").removeClass("d-none"); //แสดงข้อมูลการจอง
-            $("#Exam-booking-content").addClass("d-none"); //ซ่อนข้อมูลแถบล่าง
+        // ฟังก์ชันสำหรับบันทึกการจอง
+        function saveBooking(date) {
+            let event = window.calendar.getEvents().find(event => event.startStr === date);
+
+            if (event) {
+                // ถ้าสถานะเป็น "จองแล้ว"
+                event.setProp('title', 'จองแล้ว'); // เปลี่ยนชื่อเหตุการณ์เป็น "จองแล้ว"
+                event.setProp('color', '#ffc107'); // เปลี่ยนสีเป็นเหลือง
+            } else {
+                // ถ้าไม่มีเหตุการณ์ในวันที่เลือก ให้เพิ่มเหตุการณ์ใหม่
+                window.calendar.addEvent({
+                    start: date,
+                    title: 'จองแล้ว',
+                    color: '#ffc107'
+                });
+            }
+
+            $("#rightSidebar").removeClass("d-none"); // แสดง rightSidebar
+            $("#Exam-booking-content").addClass("d-none"); // ซ่อนหน้าจอการจอง
+            $("#Exam").addClass("d-none"); // ซ่อนคำอธิบายกรณีจะเข้ามายกเลิกการจอง
+        }
+
+        // ฟังก์ชันสำหรับการยกเลิกการจอง
+        function cancelBooking(date, booking_date) {
+            $("#rightSidebar").removeClass("d-none"); //แสดงข้อมูลของฉัน
+            $("#Exam-booking-content").addClass("d-none"); //ซ่อนจองออนไลน์
+            $("#Exam").addClass("d-none"); // ซ่อนคำอธิบายกรณีจะเข้ามายกเลิกการจอง
+
             const bookingInfo = `
         <p><strong>วันที่ :</strong> ${date}</p>
         <p><strong>โรงงาน :</strong> ${$("input[name='inlineRadioOptions']:checked").next("label").text()}</p>
-        <p><strong>เวลาที่จอง :</strong> ${$("input[name='timeRadioOptions']:checked").next("label").text()}</p>
-        <div class="mt-3 text-center">
+        <p><strong>เวลาที่จอง :</strong> ${booking_date}</p>
+        <div class="mt-3 mb-3 text-center">
             <button class="btn btn-success me-2" id="confirmCancel">ตกลง</button>
-            <button class="btn btn-secondary" id="cancelCancel">ยกเลิก</button>
+            <button class="btn btn-secondary" id="cancelCancel" onclick="window.location.href='login.php'">ยกเลิก</button>
         </div>
+        <label for="text" style="font-size:18px; color:red;">*ยืนยันการยกเลิกจองสอบ กรุณากดปุ่มตกลง
     `;
-
             $("#bookingInfo").html(bookingInfo);
+
+            // การยกเลิกการจอง
             $("#confirmCancel").off().on("click", function() {
                 Swal.fire({
                     title: "ยืนยันการยกเลิก?",
@@ -234,104 +313,38 @@
                     confirmButtonColor: "green"
                 }).then((result) => {
                     if (result.isConfirmed) {
+                        // ค้นหากิจกรรมในปฏิทินตามวันที่
                         let calendarEvent = window.calendar.getEvents().find(event => event.startStr === date);
                         if (calendarEvent) {
+                            // ลบเหตุการณ์จากปฏิทิน (การยกเลิกการจอง)
                             calendarEvent.remove();
                         }
 
-                        // Restore the event after cancellation
+                        // เพิ่มเหตุการณ์ "เปิดสอบ" สำหรับวันที่ที่ถูกยกเลิก
                         window.calendar.addEvent({
                             start: date,
-                            title: calendarEvent.title,
-                            color: calendarEvent.backgroundColor
+                            title: 'ว่าง 3/5',
+                            color: 'green', // เปลี่ยนสีเป็นสีเขียว
+
                         });
 
-                        // ซ่อนปุ่มยกเลิกการจองหลังการยกเลิกสำเร็จ
-                        const selectedDateElement = document.querySelector(`.fc-day[data-date="${date}"]`);
-                        if (selectedDateElement) {
-                            selectedDateElement.querySelector('#cancel').remove();
-                        }
+                        // รีเฟรชข้อมูลใน sidebar
+                        $("#rightSidebar").addClass("d-none"); //ซ่อน
+                        $("#Exam-booking-content").removeClass("d-none"); //แสดง
+                        bookingStatus = false; // อัปเดตสถานะการจอง
 
-                        $("#confirmCancel").hide();
-                        $("#rightSidebar").hide();
                         Swal.fire({
                             icon: "success",
                             title: "ยกเลิกการจองสำเร็จ",
-                            confirmButtonText: "ตกลง",
-                            confirmButtonColor: "green",
+                            showConfirmButton: false,
+                            timer: 2000
                         });
                     }
                 });
             });
         }
-
-        function resetEvents(calendar) {
-            calendar.getEventSources().forEach(eventSource => eventSource.remove());
-            calendar.addEventSource([{
-                    start: '2025-02-11',
-                    title: 'TS: 09:00 - 10:00',
-                    color: '#00CC00'
-                },
-                {
-                    start: '2025-02-11',
-                    title: 'TS: 10:30 - 11:30',
-                    color: '#00CC00'
-                },
-                {
-                    start: '2025-02-11',
-                    title: 'PD: 09:00 - 10:00',
-                    color: '#00CC00'
-                },
-                {
-                    start: '2025-02-11',
-                    title: 'PD: 10:30 - 11:30',
-                    color: '#00CC00'
-                },
-                {
-                    start: '2025-02-12',
-                    title: 'TS: 09:00 - 10:00 ',
-                    color: '#00CC00'
-                },
-                {
-                    start: '2025-02-12',
-                    title: 'TS: 10:30 - 11:30',
-                    color: '#00CC00'
-                },
-                {
-                    start: '2025-02-12',
-                    title: 'PD: 09:00 - 10:00',
-                    color: 'red'
-                },
-                {
-                    start: '2025-02-12',
-                    title: 'PD: 10:30 - 11:30',
-                    color: '#00CC00'
-                },
-                {
-                    start: '2025-02-13',
-                    title: 'TS: 09:00 - 10:00 ',
-                    color: '#00CC00'
-                },
-                {
-                    start: '2025-02-13',
-                    title: 'TS: 10:30 - 11:30',
-                    color: '#00CC00'
-                },
-                {
-                    start: '2025-02-13',
-                    title: 'PD: 09:00 - 10:00',
-                    color: '#00CC00'
-                },
-                {
-                    start: '2025-02-13',
-                    title: 'PD: 10:30 - 11:30',
-                    color: 'red'
-                }
-            ]);
-        }
-
         $(document).ready(function() {
-            let exam_id = null;
+            // แสดงกล่องสำหรับกรอกรหัสพนักงาน
             Swal.fire({
                 allowOutsideClick: false,
                 showCancelButton: true,
@@ -347,7 +360,7 @@
                         return false;
                     }
                     const validIds = ["518", "3790"];
-                    if (!value || !validIds.includes(value)) {
+                    if (!validIds.includes(value)) {
                         Swal.showValidationMessage("ไม่พบข้อมูลพนักงาน");
                         return false;
                     } else {
@@ -363,9 +376,10 @@
             });
         });
 
+        // ฟังก์ชันสำหรับการตั้งค่าปฏิทิน
         function initializeCalendar(exam_id) {
+            $("#Exam").removeClass("d-none"); // โชว์คำอธิบายกรณีจะเข้ามายกเลิกการจอง
             const calendarEl = document.getElementById("calendar");
-
             const mockData = {
                 "518": {
                     name: "นาย ปฏิวัฒน์ นาดี",
@@ -373,7 +387,9 @@
                     department: "Manufacturing",
                     section: "Manufacturing Pluakdaeng Factory",
                     workplace: "CNC",
-                    factory: "PD"
+                    factory: "PD",
+                    booking_status: true,
+                    booking_date: "2025-02-18",
                 },
                 "3790": {
                     name: "นาย เทวัน บุญยะบุตร",
@@ -381,104 +397,107 @@
                     department: "Manufacturing",
                     section: "Manufacturing Tasith Factory",
                     workplace: "Final Paint 20 Ton",
-                    factory: "TS"
+                    factory: "TS",
+                    booking_status: true,
+                    booking_date: ""
                 }
             };
 
+            const employeeData = mockData[exam_id];
+
+            // กำหนดรายการ Events เริ่มต้น
+            let events = [{
+                    start: '2025-02-11',
+                    title: 'ว่าง 2/5',
+                    color: 'green'
+                },
+                {
+                    start: '2025-02-12',
+                    title: 'ว่าง 3/5',
+                    color: 'green'
+                },
+                {
+                    start: '2025-02-13',
+                    title: 'เต็ม 5/5',
+                    color: 'red'
+                }
+            ];
+
+            // ถ้าพนักงานมีการจองแล้ว
+            if (employeeData?.booking_status) {
+                events = events.filter(event => event.start !== employeeData.booking_date);
+                events.push({
+                    start: employeeData.booking_date,
+                    title: 'จองแล้ว',
+                    color: '#ffc107'
+                });
+            }
+
+            // สร้างปฏิทิน FullCalendar
             const calendar = new FullCalendar.Calendar(calendarEl, {
                 initialView: 'dayGridMonth',
                 locale: 'th',
                 selectable: true,
                 dateClick: function(info) {
                     selectedDate = info.dateStr;
-                    const employeeData = mockData[exam_id];
-                    if (employeeData) {
+
+                    // Highlight the selected date
+                    $(".fc-day").removeClass("selected-date");
+                    $(`.fc-day[data-date="${selectedDate}"]`).addClass("selected-date");
+
+                    let event = window.calendar.getEvents().find(event => event.startStr === selectedDate);
+                    if (event && event.title === 'จองแล้ว') {
+                        // วันที่จองแล้ว
+                        cancelBooking(selectedDate, selectedDate);
+                    } else if (event && event.title === 'เต็ม') {
+                        // วันที่เต็ม
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'ไม่สามารถจองได้',
+                            text: 'วันที่นี้เต็มแล้ว',
+                            confirmButtonText: 'ตกลง',
+                            confirmButtonColor: 'red'
+                        });
+                    } else {
+                        // วันที่ยังไม่จอง
+                        $("#Exam-booking-content").removeClass("d-none");
+                        $("#rightSidebar").addClass("d-none");
+                        $("#Exam").addClass("d-none"); // ซ่อนคำอธิบายกรณีจะเข้ามายกเลิกการจอง
                         $("#employee-info").html(`
-                            <p><strong>วันที่ :</strong> ${selectedDate}</p>
-                            <p><strong>รหัสพนักงาน :</strong> ${exam_id}</p>
-                            <p><strong>ชื่อ - นามสกุล :</strong> ${employeeData.name}</p>
-                            <p><strong>ตำแหน่ง :</strong> ${employeeData.position}</p>
-                            <p><strong>ฝ่าย :</strong> ${employeeData.department}</p>
-                            <p><strong>แผนก :</strong> ${employeeData.section}</p>
-                            <p><strong>จุดปฏิบัติงาน :</strong> ${employeeData.workplace}</p>
-                            <p><strong>โรงงาน :</strong> ${employeeData.factory}</p>
-                        `);
+                        <p style="font-size:26px;"><strong>วันที่ : ${formatDateThai(selectedDate)}</strong></p>
+                        <p style="font-size:18px;"><strong>รหัสพนักงาน :</strong> ${exam_id}</p>
+                        <p style="font-size:18px;"><strong>ชื่อ - นามสกุล :</strong> ${employeeData.name}</p>
+                        <p style="font-size:18px;"><strong>ตำแหน่ง :</strong> ${employeeData.position}</p>
+                        <p style="font-size:18px;"><strong>ฝ่าย :</strong> ${employeeData.department}</p>
+                        <p style="font-size:18px;"><strong>แผนก :</strong> ${employeeData.section}</p>
+                        <p style="font-size:18px;"><strong>จุดปฏิบัติงาน :</strong> ${employeeData.workplace}</p>
+                        <p style="font-size:18px;"><strong>โรงงาน :</strong> ${employeeData.factory}</p>
+                    `);
 
                         if (employeeData.factory === "PD") {
                             $("#inlineRadio2").prop("checked", true);
                         } else if (employeeData.factory === "TS") {
                             $("#inlineRadio1").prop("checked", true);
                         }
-                    } else {
-                        $("#employee-info").html(`<p>วันที่: ${selectedDate}</p>`);
-
                     }
+
                     $("#right-content, #factorySelection, #timeSelection").show();
                 },
                 timeZone: "Asia/Bangkok",
                 themeSystem: "bootstrap5",
                 headerToolbar: {
-                    left: "",
+                    left: "prev",
                     center: "title",
                     right: "next",
                 },
                 weekNumbers: false,
                 dayMaxEvents: false,
-                events: [{
-                    start: '2025-02-11',
-                    title: 'TS: 09:00 - 10:00',
-                    color: '#00CC00',
-                }, {
-                    start: '2025-02-11',
-                    title: 'TS: 10:30 - 11:30',
-                    color: '#00CC00',
-                }, {
-                    start: '2025-02-11',
-                    title: 'PD: 09:00 - 10:00',
-                    color: '#00CC00',
-                }, {
-                    start: '2025-02-11',
-                    title: 'PD: 10:30 - 11:30',
-                    color: '#00CC00',
-                }, {
-                    start: '2025-02-12',
-                    title: 'TS: 09:00 - 10:00 ',
-                    color: '#00CC00',
-                }, {
-                    start: '2025-02-12',
-                    title: 'TS: 10:30 - 11:30',
-                    color: '#00CC00',
-                }, {
-                    start: '2025-02-12',
-                    title: 'PD: 09:00 - 10:00',
-                    color: 'red',
-                }, {
-                    start: '2025-02-12',
-                    title: 'PD: 10:30 - 11:30',
-                    color: '#00CC00',
-                }, {
-                    start: '2025-02-13',
-                    title: 'TS: 09:00 - 10:00 ',
-                    color: '#00CC00',
-                }, {
-                    start: '2025-02-13',
-                    title: 'TS: 10:30 - 11:30',
-                    color: '#00CC00',
-                }, {
-                    start: '2025-02-13',
-                    title: 'PD: 09:00 - 10:00',
-                    color: '#00CC00',
-                }, {
-                    start: '2025-02-13',
-                    title: 'PD: 10:30 - 11:30',
-                    color: 'red',
-                }],
+                events: events
             });
 
-            calendar.render();
-            window.calendar = calendar; // Make calendar globally accessible
+            calendar.render(); // แสดงปฏิทิน
+            window.calendar = calendar; // เก็บข้อมูลปฏิทินใน global scope
         }
     </script>
 </body>
-
-</html>
+</html>1
