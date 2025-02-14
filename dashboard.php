@@ -353,6 +353,9 @@
             },
             weekNumbers: true,
             dayMaxEvents: true,
+            select: function(info) {
+                alert('selected ' + info.startStr + ' to ' + info.endStr);
+            },
             dateClick: function(info) {
                 let selectedDate = info.dateStr;
                 document.getElementById('selected-date').innerText = selectedDate;

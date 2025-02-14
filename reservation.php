@@ -55,7 +55,7 @@
 
         #calendar {
             max-width: 900px;
-            margin: 40px auto;
+            margin: 20px auto;
         }
 
         .fc-prev-button {
@@ -97,11 +97,14 @@
 <body>
     <div class="container-fluid">
         <div class="row mb-2 d-none" id="test">
-            <div class="col-lg-8 col-sm-8 mb-3">
-                <div class="row mt-5 d-flex justify-content-center">
+            <div class="col-lg-6 col-sm-6 mb-3 mt-4">
+                <div class="row d-flex justify-content-center">
                     <div id="calendar"></div>
                 </div>
-                <div class="row align-items-center justify-content-center">
+                <div class="row align-items-center justify-content-center d-flex">
+                    <div class="col-auto d-flex align-items-center" id="test1">
+                        <h4 style="color:red;">*กรณีต้องการยกเลิก : เลือกวันที่ที่คุณทำการจองไว้</h4>
+                    </div>
                     <div class="col-auto d-flex align-items-center">
                         <button class="btn btn-success me-1"></button>
                         <p class="mb-0">ว่าง</p>
@@ -117,28 +120,30 @@
                 </div>
             </div>
 
-
-            <div class="col-lg-4 col-sm-4 mt-5">
-                <div id="rightSidebar" class="sidebar d-none mt-5">
-                    <h3 class="text-end mt-5" style="color:#FF3333;">ข้อมูลการจองของฉัน</h3>
+            <div class="col-lg-6 col-sm-6 mt-5">
+                <div id="rightSidebar" class="sidebar d-none">
+                    <h1 class="text-end" style="color:#FF3333;">ข้อมูลการจองของฉัน</h1>
                     <div class="card">
                         <div class="card-body">
                             <div id="bookingInfo">
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- แสดงคำอธิบายกรณ๊จะเข้ามายกเลิกการจอง -->
-                <div class="col-lg-12 col-sm-12 mt-5">
-                    <div id="Exam" class=" d-none mt-5">
-                        <div class="card">
-                            <div class="card-body">
-                                <p style="color:red; font-size: 20px;"><b>กรณีต้องการยกเลิก : เลือกวันที่ที่คุณทำการจองไว้</b></p>
-                            </div>
-                        </div>
+                    <div class="mt-4 text-end">
+                        <button class="btn btn-secondary" style="font-size: 20px;" onclick="window.location.href='index.php'">กลับหน้าแรก</button>
                     </div>
                 </div>
-                <div id="Exam-booking-content" class="d-none mt-5">
+
+                <!-- แสดงคำอธิบายกรณ๊จะเข้ามายกเลิกการจอง
+                <div id="Exam" class="d-none mt-5">
+                    <div class="card">
+                        <div class="card-body d-flex justify-content-center align-items-center text-center">
+                            <p style="color:red; font-size: 24px;"><b>กรณีต้องการยกเลิก : เลือกวันที่ที่คุณทำการจองไว้</b></p>
+                        </div>
+                    </div>
+                </div> -->
+
+                <div id="Exam-booking-content" class="d-none">
                     <h1 class="text-end" style="color:#FF3333;">ระบบจองสอบออนไลน์</h1>
                     <div class="card" style=" height: 400px; display: none;" id="right-content">
                         <div class="card-body" id="employee-info">
@@ -188,32 +193,32 @@
                     </div>
                     <div class="row mt-3" id="timeSelection" style="display: none;">
                         <h4 for="text">กรุณาเลือกเวลาสอบ<span style="color:red;">*</span></h4>
-                        <div class="col">
+                        <div class="col-lg-4">
                             <div class="card">
                                 <div class="card-body p-2">
                                     <p class="text-center m-0" style="font-size: 18px;"><b>TS (ตาสิทธิ์)</b></p>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="timeRadioOptions" id="timeRadio1" value="time1">
-                                        <label class="form-check-label" for="timeRadio1" style="font-size:18px;">9:00 - 10:00 น.</label>
+                                        <label class="form-check-label" for="timeRadio1" style="font-size:18px;">9:00 - 10:00 น. (3/5)</label>
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="timeRadioOptions" id="timeRadio2" value="time2">
-                                        <label class="form-check-label" for="timeRadio2" style="font-size:18px;">10:30 - 11:30 น.</label>
+                                        <label class="form-check-label" for="timeRadio2" style="font-size:18px;">10:30 - 11:30 น. (3/5)</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="col">
+                        <div class="col-lg-4">
                             <div class="card">
                                 <div class="card-body p-2">
                                     <p class="text-center m-0" style="font-size: 18px;"><b>PD (ปลวกแดง)</b></p>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="timeRadioOptions" id="timeRadio1" value="time1">
-                                        <label class="form-check-label" for="timeRadio1" style="font-size:18px;">9:00 - 10:00 น.</label>
+                                        <label class="form-check-label" for="timeRadio1" style="font-size:18px;">9:00 - 10:00 น. (3/5)</label>
                                     </div>
                                     <div class="form-check form-check-inline">
                                         <input class="form-check-input" type="radio" name="timeRadioOptions" id="timeRadio2" value="time2">
-                                        <label class="form-check-label" for="timeRadio2" style="font-size:18px;">10:30 - 11:30 น.</label>
+                                        <label class="form-check-label" for="timeRadio2" style="font-size:18px;">10:30 - 11:30 น. (2/5)</label>
                                     </div>
                                 </div>
                             </div>
@@ -221,8 +226,8 @@
                     </div>
                     <div class="row mb-4 mt-4">
                         <div class="col text-center">
-                            <button class="btn btn-success" onclick="showData()">บันทึก</button>
-                            <button class="btn btn-danger" onclick="window.location.href='login.php'">ยกเลิก</button>
+                            <button class="btn btn-success" style="font-size: 20px;" onclick="showData()" id="btnBooking">บันทึก</button>
+                            <button class="btn btn-danger" style="font-size: 20px;" onclick="window.location.href='index.php'">ยกเลิก</button>
                         </div>
                     </div>
                 </div>
@@ -231,6 +236,7 @@
     </div>
 
     <script>
+        // ประกาศตัวแปรสำหรับเก็บวันที่ที่เลือกและรหัสพนักงาน
         let selectedDate = null;
         let exam_id = null;
 
@@ -264,6 +270,10 @@
 
         // ฟังก์ชันสำหรับบันทึกการจอง
         function saveBooking(date) {
+            if (!date) {
+                Swal.fire("กรุณาเลือกวันที่ก่อนทำการจอง");
+                return;
+            }
             let event = window.calendar.getEvents().find(event => event.startStr === date);
 
             if (event) {
@@ -278,94 +288,105 @@
                     color: '#ffc107'
                 });
             }
-
-            // รีเซ็ตการเลือกวันที่
-            $(".fc-day").removeClass("selected-date");
-            $(`.fc-day[data-date="${date}"]`).addClass("selected-date"); // เพิ่มสถานะให้วันที่ที่เลือก
-
             $("#rightSidebar").removeClass("d-none"); // แสดง rightSidebar
             $("#Exam-booking-content").addClass("d-none"); // ซ่อนหน้าจอการจอง
             $("#Exam").addClass("d-none"); // ซ่อนคำอธิบายกรณีจะเข้ามายกเลิกการจอง
-            // อัปเดต selectedDate เป็นวันที่ที่ถูกจอง
-            selectedDate = date; // อัปเดตค่า selectedDate
-
+            updateMyBooking(); // แสดงข้อมูลการจองทันที
         }
 
-        // ฟังก์ชันสำหรับการยกเลิกการจอง
-        function cancelBooking(date, booking_date, employeeData) {
-            $("#rightSidebar").removeClass("d-none"); //แสดงข้อมูลของฉัน
-            $("#Exam-booking-content").addClass("d-none"); //ซ่อนจองออนไลน์
-            $("#Exam").addClass("d-none"); // ซ่อนคำอธิบายกรณีจะเข้ามายกเลิกการจอง
+        // ฟังก์ชันสำหรับอัปเดตข้อมูลการจองของฉัน
+        function updateMyBooking() {
+            if (!selectedDate || !exam_id) return;
 
-            // ตรวจสอบโรงงานที่เลือก
-            let selectedFactory = $("input[name='inlineRadioOptions']:checked").val();
-            let factoryName = selectedFactory === "TS" ? "TS (ตาสิทธิ์)" : "PD (ปลวกแดง)";
+            let employeeData = {
+                "518": {
+                    name: "นาย ปฏิวัฒน์ นาดี",
+                    position: "CNC Controller",
+                    department: "Manufacturing",
+                    section: "Manufacturing Pluakdaeng Factory",
+                    workplace: "CNC",
+                    factory: "PD"
+                },
+                "3790": {
+                    name: "นาย เทวัน บุญยะบุตร",
+                    position: "painter",
+                    department: "Manufacturing",
+                    section: "Manufacturing Tasith Factory",
+                    workplace: "Final Paint 20 Ton",
+                    factory: "TS"
+                }
+            } [exam_id];
 
-            // ตรวจสอบเวลาที่เลือก
-            let selectedTime = $("input[name='timeRadioOptions']:checked").next("label").text();
+            let factoryName = employeeData.factory === "TS" ? "TS (ตาสิทธิ์)" : "PD (ปลวกแดง)";
 
-            // เพิ่มข้อมูลพนักงานในข้อมูลการจองของฉัน
-            const bookingInfo = `
-            <p style="font-size:20px;"><strong>วันที่ :</strong> ${formatDateThai(date)}</p>
-            <p style="font-size:20px;"><strong>เวลาที่จอง :</strong> ${selectedTime}</p>
-            <p style="font-size:20px;"><strong>รหัสพนักงาน :</strong> ${exam_id}</p>
-            <p style="font-size:20px;"><strong>ชื่อ - นามสกุล :</strong> ${employeeData.name}</p>
-            <p style="font-size:20px;"><strong>ตำแหน่ง :</strong> ${employeeData.position}</p>
-            <p style="font-size:20px;"><strong>ฝ่าย :</strong> ${employeeData.department}</p>
-            <p style="font-size:20px;"><strong>แผนก :</strong> ${employeeData.section}</p>
-            <p style="font-size:20px;"><strong>จุดปฏิบัติงาน :</strong> ${employeeData.workplace}</p>
-            <p style="font-size:20px;"><strong>โรงงาน :</strong> ${factoryName}</p>
-            <div class="mt-3 mb-3 text-center">
-                <button class="btn btn-warning me-2" id="confirmCancel">ตกลง</button>
-            </div>
-            <label for="text" style="font-size:18px; color:red;">*ยืนยันการยกเลิกจองสอบ กรุณากดปุ่มตกลง
-            `;
+            let bookingInfo = `
+                <p style="font-size:20px;"><strong>วันที่ :</strong> ${formatDateThai(selectedDate)}</p>
+                <p style="font-size:20px;"><strong>รหัสพนักงาน :</strong> ${exam_id}</p>
+                <p style="font-size:20px;"><strong>ชื่อ - นามสกุล :</strong> ${employeeData.name}</p>
+                <p style="font-size:20px;"><strong>ตำแหน่ง :</strong> ${employeeData.position}</p>
+                <p style="font-size:20px;"><strong>ฝ่าย :</strong> ${employeeData.department}</p>
+                <p style="font-size:20px;"><strong>แผนก :</strong> ${employeeData.section}</p>
+                <p style="font-size:20px;"><strong>จุดปฏิบัติงาน :</strong> ${employeeData.workplace}</p>
+                <p style="font-size:20px;"><strong>โรงงาน :</strong> ${factoryName}</p>
+                <label for="text" class="d-flex justify-content-center align-items-center" style="font-size:24px; color:red;">*หากต้องการยกเลิกจองสอบ กรุณากดปุ่มตกลง</label>
+
+                <!-- จัดตำแหน่งปุ่มตรงกลาง -->
+                <div class="mt-3 mb-3 d-flex justify-content-center align-items-center">
+                    <button class="btn btn-warning me-2" style="font-size: 20px;" id="confirmCancel" onclick="cancelBooking(selectedDate)">ยกเลิก</button>
+                </div> `;
+
             $("#bookingInfo").html(bookingInfo);
+            $("#rightSidebar").removeClass("d-none"); //แสดง
+            $("#Exam-booking-content").addClass("d-none"); //ซ่อน
+            $("#Exam").addClass("d-none");
+        }
 
-            // การยกเลิกการจอง
-            $("#confirmCancel").off().on("click", function() {
-                Swal.fire({
-                    title: "ยืนยันการยกเลิก?",
-                    text: "การจองของคุณจะถูกยกเลิก",
-                    icon: "warning",
-                    showCancelButton: true,
-                    confirmButtonText: "ตกลง",
-                    cancelButtonText: "ยกเลิก",
-                    confirmButtonColor: "green"
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        // ค้นหากิจกรรมในปฏิทินตามวันที่
-                        let calendarEvent = window.calendar.getEvents().find(event => event.startStr === date);
-                        if (calendarEvent) {
-                            // ลบเหตุการณ์จากปฏิทิน (การยกเลิกการจอง)
-                            calendarEvent.remove();
-                        }
-
-                        // เพิ่มเหตุการณ์ "เปิดสอบ" สำหรับวันที่ที่ถูกยกเลิก
-                        window.calendar.addEvent({
-                            start: date,
-                            title: 'ว่าง 3/5',
-                            color: 'green', // เปลี่ยนสีเป็นสีเขียว
-                        });
-
-                        // รีเฟรชข้อมูลใน sidebar
-                        $("#rightSidebar").addClass("d-none"); //ซ่อน
-                        $("#Exam-booking-content").removeClass("d-none"); //แสดง
-                        bookingStatus = false; // อัปเดตสถานะการจอง
-
-                        Swal.fire({
-                            icon: "success",
-                            title: "ยกเลิกการจองสำเร็จ",
-                            showConfirmButton: false,
-                            timer: 2000
-                        }).then(() => {
-                            $(".fc-day").removeClass("selected-date");
-                            $(`.fc-day[data-date="${date}"]`).addClass("selected-date");
-                        });
+        // ฟังก์ชันสำหรับยกเลิกการจอง
+        function cancelBooking(date) {
+            // console.log("Test");
+            Swal.fire({
+                title: "ยืนยันการยกเลิก?",
+                text: "การจองของคุณจะถูกยกเลิก",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonText: "ตกลง",
+                cancelButtonText: "ยกเลิก",
+                confirmButtonColor: "green"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // ค้นหากิจกรรมในปฏิทินตามวันที่
+                    let calendarEvent = window.calendar.getEvents().find(event => event.startStr === date);
+                    if (calendarEvent) {
+                        // ลบเหตุการณ์จากปฏิทิน (การยกเลิกการจอง)
+                        calendarEvent.remove();
                     }
-                });
+
+                    // เพิ่มเหตุการณ์ "เปิดสอบ" สำหรับวันที่ที่ถูกยกเลิก
+                    calendar.addEvent({
+                        start: date,
+                        title: 'ว่าง',
+                        color: 'green', // เปลี่ยนสีเป็นสีเขียว
+                    });
+
+                    // รีเฟรชข้อมูลใน sidebar
+                    $("#rightSidebar").addClass("d-none"); //ซ่อน
+                    $("#Exam-booking-content").removeClass("d-none"); //แสดง
+                    bookingStatus = true; // อัปเดตสถานะการจอง
+
+                    Swal.fire({
+                        icon: "success",
+                        title: "ยกเลิกการจองสำเร็จ",
+                        showConfirmButton: false,
+                        timer: 2000
+                    }).then(() => {
+                        $(".fc-day").removeClass("selected-date");
+                        $(`.fc-day[data-date="${date}"]`).addClass("selected-date");
+                    });
+                    // renderCancelButton(); // อัปเดตปุ่มยกเลิก
+                }
             });
         }
+
 
         $(document).ready(function() {
             // แสดงกล่องสำหรับกรอกรหัสพนักงาน
@@ -392,11 +413,13 @@
                     }
                 }
             }).then((result) => {
+
                 if (result.isConfirmed && result.value) {
                     exam_id = result.value;
                     $("#test").removeClass("d-none");
                     initializeCalendar(exam_id);
                 }
+
             });
 
             $(document).click(function(event) {
@@ -411,7 +434,7 @@
 
         // ฟังก์ชันสำหรับการตั้งค่าปฏิทิน
         function initializeCalendar(exam_id) {
-            $("#Exam").removeClass("d-none"); // โชว์คำอธิบายกรณีจะเข้ามายกเลิกการจอง
+            // $("#Exam").removeClass("d-none"); // โชว์คำอธิบายกรณีจะเข้ามายกเลิกการจอง
             const calendarEl = document.getElementById("calendar");
             const mockData = {
                 "518": {
@@ -431,7 +454,7 @@
                     section: "Manufacturing Tasith Factory",
                     workplace: "Final Paint 20 Ton",
                     factory: "TS",
-                    booking_status: true,
+                    booking_status: false,
                     booking_date: ""
                 }
             };
@@ -441,29 +464,33 @@
             // กำหนดรายการ Events เริ่มต้น
             let events = [{
                     start: '2025-02-11',
-                    title: 'ว่าง 2/5',
+                    title: 'ว่าง ',
                     color: 'green'
                 },
                 {
                     start: '2025-02-12',
-                    title: 'ว่าง 3/5',
+                    title: 'ว่าง ',
                     color: 'green'
                 },
                 {
                     start: '2025-02-13',
-                    title: 'เต็ม 5/5',
+                    title: 'เต็ม ',
                     color: 'red'
                 }
             ];
 
             // ถ้าพนักงานมีการจองแล้ว
             if (employeeData?.booking_status) {
+                selectedDate = employeeData.booking_date;
                 events = events.filter(event => event.start !== employeeData.booking_date);
                 events.push({
                     start: employeeData.booking_date,
                     title: 'จองแล้ว',
                     color: '#ffc107'
                 });
+                updateMyBooking();
+            }else{
+                $("#test1").addClass("d-none");
             }
 
             // สร้างปฏิทิน FullCalendar
@@ -473,18 +500,15 @@
                 selectable: true,
                 dateClick: function(info) {
                     selectedDate = info.dateStr;
-                    // ล้างการเลือกวันที่เก่า
+                    // ลบคลาสจากวันที่ที่เลือกก่อนหน้า (ถ้ามี)
                     $(".fc-day").removeClass("selected-date");
-
-                    // เพิ่มการเลือกวันที่ใหม่
+                    // เพิ่มคลาสที่เลือกให้กับวันที่ใหม่
                     $(`.fc-day[data-date="${selectedDate}"]`).addClass("selected-date");
 
-
-
                     let event = window.calendar.getEvents().find(event => event.startStr === selectedDate);
-                    if (event && event.title === 'จองแล้ว') {
+                    if (event && event.title.includes('จองแล้ว')) {
                         // วันที่จองแล้ว
-                        cancelBooking(selectedDate, selectedDate, employeeData);
+                        updateMyBooking();
                     } else if (event && event.title.includes('เต็ม')) {
                         // วันที่เต็ม
                         Swal.fire({
@@ -494,31 +518,62 @@
                             confirmButtonText: 'ตกลง',
                             confirmButtonColor: 'red'
                         });
+                    } else if (event && event.title.includes('ว่าง')) {
+                        if (employeeData?.booking_status) {
+                            // จองไม่ได้เนื่องจากมีสถานะว่า จองแล้ว
+                            $("#bookingInfo").html("");
+                            $("#Exam-booking-content").removeClass("d-none");
+                            $("#rightSidebar").addClass("d-none");
+                            $("#btnBooking").removeClass("d-none"); //ซ่อนปุ่ม
+                            $("#Exam").addClass("d-none"); // ซ่อนคำอธิบายกรณีจะเข้ามายกเลิกการจอง
+                            $("#employee-info").html(`
+                            <p style="font-size:26px;"><strong>วันที่ : ${formatDateThai(selectedDate)}</strong></p>
+                            <p style="font-size:18px;"><strong>รหัสพนักงาน :</strong> ${exam_id}</p>
+                            <p style="font-size:18px;"><strong>ชื่อ - นามสกุล :</strong> ${employeeData.name}</p>
+                            <p style="font-size:18px;"><strong>ตำแหน่ง :</strong> ${employeeData.position}</p>
+                            <p style="font-size:18px;"><strong>ฝ่าย :</strong> ${employeeData.department}</p>
+                            <p style="font-size:18px;"><strong>แผนก :</strong> ${employeeData.section}</p>
+                            <p style="font-size:18px;"><strong>จุดปฏิบัติงาน :</strong> ${employeeData.workplace}</p>
+                            <p style="font-size:18px;"><strong>โรงงาน :</strong> ${employeeData.factory}</p>
+                        `);
+
+                            if (employeeData.factory === "PD") {
+                                $("#inlineRadio2").prop("checked", true);
+                            } else if (employeeData.factory === "TS") {
+                                $("#inlineRadio1").prop("checked", true);
+                            }
+                        } else {
+                            console.log("จองได้");
+                            $("#bookingInfo").html("");
+                            $("#Exam-booking-content").removeClass("d-none");
+                            $("#rightSidebar").addClass("d-none");
+                            $("#Exam").addClass("d-none"); // ซ่อนคำอธิบายกรณีจะเข้ามายกเลิกการจอง
+                            $("#employee-info").html(`
+                            <p style="font-size:26px;"><strong>วันที่ : ${formatDateThai(selectedDate)}</strong></p>
+                            <p style="font-size:18px;"><strong>รหัสพนักงาน :</strong> ${exam_id}</p>
+                            <p style="font-size:18px;"><strong>ชื่อ - นามสกุล :</strong> ${employeeData.name}</p>
+                            <p style="font-size:18px;"><strong>ตำแหน่ง :</strong> ${employeeData.position}</p>
+                            <p style="font-size:18px;"><strong>ฝ่าย :</strong> ${employeeData.department}</p>
+                            <p style="font-size:18px;"><strong>แผนก :</strong> ${employeeData.section}</p>
+                            <p style="font-size:18px;"><strong>จุดปฏิบัติงาน :</strong> ${employeeData.workplace}</p>
+                            <p style="font-size:18px;"><strong>โรงงาน :</strong> ${employeeData.factory}</p>
+                        `);
+
+                            if (employeeData.factory === "PD") {
+                                $("#inlineRadio2").prop("checked", true);
+                            } else if (employeeData.factory === "TS") {
+                                $("#inlineRadio1").prop("checked", true);
+                            }
+                        }
+
                     } else {
                         // วันที่ยังไม่จอง
-                        $("#Exam-booking-content").removeClass("d-none");
-                        $("#rightSidebar").addClass("d-none");
-                        $("#Exam").addClass("d-none"); // ซ่อนคำอธิบายกรณีจะเข้ามายกเลิกการจอง
-                        $("#employee-info").html(`
-                        <p style="font-size:26px;"><strong>วันที่ : ${formatDateThai(selectedDate)}</strong></p>
-                        <p style="font-size:18px;"><strong>รหัสพนักงาน :</strong> ${exam_id}</p>
-                        <p style="font-size:18px;"><strong>ชื่อ - นามสกุล :</strong> ${employeeData.name}</p>
-                        <p style="font-size:18px;"><strong>ตำแหน่ง :</strong> ${employeeData.position}</p>
-                        <p style="font-size:18px;"><strong>ฝ่าย :</strong> ${employeeData.department}</p>
-                        <p style="font-size:18px;"><strong>แผนก :</strong> ${employeeData.section}</p>
-                        <p style="font-size:18px;"><strong>จุดปฏิบัติงาน :</strong> ${employeeData.workplace}</p>
-                        <p style="font-size:18px;"><strong>โรงงาน :</strong> ${employeeData.factory}</p>
-                    `);
-
-                        if (employeeData.factory === "PD") {
-                            $("#inlineRadio2").prop("checked", true);
-                        } else if (employeeData.factory === "TS") {
-                            $("#inlineRadio1").prop("checked", true);
-                        }
+                        $("#Exam-booking-content").addClass("d-none");
                     }
 
                     $("#right-content, #factorySelection, #timeSelection").show();
                 },
+
                 timeZone: "Asia/Bangkok",
                 themeSystem: "bootstrap5",
                 headerToolbar: {

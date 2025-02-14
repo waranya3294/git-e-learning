@@ -58,11 +58,11 @@
         <img class="img-fluid mb-3 mt-3" src="images/logo.png" alt="logo">
         <div class="form-floating mb-3">
           <input type="text" class="form-control form-control-sm" id="floatingInput" name="floatingInput" placeholder="name@example.com">
-          <label for="floatingInput"><i class="fa-solid fa-user me-2"></i>User</label>
+          <label for="floatingInput"><i class="fa-solid fa-user me-2"></i> รหัสพนักงาน</label>
         </div>
         <div class="form-floating mb-3">
           <input type="password" class="form-control form-control-sm" id="floatingPassword" name="floatingPassword" placeholder="Password">
-          <label for="floatingPassword"><i class="fa-solid fa-key me-2"></i> Password</label>
+          <label for="floatingPassword"><i class="fa-solid fa-key me-2"></i> รหัสผ่าน</label>
         </div>
         <div class="row ">
           <div class="col-lg-6 col-sm-6 mb-2 text-end">
@@ -71,7 +71,7 @@
             </button>
           </div>
           <div class="col-lg-6 col-sm-6 text-start">
-            <button class="btn text-dark" style="background-color: white;" onclick="window.location.href='login.php'">
+            <button class="btn text-dark" style="background-color: white;" onclick="window.location.href='reservation.php'">
               <i class="fa-solid fa-calendar-check"></i> จองคิวสอบ
             </button>
           </div>
