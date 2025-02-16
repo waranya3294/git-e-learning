@@ -259,6 +259,7 @@
                 title: 'ยืนยันการจอง',
                 icon: 'success',
                 confirmButtonText: 'ตกลง',
+                cancelButtonText: "ยกเลิก",
                 confirmButtonColor: 'green',
                 showCancelButton: true,
             }).then((result) => {
@@ -391,20 +392,20 @@
         $(document).ready(function() {
             // แสดงกล่องสำหรับกรอกรหัสพนักงาน
             Swal.fire({
-                allowOutsideClick: false,
-                showCancelButton: true,
-                confirmButtonText: 'ตกลง',
-                cancelButtonText: 'ยกเลิก',
-                confirmButtonColor: 'green',
-                icon: "warning",
-                title: "กรุณากรอกรหัสผ่าน",
-                input: "text",
+                allowOutsideClick: false, // ป้องกันการคลิกนอกกล่องเพื่อปิด
+                showCancelButton: true, // แสดงปุ่มยกเลิก
+                confirmButtonText: 'ตกลง', // ข้อความปุ่มตกลง
+                cancelButtonText: 'ยกเลิก', // ข้อความปุ่มยกเลิก
+                confirmButtonColor: 'green', // สีปุ่มตกลง
+                icon: "warning", // ไอคอนแจ้งเตือน
+                title: "กรุณากรอกรหัสผ่าน", // หัวข้อแจ้งเตือน
+                input: "text", // ให้ผู้ใช้กรอกข้อมูล
                 preConfirm: (value) => {
                     if (!value) {
                         Swal.showValidationMessage("กรอกรหัสพนักงาน");
                         return false;
                     }
-                    const validIds = ["518", "3790"];
+                    const validIds = ["518", "3790"]; // รายชื่อรหัสพนักงานที่ถูกต้อง
                     if (!validIds.includes(value)) {
                         Swal.showValidationMessage("ไม่พบข้อมูลพนักงาน");
                         return false;
@@ -413,15 +414,17 @@
                     }
                 }
             }).then((result) => {
-
                 if (result.isConfirmed && result.value) {
                     exam_id = result.value;
-                    $("#test").removeClass("d-none");
-                    initializeCalendar(exam_id);
+                    $("#test").removeClass("d-none"); // แสดงเนื้อหาที่ถูกซ่อน
+                    initializeCalendar(exam_id); // เรียกใช้ฟังก์ชันเริ่มต้นปฏิทิน
+                } else if (result.dismiss === Swal.DismissReason.cancel) {
+                    // ถ้าผู้ใช้กดปุ่ม "ยกเลิก" ให้กลับไปหน้า reser.php
+                    window.location.href = 'index.php';
                 }
-
             });
 
+            // คลิกที่พื้นที่นอกปฏิทินแล้วให้คืนค่าการเลือกวันที่
             $(document).click(function(event) {
                 if (!$(event.target).closest('.fc-day, .fc-daygrid-day').length) {
                     $(".fc-day").removeClass("selected-date");
@@ -431,7 +434,6 @@
                 }
             });
         });
-
         // ฟังก์ชันสำหรับการตั้งค่าปฏิทิน
         function initializeCalendar(exam_id) {
             // $("#Exam").removeClass("d-none"); // โชว์คำอธิบายกรณีจะเข้ามายกเลิกการจอง
@@ -489,7 +491,7 @@
                     color: '#ffc107'
                 });
                 updateMyBooking();
-            }else{
+            } else {
                 $("#test1").addClass("d-none");
             }
 

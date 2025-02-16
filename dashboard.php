@@ -99,7 +99,7 @@
         <div class="card-body">
             <div class="row">
                 <div class="col text-end">
-                    <button class="btn btn-success" onclick="showReserve()">จองคิวสอบ</button>
+                    <button class="btn btn-success" onclick="window.location.href='reservation.php'">จองคิวสอบ</button>
                 </div>
             </div>
             <div class="table-responsive mt-3">
@@ -340,33 +340,67 @@
         }
 
         //calendar
+        // กำหนดตัวแปรสำหรับ element ของปฏิทิน
         var calendarEl = document.getElementById('calendar');
+
+        // สร้างปฏิทินโดยใช้ FullCalendar
         var calendar = new FullCalendar.Calendar(calendarEl, {
-            timeZone: 'local',
-            // locale: 'th',
-            themeSystem: 'bootstrap5',
-            selectable: true,
+            timeZone: 'local', // ใช้ timezone ตามเครื่องของผู้ใช้
+            locale: 'th', // ตั้งค่าให้ใช้ภาษาไทย
+            themeSystem: 'bootstrap5', // ใช้ธีมของ Bootstrap 5
+            selectable: true, // เปิดให้สามารถเลือกช่วงวันได้
+
+            // กำหนดส่วนหัวของปฏิทิน
             headerToolbar: {
-                left: 'prev,next',
-                center: 'title',
-                right: 'dayGridMonth,timeGridWeek,timeGridDay'
+                left: 'prev', // ปุ่มย้อนกลับและไปข้างหน้า
+                right: "next", 
+                center: 'title', // แสดงชื่อเดือนและปีตรงกลาง
+
             },
-            weekNumbers: true,
-            dayMaxEvents: true,
+
+            weekNumbers: true, // แสดงหมายเลขสัปดาห์
+            dayMaxEvents: true, // กำหนดให้แต่ละวันสามารถแสดงหลายเหตุการณ์ได้
+
+            // ฟังก์ชันเมื่อผู้ใช้ลากเลือกช่วงวัน
             select: function(info) {
-                alert('selected ' + info.startStr + ' to ' + info.endStr);
+                // แปลงวันที่เริ่มต้นและวันที่สิ้นสุดให้อยู่ในรูปแบบภาษาไทย (วัน เดือน ปี)
+                let startDate = new Date(info.start).toLocaleDateString('th-TH', {
+                    day: '2-digit',
+                    month: 'long',
+                    year: 'numeric'
+                });
+                let endDate = new Date(info.end - 1).toLocaleDateString('th-TH', {
+                    day: '2-digit',
+                    month: 'long',
+                    year: 'numeric'
+                });
+
+                // แสดงช่วงวันที่เลือกใน element ที่มี id เป็น "selected-date"
+                document.getElementById('selected-date').innerText = ` ${startDate} ถึง ${endDate}`;
             },
+
+            // ฟังก์ชันเมื่อผู้ใช้คลิกวันที่ในปฏิทิน
             dateClick: function(info) {
-                let selectedDate = info.dateStr;
-                document.getElementById('selected-date').innerText = selectedDate;
-                filterEmployeesByDate(selectedDate);
-                console.log("Test");
+                // แปลงวันที่ที่คลิกเป็นภาษาไทย
+                let selectedDate = new Date(info.date).toLocaleDateString('th-TH', {
+                    day: '2-digit',
+                    month: 'long',
+                    year: 'numeric'
+                });
+
+                // แสดงวันที่ที่เลือกใน element ที่มี id เป็น "selected-date"
+                document.getElementById('selected-date').innerText = ` ${selectedDate}`;
+
+                // เรียกใช้ฟังก์ชัน filterEmployeesByDate() เพื่อตรวจสอบข้อมูลพนักงานตามวันที่ที่เลือก
+                filterEmployeesByDate(info.dateStr);
             },
+
+            // กำหนดเหตุการณ์ (events) ที่จะแสดงในปฏิทิน
             events: [{
-                    title: 'สอบสี',
-                    start: '2025-02-03',
-                    end: '2025-02-07',
-                    color: '#ffa500',
+                    title: 'สอบสี', // ชื่อเหตุการณ์
+                    start: '2025-02-03', // วันที่เริ่มต้น
+                    end: '2025-02-07', // วันที่สิ้นสุด
+                    color: '#ffa500', // สีของเหตุการณ์
                 },
                 {
                     title: 'สอบความปลอดภัยของการพ่นสี',
@@ -388,7 +422,9 @@
             ],
         });
 
+        // แสดงผลปฏิทิน
         calendar.render();
+
     });
 
     async function fetchEmployeeData(empId) {
