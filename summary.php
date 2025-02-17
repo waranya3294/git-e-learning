@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col d-flex align-items-center">
           <h3>รวมผลคะแนนรายบุคคล</h3>
-          <div class="btn btn-warning ms-3">ดูเฉลย</div>
+          <div class="btn btn-warning ms-3" onclick="window.location.href='answer_maincontent.php'">ดูเฉลย</div>
         </div>
       </div>
       <div class="row ">
@@ -23,25 +23,25 @@
                 <tr>
                   <td>บทเรียนที่ 1 ความปลอดภัยของการพ่นสี</td>
                   <td data-post="5">5 คะแนน</td>
-                  <td><i class="fa-regular fa-clock"></i> 60 นาที </td>
+                  <td><i class="fa-regular fa-clock"></i> 30 นาที </td>
                   <td class="text-center"><span class="badge text-bg-success " style="font-size:14px;">ผ่าน</span></td>
                 </tr>
                 <tr>
                   <td>บทเรียนที่ 2</td>
                   <td data-post="3">3 คะแนน</td>
-                  <td><i class="fa-regular fa-clock"></i> 1 ชั่วโมง 30 นาที </td>
+                  <td><i class="fa-regular fa-clock"></i> 30 นาที </td>
                   <td class="text-center"><span class="badge text-bg-danger " style="font-size:14px;">ไม่ผ่าน</span></td>
                 </tr>
                 <tr>
                   <td>บทเรียนที่ 3</td>
                   <td data-post="5">5 คะแนน</td>
-                  <td><i class="fa-regular fa-clock"></i> 1 ชั่วโมง 30 นาที </td>
+                  <td><i class="fa-regular fa-clock"></i> 30 นาที </td>
                   <td class="text-center"><span class="badge text-bg-success " style="font-size:14px;">ผ่าน</span></td>
                 </tr>
                 <tr>
                   <td>บทเรียนที่ 4</td>
                   <td data-post="4">4 คะแนน</td>
-                  <td><i class="fa-regular fa-clock"></i> 1 ชั่วโมง 30 นาที </td>
+                  <td><i class="fa-regular fa-clock"></i> 30 นาที </td>
                   <td class="text-center"><span class="badge text-bg-success " style="font-size:14px;">ผ่าน</span></td>
                 </tr>
                 <tr>

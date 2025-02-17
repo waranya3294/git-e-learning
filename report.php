@@ -18,7 +18,7 @@
                 </div>
             </div>
 
-            <hr style="margin: 0 -15px;">
+            <hr style="margin: 0 -15px;color:#aaaaaa;">
 
             <div class="table-responsive mt-3">
                 <table id="example" class="table table-striped table-bordered" style="width:100%">
@@ -91,9 +91,11 @@
 
     // Datatable
     let table = new DataTable('#example', {
+        
         language: {
             url: "assets/lib/dataTables/language.json"
-        }
+        },
+        
     });
 
     // pic

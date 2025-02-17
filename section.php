@@ -3,11 +3,11 @@
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-6 col-sm-6">
-                    <h1 style="color: #18B0BD;margin: 0;">พื้นที่รับผิดชอบ</h1>
+                    <h1 style="color: #18B0BD;margin: 0;">จุดปฏิบัติงาน</h1>
                 </div>
                 <div class="col-lg-6 col-sm-6 text-end ">
                     <button type="button" class="btn btn-success" style="font-size: 18px;" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        <i class="fas fa-plus" onclick=""></i> เพิ่มส่วนงาน
+                        <i class="fas fa-plus" onclick=""></i> เพิ่มจุดปฏิบัติงาน
                     </button>
                 </div>
             </div>
@@ -19,11 +19,11 @@
             <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h1 class="modal-title fs-5" id="exampleModalLabel">เพิ่มส่วนงาน</h1>
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">เพิ่มจุดปฏิบัติงาน</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <label for="text">ชื่อส่วนงาน:<span class="text-danger">*</span></label>
+                        <label for="text">ชื่อจุดปฏิบัติงาน:<span class="text-danger">*</span></label>
                         <input type="text" name="title" id="title" class="form-control" required>
                     </div>
                     <div class="modal-footer mt-5">

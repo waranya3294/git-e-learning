@@ -25,60 +25,99 @@
     #calendar {
         max-width: 600px;
     }
+
+    .fc-prev-button {
+        background-color: #FF3333;
+        border-color: #FF3333;
+        color: white;
+    }
+
+    .fc-next-button {
+        background-color: #FF3333;
+        border-color: #FF3333;
+        color: white;
+    }
+
+    .fc-toolbar-title {
+        color: #FF5733;
+    }
+
+
+    .fc .fc-highlight {
+        background: #ffff8c;
+    }
+
+    .selected-date {
+        background: #ffff8c !important;
+    }
 </style>
 
 <div class="container-fluid mt-4">
-    <h4><b>แดชบอร์ด</b></h4>
+    <h2 style="color: #18B0BD;"><b>แดชบอร์ด</b></h2>
     <hr>
     <div class="row">
         <div class="col-md-4 mt-2 mb-2">
-            <div class="card shadow-sm rounded-1" onclick="window.location.href='room_maincontent.php'" style=" border: none; cursor: pointer;">
-                <div class="icon text-success p-3 icon-shadow" style="font-size: 3rem;">🏢</div>
-                <div class="card-body p-3" style="font-size:18px;color:green;">
-                    <b style="font-size:24px;">สร้างห้องสอบ</b>
+            <div class="card shadow-sm border-0 rounded overflow-hidden" onclick="window.location.href='room_maincontent.php'" style="cursor: pointer;">
+                <div class="card-body text-start text-white" style="background: linear-gradient(135deg, #01a6ba,  #0288a6a6);">
+                    <div class="icon" style="font-size: 3.5rem;">🏢</div>
+                    <h2 class="mt-2 fw-bold text-start">สร้างห้องสอบ</h2>
                 </div>
             </div>
         </div>
         <div class="col-md-4 mt-2 mb-2">
-            <div class="card shadow-sm rounded-1 " onclick="window.location.href='examform_maincontent.php'" style=" border: none; cursor: pointer">
-                <div class="icon text-primary p-3 icon-shadow" style="font-size: 3rem;">📄</div>
-                <div class="card-body p-3" style="font-size:18px;color:#006f71;">
-                    <b style="font-size:24px;">สร้างเนื้อหา</b>
+            <div class="card shadow-sm border-0 rounded overflow-hidden" onclick="window.location.href='examform_maincontent.php'" style="cursor: pointer;">
+                <div class="card-body text-start text-white" style="background: linear-gradient(135deg, #96cfcf, #64b3b3);">
+                    <div class="icon" style="font-size: 3.5rem;">📄</div>
+                    <h2 class="mt-2 fw-bold text-start">สร้างเนื้อหา</h2>
                 </div>
             </div>
         </div>
-        <div class="col-md-4 mt-2 ">
-            <div class="card shadow-sm rounded-1" onclick="window.location.href='examgroup_maincontent.php'" style=" border: none; cursor: pointer">
-                <div class="icon text-danger p-3 icon-shadow" style="font-size: 3rem;color:red;">📝</div>
-                <div class="card-body p-3" style="font-size:18px;color:#7a7a7a;">
-                    <b style="font-size:24px;">สร้างข้อสอบ</b>
+        <div class="col-md-4 mt-2 mb-2">
+            <div class="card shadow-sm border-0 rounded overflow-hidden" onclick="window.location.href='examgroup_maincontent.php'" style="cursor: pointer;">
+                <div class="card-body text-start text-white" style="background: linear-gradient(135deg, #afd7f6, #85b8e0);">
+                    <div class="icon" style="font-size: 3.5rem;">📝</div>
+                    <h2 class="mt-2 fw-bold text-start">สร้างข้อสอบ</h2>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-<div class="container-fluid mt-3 mb-3">
+
+<div class="container-fluid mt-4 mb-3">
     <div class="card shadow-sm rounded-1">
         <div class="card-body">
             <div class="row">
                 <div class="col-lg-6 col-sm-6 ">
-                    <h4><b>ปฏิทินการสอบ</b></h4>
+                    <h2 style="color: #18B0BD;"><b>ปฏิทินการสอบ</b></h2>
                     <div id='calendar' class="mt-4" style="cursor: pointer"></div>
+                    <div class="row align-items-center justify-content-center d-flex mt-2">
+                        <div class="col-auto d-flex align-items-center">
+                            <button class="btn btn-success me-1"></button>
+                            <p class="mb-0">ว่าง</p>
+                        </div>
+                        <div class="col-auto d-flex align-items-center">
+                            <button class="btn btn-danger me-1"></button>
+                            <p class="mb-0">เต็ม</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-lg-6 col-sm-6 mt-4">
                     <h4>แสดงรายการ</h4>
                     <!-- <label for="text" style="font-size: 18px;">ชื่อห้องสอบ: <span id="selected-room"></span></label> -->
                     <label for="text" style="font-size: 18px;" class="mb-2">วันที่: <span id="selected-date"></span></label>
-                    <div class="table-responsive ">
+                    <div class="table-responsive">
                         <table id="employee-table" class="table table-striped " style="width:100%">
                             <thead>
                                 <tr>
-                                    <th>รหัสพนักงาน</th>
-                                    <th>ชื่อ - นามสกุล</th>
-                                    <th>แผนก</th>
-                                    <th>ส่วนงาน</th>
-                                    <th>โรงงาน</th>
+                                    <th class="Middle">รหัสพนักงาน</th>
+                                    <th class="Middle">ชื่อ - นามสกุล</th>
+                                    <!-- <th class="Middle">ห้องสอบ</th> -->
+                                    <td>รอบเวลา</td>
+                                    <th class="Middle">ตำแหน่ง</th>
+                                    <th class="Middle">แผนก</th>
+                                    <th class="Middle">จุดปฏิบัติงาน</th>
+                                    <th class="Middle">โรงงาน</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -93,7 +132,7 @@
 </div>
 
 <div class="container-fluid mt-3 mb-4">
-    <h4><b>ตารางจองคิวสอบ</b></h4>
+    <h2 style="color: #18B0BD;"><b>ตารางจองคิวสอบ</b></h2>
     <hr>
     <div class="card shadow-sm rounded-1">
         <div class="card-body">
@@ -108,36 +147,27 @@
                         <tr style=" font-size:14px;">
                             <th class="Middle">รหัสพนักงาน</th>
                             <th class="Middle">ชื่อ - นามสกุล</th>
-                            <th class="Middle">ห้องสอบ</th>
+                            <!-- <th class="Middle">ห้องสอบ</th> -->
                             <th class="Middle">วันที่จอง</th>
-                            <th class="Middle">วันที่เปิดสอบ</th>
+                            <td>รอบเวลา</td>
+                            <th class="Middle">ตำแหน่ง</th>
                             <th class="Middle">แผนก</th>
-                            <th class="Middle">งาน</th>
+                            <th class="Middle">จุดปฏิบัติงาน</th>
                             <th class="Middle">โรงงาน</th>
                             <th class="Middle">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr class="middle">
-                            <td class="text-center middle">4284</td>
-                            <td class="middle">วรัญญา หันจางสิทธิ์</td>
-                            <td class="middle">ความปลอดภัยของการพ่นสี</td>
-                            <td class="middle">02/02/2025</td>
-                            <td class="middle">11/02/2025</td>
-                            <td class="middle">TSF</td>
-                            <td class="middle">Final Paint 35 Ton</td>
-                            <td class="middle">TS</td>
-                            <td> <button class="btn btn-sm btn-outline-danger" onclick="showDelete()"><i class="bi bi-trash"></i></button></td>
-                        </tr>
-                        <tr class="middle">
-                            <td class="text-center middle">3888</td>
-                            <td class="middle">นาย เอกอัมรินทร์ เกรัมย์ </td>
-                            <td class="middle">ประกอบ</td>
-                            <td class="middle">02/02/2025</td>
-                            <td class="middle">28/02/2025</td>
-                            <td class="middle">Manufacturing Tasith Factory</td>
-                            <td class="middle">Lower Sub</td>
-                            <td class="middle">TS</td>
+                            <td class="text-center middle">518</td>
+                            <td class="middle text-start">นาย ปฏิวัฒน์ นาดี </td>
+                            <!-- <td class="middle">ประกอบ</td> -->
+                            <td class="middle">18/02/2025</td>
+                            <td></td>
+                            <td class="middle text-start">Manufacturing</td>
+                            <td class="middle text-start">Manufacturing Pluakdaeng Factory</td>
+                            <td class="middle text-start">CNC</td>
+                            <td class="middle">PD</td>
                             <td> <button class="btn btn-sm btn-outline-danger" onclick="showDelete()"><i class="bi bi-trash"></i></button></td>
                         </tr>
                     </tbody>
@@ -148,14 +178,14 @@
 </div>
 
 <div class="container-fluid mt-4 mb-4">
-    <h4><b>สรุปผลการสอบ</b></h4>
+    <h2 style="color: #18B0BD;"><b>สรุปผลการสอบ</b></h2>
     <hr>
     <div class="card shadow-sm rounded-1">
         <div class="card-body">
             <h4 class="text-center mb-4">TS</h4>
             <div id="chart"></div>
             <div class="table-responsive mt-3">
-                <table id="example" class="table table-striped table-bordered" style="width:100%">
+                <table id="example" class="table table-striped table-bordered" style="width:100%;">
                     <thead>
                         <tr class="text-center" style="font-size:18px; border: 1px solid ridge;">
                             <th class="text-center">ประเภท</th>
@@ -303,19 +333,13 @@
         function filterEmployeesByDate(date) {
 
             let employeeData = {
-                '2025-02-11': [{
-                    id: '4284',
-                    name: 'วรัญญา หันจางสิทธิ์',
-                    department: 'TSF',
-                    section: 'Final Paint 35 Ton',
-                    factory: 'TS',
-                }],
-                '2025-02-28': [{
-                    id: '3888',
-                    name: 'นาย เอกอัมรินทร์ เกรัมย์',
-                    department: 'Manufacturing Tasith Factory',
-                    section: 'Lower Sub',
-                    factory: 'TS',
+                '2025-02-18': [{
+                    id: '518',
+                    name: 'นาย ปฏิวัฒน์',
+                    department: 'Manufacturing ',
+                    section: 'Manufacturing Pluakdaeng Factory',
+                    wrokplace: 'CNC',
+                    factory: 'PD',
 
                 }],
 
@@ -331,8 +355,10 @@
                 <tr>
                     <td>${emp.id}</td>
                     <td>${emp.name}</td>
+                    <td></td>
                     <td>${emp.department}</td>
                     <td>${emp.section}</td>
+                    <td>${emp.wrokplace}</td>
                     <td>${emp.factory}</td>
                 </tr>`;
                 tbody.innerHTML += row;
@@ -353,12 +379,11 @@
             // กำหนดส่วนหัวของปฏิทิน
             headerToolbar: {
                 left: 'prev', // ปุ่มย้อนกลับและไปข้างหน้า
-                right: "next", 
+                right: "next",
                 center: 'title', // แสดงชื่อเดือนและปีตรงกลาง
 
             },
-
-            weekNumbers: true, // แสดงหมายเลขสัปดาห์
+            weekNumbers: false, // แสดงหมายเลขสัปดาห์
             dayMaxEvents: true, // กำหนดให้แต่ละวันสามารถแสดงหลายเหตุการณ์ได้
 
             // ฟังก์ชันเมื่อผู้ใช้ลากเลือกช่วงวัน
@@ -395,31 +420,48 @@
                 filterEmployeesByDate(info.dateStr);
             },
 
-            // กำหนดเหตุการณ์ (events) ที่จะแสดงในปฏิทิน
             events: [{
-                    title: 'สอบสี', // ชื่อเหตุการณ์
-                    start: '2025-02-03', // วันที่เริ่มต้น
-                    end: '2025-02-07', // วันที่สิ้นสุด
-                    color: '#ffa500', // สีของเหตุการณ์
+                    start: '2025-02-11',
+                    title: 'ว่าง ',
+                    color: 'green'
                 },
                 {
-                    title: 'สอบความปลอดภัยของการพ่นสี',
-                    start: '2025-02-07',
-                    end: '2025-02-15',
-                    color: '#00adb0',
+                    start: '2025-02-12',
+                    title: 'ว่าง ',
+                    color: 'green'
                 },
                 {
-                    title: 'เชื่อม',
-                    start: '2025-02-07',
-                    end: '2025-02-11',
-                    color: '#9933FF',
-                },
-                {
-                    title: 'สอบประกอบ',
-                    start: '2025-02-28',
-                    color: '#3CB371',
+                    start: '2025-02-13',
+                    title: 'เต็ม ',
+                    color: 'red'
                 }
             ],
+
+            // กำหนดเหตุการณ์ (events) ที่จะแสดงในปฏิทิน
+            //     events: [{
+            //             title: 'สอบสี', // ชื่อเหตุการณ์
+            //             start: '2025-02-03', // วันที่เริ่มต้น
+            //             end: '2025-02-07', // วันที่สิ้นสุด
+            //             color: '#ffa500', // สีของเหตุการณ์
+            //         },
+            //         {
+            //             title: 'สอบความปลอดภัยของการพ่นสี',
+            //             start: '2025-02-07',
+            //             end: '2025-02-15',
+            //             color: '#00adb0',
+            //         },
+            //         {
+            //             title: 'เชื่อม',
+            //             start: '2025-02-07',
+            //             end: '2025-02-11',
+            //             color: '#9933FF',
+            //         },
+            //         {
+            //             title: 'สอบประกอบ',
+            //             start: '2025-02-28',
+            //             color: '#3CB371',
+            //         }
+            //     ],
         });
 
         // แสดงผลปฏิทิน

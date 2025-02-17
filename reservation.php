@@ -329,7 +329,7 @@
                 <p style="font-size:20px;"><strong>แผนก :</strong> ${employeeData.section}</p>
                 <p style="font-size:20px;"><strong>จุดปฏิบัติงาน :</strong> ${employeeData.workplace}</p>
                 <p style="font-size:20px;"><strong>โรงงาน :</strong> ${factoryName}</p>
-                <label for="text" class="d-flex justify-content-center align-items-center" style="font-size:24px; color:red;">*หากต้องการยกเลิกจองสอบ กรุณากดปุ่มตกลง</label>
+                <label for="text" class="d-flex justify-content-center align-items-center" style="font-size:24px; color:red;">*หากต้องการยกเลิกจองสอบ กรุณากดปุ่มยกเลิก</label>
 
                 <!-- จัดตำแหน่งปุ่มตรงกลาง -->
                 <div class="mt-3 mb-3 d-flex justify-content-center align-items-center">

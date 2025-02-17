@@ -18,9 +18,18 @@
     <h1 class="display-4" style="color: #18B0BD;">จัดการผู้เข้าสอบ</h1>
     <div class="card">
         <div class="card-body">
-            <div class="text-end mb-3">
-                <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-plus"></i> เพิ่มข้อมูล</button>
+            <div class="row justify-content-center">
+                <div class="col">
+                    <h4>จัดการผู้เข้าสอบ</h4>
+                </div>
+                <div class="col">
+                    <div class="text-end mb-2">
+                        <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fas fa-plus"></i> เพิ่มข้อมูล</button>
+                    </div>
+                </div>
             </div>
+            <hr style="margin: 0 -15px; color:#aaaaaa;">
+
 
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-xl">
@@ -52,8 +61,8 @@
                             </div>
                             <div class="row mb-2">
                                 <div class="col-6 text-start">
-                                    <label for="text">ส่วนงาน</label>
-                                    <input class="form-control" type="text" id="workplace" name="workplace" placeholder="ส่วนงาน">
+                                    <label for="text">จุดปฏิบัติงาน</label>
+                                    <input class="form-control" type="text" id="workplace" name="workplace" placeholder="จุดปฏิบัติงาน">
                                 </div>
                                 <div class="col-6 text-start">
                                     <label for="text">โรงงาน</label>
@@ -83,7 +92,7 @@
                 </div>
             </div>
 
-            <div class="table-responsive">
+            <div class="table-responsive mt-3">
                 <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr>
@@ -100,7 +109,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="text-start">1</td>
+                            <td class="text-center">1</td>
                             <td class="text-center">0518</td>
                             <td>นาย ปฏิวัฒน์ นาดี</td>
                             <td>CNC Controller</td>
@@ -116,7 +125,7 @@
                             </td>
                         </tr>
                         <tr>
-                            <td class="text-start">2</td>
+                            <td class="text-center">2</td>
                             <td class="text-center">0549</td>
                             <td>นาย สนิท เงาใส</td>
                             <td>Painter</td>
@@ -141,13 +150,7 @@
 <script>
     let table = new DataTable('#example', {
         language: {
-            url: "assets/lib/dataTables/language.json",
-            paginate: {
-                previous: "<",
-                next: ">",
-                first: "<<",
-                last: ">>"
-            }
+            url: "assets/lib/dataTables/language.json"
         }
     });
 
@@ -180,8 +183,8 @@
 </div>
 <div class="row mb-2">
     <div class="col-6 text-start">
-      <label for="text">ส่วนงาน</label>
-            <input class="form-control" type="text" id="workplace" name="workplace" placeholder="ส่วนงาน">
+      <label for="text">จุดปฏิบัติงาน</label>
+            <input class="form-control" type="text" id="workplace" name="workplace" placeholder="จุดปฏิบัติงาน">
     </div>
     <div class="col-6 text-start">
       <label for="text">โรงงาน</label>
