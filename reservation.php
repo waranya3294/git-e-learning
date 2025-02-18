@@ -129,9 +129,6 @@
                             </div>
                         </div>
                     </div>
-                    <div class="mt-4 text-end">
-                        <button class="btn btn-secondary" style="font-size: 20px;" onclick="window.location.href='index.php'">กลับหน้าแรก</button>
-                    </div>
                 </div>
 
                 <!-- แสดงคำอธิบายกรณ๊จะเข้ามายกเลิกการจอง
@@ -334,6 +331,9 @@
                 <!-- จัดตำแหน่งปุ่มตรงกลาง -->
                 <div class="mt-3 mb-3 d-flex justify-content-center align-items-center">
                     <button class="btn btn-warning me-2" style="font-size: 20px;" id="confirmCancel" onclick="cancelBooking(selectedDate)">ยกเลิก</button>
+                  
+                        <button class="btn btn-secondary" style="font-size: 20px;" onclick="window.location.href='index.php'">กลับหน้าแรก</button>
+                 
                 </div> `;
 
             $("#bookingInfo").html(bookingInfo);
