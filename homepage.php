@@ -31,9 +31,8 @@
 </style>
 
 <body>
-
     <main class="form-signin">
-        <div class="container -fluid vh-100 d-flex justify-content-center align-items-center" style="max-width: 500px; margin: 0 auto;">
+        <div class="container-fluid vh-100 d-flex justify-content-center align-items-center" style="max-width: 500px; margin: 0 auto;">
             <div class="row ">
                 <div class="card border-0 shadow rounded-3 mb-2" style="--bs-card-bg: rgba(255, 255, 255, 0.5);">
                     <div class="card-body">

@@ -15,7 +15,7 @@
             <div class="row">
                 <div class="col text-end mb-2">
                     <button class="btn btn-success" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@fat"><i class="fas fa-plus"></i> เพิ่มช่วงเวลา</button>
-                    <!-- <button class="btn btn-secondary"><i class="fa-solid fa-download"></i> ดาวน์โหลด</button> -->
+                    <button class="btn btn-secondary"><i class="fa-solid fa-download"></i> Report</button>
                 </div>
             </div>
             <hr style="margin: 0 -15px; color:#aaaaaa;">
