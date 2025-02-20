@@ -158,6 +158,11 @@
               จัดการจองคิวสอบ
             </a>
 
+            <a class="nav-link" href="exam_approval_maincontent.php">
+              <div class="sb-nav-link-icon"><i class="fas fa-edit" style="color:white"></i></div>
+              อนุมัติการเข้าสอบ
+            </a>
+
 
           </div>
         </div>
