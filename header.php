@@ -38,6 +38,8 @@
 
   <script src="assets/lib/calendar/index.global.min.js"></script>
 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
 
   <!-- sweetalert -->
   <script src="assets/lib/sweetalert/sweetalert.js"></script>
@@ -144,7 +146,7 @@
             </a>
             <div class="collapse" id="collapsePages2" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
               <nav class="sb-sidenav-menu-nested nav accordion ms-2" id="sidenavAccordionPages">
-                <a class="nav-link" href="report_maincontent.php"><i class="fa-regular fa-circle fa-sm me-2"></i> รายชื่อผู้เข้าสอบ</a>
+                <a class="nav-link" href="employee_list_maincontent.php"><i class="fa-regular fa-circle fa-sm me-2"></i> รายชื่อผู้เข้าสอบ</a>
               </nav>
             </div>
 

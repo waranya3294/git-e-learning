@@ -12,242 +12,190 @@
       rel="stylesheet"
       href="https://cdn.datatables.net/2.2.2/css/dataTables.bootstrap5.css"
     />
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    
     <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.js"></script>
 
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdn.datatables.net/2.2.2/css/dataTables.bootstrap5.css"
-    />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+    <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
     <!-- fontawsome -->
-    <link rel="stylesheet" href="assets/lib/fontawsome/css/brands.css" />
-    <link rel="stylesheet" href="assets/lib/fontawsome/css/solid.css" />
-    <link rel="stylesheet" href="assets/lib/fontawsome/css/regular.css" />
-    <link rel="stylesheet" href="assets/lib/fontawsome/css/fontawesome.css" />
+  <link rel="stylesheet" href="assets/lib/fontawsome/css/brands.css">
+  <link rel="stylesheet" href="assets/lib/fontawsome/css/solid.css">
+  <link rel="stylesheet" href="assets/lib/fontawsome/css/regular.css">
+  <link rel="stylesheet" href="assets/lib/fontawsome/css/fontawesome.css">
   </head>
 
   <body>
-    <div class="container-fluid mt-5">
-      <div class="card shadow-sm">
-        <div class="card-body">
-          <h3>รออนุมัติเข้าสอบ</h3>
-          <p>Admin อนุมัติสมาชิกเพื่อเข้ามาสอบ</p>
+    <div class="container mt-4">
+      <div class="card shadow-sm rounded-0">
+        <div class="card-header rounded-0 text-white text-start fs-5" style="background-color: #18B0BD;">
+         <h4>ฟอร์มเลือกข้อมูลการสอบ</h4>
+      </div>
+          <div class="card-body">
+              <div class="row">
+                  <!-- เลือกประเภทการสอบ -->
+                  <div class="col-md-4 mb-3">
+                    <label for="examType" class="fw-bold"> เลือกประเภทการสอบ</label>
+                    <select class="form-select" id="examType">
+                        <option selected>--เลือกประเภทการสอบ--</option>
+                        <option value="1">สี</option>
+                        <option value="2">เชื่อม</option>
+                        <option value="3">ประกอบ</option>
+                        <option value="4">CNC</option>
+                    </select>
+                </div>
+  
+                  <!-- เลือกโรงงาน -->
+                  <div class="col-md-4 mb-3">
+                    <label for="factory" class="fw-bold">เลือกโรงงาน</label>
+                    <select class="form-select" id="factory">
+                        <option selected>--เลือกโรงงาน--</option>
+                        <option value="1">TS (ตาสิทธิ์)</option>
+                        <option value="2">PD (ปลวกแดง)</option>
+                        <option value="3">ทั้งหมด</option>
+                    </select>
+                </div>
+  
+                  <!-- เลือกจุดปฏิบัติงาน -->
+                  <div class="col-md-4">
+                    <label class="fw-bold">เลือกจุดปฏิบัติงาน</label>
+                    <div id="section" class="border rounded p-2">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="topcoat">
+                            <label class="form-check-label" for="topcoat">Top coat</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="smallpart">
+                            <label class="form-check-label" for="smallpart">Small Part</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="undercoat">
+                            <label class="form-check-label" for="undercoat">Under Coat</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="finalpaint">
+                            <label class="form-check-label" for="finalpaint">Final Paint</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="painting">
+                            <label class="form-check-label" for="painting">Painting</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="selectAll">
+                            <label class="form-check-label" for="selectAll">เลือกทั้งหมด</label>
+                        </div>
+                    </div>
+                </div>
+              </div>
 
-          <div class="table-responsive mt-3">
-            <table
-              id="example"
-              class="table table-bordered"
-              style="width: 100%"
-            >
-              <thead>
-                <tr>
-                  <th class="text-center">#</th>
-                  <th class="text-center">รหัสพนักงาน</th>
-                  <th class="text-center">ชื่อ - นามสกุล</th>
-                  <th class="text-center">แผนก</th>
-                  <th class="text-center">วันที่</th>
-                  <th class="text-center">รอบเวลา</th>
-                  <th class="text-center">โรงงาน</th>
-                  <th class="text-center">สถานะ</th>
-                  <th class="text-center">สถานะ</th>
-                  <th class="text-center">จัดการข้อมูล</th>
-                  <th class="text-center">หมายเหตุ</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr class="align-middle">
-                  <td>1</td>
-                  <td class="text-center">3790</td>
-                  <td>นาย เทวัน บุญยะบุตร</td>
-                  <td>Manufacturing Tasith Factory</td>
-                  <td>12 กุมภาพันธ์ 2568</td>
-                  <td>09:00 - 10:00 น.</td>
-                  <td class="text-center">TS</td>
-                  <td>
-                    <div class="text-center">
-                      <button
-                        class="btn btn-sm btn-warning me-2"
-                        style="color: white"
-                        id="approve-btn-1"
-                        onclick="approve(1)"
-                      >
-                        รออนุมัติ
-                      </button>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="text-center">
-                      <button
-                        class="btn btn-sm btn-danger"
-                        id="reject-btn-1"
-                        onclick="showData(1)"
-                      >
-                        ยกเลิก
-                      </button>
-                    </div>
-                  </td>
-                  <td>
-                    <div class="text-center">
-                      <button
-                        class="btn btn-sm btn-outline-warning"
-                        onclick="editdata(1)"
-                      >
-                        <i class="fas fa-edit"></i> แก้ไขสถานะ
-                      </button>
-                    </div>
-                  </td>
-                  <td id="remark-1"></td>
-                </tr>
-              </tbody>
-            </table>
+              <label for="datetimes">เลือกวันที่: <span class="text-danger">*</span></label>
+              <div class="row " id="dateFieldsContainer">
+                  <div class="col-lg-6 d-flex align-items-center">
+                      <div class="input-group mb-2">
+                          <input type="text" id="datetimes" name="datetimes" class="form-control" required placeholder="เลือกช่วงเวลา" aria-describedby="exam_starttime_endtime">
+                          <span class="input-group-text" id="exam_starttime_endtime" style="cursor: pointer;">
+                              <i class="fa-solid fa-calendar-days"></i>
+                          </span>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="row">
+                <div class="col text-center mt-4">
+                  <button class="btn btn-lg btn-secondary" id="generatePDF"><i class="fa-solid fa-magnifying-glass"></i> แสดงข้อมูล</button>
+                </div>
+              </div>
           </div>
-        </div>
       </div>
-    </div>
+  </div>
 
-    <script>
-      let table = new DataTable("#example", {
-        language: {
-          url: "assets/lib/dataTables/language.json",
-          info: "",
-        },
-      });
+  <script>
+ $(function() {
+  // ตั้งค่าภาษาไทยใน moment.js
+  moment.locale('th'); // ตั้งค่าให้ moment ใช้ภาษาไทย
 
-      //แก้ไขสถานะ
-      function editdata(id) {
-        const approveBtn = document.getElementById(`approve-btn-${id}`);
-        const rejectBtn = document.getElementById(`reject-btn-${id}`);
-        let currentStatus = "";
+  // Date range picker setup
+  $('input[name="datetimes"]').daterangepicker({
+    timePicker: true,
+    startDate: moment().startOf('hour'),
+    endDate: moment().startOf('hour').add(32, 'hour'),
+    locale: {
+      format: 'DD/MM/YYYY', // ฟอร์แมตวันที่
+      applyLabel: 'ตกลง',
+      cancelLabel: 'ยกเลิก',
+      fromLabel: 'จาก',
+      toLabel: 'ถึง',
+      daysOfWeek: ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส'],
+      monthNames: ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 
+                   'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'],
+      firstDay: 1 // ตั้งให้วันแรกเป็นวันจันทร์
+    }
+  });
 
-        // ตรวจสอบสถานะปัจจุบันของปุ่ม
-        if (approveBtn.classList.contains("btn-success")) {
-          currentStatus = "approve"; //อนุมัติ
-        } else if (rejectBtn.classList.contains("btn-secondary")) {
-          currentStatus = "reject"; //ยกเลิก
-        }
+  // Show/hide sections based on exam type
+  $('#examType').change(function() {
+    if ($(this).val() == '1') { // สี
+      $('#section').show();
+    } else {
+      $('#section').hide();
+    }
+  });
 
-        Swal.fire({
-          icon: "warning",
-          title: "แก้ไขสถานะ",
-          html: `
-    <div class="row">
-      <div class="col-lg-4">
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="statusRadioOptions" id="statusRadio1" value="approve" ${
-            currentStatus === "approve" ? "checked" : ""
-          }>
-          <label class="form-check-label" for="statusRadio1" style="font-size:18px;">อนุมัติ</label>
-        </div>
-        <div class="form-check form-check-inline">
-          <input class="form-check-input" type="radio" name="statusRadioOptions" id="statusRadio2" value="reject" ${
-            currentStatus === "reject" ? "checked" : ""
-          }>
-          <label class="form-check-label" for="statusRadio2" style="font-size:18px;">ยกเลิก</label>
-        </div>
-      </div>
-    </div>
-    `,
-          confirmButtonText: "ตกลง",
-          confirmButtonColor: "green",
-          showCancelButton: true,
-          cancelButtonText: "ยกเลิก",
-        }).then((result) => {
-          if (result.isConfirmed) {
-            const selectedStatus = document.querySelector(
-              'input[name="statusRadioOptions"]:checked'
-            ).value;
-            updateStatus(id, selectedStatus);
-          }
-        });
-      }
+  // ซ่อนส่วนของการเลือกจุดปฏิบัติงาน
+  $('#section').hide();
 
-      function updateStatus(id, status) {
-        const approveBtn = document.getElementById(`approve-btn-${id}`);
-        const rejectBtn = document.getElementById(`reject-btn-${id}`);
-        const editBtn = document.querySelector(
-          `button[onclick="editdata(${id})"]`
-        );
+  // ฟังก์ชัน "Select All" เพื่อเลือก/ยกเลิกเลือกทุกช่อง
+  $('#selectAll').click(function() {
+    $('input[type="checkbox"]').prop('checked', this.checked);
+  });
+});
 
-        if (status === "approve") {
-          approveBtn.innerText = "อนุมัติแล้ว";
-          approveBtn.classList.remove("btn-warning");
-          approveBtn.classList.add("btn-success");
-          approveBtn.disabled = true;
-          rejectBtn.parentElement.classList.add("d-none"); // ซ่อนปุ่มยกเลิก
-          approveBtn.parentElement.classList.remove("d-none");
-        } else if (status === "reject") {
-          Swal.fire({
-            icon: "warning",
-            html: `<div class="text-start">
-               <textarea id="reason" class="form-control" placeholder="กรุณาระบุเหตุผล"></textarea>
-            </div>`,
-            confirmButtonText: "ตกลง",
-            confirmButtonColor: "green",
-            cancelButtonText: "ยกเลิก",
-            showCancelButton: true,
-            allowOutsideClick: false,
-          }).then((result) => {
-            if (result.isConfirmed) {
-              const reason = document.getElementById("reason").value;
-              document.getElementById(`remark-${id}`).innerText = reason;
-              rejectBtn.innerText = "ยกเลิกแล้ว";
-              rejectBtn.classList.remove("btn-danger");
-              rejectBtn.classList.add("btn-secondary");
-              rejectBtn.disabled = true;
-              approveBtn.parentElement.classList.add("d-none"); // ซ่อนปุ่มอนุมัติ
-              rejectBtn.parentElement.classList.remove("d-none"); 
-            }
-          });
-        }
-       // editBtn.classList.remove("d-none"); // แสดงปุ่มแก้ถานะ
-      }
+document.addEventListener("DOMContentLoaded", function () {
+  // สร้าง PDF เมื่อคลิกที่ปุ่ม "แสดงข้อมูล"
+  document.getElementById("generatePDF").addEventListener("click", function () {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
 
-      // ฟังก์ชันสำหรับการอนุมัติ
-      function approve(id) {
-        const approveBtn = document.getElementById(`approve-btn-${id}`);
-        const rejectBtn = document.getElementById(`reject-btn-${id}`);
-        approveBtn.innerText = "อนุมัติแล้ว";
-        approveBtn.classList.remove("btn-warning");
-        approveBtn.classList.add("btn-success");
-        approveBtn.disabled = true;
-        rejectBtn.parentElement.classList.add("d-none"); // ซ่อนปุ่มยกเลิก
-      }
+    // โหลดฟอนต์ Sarabun VP (กรุณาแปลงฟอนต์เป็น base64 และเพิ่มไฟล์นี้ในโปรเจคต์)
+    doc.addFileToVFS("SarabunVP-Regular.ttf", "base64_encoded_font_data"); // ใช้ base64 encoding ฟอนต์
+    doc.addFont("SarabunVP-Regular.ttf", "SarabunVP", "normal");
 
-      // ฟังก์ชันสำหรับการไม่อนุมัติ
-      function showData(id) {
-        Swal.fire({
-          icon: "warning",
-          html: `<div class="text-start">
-               <textarea id="reason" class="form-control" placeholder="กรุณาระบุเหตุผล"></textarea>
-            </div>`,
-          confirmButtonText: "ตกลง",
-          confirmButtonColor: "green",
-          cancelButtonText: "ยกเลิก",
-          showCancelButton: true,
-          allowOutsideClick: false,
-        }).then((result) => {
-          if (result.isConfirmed) {
-            const reason = document.getElementById("reason").value;
-            document.getElementById(`remark-${id}`).innerText = reason;
-            const rejectBtn = document.getElementById(`reject-btn-${id}`);
-            const approveBtn = document.getElementById(`approve-btn-${id}`);
-            rejectBtn.innerText = "ยกเลิกแล้ว";
-            rejectBtn.classList.remove("btn-danger");
-            rejectBtn.classList.add("btn-secondary");
-            rejectBtn.disabled = true;
-            approveBtn.parentElement.classList.add("d-none"); // ซ่อนปุ่มอนุมัติ
-          }
-        });
-      }
-    </script>
+    // ตั้งค่าให้ใช้ฟอนต์ Sarabun VP
+    doc.setFont("SarabunVP");
+
+    // เพิ่มข้อความใน PDF โดยใช้ฟอนต์ภาษาไทย
+    doc.text("รายงานข้อมูลพนักงาน", 14, 10);
+
+    // ข้อมูลที่จะใช้ใน PDF (แทนที่ด้วยข้อมูลจริง)
+    const headers = [["รหัสพนักงาน", "ชื่อ - นามสกุล", "ตำแหน่ง","ฝ่าย", "แผนก", "จุดปฏิบัติงาน", "โรงงาน","วันที่จอง","รอบเวลา","สถานะ"]];
+    const data = [
+      //   ["001", "สมชาย", "ทองคำ", "ช่างเชื่อม", "ผลิต", "ฝ่าย A", "TS (ตาสิทธิ์)"],
+      //   ["002", "สมหญิง", "เงินทอง", "ช่างสี", "คุณภาพ", "ฝ่าย B", "PD (ปลวกแดง)"]
+    ];
+
+    // ใช้ autoTable เพื่อแสดงข้อมูลในตาราง
+    doc.autoTable({
+      head: headers,
+      body: data,
+      startY: 20
+    });
+
+    // แสดง PDF ในหน้าต่างใหม่โดยไม่ต้องดาวน์โหลด
+    const pdfData = doc.output('datauristring'); // สร้าง data URI string
+    const pdfWindow = window.open();
+    pdfWindow.document.write('<html><body><iframe width="100%" height="100%" src="' + pdfData + '"></iframe></body></html>');
+  });
+});
+
+  </script>
+  
   </body>
 </html>
