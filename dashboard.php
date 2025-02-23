@@ -57,14 +57,6 @@
     <hr>
     <div class="row">
         <div class="col-md-4 mt-2 mb-2">
-            <div class="card shadow-sm border-0 rounded overflow-hidden" onclick="window.location.href='room_maincontent.php'" style="cursor: pointer;">
-                <div class="card-body text-start text-white" style="background: linear-gradient(135deg, #01a6ba,  #0288a6a6);">
-                    <div class="icon" style="font-size: 3.5rem;">🏢</div>
-                    <h2 class="mt-2 fw-bold text-start">สร้างห้องสอบ</h2>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mt-2 mb-2">
             <div class="card shadow-sm border-0 rounded overflow-hidden" onclick="window.location.href='examform_maincontent.php'" style="cursor: pointer;">
                 <div class="card-body text-start text-white" style="background: linear-gradient(135deg, #96cfcf, #64b3b3);">
                     <div class="icon" style="font-size: 3.5rem;">📄</div>
@@ -80,6 +72,15 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-4 mt-2 mb-2">
+            <div class="card shadow-sm border-0 rounded overflow-hidden" onclick="window.location.href='room_maincontent.php'" style="cursor: pointer;">
+                <div class="card-body text-start text-white" style="background: linear-gradient(135deg, #01a6ba,  #0288a6a6);">
+                    <div class="icon" style="font-size: 3.5rem;">🏢</div>
+                    <h2 class="mt-2 fw-bold text-start">สร้างห้องสอบ</h2>
+                </div>
+            </div>
+        </div>
+
     </div>
 </div>
 

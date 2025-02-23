@@ -27,17 +27,19 @@
       font-style: normal;
     }
 
-    body {
-      background-image: url('images/1.jpg');
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      margin: 0;
-      animation: fadeIn 1s ease-in-out;
-    }
+    html, body {
+    background-image: url('images/1.jpg');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden; /* ปิด Scroll ของหน้าเว็บ */
+    position: fixed; /* ป้องกันการขยับ */
+  }
 
     .card {
       width: 100%;
@@ -58,6 +60,10 @@
     a:hover {
       text-decoration: underline;
     }
+
+    .swal2-container {
+    position: fixed !important;
+  }
   </style>
 </head>
 
@@ -98,41 +104,45 @@
     </div>
 
     <script>
-      function getUserData() {
-        var username = $("#floatingInput").val();
-        var password = $("#floatingPassword").val();
-        // console.log('User : ' + username + ' Pass : ' + password);
-        var formData = new FormData();
-        formData.append('user', username);
-        formData.append('pass', password);
+      function lockScroll() {
+    document.body.style.overflow = "hidden";  // ป้องกันการเลื่อน
+    document.documentElement.style.overflow = "hidden"; 
+  }
+       function getUserData() {
+    var username = $("#floatingInput").val();
+    var password = $("#floatingPassword").val();
 
-        $.ajax({
-          url: 'test.php',
-          method: 'POST',
-          data: formData,
-          contentType: false,
-          processData: false,
-          success: function(response) {
-            var res = JSON.parse(response);
-            Swal.fire({
-              icon: res.icon,
-              title: res.title,
-              text: res.text,
-              confirmButtonText: 'ตกลง',
-              confirmButtonColor: res.btnColor,
-              showCancelButton: true,
-              cancelButtonText: 'ยกเลิก',
-              allowOutsideClick: false
-            }).then((result)=>{
-              if(result.isConfirmed){
-                window.location.href = res.location;
-              }else{
-                window.location.reload();
-              }
-            })
+    var formData = new FormData();
+    formData.append('user', username);
+    formData.append('pass', password);
+
+    $.ajax({
+      url: 'test.php',
+      method: 'POST',
+      data: formData,
+      contentType: false,
+      processData: false,
+      success: function(response) {
+        var res = JSON.parse(response);
+        Swal.fire({
+          icon: res.icon,
+          title: res.title,
+          text: res.text,
+          confirmButtonText: 'ตกลง',
+          confirmButtonColor: res.btnColor,
+          showCancelButton: true,
+          cancelButtonText: 'ยกเลิก',
+          allowOutsideClick: false,
+          backdrop: 'rgba(0, 0, 0, 0.5)', /* ลดการกระพริบของพื้นหลัง */
+          stopKeydownPropagation: true /* ป้องกันการกดปุ่มทำให้รีเฟรช */
+        }).then((result) => {
+          if (result.isConfirmed) {
+            window.location.href = res.location;
           }
-        })
+        });
       }
+    });
+  }
     </script>
 
   </body>
