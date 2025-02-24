@@ -11,11 +11,11 @@ $_SESSION['user_type'] = $type;
     <div class="card-body">
       <div class="row d-flex align-items-center">
         <div class="col-lg-6 col-sm-6">
-          <h1 class="display-4" style="color: #18B0BD;margin: 0;">สร้างห้องสอบ</h1>
+          <h1 class="display-4" style="color: #18B0BD;margin: 0;">สร้างห้องเรียน</h1>
         </div>
         <div class="col-lg-6 col-sm-6 text-end ">
           <div class="btn btn-success" onclick="window.location.href='exam_room_maincontent.php'" style="font-size:18px; border: none;">
-            <i class="fas fa-plus"></i> สร้างห้องสอบ
+            <i class="fas fa-plus"></i> สร้างห้องเรียน
           </div>
         </div>
       </div>
@@ -41,7 +41,7 @@ $_SESSION['user_type'] = $type;
             </div>
             <div class="row mt-4 m-0">
               <div class="col text-end p-0">
-                <button class="btn btn-primary" onclick="window.location.href='section_maincontent.php'" style="background-color: #23b2b5; border: none;">เข้าห้องสอบ</button>
+                <button class="btn btn-primary" onclick="window.location.href='exam_maincontent.php'" style="background-color: #23b2b5; border: none;">เข้าห้องสอบ</button>
               </div>
             </div>
           </div>

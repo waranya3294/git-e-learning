@@ -32,7 +32,7 @@
                                 <!-- เลือกห้องสอบ -->
                                 <div class="row mb-3">
                                     <div class="col">
-                                        <label for="exam" class="form-label m-0">เลือกห้องสอบ <span class="text-danger">*</span></label>
+                                        <label for="exam" class="form-label m-0">เลือกชื่อหลักสูตร <span class="text-danger">*</span></label>
                                         <select name="exam" id="exam" class="form-select">
                                             <option value="1">ความปลอดภัยของการพ่นสี</option>
                                             <option value="2">การสวมใส่ชุด PPE</option>
@@ -206,8 +206,8 @@
         // สร้าง input type="time" สำหรับกรอกเวลาเอง
         const newTimeInput = document.createElement('input');
         newTimeInput.classList.add('form-control', 'me-2'); // เพิ่มคลาสเพื่อให้สอดคล้องกับการออกแบบ
-        newTimeInput.type = 'time';
-        newTimeInput.placeholder = 'เวลาเริ่มต้น';
+       // newTimeInput.type = 'time';
+        //newTimeInput.placeholder = 'เวลาเริ่มต้น';
 
         // สร้างปุ่มลบ
         const deleteButton = document.createElement('button');
@@ -268,13 +268,13 @@
             width: 700,
             html: `
             <div class="text-start mb-3">
-             <h2>แก้ไขข้อมูล</h2>
+             <h4>แก้ไขข้อมูล</h4>
             </div>
             <hr style="margin:0 -15px;">
             <!-- เลือกห้องสอบ -->
             <div class="row mb-3 mt-3">
                 <div class="col text-start">
-                    <label for="exam" class="form-label m-0">เลือกห้องสอบ <span class="text-danger">*</span></label>
+                    <label for="exam" class="form-label m-0">เลือกชื่อหลักสูตร <span class="text-danger">*</span></label>
                         <select name="exam" id="exam" class="form-select">
                             <option value="1">ความปลอดภัยของการพ่นสี</option>
                             <option value="2">การสวมใส่ชุด PPE</option>
@@ -337,7 +337,6 @@
                     </div>
                 </div>
             </div>
-
 
             <!-- จำนวนที่นั่ง -->
             <div class="row mb-3">

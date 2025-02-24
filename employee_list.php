@@ -26,29 +26,41 @@
                     <thead>
                         <tr>
                             <th class="text-start"><b>#</b></th>
-                            <th class="text-start"><b>รหัสพนักงาน</b></th>
-                            <th><b>ชื่อ-นามสกุล</b></th>
-                            <th><b>แผนก</b></th>
-                            <th><b>สอบหลังเรียน</b></th>
-                            <th><b>สถานะ</b></th>
+                            <th class="text-center">รหัสพนักงาน</th>
+                            <th class="text-center">ชื่อ - นามสกุล</th>
+                            <th class="text-center">ตำแหน่ง</th>
+                            <th class="text-center">ฝ่าย</th>
+                            <th class="text-center">แผนก</th>
+                            <th class="text-center">จุดปฏิบัติงาน</th>
+                            <th class="text-center">โรงงาน</th>
+                            <th class="text-center">สอบหลังเรียน</th>
+                            <th class="text-center">สถานะ</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td class="text-start">1</td>
-                            <td class="text-start">0000</td>
-                            <td>นายสมหมาย สมสม</td>
-                            <td>สี</td>
+                            <td class="text-end">1</td>
+                            <td class="text-center">3790</td>
+                            <td>นาย เทวัน บุญยะบุตร</td>
+                            <td>painter</td>
+                            <td>Manufacturing</td>
+                            <td>Manufacturing Tasith Factory</td>
+                            <td>Final Paint 20 Ton</td>
+                            <td class="text-center">TS</td>
                             <td>5 คะแนน</td>
                             <td class="text-center"><span class="badge text-bg-success " style="font-size:14px;">สอบเสร็จแล้ว</span></td>
                         </tr>
                         <tr>
-                            <td class="text-start">2</td>
-                            <td class="text-start">0000</td>
-                            <td>นายเอ บี</td>
-                            <td>สี</td>
-                            <td>5 คะแนน</td>
-                            <td class="text-center"><span class="badge text-bg-danger " style="font-size:14px;">ยังไม่สอบ</span></td>
+                            <td class="text-end">2</td>
+                            <td class="text-center">518</td>
+                            <td>นาย ปฏิวัฒน์  นาดี  </td>
+                            <td>CNC Controller</td>
+                            <td>Manufacturing</td>
+                            <td>Manufacturing Pluakdaeng Factory</td>
+                            <td>CNC</td>
+                            <td class="text-center">PD</td>
+                            <td></td>
+                            <td class="text-center"><span class="badge text-bg-danger" style="font-size:14px;">ยังไม่สอบ</span></td>
                         </tr>
                     </tbody>
                 </table>

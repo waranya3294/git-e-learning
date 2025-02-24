@@ -56,15 +56,8 @@
     <h2 style="color: #18B0BD;"><b>แดชบอร์ด</b></h2>
     <hr>
     <div class="row">
-        <div class="col-md-4 mt-2 mb-2">
-            <div class="card shadow-sm border-0 rounded overflow-hidden" onclick="window.location.href='examform_maincontent.php'" style="cursor: pointer;">
-                <div class="card-body text-start text-white" style="background: linear-gradient(135deg, #96cfcf, #64b3b3);">
-                    <div class="icon" style="font-size: 3.5rem;">📄</div>
-                    <h2 class="mt-2 fw-bold text-start">สร้างเนื้อหา</h2>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mt-2 mb-2">
+       
+        <div class="col-md-6 mt-2 mb-2">
             <div class="card shadow-sm border-0 rounded overflow-hidden" onclick="window.location.href='examgroup_maincontent.php'" style="cursor: pointer;">
                 <div class="card-body text-start text-white" style="background: linear-gradient(135deg, #afd7f6, #85b8e0);">
                     <div class="icon" style="font-size: 3.5rem;">📝</div>
@@ -72,11 +65,11 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-4 mt-2 mb-2">
+        <div class="col-md-6 mt-2 mb-2">
             <div class="card shadow-sm border-0 rounded overflow-hidden" onclick="window.location.href='room_maincontent.php'" style="cursor: pointer;">
                 <div class="card-body text-start text-white" style="background: linear-gradient(135deg, #01a6ba,  #0288a6a6);">
                     <div class="icon" style="font-size: 3.5rem;">🏢</div>
-                    <h2 class="mt-2 fw-bold text-start">สร้างห้องสอบ</h2>
+                    <h2 class="mt-2 fw-bold text-start">สร้างห้องเรียนและบทเรียน</h2>
                 </div>
             </div>
         </div>
@@ -86,51 +79,98 @@
 
 
 <div class="container-fluid mt-4 mb-3">
-    <div class="card shadow-sm rounded-1">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-lg-6 col-sm-6 ">
-                    <h2 style="color: #18B0BD;"><b>ปฏิทินการสอบ</b></h2>
-                    <div id='calendar' class="mt-4" style="cursor: pointer"></div>
-                    <div class="row align-items-center justify-content-center d-flex mt-2">
-                        <div class="col-auto d-flex align-items-center">
-                            <button class="btn btn-success me-1"></button>
-                            <p class="mb-0">ว่าง</p>
-                        </div>
-                        <div class="col-auto d-flex align-items-center">
-                            <button class="btn btn-danger me-1"></button>
-                            <p class="mb-0">เต็ม</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-6 col-sm-6 mt-4">
-                    <h4>แสดงรายการ</h4>
-                    <!-- <label for="text" style="font-size: 18px;">ชื่อห้องสอบ: <span id="selected-room"></span></label> -->
-                    <label for="text" style="font-size: 18px;" class="mb-2">วันที่: <span id="selected-date"></span></label>
-                    <div class="table-responsive">
-                        <table id="employee-table" class="table table-striped " style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th class="Middle">รหัสพนักงาน</th>
-                                    <th class="Middle">ชื่อ - นามสกุล</th>
-                                    <!-- <th class="Middle">ห้องสอบ</th> -->
-                                    <td>รอบเวลา</td>
-                                    <th class="Middle">ตำแหน่ง</th>
-                                    <th class="Middle">แผนก</th>
-                                    <th class="Middle">จุดปฏิบัติงาน</th>
-                                    <th class="Middle">โรงงาน</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <!-- แสดงข้อมูลในตาราง -->
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
+  <div class="card shadow-sm rounded-3">
+    <div class="card-body">
+      <div class="row">
+        <!-- Calendar Section -->
+        <div class="col-lg-6 col-md-12">
+          <h2 class=" text-info mb-4"><b>ปฏิทินการสอบ</b></h2>
+          <div id='calendar' class="mt-4 p-3 border rounded shadow-sm" style="cursor: pointer; min-height: 500px;"></div>
+          <div class="d-flex justify-content-center align-items-center gap-4 mt-3">
+            <div class="d-flex align-items-center">
+              <button class="btn btn-success me-2" style="width: 20px; height: 20px;"></button>
+              <p class="mb-0">ว่าง</p>
             </div>
+            <div class="d-flex align-items-center">
+              <button class="btn btn-danger me-2" style="width: 20px; height: 20px;"></button>
+              <p class="mb-0">เต็ม</p>
+            </div>
+          </div>
         </div>
+
+        <!-- Reservation Status Section -->
+        <div class="col-lg-6 col-md-12">
+          <h2 class="text-start mt-5">แสดงสถานะจองสอบ</h2>
+          <label style="font-size: 24px;" class="d-block text-start mt-3">วันที่: <span id="selected-date"></span></label>
+
+          <div id="factory_group" class="d-none">
+            <div class="row g-3 mt-2">
+              <div class="col-12">
+                <div class="card shadow-sm rounded-3">
+                  <div class="card-body">
+                    <p class="fw-bold" style="font-size: 22px;">โรงงาน : TS (ตาสิทธิ์)</p>
+                    <div class="form-check mt-2">
+                      <label class="form-check-label" style="font-size: 18px;"><i class="fa-regular fa-clock"></i> 9:00 - 10:00 น. (3/5) <button class="badge bg-success border-0">ว่าง</button></label>
+                    </div>
+                    <div class="form-check mt-2">
+                      <label class="form-check-label" style="font-size: 18px;"><i class="fa-regular fa-clock"></i> 10:30 - 11:30 น. (2/5) <button class="badge bg-success border-0">ว่าง</button></label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="card shadow-sm rounded-3">
+                  <div class="card-body">
+                    <p class="fw-bold" style="font-size: 22px;">โรงงาน : PD (ปลวกแดง)</p>
+                    <div class="form-check mt-2">
+                      <label class="form-check-label" style="font-size: 18px;"><i class="fa-regular fa-clock"></i> 9:00 - 10:00 น. (3/5) <button class="badge bg-success border-0">ว่าง</button></label>
+                    </div>
+                    <div class="form-check mt-2">
+                      <label class="form-check-label" style="font-size: 18px;"><i class="fa-regular fa-clock"></i> 10:30 - 11:30 น. (2/5) <button class="badge bg-success border-0">ว่าง</button></label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div id="Exam_factory_group" class="d-none">
+            <div class="row g-3 mt-2">
+              <div class="col-12">
+                <div class="card shadow-sm rounded-3">
+                  <div class="card-body">
+                    <p class="fw-bold" style="font-size: 22px;">โรงงาน : TS (ตาสิทธิ์)</p>
+                    <div class="form-check mt-2">
+                      <label class="form-check-label" style="font-size: 18px;"><i class="fa-regular fa-clock"></i> 9:00 - 10:00 น. (5/5) <button class="badge bg-danger border-0">เต็ม</button></label>
+                    </div>
+                    <div class="form-check mt-2">
+                      <label class="form-check-label" style="font-size: 18px;"><i class="fa-regular fa-clock"></i> 10:30 - 11:30 น. (5/5) <button class="badge bg-danger border-0">เต็ม</button></label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-12">
+                <div class="card shadow-sm rounded-3">
+                  <div class="card-body">
+                    <p class="fw-bold" style="font-size: 22px;">โรงงาน : PD (ปลวกแดง)</p>
+                    <div class="form-check mt-2">
+                      <label class="form-check-label" style="font-size: 18px;"><i class="fa-regular fa-clock"></i> 9:00 - 10:00 น. (5/5) <button class="badge bg-danger border-0">เต็ม</button></label>
+                    </div>
+                    <div class="form-check mt-2">
+                      <label class="form-check-label" style="font-size: 18px;"><i class="fa-regular fa-clock"></i> 10:30 - 11:30 น. (5/5) <button class="badge bg-danger border-0">เต็ม</button></label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </div>
+
+
 
 <div class="container-fluid mt-3 mb-4">
     <h2 style="color: #18B0BD;"><b>ตารางจองคิวสอบ</b></h2>
@@ -405,7 +445,6 @@
                 document.getElementById('selected-date').innerText = ` ${startDate} ถึง ${endDate}`;
             },
 
-            // ฟังก์ชันเมื่อผู้ใช้คลิกวันที่ในปฏิทิน
             dateClick: function(info) {
                 // แปลงวันที่ที่คลิกเป็นภาษาไทย
                 let selectedDate = new Date(info.date).toLocaleDateString('th-TH', {
@@ -417,10 +456,28 @@
                 // แสดงวันที่ที่เลือกใน element ที่มี id เป็น "selected-date"
                 document.getElementById('selected-date').innerText = ` ${selectedDate}`;
 
+                if (info.dateStr === '2025-02-11' || info.dateStr === '2025-02-12' || info.dateStr === '2025-02-13') {
+                    if (info.dateStr === '2025-02-13') {
+                        // แสดง element ที่มี id เป็น "Exam_factory_group"
+                        document.getElementById('Exam_factory_group').classList.remove('d-none');
+                        // ซ่อน element ที่มี id เป็น "factory_group"
+                        document.getElementById('factory_group').classList.add('d-none');
+                    } else {
+                        // แสดง element ที่มี id เป็น "factory_group"
+                        document.getElementById('factory_group').classList.remove('d-none');
+                        // ซ่อน element ที่มี id เป็น "Exam_factory_group"
+                        document.getElementById('Exam_factory_group').classList.add('d-none');
+                    }
+                } else {
+                    // ซ่อนทั้ง "factory_group" และ "Exam_factory_group"
+                    document.getElementById('factory_group').classList.add('d-none');
+                    document.getElementById('Exam_factory_group').classList.add('d-none');
+                }
+
                 // เรียกใช้ฟังก์ชัน filterEmployeesByDate() เพื่อตรวจสอบข้อมูลพนักงานตามวันที่ที่เลือก
                 filterEmployeesByDate(info.dateStr);
+                displayReservationStatus(info.dateStr);
             },
-
             events: [{
                     start: '2025-02-11',
                     title: 'ว่าง ',
@@ -437,241 +494,78 @@
                     color: 'red'
                 }
             ],
-
-            // กำหนดเหตุการณ์ (events) ที่จะแสดงในปฏิทิน
-            //     events: [{
-            //             title: 'สอบสี', // ชื่อเหตุการณ์
-            //             start: '2025-02-03', // วันที่เริ่มต้น
-            //             end: '2025-02-07', // วันที่สิ้นสุด
-            //             color: '#ffa500', // สีของเหตุการณ์
-            //         },
-            //         {
-            //             title: 'สอบความปลอดภัยของการพ่นสี',
-            //             start: '2025-02-07',
-            //             end: '2025-02-15',
-            //             color: '#00adb0',
-            //         },
-            //         {
-            //             title: 'เชื่อม',
-            //             start: '2025-02-07',
-            //             end: '2025-02-11',
-            //             color: '#9933FF',
-            //         },
-            //         {
-            //             title: 'สอบประกอบ',
-            //             start: '2025-02-28',
-            //             color: '#3CB371',
-            //         }
-            //     ],
         });
 
         // แสดงผลปฏิทิน
         calendar.render();
 
-    });
-
-    async function fetchEmployeeData(empId) {
-        // จำลองข้อมูลพนักงาน
-        const employeeData = {
-            "1001": {
-                name: "สมชาย ใจดี",
-                department: "สี",
-                factory: "TS"
-            },
-            "1002": {
-                name: "มานะ มั่นคง",
-                department: "ประกอบ",
-                factory: "TS"
-            },
-            "1003": {
-                name: "สุภาพร สายใจ",
-                department: "เชื่อม",
-                factory: "PD"
-            },
-        };
-
-        return employeeData[empId] || null;
-    }
-
-    async function showReserve() {
-        const {
-            value: date
-        } = await Swal.fire({
-            title: "เลือกวันสอบ",
-            html: `
-             <div class="row mb-3">
-        <div class="col-lg-12">
-            <select class="form-control" id="exam_id">
-                <option value="">-- เลือกรอบวันสอบ--</option>
-                <option value="exam1">ความปลอดภัยของการพ่นสี (24 กุมภาพันธ์ 2568 - 31 มีนาคม 2568)</option>
-                <option value="exam1">ประเภทของการพ่นสี (24 กุมภาพันธ์ 2568 - 31 มีนาคม 2568)</option>
-                <option value="exam2">Test</option>
-                <option value="exam3">Test</option>
-            </select>
-        </div>
-    </div>
-
-    <div class="row mb-3">
-        <div class="col-lg-12 text-start">
-            <label for="datetimes">จองคิวสอบ <span class="text-danger">*</span></label>
-            <div class="input-group">
-                <input type="text" id="datetimes" name="datetimes" class="form-control" required placeholder="เลือกช่วงเวลา" aria-describedby="exam_starttime">
-                <span class="input-group-text" id="exam_starttime" style="cursor: pointer;">
-                    <i class="fa-solid fa-calendar-days"></i>
-                </span>
-            </div>
-        </div>
-    </div>`,
-            showCancelButton: true,
-            cancelButtonText: "ยกเลิก",
-            confirmButtonColor: "green",
-            confirmButtonText: "ถัดไป",
-
-            preConfirm: () => {
-                const exam_id = $("#exam_id").val();
-                const datetimes = $("#datetimes").val();
-
-                if (!exam_id) {
-                    Swal.showValidationMessage("กรุณาเลือกรอบวันสอบ!");
-                }
-                if (!datetimes) {
-                    Swal.showValidationMessage("กรุณาเลือกวันที่สอบ!");
-                }
-
-                if (!exam_id || !datetimes) {
-                    return false; // ป้องกันการปิด Swal
-                }
-
-                return {
-                    exam_id,
-                    datetimes
-                };
-            },
-            didOpen: () => {
-                // ✅ กำหนด Datepicker ใน SweetAlert2 ให้เลือกเป็นเดือน
-                $("#datetimes").daterangepicker({
-                    autoUpdateInput: false,
-                    showDropdowns: true, // แสดงตัวเลือกปี/เดือน
-                    singleDatePicker: true, // ✅ ให้เลือกได้เพียงวันเดียว
-                    minDate: moment().startOf('month'), // ✅ ป้องกันการเลือกวันเก่า
-                    locale: {
-                        format: "DD/MM/YYYY",
-                        cancelLabel: "Clear",
-                        daysOfWeek: ["อา", "จ", "อ", "พ", "พฤ", "ศ", "ส"], // แสดงวันเป็นภาษาไทย
-                        monthNames: [
-                            "มกราคม", "กุมภาพันธ์", "มีนาคม", "เมษายน", "พฤษภาคม", "มิถุนายน",
-                            "กรกฎาคม", "สิงหาคม", "กันยายน", "ตุลาคม", "พฤศจิกายน", "ธันวาคม"
-                        ]
+        function displayReservationStatus(date) {
+            const reservationData = {
+                '2025-02-12': [{
+                        factory: 'TS',
+                        time: '9:00 - 10:00 น.',
+                        status: 'ว่าง'
                     },
-                    isInvalidDate: function(date) {
-                        // ✅ บล็อกวันเสาร์ (6) และอาทิตย์ (0)
-                        return (date.isoWeekday() === 6 || date.isoWeekday() === 7);
+                    {
+                        factory: 'TS',
+                        time: '10:30 - 11:30 น.',
+                        status: 'เต็ม'
+                    },
+                    {
+                        factory: 'PD',
+                        time: '9:00 - 10:00 น.',
+                        status: 'ว่าง'
+                    },
+                    {
+                        factory: 'PD',
+                        time: '10:30 - 11:30 น.',
+                        status: 'เต็ม'
                     }
-                });
+                ],
+                '2025-02-13': [ // Add data for the full date
+                    {
+                        factory: 'TS',
+                        time: '9:00 - 10:00 น.',
+                        status: 'เต็ม'
+                    },
+                    {
+                        factory: 'TS',
+                        time: '10:30 - 11:30 น.',
+                        status: 'เต็ม'
+                    },
+                    {
+                        factory: 'PD',
+                        time: '9:00 - 10:00 น.',
+                        status: 'เต็ม'
+                    },
+                    {
+                        factory: 'PD',
+                        time: '10:30 - 11:30 น.',
+                        status: 'เต็ม'
+                    }
+                ]
+            };
 
-                $("#datetimes").on("apply.daterangepicker", function(ev, picker) {
-                    $(this).val(picker.startDate.format("DD/MM/YYYY"));
-                });
+            const reservations = reservationData[date] || [];
+            const reservationContainer = document.getElementById('reservation-status');
+            reservationContainer.innerHTML = '';
 
-                $("#datetimes").on("cancel.daterangepicker", function(ev, picker) {
-                    $(this).val("");
-                });
-
-                // เปิด Datepicker เมื่อกดไอคอน 📅
-                $("#exam_starttime").on("click", function() {
-                    $("#datetimes").focus();
-                });
-            }
-
-        });
-        const {
-            value: empData
-        } = await Swal.fire({
-            title: "กรอกรหัสพนักงาน",
-            html: `
-            <input type="text" id="id_input" class="swal2-input " placeholder="รหัสพนักงาน" onkeyup="validateID(event)"> 
-            <p id="id_warning" style="color: red; display: none;">กรุณากรอกตัวเลขเท่านั้น</p>
-            <div id="emp_info"></div>
-        `,
-            showCancelButton: true,
-            confirmButtonColor: "green",
-            confirmButtonText: "ยืนยัน",
-            cancelButtonText: "ยกเลิก",
-            preConfirm: async () => {
-                let empIdInput = document.getElementById("id_input").value;
-                if (!empIdInput || isNaN(empIdInput)) {
-                    Swal.showValidationMessage("กรุณากรอกรหัสพนักงานที่เป็นตัวเลข");
-                    return false;
-                }
-
-                let empData = await fetchEmployeeData(empIdInput);
-                if (!empData) {
-                    Swal.showValidationMessage("ไม่พบข้อมูลพนักงาน");
-                    return false;
-                }
-                return {
-                    empId: empIdInput,
-                    ...empData
-                };
-            }
-        });
-
-        if (!empData) return;
-
-        Swal.fire({
-            title: 'จองคิวสอบสำเร็จ',
-            icon: 'success',
-            timer: 3000,
-            showConfirmButton: false
-        });
-
-        document.getElementById('selected-room').innerText = empData.exam_id;
-        document.getElementById('selected-date').innerText = date.datetimes;
-
-        console.log("วันสอบที่เลือก:", date);
-        console.log("รหัสพนักงาน:", empData.empId);
-        console.log("ชื่อ:", empData.name);
-        console.log("แผนก:", empData.department);
-        console.log("โรงงาน:", empData.factory);
-    }
-
-    function validateID(event) {
-        let idInput = document.getElementById("id_input").value;
-        let warningText = document.getElementById("id_warning");
-        let empInfo = document.getElementById("emp_info");
-
-        if (isNaN(idInput) || idInput.trim() === "") {
-            warningText.style.display = "block";
-            empInfo.innerHTML = "";
-        } else {
-            warningText.style.display = "none";
-            fetchEmployeeData(idInput).then(data => {
-                if (data) {
-                    empInfo.innerHTML = `
-                     <div class="row ">
-        <div class="col-md-12 col-lg-12 text-start mb-3">
-            <label class="form-label">ชื่อ-นามสกุล</label>
-            <input type="text" id="emp_name_preview" class="form-control" value="${data.name}" readonly>
-        </div>
-        <div class="col-md-12 col-lg-12 text-start mb-3">
-            <label class="form-label">แผนก</label>
-            <input type="text" id="emp_department_preview" class="form-control" value="${data.department}" readonly>
-        </div>
-        <div class="col-md-12 col-lg-12 text-start mb-3">
-            <label class="form-label">โรงงาน</label>
-            <input type="text" id="emp_factory_preview" class="form-control" value="${data.factory}" readonly>
-        </div>
-    </div>`;
-                } else {
-                    empInfo.innerHTML = "<span style='color: red;'>ไม่พบข้อมูลพนักงาน</span>";
-                }
+            reservations.forEach(reservation => {
+                const reservationElement = `
+            <div class="card mt-2">
+                <div class="card-body p-2">
+                    <p class="m-0" style="font-size: 18px;"><b>${reservation.factory}</b></p>
+                    <div class="form-check form-check-inline">
+                        <label class="form-check-label" style="font-size:18px;">${reservation.time} (${reservation.status})</label>
+                    </div>
+                </div>
+            </div>
+        `;
+                reservationContainer.innerHTML += reservationElement;
             });
         }
-        // กด Enter เพื่อกดยืนยัน
-        if (event.key === "Enter") {
-            document.querySelector(".swal2-confirm").click();
-        }
-    }
+    });
+
 
     function showDelete() {
         Swal.fire({

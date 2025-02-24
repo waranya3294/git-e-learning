@@ -36,55 +36,67 @@
                                             <th class="Middle">รหัสพนักงาน</th>
                                             <th class="Middle">ชื่อ - นามสกุล</th>
                                             <th class="Middle">ตำแหน่ง</th>
+                                            <th class="Middle">ฝ่าย</th>
                                             <th class="Middle">แผนก</th>
                                             <th class="Middle">จุดปฏิบัติงาน</th>
                                             <th class="Middle">โรงงาน</th>
+                                            <th class="Middle">สถานะ</th>
                                         </tr>
                                     </thead>
                                     <tr>
                                         <td>1</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>3790</td>
+                                        <td>นาย เทวัน  บุญยะบุตร</td>
+                                        <td>Painter</td>
+                                        <td>Manufacturing</td>
+                                        <td>Manufacturing Tasith Factory</td>
+                                        <td>Final Paint 20 Ton</td>
+                                        <td class="text-center">TS</td>
+                                        <td class="text-center"><span class="badge text-bg-danger" style="font-size:14px;">ยังไม่สอบ</span></td>
                                     </tr>
                                     <tr>
                                         <td>2</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>0549</td>
+                                        <td>นาย สนิท  เงาใส  </td>
+                                        <td>Painter</td>
+                                        <td>Manufacturing</td>
+                                        <td>Manufacturing Tasith Factory</td>
+                                        <td>Final Paint 35 Ton</td>
+                                        <td class="text-center">TS</td>
+                                        <td class="text-center"><span class="badge text-bg-danger" style="font-size:14px;">ยังไม่สอบ</span></td>
                                     </tr>
                                     <tr>
                                         <td>3</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>3768</td>
+                                        <td>นาย วีระศักดิ์  คงชูดี </td>
+                                        <td>Painter</td>
+                                        <td>Manufacturing</td>
+                                        <td>Manufacturing Tasith Factory</td>
+                                        <td>Top Coat</td>
+                                        <td class="text-center">TS</td>
+                                        <td class="text-center"><span class="badge text-bg-danger" style="font-size:14px;">ยังไม่สอบ</span></td>
                                     </tr>
                                     <tr>
                                         <td>4</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>3811</td>
+                                        <td>นาย วิทยา  ลอยอากาศ  </td>
+                                        <td>Painter</td>
+                                        <td>Manufacturing</td>
+                                        <td>Manufacturing Tasith Factory</td>
+                                        <td>Top Coat</td>
+                                        <td class="text-center">TS</td>
+                                        <td class="text-center"><span class="badge text-bg-danger" style="font-size:14px;">ยังไม่สอบ</span></td>
                                     </tr>
                                     <tr>
                                         <td>5</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>3804</td>
+                                        <td>นาย อนุวัฒน์  โถทอง</td>
+                                        <td>Painter</td>
+                                        <td>Manufacturing</td>
+                                        <td>Manufacturing Tasith Factory</td>
+                                        <td>Final Paint 35 Ton</td>
+                                        <td class="text-center">TS</td>
+                                        <td class="text-center"><span class="badge text-bg-danger" style="font-size:14px;">ยังไม่สอบ</span></td>
                                     </tr>
                                 </table>
                             </div>
