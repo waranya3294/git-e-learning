@@ -135,9 +135,9 @@
             </a>
             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
               <nav class="sb-sidenav-menu-nested nav ms-2">
-                <a class="nav-link" href="room_maincontent.php"><i class="fa-regular fa-circle fa-sm me-2"></i>สร้างห้องเข้าสอบ</a>
-                <a class="nav-link" href="section_maincontent.php"><i class="fa-regular fa-circle fa-sm me-2"></i>สร้างจุดปฏิบัติงาน</a>
-                <a class="nav-link" href="exam_maincontent.php"><i class="fa-regular fa-circle fa-sm me-2"></i>สร้างชุดทดสอบ</a>
+                <a class="nav-link" href="room_maincontent.php"><i class="fa-regular fa-circle fa-sm me-2"></i>สร้างห้องเรียนและบทเรียน</a>
+                <!-- <a class="nav-link" href="section_maincontent.php"><i class="fa-regular fa-circle fa-sm me-2"></i>สร้างจุดปฏิบัติงาน</a> -->
+                <a class="nav-link" href="exam_maincontent.php"><i class="fa-regular fa-circle fa-sm me-2"></i>สร้างข้อสอบ</a>
               </nav>
             </div>
 

@@ -3,7 +3,7 @@
     <div class="card-body">
       <div class="row d-flex align-items-center">
         <div class="col-lg-6 col-sm-6">
-          <h1 style="color: #18B0BD;margin: 0;">สร้างบทเรียนใหม่</h1>
+          <h1 style="color: #18B0BD;margin: 0;">สร้างบทเรียน</h1>
         </div>
         <div class="col-lg-6 col-sm-6 text-end">
           <button class="btn btn-success" style="font-size:18px; border: none;" data-bs-toggle="modal" data-bs-target="#addLessonModal">

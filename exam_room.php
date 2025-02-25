@@ -3,7 +3,7 @@
         <div class="card shadow-sm mb-4">
             <div class="card-body">
                 <div style="color: #18B0BD;">
-                    <h1 class="display-4">สร้างห้องเข้าสอบ</h1>
+                    <h1 class="display-4">สร้างห้องเรียน</h1>
                 </div>
                 <hr>
                 <div class="row">
@@ -11,8 +11,8 @@
                         <div class="card border-0">
                             <div class="card-body">
                                 <div class="mb-3">
-                                    <label for="name">ชื่อห้องสอบ: <span class="text-danger">*</span></label>
-                                    <input type="text" name="exam_name" id="name" class="form-control" required placeholder="กรอกชื่อห้องสอบ">
+                                    <label for="name">ชื่อห้องเรียน: <span class="text-danger">*</span></label>
+                                    <input type="text" name="exam_name" id="name" class="form-control" required placeholder="กรอกชื่อห้องเรียน">
                                 </div>
 
                                 <div class="mb-3">
@@ -20,7 +20,7 @@
                                     <textarea id="tiny"></textarea>
                                 </div>
 
-                                <label for="datetimes">ระยะเวลาเปิดห้องสอบ: <span class="text-danger">*</span></label>
+                                <label for="datetimes">ระยะเวลาเปิดห้องเรียน: <span class="text-danger">*</span></label>
                                 <div class="row  justify-content-center" id="dateFieldsContainer">
                                     <div class="col-lg-11 d-flex align-items-center">
                                         <div class="input-group mb-2">

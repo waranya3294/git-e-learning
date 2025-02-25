@@ -56,7 +56,7 @@
     <h2 style="color: #18B0BD;"><b>แดชบอร์ด</b></h2>
     <hr>
     <div class="row">
-       
+
         <div class="col-md-6 mt-2 mb-2">
             <div class="card shadow-sm border-0 rounded overflow-hidden" onclick="window.location.href='examgroup_maincontent.php'" style="cursor: pointer;">
                 <div class="card-body text-start text-white" style="background: linear-gradient(135deg, #afd7f6, #85b8e0);">
@@ -79,101 +79,101 @@
 
 
 <div class="container-fluid mt-4 mb-3">
-  <div class="card shadow-sm rounded-3">
-    <div class="card-body">
-      <div class="row">
-        <!-- Calendar Section -->
-        <div class="col-lg-6 col-md-12">
-          <h2 class=" text-info mb-4"><b>ปฏิทินการสอบ</b></h2>
-          <div id='calendar' class="mt-4 p-3 border rounded shadow-sm" style="cursor: pointer; min-height: 500px;"></div>
-          <div class="d-flex justify-content-center align-items-center gap-4 mt-3">
-            <div class="d-flex align-items-center">
-              <button class="btn btn-success me-2" style="width: 20px; height: 20px;"></button>
-              <p class="mb-0">ว่าง</p>
+    <div class="card shadow-sm rounded-3">
+        <div class="card-body">
+            <div class="row">
+                <!-- Calendar Section -->
+                <div class="col-lg-6 col-md-12">
+                    <h2 class=" text-info mb-4"><b>ปฏิทินการสอบ</b></h2>
+                    <div id='calendar' class="mt-4 p-3 border rounded shadow-sm" style="cursor: pointer; min-height: 500px;"></div>
+                    <div class="d-flex justify-content-center align-items-center gap-4 mt-3">
+                        <div class="d-flex align-items-center">
+                            <button class="btn btn-success me-2" style="width: 20px; height: 20px;"></button>
+                            <p class="mb-0">ว่าง</p>
+                        </div>
+                        <div class="d-flex align-items-center">
+                            <button class="btn btn-danger me-2" style="width: 20px; height: 20px;"></button>
+                            <p class="mb-0">เต็ม</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Reservation Status Section -->
+                <div class="col-lg-6 col-md-12">
+                    <h2 class="text-start mt-5">แสดงสถานะจองสอบ</h2>
+                    <label style="font-size: 24px;" class="d-block text-start mt-3">วันที่: <span id="selected-date"></span></label>
+
+                    <div id="factory_group" class="d-none">
+                        <div class="row g-3 mt-2">
+                            <div class="col-12">
+                                <div class="card shadow-sm rounded-3">
+                                    <div class="card-body">
+                                        <p class="fw-bold" style="font-size: 22px;">โรงงาน : TS (ตาสิทธิ์)</p>
+                                        <div class="form-check mt-2">
+                                            <label class="form-check-label" style="font-size: 18px;"><i class="fa-regular fa-clock"></i> 9:00 - 10:00 น. (3/5) <button class="badge bg-success border-0">ว่าง</button></label>
+                                        </div>
+                                        <div class="form-check mt-2">
+                                            <label class="form-check-label" style="font-size: 18px;"><i class="fa-regular fa-clock"></i> 10:30 - 11:30 น. (2/5) <button class="badge bg-success border-0">ว่าง</button></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="card shadow-sm rounded-3">
+                                    <div class="card-body">
+                                        <p class="fw-bold" style="font-size: 22px;">โรงงาน : PD (ปลวกแดง)</p>
+                                        <div class="form-check mt-2">
+                                            <label class="form-check-label" style="font-size: 18px;"><i class="fa-regular fa-clock"></i> 9:00 - 10:00 น. (3/5) <button class="badge bg-success border-0">ว่าง</button></label>
+                                        </div>
+                                        <div class="form-check mt-2">
+                                            <label class="form-check-label" style="font-size: 18px;"><i class="fa-regular fa-clock"></i> 10:30 - 11:30 น. (2/5) <button class="badge bg-success border-0">ว่าง</button></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="Exam_factory_group" class="d-none">
+                        <div class="row g-3 mt-2">
+                            <div class="col-12">
+                                <div class="card shadow-sm rounded-3">
+                                    <div class="card-body">
+                                        <p class="fw-bold" style="font-size: 22px;">โรงงาน : TS (ตาสิทธิ์)</p>
+                                        <div class="form-check mt-2">
+                                            <label class="form-check-label" style="font-size: 18px;"><i class="fa-regular fa-clock"></i> 9:00 - 10:00 น. (5/5) <button class="badge bg-danger border-0">เต็ม</button></label>
+                                        </div>
+                                        <div class="form-check mt-2">
+                                            <label class="form-check-label" style="font-size: 18px;"><i class="fa-regular fa-clock"></i> 10:30 - 11:30 น. (5/5) <button class="badge bg-danger border-0">เต็ม</button></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="card shadow-sm rounded-3">
+                                    <div class="card-body">
+                                        <p class="fw-bold" style="font-size: 22px;">โรงงาน : PD (ปลวกแดง)</p>
+                                        <div class="form-check mt-2">
+                                            <label class="form-check-label" style="font-size: 18px;"><i class="fa-regular fa-clock"></i> 9:00 - 10:00 น. (5/5) <button class="badge bg-danger border-0">เต็ม</button></label>
+                                        </div>
+                                        <div class="form-check mt-2">
+                                            <label class="form-check-label" style="font-size: 18px;"><i class="fa-regular fa-clock"></i> 10:30 - 11:30 น. (5/5) <button class="badge bg-danger border-0">เต็ม</button></label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="d-flex align-items-center">
-              <button class="btn btn-danger me-2" style="width: 20px; height: 20px;"></button>
-              <p class="mb-0">เต็ม</p>
-            </div>
-          </div>
         </div>
-
-        <!-- Reservation Status Section -->
-        <div class="col-lg-6 col-md-12">
-          <h2 class="text-start mt-5">แสดงสถานะจองสอบ</h2>
-          <label style="font-size: 24px;" class="d-block text-start mt-3">วันที่: <span id="selected-date"></span></label>
-
-          <div id="factory_group" class="d-none">
-            <div class="row g-3 mt-2">
-              <div class="col-12">
-                <div class="card shadow-sm rounded-3">
-                  <div class="card-body">
-                    <p class="fw-bold" style="font-size: 22px;">โรงงาน : TS (ตาสิทธิ์)</p>
-                    <div class="form-check mt-2">
-                      <label class="form-check-label" style="font-size: 18px;"><i class="fa-regular fa-clock"></i> 9:00 - 10:00 น. (3/5) <button class="badge bg-success border-0">ว่าง</button></label>
-                    </div>
-                    <div class="form-check mt-2">
-                      <label class="form-check-label" style="font-size: 18px;"><i class="fa-regular fa-clock"></i> 10:30 - 11:30 น. (2/5) <button class="badge bg-success border-0">ว่าง</button></label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="card shadow-sm rounded-3">
-                  <div class="card-body">
-                    <p class="fw-bold" style="font-size: 22px;">โรงงาน : PD (ปลวกแดง)</p>
-                    <div class="form-check mt-2">
-                      <label class="form-check-label" style="font-size: 18px;"><i class="fa-regular fa-clock"></i> 9:00 - 10:00 น. (3/5) <button class="badge bg-success border-0">ว่าง</button></label>
-                    </div>
-                    <div class="form-check mt-2">
-                      <label class="form-check-label" style="font-size: 18px;"><i class="fa-regular fa-clock"></i> 10:30 - 11:30 น. (2/5) <button class="badge bg-success border-0">ว่าง</button></label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div id="Exam_factory_group" class="d-none">
-            <div class="row g-3 mt-2">
-              <div class="col-12">
-                <div class="card shadow-sm rounded-3">
-                  <div class="card-body">
-                    <p class="fw-bold" style="font-size: 22px;">โรงงาน : TS (ตาสิทธิ์)</p>
-                    <div class="form-check mt-2">
-                      <label class="form-check-label" style="font-size: 18px;"><i class="fa-regular fa-clock"></i> 9:00 - 10:00 น. (5/5) <button class="badge bg-danger border-0">เต็ม</button></label>
-                    </div>
-                    <div class="form-check mt-2">
-                      <label class="form-check-label" style="font-size: 18px;"><i class="fa-regular fa-clock"></i> 10:30 - 11:30 น. (5/5) <button class="badge bg-danger border-0">เต็ม</button></label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="col-12">
-                <div class="card shadow-sm rounded-3">
-                  <div class="card-body">
-                    <p class="fw-bold" style="font-size: 22px;">โรงงาน : PD (ปลวกแดง)</p>
-                    <div class="form-check mt-2">
-                      <label class="form-check-label" style="font-size: 18px;"><i class="fa-regular fa-clock"></i> 9:00 - 10:00 น. (5/5) <button class="badge bg-danger border-0">เต็ม</button></label>
-                    </div>
-                    <div class="form-check mt-2">
-                      <label class="form-check-label" style="font-size: 18px;"><i class="fa-regular fa-clock"></i> 10:30 - 11:30 น. (5/5) <button class="badge bg-danger border-0">เต็ม</button></label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     </div>
-  </div>
 </div>
 
 
 
 <div class="container-fluid mt-3 mb-4">
-    <h2 style="color: #18B0BD;"><b>ตารางจองคิวสอบ</b></h2>
+    <h2 style="color: #18B0BD;"><b>ตารางแสดงรายการจองคิวสอบ</b></h2>
     <hr>
     <div class="card shadow-sm rounded-1">
         <div class="card-body">
@@ -186,31 +186,91 @@
                 <table id="example" class="table table-striped table-bordered" style="width:100%">
                     <thead>
                         <tr style=" font-size:14px;">
-                            <th class="Middle">รหัสพนักงาน</th>
-                            <th class="Middle">ชื่อ - นามสกุล</th>
-                            <!-- <th class="Middle">ห้องสอบ</th> -->
-                            <th class="Middle">วันที่จอง</th>
-                            <td>รอบเวลา</td>
-                            <th class="Middle">ตำแหน่ง</th>
-                            <th class="Middle">แผนก</th>
-                            <th class="Middle">จุดปฏิบัติงาน</th>
-                            <th class="Middle">โรงงาน</th>
+                            <!-- <th>#</th> -->
+                            <th>วันที่จอง</th>
+                            <th>รอบเวลา</th>
+                            <th class="text-start">รหัสพนักงาน</th>
+                            <th>ชื่อ - นามสกุล</th>
+                            <th>ตำแหน่ง</th>
+                            <th>ฝ่าย</th>
+                            <th>แผนก</th>
+                            <th>จุดปฏิบัติงาน</th>
+                            <th>โรงงาน</th>
+                            <th>สถานะ</th>
                             <th class="Middle">Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="middle">
-                            <td class="text-center middle">518</td>
-                            <td class="middle text-start">นาย ปฏิวัฒน์ นาดี </td>
-                            <!-- <td class="middle">ประกอบ</td> -->
-                            <td class="middle">18/02/2025</td>
-                            <td></td>
-                            <td class="middle text-start">Manufacturing</td>
-                            <td class="middle text-start">Manufacturing Pluakdaeng Factory</td>
-                            <td class="middle text-start">CNC</td>
-                            <td class="middle">PD</td>
+                        <tr>
+                            <!-- <td>3</td> -->
+                            <td>12/02/2025</td>
+                            <td>09:00 - 10:00 น.</td>
+                            <td class="text-center">3790</td>
+                            <td>นาย เทวัน บุญยะบุตร</td>
+                            <td>Painter</td>
+                            <td>Manufacturing</td>
+                            <td>Manufacturing Tasith Factory</td>
+                            <td>Final Paint 20 Ton</td>
+                            <td>TS</td>
+                            <td><span class="badge text-bg-warning" style="font-size: 14px;"></>จองสอบ</td>
                             <td> <button class="btn btn-sm btn-outline-danger" onclick="showDelete()"><i class="bi bi-trash"></i></button></td>
                         </tr>
+                        <tr>
+                            <td>12/02/2025</td>
+                            <td>09:00 - 10:00 น.</td>
+                            <td class="text-center">3804</td>
+                            <td>นาย อนุวัฒน์ โถทอง</td>
+                            <td>Painter</td>
+                            <td>Manufacturing</td>
+                            <td>Manufacturing Tasith Factory</td>
+                            <td>Final Paint 35 Ton</td>
+                            <td>TS</td>
+                            <td><span class="badge text-bg-warning" style="font-size: 14px;"></>จองสอบ</td>
+                            <td> <button class="btn btn-sm btn-outline-danger" onclick="showDelete()"><i class="bi bi-trash"></i></button></td>
+                        </tr>
+                        <tr>
+                            <td>12/02/2025</td>
+                            <td>09:00 - 10:00 น.</td>
+                            <td class="text-center">0549</td>
+                            <td>นาย สนิท เงาใส</td>
+                            <td>Painter</td>
+                            <td>Manufacturing</td>
+                            <td>Manufacturing Tasith Factory</td>
+                            <td>Final Paint 35 Ton</td>
+                            <td>TS</td>
+                            <td><span class="badge text-bg-warning" style="font-size: 14px;"></>จองสอบ</td>
+                            <td> <button class="btn btn-sm btn-outline-danger" onclick="showDelete()"><i class="bi bi-trash"></i></button></td>
+
+                        </tr>
+                        <tr class="middle">
+                            <!-- <td>1</td> -->
+                            <td>12/02/2025</td>
+                            <td>10:30 - 11:30 น.</td>
+                            <td class="text-center">3811</td>
+                            <td>นาย วิทยา ลอยอากาศ</td>
+                            <td>Painter</td>
+                            <td>Manufacturing</td>
+                            <td>Manufacturing Tasith Factory</td>
+                            <td>Top Coat</td>
+                            <td>TS</td>
+                            <td><span class="badge text-bg-warning" style="font-size: 14px;"></>จองสอบ</td>
+                            <td> <button class="btn btn-sm btn-outline-danger" onclick="showDelete()"><i class="bi bi-trash"></i></button></td>
+                        </tr>
+                        <tr>
+                            <!-- <td>2</td> -->
+                            <td>12/02/2025</td>
+                            <td>10:30 - 11:30 น.</td>
+                            <td class="text-center">3768</td>
+                            <td>นาย วีระศักดิ์ คงชูดี</td>
+                            <td>Painter</td>
+                            <td>Manufacturing</td>
+                            <td>Manufacturing Tasith Factory</td>
+                            <td>Top Coat</td>
+                            <td>TS</td>
+                            <td><span class="badge text-bg-warning" style="font-size: 14px;"></>จองสอบ</td>
+                            <td> <button class="btn btn-sm btn-outline-danger" onclick="showDelete()"><i class="bi bi-trash"></i></button></td>
+                        </tr>
+
                     </tbody>
                 </table>
             </div>
@@ -223,7 +283,7 @@
     <hr>
     <div class="card shadow-sm rounded-1">
         <div class="card-body">
-            <h4 class="text-center mb-4">TS</h4>
+            <h4 class="text-center mb-4">โรงงาน : TS (ตาสิทธิ์)</h4>
             <div id="chart"></div>
             <div class="table-responsive mt-3">
                 <table id="example" class="table table-striped table-bordered" style="width:100%;">
@@ -283,7 +343,7 @@
 
     <div class="card shadow-sm rounded-1 mt-4">
         <div class="card-body">
-            <h4 class="text-center mb-4">PD</h4>
+            <h4 class="text-center mb-4">โรงงาน : PD (ปลวกแดง)</h4>
             <div id="chart1"></div>
             <div class="table-responsive mt-3">
                 <table id="example" class="table table-striped table-bordered" style="width:100%">
@@ -348,11 +408,11 @@
         let tables = document.querySelectorAll('.table');
         tables.forEach(table => {
             new DataTable(table, {
-                paging: false,
-                searching: false,
+                paging: true,
+                searching: true,
                 language: {
                     url: "assets/lib/dataTables/language.json",
-                    info: ""
+
                 }
             });
         });

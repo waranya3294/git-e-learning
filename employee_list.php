@@ -33,7 +33,7 @@
                             <th class="text-center">แผนก</th>
                             <th class="text-center">จุดปฏิบัติงาน</th>
                             <th class="text-center">โรงงาน</th>
-                            <th class="text-center">สอบหลังเรียน</th>
+                            <th class="text-center">คะแนนสอบ</th>
                             <th class="text-center">สถานะ</th>
                         </tr>
                     </thead>
@@ -47,21 +47,33 @@
                             <td>Manufacturing Tasith Factory</td>
                             <td>Final Paint 20 Ton</td>
                             <td class="text-center">TS</td>
-                            <td>5 คะแนน</td>
+                            <td class="text-center">5 คะแนน</td>
                             <td class="text-center"><span class="badge text-bg-success " style="font-size:14px;">สอบเสร็จแล้ว</span></td>
                         </tr>
                         <tr>
                             <td class="text-end">2</td>
                             <td class="text-center">518</td>
-                            <td>นาย ปฏิวัฒน์  นาดี  </td>
+                            <td>นาย ปฏิวัฒน์ นาดี </td>
                             <td>CNC Controller</td>
                             <td>Manufacturing</td>
                             <td>Manufacturing Pluakdaeng Factory</td>
                             <td>CNC</td>
                             <td class="text-center">PD</td>
-                            <td></td>
+                            <td class="text-center"></td>
                             <td class="text-center"><span class="badge text-bg-danger" style="font-size:14px;">ยังไม่สอบ</span></td>
                         </tr>
+                        <!-- <tr>
+                            <td class="text-end">3</td>
+                            <td class="text-center">0549</td>
+                            <td>นาย สนิท เงาใส</td>
+                            <td>Painter</td>
+                            <td>Manufacturing</td>
+                            <td>Manufacturing Tasith Factory</td>
+                            <td>Final Paint 35 Ton</td>
+                            <td class="text-center">TS</td>
+                            <td class="text-center">0 คะแนน</td>
+                            <td class="text-center"><span class="badge text-bg-danger" style="font-size:14px;">ไม่ผ่าน</span></td>
+                        </tr> -->
                     </tbody>
                 </table>
             </div>
@@ -104,11 +116,11 @@
 
     // Datatable
     let table = new DataTable('#example', {
-        
+
         language: {
             url: "assets/lib/dataTables/language.json"
         },
-        
+
     });
 
     // pic

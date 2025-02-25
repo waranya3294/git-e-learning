@@ -3,7 +3,7 @@
         <div class="card-body">
             <div class="row ">
                 <div class="col-12 mb-4" style="color: #18B0BD;">
-                    <h1 class="display-4"> ลงข้อสอบ</h1>
+                    <h1 class="display-4"> บันทึกข้อสอบ</h1>
                 </div>
             </div>
             <!-- button นำข้อมูลเข้า -->
@@ -37,7 +37,7 @@
                                                         1. ไฟล์คำถามต้องอยู่ในรูปแบบ Template ที่กำหนดให้
                                                         <span id="downloadBtn" class="badge text-bg-primary" style="cursor: pointer;">คลิกเพื่อดาวน์โหลด Template</span>
                                                         <br>2. ไม่สามารถนำเข้าข้อมูลที่เป็นรูปภาพ วีดีโอได้
-                                                        <br>3. รองรับไฟล์ Excel ที่มีนามสกุล .xls เท่านั้น
+                                                        <br>3. รองรับไฟล์ Excel ที่มีนามสกุล .xlsx เท่านั้น
                                                     </div>
                                                 </div>
                                             </div>
@@ -45,7 +45,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>เลือกไฟล์ Excel เพื่อนำเข้าข้อสอบ (นามสกุล .xls เท่านั้น)</label>
+                                    <label>เลือกไฟล์ Excel เพื่อนำเข้าข้อสอบ (นามสกุล .xlsx เท่านั้น)</label>
                                     <input type="file" class="form-control" id="file_excel" name="file_excel" accept=".xls">
                                 </div>
                             </div>
@@ -59,11 +59,17 @@
                 </div>
 
                 <div class="md-3">
-                    <input type="text" name="title" class="form-control" onclick="showToolbar(this)" placeholder="ตั้งชื่อหัวข้อสอบ" required>
+                   <select class="form-select" id="Position">
+                   <option selected>--เลือกชื่อหัวข้อสอบ--</option>
+                    <option value="Position1">ประเภทงานสี</option>
+                    <option value="Position2">ประเภทงานเชื่อม</option>
+                    <option value="Position3">ประเภทงานประกอบ</option>
+                    <option value="Position4">ประเภทงาน CNC</option>
+                   </select>
                 </div>
 
                 <div class="mt-3 mb-2">
-                    <textarea type="text" name="description" id="description" class="form-control" placeholder="รายละเอียดแบบทดสอบ"></textarea>
+                    <textarea type="text" name="description" id="description" class="form-control" placeholder="คำชี้แจงแบบทดสอบ"></textarea>
                 </div>
                 <!-- แสดงข้อมูล excel -->
                 <div id="excel_display_area" class="mt-4"></div>
@@ -144,8 +150,8 @@
             </div>
         </div>
 
-        <!-- Preview Modal -->
-        <div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
+          <!-- Preview Modal -->
+          <div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -251,7 +257,7 @@
 
         const optionId = `${Date.now()}-${Math.random()}`; // สร้าง ID แบบไม่ซ้ำ
         const optionDiv = document.createElement('div');
-        optionDiv.classList.add('row', 'align-items-center', 'mb-2', 'g-2', 'm-0');
+        optionDiv.classList.add('row', 'align-items-center', 'mb-2', 'g-2');
         optionDiv.innerHTML = `
         <div class="col-auto">
             <input class="form-check-input" type="radio" name="exampleModal_${optionId}" value="${optionId}">
@@ -355,34 +361,37 @@
         });
     }
 
-    // แสดงตัวอย่าง
-    function previewExam() {
-        const title = document.querySelector('input[name="title"]').value.trim();
-        const description = document.querySelector('textarea[name="description"]').value.trim();
-        const questionBoxes = document.querySelectorAll('.question-box');
+    
+ // แสดงตัวอย่าง
+function previewExam() {
+    const selectedTopic = document.querySelector('#Position').value;
+    const description = document.querySelector('textarea[name="description"]').value.trim();
+    const questionBoxes = document.querySelectorAll('.question-box');
 
-        const excelDisplayArea = document.getElementById('excel_display_area');
+    const excelDisplayArea = document.getElementById('excel_display_area');
 
-        let previewHtml = `<h3>${title}</h3><p>${description}</p>`;
+    let previewHtml = `<p>${description}</p>`;
 
-        // แสดงข้อมูลจาก excel_display_area 
-        if (excelDisplayArea.innerHTML.trim()) {
-            previewHtml += excelDisplayArea.innerHTML;
-        }
+    // ตรวจสอบการแสดงผลข้อมูลจาก Excel
+    if (excelDisplayArea && excelDisplayArea.innerHTML.trim()) {
+        console.log("Excel Data Loaded:", excelDisplayArea.innerHTML);
+        previewHtml += `` + excelDisplayArea.innerHTML;
+    } else {
+        console.log("Excel Data Missing or Empty");
+    }
 
-        // แสดงคำถามที่กรอกในฟอร์ม
-        questionBoxes.forEach((box, index) => {
-            const question = box.querySelector('input[name="question"]').value.trim();
-            const questionImage = box.querySelector('#showimage img');
-            const options = box.querySelectorAll('.options-container .row');
+    // แสดงคำถามที่กรอกในฟอร์ม
+    questionBoxes.forEach((box, index) => {
+        const question = box.querySelector('input[name="question"]').value.trim();
+        const questionImage = box.querySelector('#showimage img');
+        const options = box.querySelectorAll('.options-container .row');
 
-            previewHtml += `
-             ${questionImage ? `<img src="${questionImage.src}" class="img-thumbnail" style="width: 500px; height:500px;">` : ''}
+        previewHtml += `
+             ${questionImage ? `<img src="${questionImage.src}" class="img-thumbnail" style="width: 500px; height:400px;">` : ''}
         <h3 class="mt-3"><b>ข้อที่ ${index + 1}:</b> ${question}</h3>
         <ul>`;
 
-
-            options.forEach((option, optIndex) => {
+        options.forEach((option, optIndex) => {
                 const optionText = option.querySelector('input[type="text"]').value.trim();
                 const optionImage = option.querySelector('.option-image-preview img');
 
@@ -393,7 +402,7 @@
                     ${optionText}
                  </label>
                  <ul>
-                  ${optionImage ? `<img src="${optionImage.src}" class="img-thumbnail" style="width: 300px; height:300px;">` : ''}
+                  ${optionImage ? `<img src="${optionImage.src}" class="img-thumbnail" style="width: 500px; height:400px;">` : ''}
                  </ul>
                 
            </ul> `;
@@ -401,9 +410,9 @@
 
             previewHtml += `</ul>`;
         });
-
-        document.getElementById('previewContent').innerHTML = previewHtml;
-    }
+    // แสดงผลลัพธ์
+    document.getElementById('previewContent').innerHTML = previewHtml;
+}
 
 
     function previewImage(input, type) {

@@ -3,7 +3,7 @@
         <div class="card-body">
             <div class="row d-flex align-items-center">
                 <div class="col">
-                    <h1 class="display-4" style="color: #18B0BD;">หมวดหมู่ข้อสอบ</h1>
+                    <h1 class="display-4" style="color: #18B0BD;">ประเภทข้อสอบ</h1>
                 </div>
                 <div class="col text-end">
                     <button type="text" class="btn btn-success" onclick="window.location.href='exam_form_maincontent.php'">
@@ -18,16 +18,16 @@
                         <thead class="thead-light">
                             <tr >
                                 <th class="text-center"><b>ลำดับ</b></th>
-                                <th class="text-center"><b>ชื่อหมวดหมู่</b></th>
+                                <th class="text-center"><b>ชื่อประเภทข้อสอบ</b></th>
                                 <th class="text-center"><b>จำนวนข้อสอบ</b></th>
-                                <th class="text-center"><b>คำสั่ง</b></th>
+                                <th class="text-center"><b>จัดการ</b></th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr class="align-middle">
                                 <td>1</td>
-                                <td>ความปลอดภัยในการพ่นสี</td>
-                                <td>5 ข้อ</td>
+                                <td>ประเภทงานสี</td>
+                                <td>30 ข้อ</td>
                                 <td>
                                     <button class="btn btn-outline-warning btn-sm" title="แก้ไขข้อมูล" onclick="window.location.href='exam_form_maincontent.php'"><i class="bi bi-pencil-square"></i></button>
                                     <button class="btn btn-outline-danger btn-sm" title="ลบข้อมูล" onclick="showDelete() "><i class="bi bi-trash"></i></button>
