@@ -1,33 +1,16 @@
-<style>
-  .pagination {
-    display: flex;
-    /* ใช้ flexbox ในการจัดการการวางปุ่ม */
-    flex-wrap: wrap;
-    /* ให้ปุ่มอยู่ในแถวเดียวกันและหากเกินจะย้ายไปแถวถัดไป */
-    justify-content: center;
-    /* จัดตำแหน่งปุ่มให้อยู่กลาง */
-  }
-
-  .page-item {
-    display: inline-block;
-    /* ให้แสดงปุ่มในแนวนอน */
-  }
-
-  .next-btn-container {
-    display: flex;
-    /* ใช้ flexbox สำหรับจัดการปุ่ม "Next" */
-    align-items: center;
-    /* จัดตำแหน่งปุ่มให้อยู่ตรงกลางในแนวตั้ง */
-    justify-content: flex-end;
-    /* วางปุ่ม "Next" ไว้ข้างหลังสุด */
-  }
-</style>
 
 <div class="container-fluid mt-4">
   <h3 style="color:#585858;"><i class="bi bi-book-half" style="color:#00adb0"></i> แบบทดสอบหลังเรียน</h3>
 
   <div class="card shadow-sm rounded-1" style="border: none;">
-    <div class="card-body p-5">
+    <div class="card-body p-3">
+    <div class="row">
+        <div class="col text-center mt-4">
+            <button class="btn btn-default time-spent" type="button" style="border: 2px solid #e9ecef; font-size: 24px;">
+                <span id="timestamp">00.00</span>
+            </button>
+        </div>
+    </div>
       <div class="mb-3">
         <!-- ช่องแสดงความคืบหน้า -->
         <p class="m-0">ความคืบหน้า: <span id="progress-text">0/50 ข้อ</span></p>
@@ -40,9 +23,11 @@
         </div>
       </div>
 
-      <!-- Question Display -->
-      <div id="question-container" class="mb-3"></div>
+   <div class="p-4">
+       <!-- Question Display -->
+       <div id="question-container" class="mb-3"></div>
       <!-- ช่องแสดงข้อสอบ -->
+   </div>
 
       <!-- Pagination -->
       <nav aria-label="ข้อสอบ">
@@ -422,7 +407,7 @@
   const totalQuestions = questions.length; // จำนวนข้อสอบทั้งหมด
   let completed = 0; // จำนวนข้อที่ทำเสร็จ
   let currentPage = 1; // หน้าปัจจุบัน
-  const maxVisiblePages = 15; // จำนวนข้อที่แสดงใน pagination (แสดง 10 ข้อ)
+  const maxVisiblePages = 15; // จำนวนข้อที่แสดงใน pagination (แสดง 15 ข้อ)
   let answeredQuestions = Array(totalQuestions).fill(false); // ตัวแปรเก็บสถานะคำตอบของแต่ละข้อ
 
   function createPagination() {
@@ -463,39 +448,57 @@
     nextBtnContainer.className = "page-item next-btn-container";
     nextBtnContainer.innerHTML = `<button class="page-link" onclick="nextQuestion()">ข้อถัดไป</button>`;
     pageNumbers.appendChild(nextBtnContainer);
+    if (currentPage === 50) {
+        // ถ้าถึงข้อ 50 ให้เปลี่ยนเป็นปุ่มส่งคำตอบ
+        nextBtnContainer.innerHTML = `<button class="page-link submit-btn" onclick="nextQuestion()">ส่งคำตอบ</button>`;
+    } else {
+        // ปกติแสดง "ข้อถัดไป"
+        nextBtnContainer.innerHTML = `<button class="page-link next-btn" onclick="nextQuestion()">ข้อถัดไป</button>`;
+    }
+
   }
+
 
   function nextQuestion() {
     const selectedAnswer = document.querySelector('input[name="answer"]:checked');
-    
+
     if (!selectedAnswer) {
         Swal.fire({
             icon: 'warning',
             title: 'กรุณาเลือกคำตอบก่อนจะไปข้อถัดไป',
-            confirmButtonText:'ตกลง',
-            confirmButtonColor:'green',
+            confirmButtonText: 'ตกลง',
+            confirmButtonColor: 'green',
         });
         return;
     }
 
-    answeredQuestions[currentPage - 1] = true; // ตั้งค่าให้ข้อสอบนี้ทำเสร็จแล้ว
+    answeredQuestions[currentPage - 1] = true; // บันทึกว่าทำเสร็จ
+    completed++; // เพิ่มจำนวนข้อที่ทำเสร็จ
 
-    if (completed < totalQuestions) {
-      completed++; // เพิ่มจำนวนข้อที่ทำเสร็จ
-      const progress = (completed / totalQuestions) * 100; // คำนวณความคืบหน้า
-      document.getElementById("progress-bar").style.width = progress + "%"; // อัพเดตความก้าวหน้าของแถบ
-      document.getElementById("progress-bar").innerText =
-        Math.round(progress) + "%"; // แสดงเปอร์เซ็นต์ความคืบหน้า
-      document.getElementById("progress-text").innerText =
-        completed + "/" + totalQuestions + " ข้อ"; // แสดงข้อความความคืบหน้า
+    // อัปเดต progress bar
+    const progress = (completed / totalQuestions) * 100;
+    document.getElementById("progress-bar").style.width = progress + "%";
+    document.getElementById("progress-bar").innerText = Math.round(progress) + "%";
+    document.getElementById("progress-text").innerText = completed + "/" + totalQuestions + " ข้อ";
 
-      if (completed !== currentPage) {
-        changePage(completed); // ถ้าหน้าใหม่ไม่ใช่หน้าปัจจุบันให้เปลี่ยนหน้า
-      }
+    updatePagination(); // อัปเดต pagination
 
-      updatePagination(); // อัพเดต pagination
-    }
-  }
+    // ใช้ setTimeout เพื่อให้ค่าทั้งหมดอัปเดตแล้วค่อยเปลี่ยนข้อ
+    setTimeout(() => {
+        let nextUnanswered = answeredQuestions.findIndex(ans => !ans);
+        if (nextUnanswered !== -1) {
+            changePage(nextUnanswered + 1); // เปลี่ยนหน้าไปข้อถัดไปที่ยังไม่ได้ตอบ
+        } else {
+            Swal.fire({
+                icon: 'success',
+                title: 'คุณทำข้อสอบครบทุกข้อแล้ว!',
+                confirmButtonText: 'ตกลง',
+                confirmButtonColor: 'green',
+            });
+        }
+    }, 100); // หน่วงเวลาเล็กน้อย (100ms)
+}
+
 
   function changePage(page) {
     if (page < 1 || page > totalQuestions) return; // ตรวจสอบให้แน่ใจว่าเลขหน้าถูกต้อง
@@ -510,49 +513,74 @@
     const question = questions[page - 1];
     const isAnswered = answeredQuestions[page - 1];
 
-    // ตรวจสอบว่าเลือกคำตอบแล้วหรือไม่
-    const handleAnswerSelection = (event) => {
-      const options = document.querySelectorAll(`input[name="answer"]`);
-      options.forEach((option) => {
-        const optionDiv = option.closest(".option");
-        if (option.checked) {
-          optionDiv.style.backgroundColor = "#bee5e5"; // สีพื้นหลังเมื่อเลือก
-        } else {
-          optionDiv.style.backgroundColor = ""; // รีเซ็ตสีพื้นหลังหากไม่ได้เลือก
+    // ฟังก์ชันเลือก radio อัตโนมัติเมื่อคลิกที่ตัวเลือก
+    const handleOptionClick = (event) => {
+        const radio = event.currentTarget.querySelector("input[type='radio']");
+        if (radio && !radio.disabled) {
+            radio.checked = true;
+            updateOptionStyles(); // อัพเดตสีพื้นหลัง
         }
-      });
     };
 
     // แสดงคำถามและตัวเลือก
     if (page <= 20) {
-      questionContainer.innerHTML = `
-      <h4>${question.title}</h4>
-      <div class="option" style="padding: 10px; border:none; border-radius: 5px; cursor: pointer; margin-bottom: 10px; font-size:20px;">
-        <input type="radio" name="answer" value="true" ${isAnswered ? "disabled" : ""}> ถูก
-      </div>
-      <div class="option" style="padding: 10px; border:none; border-radius: 5px; cursor: pointer; margin-bottom: 10px; font-size:20px;">
-        <input type="radio" name="answer" value="false" ${isAnswered ? "disabled" : ""}> ผิด
-      </div>
-    `;
+        questionContainer.innerHTML = `
+        <h4>${question.title}</h4>
+        <div class="option" onclick="handleOptionClick(event)">
+          <input type="radio" name="answer" value="true" ${isAnswered ? "disabled" : ""}> ถูก
+        </div>
+        <div class="option" onclick="handleOptionClick(event)">
+          <input type="radio" name="answer" value="false" ${isAnswered ? "disabled" : ""}> ผิด
+        </div>
+      `;
     } else {
-      questionContainer.innerHTML = `
-      <h3>${question.title}</h3>
-      <ul>
-        ${question.options.map((option) => `
-          <div class="option" style="padding: 10px; border:none; border-radius: 5px; cursor: pointer; margin-bottom: 10px; font-size:20px;">
-            <input type="radio" name="answer" value="${option}" ${isAnswered ? "disabled" : ""}> ${option}
-          </div>
-        `).join('')}
-      </ul>
-    `;
+        questionContainer.innerHTML = `
+        <h3>${question.title}</h3>
+        <ul>
+          ${question.options.map((option, index) => `
+            <div class="option" onclick="handleOptionClick(event)">
+              <input type="radio" name="answer" value="${option}" ${isAnswered ? "disabled" : ""}> ${option}
+            </div>
+          `).join('')}
+        </ul>
+      `;
     }
 
-    // เพิ่ม event listener เพื่อให้แสดงพื้นหลังเมื่อเลือกคำตอบ
-    const allOptions = document.querySelectorAll('input[name="answer"]');
-    allOptions.forEach(option => {
-      option.addEventListener('change', handleAnswerSelection);
+    // ฟังก์ชันอัพเดตสีพื้นหลังของตัวเลือกที่ถูกเลือก
+    function updateOptionStyles() {
+        document.querySelectorAll('.option').forEach(option => {
+            const radio = option.querySelector("input[type='radio']");
+            option.style.backgroundColor = radio.checked ? "#bee5e5" : "";
+        });
+    }
+
+    // เพิ่ม event listener หลังจากโหลดตัวเลือกเสร็จ
+    document.querySelectorAll(".option").forEach(option => {
+        option.addEventListener("click", handleOptionClick);
     });
-  }
+}
+function startTimer(display) {
+    var timer = 0, minutes, seconds;
+    var interval = setInterval(function() {
+        minutes = Math.floor(timer / 60);
+        seconds = timer % 60;
+
+        // แปลงค่าเป็น 2 หลัก
+        minutes = minutes < 10 ? "0" + minutes : minutes;
+        seconds = seconds < 10 ? "0" + seconds : seconds;
+
+        // แสดงผลในรูปแบบ mm.ss
+        display.textContent = minutes + "." + seconds;
+
+        timer++;
+    }, 1000);
+}
+
+window.onload = function() {
+    var display = document.querySelector('#timestamp'); // เปลี่ยนเป็น id="timestamp"
+    startTimer(display);
+    loadQuestion(currentQuestionIndex);
+};
 
 
   createPagination(); // เรียกฟังก์ชันเพื่อสร้าง pagination เมื่อโหลดหน้าเว็บ

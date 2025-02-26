@@ -1,7 +1,7 @@
 
 .option {
   padding: 10px;
-  border: 2px solid #69696930;
+  /* border: 2px solid #69696930; */
   border-radius: 5px;
   cursor: pointer;
   margin-bottom: 10px;
@@ -13,6 +13,28 @@
 
 .option.selected {
   background-color: #bee5e5;
+}
+.pagination {
+  display: flex;
+  /* ใช้ flexbox ในการจัดการการวางปุ่ม */
+  flex-wrap: wrap;
+  /* ให้ปุ่มอยู่ในแถวเดียวกันและหากเกินจะย้ายไปแถวถัดไป */
+  justify-content: center;
+  /* จัดตำแหน่งปุ่มให้อยู่กลาง */
+}
+
+.page-item {
+  display: inline-block;
+  /* ให้แสดงปุ่มในแนวนอน */
+}
+
+.next-btn-container {
+  display: flex;
+  /* ใช้ flexbox สำหรับจัดการปุ่ม "Next" */
+  align-items: center;
+  /* จัดตำแหน่งปุ่มให้อยู่ตรงกลางในแนวตั้ง */
+  justify-content: flex-end;
+  /* วางปุ่ม "Next" ไว้ข้างหลังสุด */
 }
 .stepper-wrapper {
   margin-top: auto;
