@@ -143,21 +143,21 @@
               <nav class="sb-sidenav-menu-nested nav">
                 <a class="nav-link text-wrap" href="learning_maincontent.php"><i class="fa-regular fa-circle fa-sm me-2" style="font-size: 0.8rem;"></i>ประเภทของการพ่นสี</a>
                 <a class="nav-link text-wrap" href="#"><i class="fa-regular fa-circle fa-sm me-2" style="font-size: 0.8rem;"></i> วิธีการสวมใส่ชุด PPE</a>
-                <a class="nav-link text-wrap" href="posttest_maincontent.php"><i class="fa-regular fa-circle fa-sm me-2" style="font-size: 0.8rem;"></i> แบบทดสอบหลังเรียนบทเรียนที่ 1</a>
 
               </nav>
             </div>
 
             <a class="nav-link collapsed" href="" data-bs-toggle="collapse" data-bs-target="#collapsePages2" aria-expanded="false" aria-controls="collapsePages2">
               <div class="sb-nav-link-icon"></div>
-              บทเรียนที่ 2
-              <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+              บทเรียนที่ 2 
+              <div class="sb-sidenav-collapse-arrow"></div>
             </a>
-            <div class="collapse" id="collapsePages2" aria-labelledby="headingTwo" data-bs-parent="#sidenavAccordion">
-              <nav class="sb-sidenav-menu-nested nav accordion" id="sidenavAccordionPages">
-                <a class="nav-link text-wrap"><i class="fa-regular fa-circle fa-sm me-2" style="font-size: 0.8rem;"></i> แบบทดสอบหลังเรียน</a>
-              </nav>
-            </div>
+
+            <a class="nav-link collapsed" href="" data-bs-toggle="collapse" data-bs-target="#collapsePages2" aria-expanded="false" aria-controls="collapsePages2">
+              <div class="sb-nav-link-icon"></div>
+              บทเรียนที่ 3
+              <div class="sb-sidenav-collapse-arrow"></div>
+            </a>
 
             <a class="nav-link collapsed" style="cursor: pointer" onclick="window.location.href='summary_maincontent.php'" data-bs-toggle="collapse" data-bs-target="#collapsePages3" aria-expanded="false" aria-controls="collapsePages3">
               <div class="sb-nav-link-icon"></div>

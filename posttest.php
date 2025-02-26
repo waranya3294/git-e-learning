@@ -1,244 +1,560 @@
+<style>
+  .pagination {
+    display: flex;
+    /* ใช้ flexbox ในการจัดการการวางปุ่ม */
+    flex-wrap: wrap;
+    /* ให้ปุ่มอยู่ในแถวเดียวกันและหากเกินจะย้ายไปแถวถัดไป */
+    justify-content: center;
+    /* จัดตำแหน่งปุ่มให้อยู่กลาง */
+  }
+
+  .page-item {
+    display: inline-block;
+    /* ให้แสดงปุ่มในแนวนอน */
+  }
+
+  .next-btn-container {
+    display: flex;
+    /* ใช้ flexbox สำหรับจัดการปุ่ม "Next" */
+    align-items: center;
+    /* จัดตำแหน่งปุ่มให้อยู่ตรงกลางในแนวตั้ง */
+    justify-content: flex-end;
+    /* วางปุ่ม "Next" ไว้ข้างหลังสุด */
+  }
+</style>
+
 <div class="container-fluid mt-4">
-  <h3 style="color:#585858;"><i class="bi bi-book-half" style="color:#00adb0"></i> บทเรียนที่ 1 แบบทดสอบหลังเรียน</h3>
+  <h3 style="color:#585858;"><i class="bi bi-book-half" style="color:#00adb0"></i> แบบทดสอบหลังเรียน</h3>
 
   <div class="card shadow-sm rounded-1" style="border: none;">
     <div class="card-body p-5">
-      <div class="stepper-wrapper">
-        <div class="stepper-item active">
-          <div class="step-counter">1</div>
-        </div>
-
-        <div class="stepper-item">
-          <div class="step-counter">2</div>
-        </div>
-
-        <div class="stepper-item">
-          <div class="step-counter">3</div>
-        </div>
-
-        <div class="stepper-item">
-          <div class="step-counter">4</div>
-        </div>
-
-        <div class="stepper-item">
-          <div class="step-counter">5</div>
+      <div class="mb-3">
+        <!-- ช่องแสดงความคืบหน้า -->
+        <p class="m-0">ความคืบหน้า: <span id="progress-text">0/50 ข้อ</span></p>
+        <!-- แสดงจำนวนข้อที่ทำเสร็จแล้ว -->
+        <div class="progress mb-4">
+          <div id="progress-bar" class="progress-bar bg-success" style="width: 0%">
+            0%
+          </div>
+          <!-- แถบแสดงความคืบหน้า -->
         </div>
       </div>
 
-      <div id="quiz-container">
-        <h4 id="question-title">ข้อที่ 1 การเตรียมพื้นผิวก่อนพ่นสีมีวัตถุประสงค์หลักเพื่ออะไร?</h4>
-        <div class="options-container" style="font-size: 20px;">
-          <div class="option">
-            <input type="radio" name="question1" value="1"> 1. ทำให้สีแห้งเร็วขึ้น
-          </div>
-          <div class="option">
-            <input type="radio" name="question1" value="2"> 2. ลดระยะเวลาในการพ่นสี
-          </div>
-          <div class="option">
-            <input type="radio" name="question1" value="3"> 3. เพิ่มการยึดเกาะของสี
-          </div>
-          <div class="option">
-            <input type="radio" name="question1" value="4"> 4.ป้องกันพื้นผิวจากความร้อน
-          </div>
-        </div>
-      </div>
+      <!-- Question Display -->
+      <div id="question-container" class="mb-3"></div>
+      <!-- ช่องแสดงข้อสอบ -->
 
-      <div class="row align-items-center">
-        <div class="col">
-          <div class="col text-end">
-            <button type="button" class="btn btn-outline-success" id="next-button">ข้อต่อไป</button>
+      <!-- Pagination -->
+      <nav aria-label="ข้อสอบ">
+        <div class="row">
+          <!-- กล่องแถวสำหรับการจัดเรียงปุ่ม -->
+          <div class="pagination" id="page-numbers">
+            <!-- ย้ายปุ่ม Next มาอยู่ใน div pagination -->
+            <div class="page-item next-btn-container">
+              <button class="page-link" onclick="nextQuestion()">ข้อถัดไป</button>
+              <!-- ปุ่ม "Next" ที่จะไปยังข้อถัดไป -->
+            </div>
           </div>
+          <!-- ช่องแสดงหมายเลขหน้าที่จะถูกสร้างจาก JavaScript -->
         </div>
-      </div>
+      </nav>
     </div>
   </div>
 </div>
 
 
 <script>
-  const questions = [{
-      title: "ข้อที่ 1 การเตรียมพื้นผิวก่อนพ่นสีมีวัตถุประสงค์หลักเพื่ออะไร?",
-      options: [
-        "1. ทำให้สีแห้งเร็วขึ้น",
-        "2. ลดระยะเวลาในการพ่นสี",
-        "3. เพิ่มการยึดเกาะของสี",
-        "4.ป้องกันพื้นผิวจากความร้อน"
-      ]
+  const trueFalseQuestions = [{
+      title: "ข้อที่ 1 การใช้หน้ากากกรองอากาศเป็นสิ่งสำคัญในการพ่นสีเพื่อป้องกันการสูดดมสารเคมีที่เป็นอันตราย",
+      answer: "ถูก",
     },
     {
-      title: "ข้อที่ 2 ในการพ่นสี ควรเลือกใช้อุปกรณ์ป้องกันส่วนบุคคล(PPE)ใด เพื่อป้องกันการสูดดมสารเคมีที่อาจเป็นอันตราย?",
-      options: [
-        "1. หน้ากากผ้า",
-        "2. แว่นกันแดด",
-        "3. หมวกนิรภัย",
-        "4. หน้ากากกรองอากาศแบบไส้กรองมาตรฐาน"
-      ]
-
+      title: "ข้อที่ 2 การทำงานในพื้นที่ที่ไม่มีการระบายอากาศไม่ส่งผลต่อความปลอดภัยในการพ่นสี",
+      answer: "ผิด",
     },
     {
-      title: "ข้อที่ 3 สีรองพื้น(primer)มีหน้าที่อะไรในกระบวนการพ่นสี?",
-      options: [
-        "1. ให้สีเงางาม",
-        "2. ปกป้องพื้นผิวจากสนิมและเพิ่มการยึดเกาะของสีทับหน้า",
-        "3. ให้ตกแต่งเพื่อความสวยงาม",
-        "4. ทำให้สีไม่หลุดลอก"
-      ]
+      title: "ข้อที่ 3 การสวมถุงมือและแว่นตาเป็นวิธีที่ช่วยป้องกันสารเคมีจากการสัมผัสกับผิวหนังและดวงตา",
+      answer: "ถูก",
     },
     {
-      title: "ข้อที่ 4 หากพ่นสีแล้วพบรอยคลื่นหรือฟองอากาศ ควรแก้ไขอย่างไร?",
-      options: [
-        "1. พ่นสีเพิ่มทันที",
-        "2. ใช้ความร้อนเร่งให้ฟองอากาศแตก",
-        "3. พ่นสีใสเคลือบทับทันที",
-        "4. ปล่อยให้แห้งแล้วขัดพื้นผิวก่อนพ่นซ้ำ"
-      ]
+      title: "ข้อที่ 4 การเปิดหน้าต่างเพื่อระบายอากาศสามารถช่วยลดความเสี่ยงจากการสูดดมสารเคมีในขณะพ่นสีได้",
+      answer: "ถูก",
     },
     {
-      title: "ข้อที่ 5 หน้ากากชนิดใดที่เหมาะสมที่สุดสำหรับการพ่นสีเพื่อป้องกันไอระเหยของสารเคมี?",
-      options: [
-        "1. หน้ากาผ้า",
-        "2. หน้ากากอนามันทางการแพทย์",
-        "3. หน้ากากกรองอากาศชนิดครึ่งหน้า(Half-face Respirator)พร้อมไส้กรอกสารเคมี",
-        "4. หน้ากากกันฝุ่นทั่วไป"
-      ]
-    }
+      title: "ข้อที่ 5 การใช้งานเครื่องมือพ่นสีโดยไม่สวมอุปกรณ์ป้องกันส่วนบุคคล(PPE) อาจเป็นอันตรายได้",
+      answer: "ถูก",
+    },
+    {
+      title: "ข้อที่ 6 หากเครื่องพ่นสีเกิดการรั่วซึม ควรปล่อยให้ทำงานต่อไปจนกว่าจะเสร็จงาน",
+      answer: "ผิด",
+    },
+    {
+      title: "ข้อที่ 7 สีที่ใช้พ่นควรเก็บไว้ในที่ที่มีอุณหภูมิสูงเพื่อให้สามารถใช้งานได้ดี",
+      answer: "ผิด",
+    },
+    {
+      title: "ข้อที่ 8 การใช้สารเคมีในการทำงานสีควรอ่านและปฏิบัติตามคำแนะนำบนฉลากอย่างเคร่งครัด",
+      answer: "ถูก",
+    },
+    {
+      title: "ข้อที่ 9 การทำงานในพื้นที่ปิดที่ไม่มีการระบายอากาศอาจเพิ่มความเสี่ยงจากการเกิดไฟไหม้จากสารเคมีที่ใช้ในงานสี",
+      answer: "ถูก",
+    },
+    {
+      title: "ข้อที่ 10 หากสีเกิดการติดไฟ ควรใช้น้ำดับไฟทันทีเพื่อป้องกันการแพร่กระจายของไฟ",
+      answer: "ผิด",
+    },
+    {
+      title: "ข้อที่ 11 การเตรียมพื้นผิวก่อนพ่นสีมีวัตถุประสงค์หลักเพื่ออะไร?",
+      answer: "ค. เพิ่มการยึดเกาะของสี",
+    },
+    {
+      title: "ข้อที่ 12 ในการพ่นสี ควรเลือกใช้อุปกรณ์ป้องกันส่วนบุคคล(PPE)ใด เพื่อป้องกันการสูดดมสารเคมีที่อาจเป็นอันตราย?",
+      answer: "ง. หน้ากากกรองอากาศแบบไส้กรองมาตรฐาน",
+    },
+    {
+      title: "ข้อที่ 13 สีรองพื้น(primer)มีหน้าที่อะไรในกระบวนการพ่นสี?",
+      answer: "ข. ปกป้องพื้นผิวจากสนิมและเพิ่มการยึดเกาะของสีทับหน้า",
+    },
+    {
+      title: "ข้อที่ 14 หากพ่นสีแล้วพบรอยคลื่นหรือฟองอากาศ ควรแก้ไขอย่างไร?",
+      answer: "ง. ปล่อยให้แห้งแล้วขัดพื้นผิวก่อนพ่นซ้ำ",
+    },
+    {
+      title: "ข้อที่ 15 หน้ากากชนิดใดที่เหมาะสมที่สุดสำหรับการพ่นสีเพื่อป้องกันไอระเหยของสารเคมี?",
+      answer: "ค. หน้ากากกรองอากาศชนิดครึ่งหน้า(Half-face Respirator)พร้อมไส้กรอกสารเคมี",
+    },
+    {
+      title: "ข้อที่ 16 เครื่องมือใดที่ใช้ในการขัดผิวงานสีเพื่อให้พื้นผิวเรียบ?",
+      answer: "ก. กระดาษทราย",
+    },
+    {
+      title: "ข้อที่ 17 เครื่องมือใดที่ใช้ในการทาสีให้พื้นผิวที่มีขนาดกว้าง เช่น ผนัง?",
+      answer: "ข. ลูกกลิ้งทาสี",
+    },
+    {
+      title: "ข้อที่ 18 หากสีทาผนังไม่ติดพื้นผิว ควรทำอย่างไร?",
+      answer: "ข. ขัดและทำความสะอาดพื้นผิวก่อนทาสีใหม่",
+    },
+    {
+      title: "ข้อที่ 19 การเลือกสีทาผนังภายในควรพิจารณาจากอะไรเป็นหลัก?",
+      answer: "ค. ความปลอดภัยและมิตรต่อสิ่งแวดล้อม",
+    },
+    {
+      title: "ข้อที่ 20 การใช้ปืนพ่นสีมีข้อดีอย่างไร?",
+      answer: "ก. สามารถทาสีได้เร็ว",
+    },
   ];
 
-  let currentQuestionIndex = 0;
+  const multipleChoiceQuestions = [{
+      title: "ข้อที่ 21 การเตรียมพื้นผิวก่อนพ่นสีมีวัตถุประสงค์หลักเพื่ออะไร?",
+      options: [
+        "ก. ทำให้สีแห้งเร็วขึ้น",
+        "ข. ลดระยะเวลาในการพ่นสี",
+        "ค. เพิ่มการยึดเกาะของสี",
+        "ง. ป้องกันพื้นผิวจากความร้อน",
+      ],
+    },
+    {
+      title: "ข้อที่ 22 ในการพ่นสี ควรเลือกใช้อุปกรณ์ป้องกันส่วนบุคคล(PPE)ใด เพื่อป้องกันการสูดดมสารเคมีที่อาจเป็นอันตราย?",
+      options: [
+        "ก. หน้ากากผ้า",
+        "ข. แว่นกันแดด",
+        "ค. หมวกนิรภัย",
+        "ง. หน้ากากกรองอากาศแบบไส้กรองมาตรฐาน",
+      ],
+    },
+    {
+      title: "ข้อที่ 23 สีรองพื้น(primer)มีหน้าที่อะไรในกระบวนการพ่นสี?",
+      options: [
+        "ก. ให้สีเงางาม",
+        "ข. ปกป้องพื้นผิวจากสนิมและเพิ่มการยึดเกาะของสีทับหน้า",
+        "ค. ให้ตกแต่งเพื่อความสวยงาม",
+        "ง. ทำให้สีไม่หลุดลอก",
+      ],
+    },
+    {
+      title: "ข้อที่ 24 หากพ่นสีแล้วพบรอยคลื่นหรือฟองอากาศ ควรแก้ไขอย่างไร?",
+      options: [
+        "ก. พ่นสีเพิ่มทันที",
+        "ข. ใช้ความร้อนเร่งให้ฟองอากาศแตก",
+        "ค. พ่นสีใสเคลือบทับทันที",
+        "ง. ปล่อยให้แห้งแล้วขัดพื้นผิวก่อนพ่นซ้ำ",
+      ],
+    },
+    {
+      title: "ข้อที่ 25 หน้ากากชนิดใดที่เหมาะสมที่สุดสำหรับการพ่นสีเพื่อป้องกันไอระเหยของสารเคมี?",
+      options: [
+        "ก. หน้ากากผ้า",
+        "ข. หน้ากากอนามันทางการแพทย์",
+        "ค. หน้ากากกรองอากาศชนิดครึ่งหน้า(Half-face Respirator)พร้อมไส้กรอกสารเคมี",
+        "ง. หน้ากากกันฝุ่นทั่วไป",
+      ],
+    },
+    {
+      title: "ข้อที่ 26 เครื่องมือใดที่ใช้ในการขัดผิวงานสีเพื่อให้พื้นผิวเรียบ?",
+      options: [
+        "ก. กระดาษทราย",
+        "ข. เครื่องขัดแบบสั่น",
+        "ค. แปรงทาสี",
+        "ง. สเปรย์เคลือบ",
+      ],
+    },
+    {
+      title: "ข้อที่ 27 เครื่องมือใดที่ใช้ในการทาสีให้พื้นผิวที่มีขนาดกว้าง เช่น ผนัง?",
+      options: [
+        "ก. แปรงทาสี",
+        "ข. ลูกกลิ้งทาสี",
+        "ค. ปืนพ่นสี",
+        "ง. ไม้พาย",
+      ],
+    },
+    {
+      title: "ข้อที่ 28 หากสีทาผนังไม่ติดพื้นผิว ควรทำอย่างไร?",
+      options: [
+        "ก. พ่นสีซ้ำ",
+        "ข. ขัดและทำความสะอาดพื้นผิวก่อนทาสีใหม่",
+        "ค. ใช้สีรองพื้นเพิ่มเติม",
+        "ง. เพิ่มน้ำมันผสมสีเพื่อเพิ่มความยึดเกาะ",
+      ],
+    },
+    {
+      title: "ข้อที่ 29 การเลือกสีทาผนังภายในควรพิจารณาจากอะไรเป็นหลัก?",
+      options: [
+        "ก. ความทนทานต่อสภาพอากาศ",
+        "ข. ความเงางามของสี",
+        "ค. ความปลอดภัยและมิตรต่อสิ่งแวดล้อม",
+        "ง. สีที่มีราคาถูก",
+      ],
+    },
+    {
+      title: "ข้อที่ 30 การใช้ปืนพ่นสีมีข้อดีอย่างไร?",
+      options: [
+        "ก. สามารถทาสีได้เร็ว",
+        "ข. ใช้ในพื้นที่แคบได้ดี",
+        "ค. ได้สีที่ละเอียดและสม่ำเสมอ",
+        "ง. ใช้งานได้ในทุกสภาพอากาศ",
+      ],
+    },
+    {
+      title: "ข้อที่ 31 การทาสีด้วยแปรงมีข้อดีอย่างไร?",
+      options: [
+        "ก. ใช้ได้ดีในพื้นที่แคบ",
+        "ข. ทาสีได้เร็วกว่าเครื่องมืออื่น",
+        "ค. ทำให้ได้สีที่ละเอียดและเรียบ",
+        "ง. ไม่ต้องใช้การเตรียมพื้นผิว",
+      ],
+    },
+    {
+      title: "ข้อที่ 32 หากสีทาผนังเกิดรอยร้าว ควรทำอย่างไร?",
+      options: [
+        "ก. พ่นสีทับทันที",
+        "ข. ใช้วัสดุปิดรอยร้าวแล้วทาสีใหม่",
+        "ค. ขัดผิวรอบรอยร้าวแล้วพ่นสี",
+        "ง. ทาสีทับรอยร้าวโดยตรง",
+      ],
+    },
+    {
+      title: "ข้อที่ 33 อุปกรณ์ใดที่ใช้ในการพ่นสีที่มีคุณภาพสูง?",
+      options: [
+        "ก. ปืนพ่นสีอัตโนมัติ",
+        "ข. เครื่องพ่นสีแบบใช้มือ",
+        "ค. สเปรย์สีมืออาชีพ",
+        "ง. เครื่องพ่นสีไฟฟ้า",
+      ],
+    },
+    {
+      title: "ข้อที่ 34 หากสีหลุดลอก ควรแก้ไขด้วยวิธีใด?",
+      options: [
+        "ก. ทาสีทับทันที",
+        "ข. ขัดและทำความสะอาดพื้นที่หลุดลอกก่อนทาสีใหม่",
+        "ค. ใช้สีรองพื้นเพิ่ม",
+        "ง. ใช้แปรงขัดสี",
+      ],
+    },
+    {
+      title: "ข้อที่ 35 การใช้สารเคมีในการพ่นสีต้องมีการป้องกันอย่างไร?",
+      options: [
+        "ก. ใช้หน้ากากป้องกันสารเคมี",
+        "ข. ใช้แว่นตากันแดด",
+        "ค. ใส่ถุงมือป้องกันการสัมผัส",
+        "ง. ทุกข้อข้างต้น",
+      ],
+    },
+    {
+      title: "ข้อที่ 36 เครื่องมือใดที่ใช้ในการทาสีในพื้นที่สูง?",
+      options: [
+        "ก. แปรงทาสี",
+        "ข. ลูกกลิ้งทาสี",
+        "ค. ปืนพ่นสี",
+        "ง. ไม้พาย",
+      ],
+    },
+    {
+      title: "ข้อที่ 37 ในการพ่นสีเครื่องมือใดที่ใช้ในการควบคุมปริมาณสี?",
+      options: [
+        "ก. ปืนพ่นสี",
+        "ข. เครื่องขัด",
+        "ค. ลูกกลิ้ง",
+        "ง. แปรงทาสี",
+      ],
+    },
+    {
+      title: "ข้อที่ 38 เมื่อทาสีเสร็จแล้ว ต้องทำอย่างไรเพื่อรักษาคุณภาพของสี?",
+      options: [
+        "ก. ทาสีทับซ้ำทันที",
+        "ข. ปล่อยให้สีแห้งสนิทก่อนใช้งาน",
+        "ค. ขัดพื้นผิวแล้วทาสีใหม่",
+        "ง. ใช้น้ำมันเคลือบสี",
+      ],
+    },
+    {
+      title: "ข้อที่ 39 สีประเภทใดที่เหมาะสำหรับการทาพื้นภายใน?",
+      options: [
+        "ก. สีอะครีลิก",
+        "ข. สีรองพื้น",
+        "ค. สีโพลียูรีเทน",
+        "ง. สีทาผิวไม้",
+      ],
+    },
+    {
+      title: "ข้อที่ 40 การพ่นสีในที่ที่มีความชื้นสูงต้องระวังเรื่องใดเป็นพิเศษ?",
+      options: [
+        "ก. ความหนืดของสี",
+        "ข. ความเข้มข้นของสี",
+        "ค. การแห้งของสี",
+        "ง. ความเสถียรของสี",
+      ],
+    },
+    {
+      title: "ข้อที่ 41 การเลือกใช้เครื่องขัดสีควรพิจารณาจากอะไร?",
+      options: [
+        "ก. ขนาดของเครื่องขัด",
+        "ข. ความเร็วในการหมุน",
+        "ค. ประเภทของพื้นผิวที่ต้องการขัด",
+        "ง. ทุกข้อข้างต้น",
+      ],
+    },
+    {
+      title: "ข้อที่ 42 หากพบปัญหาสีไม่ยึดติดกับพื้นผิว ควรทำอย่างไร?",
+      options: [
+        "ก. ทาสีทับ",
+        "ข. ขัดพื้นผิวก่อนทาสี",
+        "ค. ใช้สีรองพื้น",
+        "ง. ล้างพื้นผิวให้สะอาด",
+      ],
+    },
+    {
+      title: "ข้อที่ 43 อุปกรณ์ใดที่ใช้ในการป้องกันอันตรายจากสีและสารเคมี?",
+      options: [
+        "ก. แว่นตากันแดด",
+        "ข. เสื้อผ้าป้องกัน",
+        "ค. หน้ากากกรองสารเคมี",
+        "ง. เสื้อกันฝุ่น",
+      ],
+    },
+    {
+      title: "ข้อที่ 44 วิธีการแก้ไขสีหลุดลอกในกรณีที่ทาสีใหม่ไม่ติด?",
+      options: [
+        "ก. ใช้สีรองพื้น",
+        "ข. ขัดผิวและทำความสะอาดก่อนทาสี",
+        "ค. ใช้เครื่องพ่นสี",
+        "ง. เพิ่มสารเคมีในสี",
+      ],
+    },
+    {
+      title: "ข้อที่ 45 หากพบว่าพื้นผิวหลังการทาสีมีฟองอากาศ ควรทำอย่างไร?",
+      options: [
+        "ก. พ่นสีทับ",
+        "ข. ขัดพื้นผิวแล้วทาสีใหม่",
+        "ค. ทิ้งให้แห้งก่อนขัด",
+        "ง. ใช้เครื่องลมระบายอากาศ",
+      ],
+    },
+    {
+      title: "ข้อที่ 46 หากเกิดการระเบิดจากสารเคมีในการพ่นสี ควรทำอย่างไร?",
+      options: [
+        "ก. ใช้ถังดับเพลิงชนิดโฟม",
+        "ข. ใช้ถังดับเพลิงชนิดผงเคมีแห้ง",
+        "ค. ใช้น้ำฉีดเพื่อดับไฟ",
+        "ง. วิ่งออกจากพื้นที่โดยไม่ต้องดับเพลิง",
+      ],
+    },
+    {
+      title: "ข้อที่ 47 เครื่องมือใดที่ใช้ในการทาสีพื้นผิวที่มีลวดลายซับซ้อน?",
+      options: [
+        "ก. แปรงทาสี",
+        "ข. ลูกกลิ้งทาสี",
+        "ค. ปืนพ่นสี",
+        "ง. สเปรย์เคลือบ",
+      ],
+    },
+    {
+      title: "ข้อที่ 48 การเตรียมพื้นผิวก่อนทาสีในพื้นที่ภายนอก ควรทำอย่างไร?",
+      options: [
+        "ก. ขัดพื้นผิวให้เรียบ",
+        "ข. ทำความสะอาดและล้างน้ำให้สะอาด",
+        "ค. ใช้สีรองพื้น",
+        "ง. ทุกข้อข้างต้น",
+      ],
+    },
+    {
+      title: "ข้อที่ 49 หากเกิดการแพ้สารเคมีจากการพ่นสี ควรทำอย่างไร?",
+      options: [
+        "ก. หยุดการทำงานทันทีและล้างบริเวณที่สัมผัสสารเคมี",
+        "ข. ดื่มน้ำเพื่อขับสารเคมีออกจากร่างกาย",
+        "ค. ใช้ยาฆ่าเชื้อที่ถูกต้อง",
+        "ง. ไปพบแพทย์ทันที",
+      ],
+    },
+    {
+      title: "ข้อที่ 50 ในการพ่นสีที่มีพื้นที่กว้าง ควรใช้เครื่องมือใด?",
+      options: [
+        "ก. ปืนพ่นสีแบบมืออาชีพ",
+        "ข. ปืนพ่นสีอัตโนมัติ",
+        "ค. เครื่องพ่นสีแบบพกพา",
+        "ง. ลูกกลิ้งทาสี",
+      ],
+    },
+  ];
 
-  function loadQuestion(index) {
-    const question = questions[index];
-    const questionTitle = document.getElementById('question-title');
-    const optionsContainer = document.querySelector('.options-container');
+  const questions = [...trueFalseQuestions, ...multipleChoiceQuestions];
+  const totalQuestions = questions.length; // จำนวนข้อสอบทั้งหมด
+  let completed = 0; // จำนวนข้อที่ทำเสร็จ
+  let currentPage = 1; // หน้าปัจจุบัน
+  const maxVisiblePages = 15; // จำนวนข้อที่แสดงใน pagination (แสดง 10 ข้อ)
+  let answeredQuestions = Array(totalQuestions).fill(false); // ตัวแปรเก็บสถานะคำตอบของแต่ละข้อ
 
-    questionTitle.textContent = question.title;
-    optionsContainer.innerHTML = '';
-
-    question.options.forEach((option, i) => {
-      const optionDiv = document.createElement('div');
-      optionDiv.classList.add('option');
-      optionDiv.innerHTML = `<input type="radio" name="question${index + 1}" value="${i + 1}"> ${option}`;
-      optionDiv.addEventListener('click', () => {
-        document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
-        optionDiv.classList.add('selected');
-        optionDiv.querySelector('input[type="radio"]').checked = true; // Select the radio button
-        nextButton.classList.add('enabled');
-        nextButton.removeAttribute('disabled');
-
-        // Update stepper item
-        const stepperItems = document.querySelectorAll('.stepper-item');
-        stepperItems.forEach((item, idx) => {
-          item.classList.remove('selected');
-          if (idx <= index) {
-            item.classList.add('selected');
-            item.classList.add('completed');
-            if (idx > 0) {
-              stepperItems[idx - 1].classList.add('completed');
-            }
-          }
-        });
-      });
-      optionsContainer.appendChild(optionDiv);
-    });
-
-    // Update stepper item
-    const stepperItems = document.querySelectorAll('.stepper-item');
-    stepperItems.forEach((item, idx) => {
-      item.classList.remove('active');
-      if (idx === index) {
-        item.classList.add('active');
-      }
-    });
-    if (index === questions.length - 1) {
-      nextButton.textContent = 'ส่งคำตอบ';
-    } else {
-      nextButton.textContent = 'ข้อต่อไป';
-    }
-
-    nextButton.classList.remove('enabled');
-    nextButton.setAttribute('disabled', 'true');
+  function createPagination() {
+    updatePagination(); // เรียกฟังก์ชันเพื่อสร้าง pagination
   }
 
-  const nextButton = document.getElementById('next-button');
+  function updatePagination() {
+    const pageNumbers = document.getElementById("page-numbers"); // หาช่องแสดงหมายเลขหน้าด้วย id "page-numbers"
+    pageNumbers.innerHTML = ""; // ลบเนื้อหาภายในก่อนเพื่อสร้างใหม่
 
-  nextButton.addEventListener('click', () => {
-    if (currentQuestionIndex < questions.length - 1) {
-      currentQuestionIndex++;
-      loadQuestion(currentQuestionIndex);
+    // คำนวณหน้าที่เริ่มต้นและหน้าที่สิ้นสุดที่จะแสดงใน pagination
+    const startPage = Math.max(
+      1,
+      Math.min(
+        currentPage - Math.floor(maxVisiblePages / 2),
+        totalQuestions - maxVisiblePages + 1
+      )
+    );
+    const endPage = Math.min(
+      startPage + maxVisiblePages - 1,
+      totalQuestions
+    );
 
-      // Update stepper item
-      const stepperItems = document.querySelectorAll('.stepper-item');
-      stepperItems.forEach((item, index) => {
-        item.classList.remove('active');
-        if (index <= currentQuestionIndex) {
-          item.classList.add('active');
-          item.classList.add('completed');
-          item.querySelector('.step-counter').style.backgroundColor = '#00adb0';
+    // สร้างปุ่มหมายเลขหน้าตามจำนวนที่คำนวณได้
+    for (let i = startPage; i <= endPage; i++) {
+      const li = document.createElement("li"); // สร้าง <li> สำหรับแต่ละหน้า
+      li.className = `page-item ${i === currentPage ? "active" : ""} ${
+            answeredQuestions[i - 1] ? "answered" : ""
+          }`; // กำหนดคลาสสำหรับหน้าปัจจุบันและหน้าที่ทำเสร็จ
+      li.innerHTML = `<button class="page-link" onclick="changePage(${i})" ${
+            answeredQuestions[i - 1] ? "disabled" : ""
+          }>${i}</button>`; // เพิ่ม disabled สำหรับข้อที่ทำเสร็จแล้ว
+      pageNumbers.appendChild(li); // เพิ่มปุ่มลงในช่องแสดงหมายเลขหน้า
+    }
+
+    // เพิ่มปุ่ม Next
+    const nextBtnContainer = document.createElement("div");
+    nextBtnContainer.className = "page-item next-btn-container";
+    nextBtnContainer.innerHTML = `<button class="page-link" onclick="nextQuestion()">ข้อถัดไป</button>`;
+    pageNumbers.appendChild(nextBtnContainer);
+  }
+
+  function nextQuestion() {
+    const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+    
+    if (!selectedAnswer) {
+        Swal.fire({
+            icon: 'warning',
+            title: 'กรุณาเลือกคำตอบก่อนจะไปข้อถัดไป',
+            confirmButtonText:'ตกลง',
+            confirmButtonColor:'green',
+        });
+        return;
+    }
+
+    answeredQuestions[currentPage - 1] = true; // ตั้งค่าให้ข้อสอบนี้ทำเสร็จแล้ว
+
+    if (completed < totalQuestions) {
+      completed++; // เพิ่มจำนวนข้อที่ทำเสร็จ
+      const progress = (completed / totalQuestions) * 100; // คำนวณความคืบหน้า
+      document.getElementById("progress-bar").style.width = progress + "%"; // อัพเดตความก้าวหน้าของแถบ
+      document.getElementById("progress-bar").innerText =
+        Math.round(progress) + "%"; // แสดงเปอร์เซ็นต์ความคืบหน้า
+      document.getElementById("progress-text").innerText =
+        completed + "/" + totalQuestions + " ข้อ"; // แสดงข้อความความคืบหน้า
+
+      if (completed !== currentPage) {
+        changePage(completed); // ถ้าหน้าใหม่ไม่ใช่หน้าปัจจุบันให้เปลี่ยนหน้า
+      }
+
+      updatePagination(); // อัพเดต pagination
+    }
+  }
+
+  function changePage(page) {
+    if (page < 1 || page > totalQuestions) return; // ตรวจสอบให้แน่ใจว่าเลขหน้าถูกต้อง
+
+    currentPage = page; // เปลี่ยนไปที่หน้าใหม่
+    displayQuestion(page); // แสดงข้อสอบ
+    updatePagination(); // อัพเดต pagination
+  }
+
+  function displayQuestion(page) {
+    const questionContainer = document.getElementById("question-container");
+    const question = questions[page - 1];
+    const isAnswered = answeredQuestions[page - 1];
+
+    // ตรวจสอบว่าเลือกคำตอบแล้วหรือไม่
+    const handleAnswerSelection = (event) => {
+      const options = document.querySelectorAll(`input[name="answer"]`);
+      options.forEach((option) => {
+        const optionDiv = option.closest(".option");
+        if (option.checked) {
+          optionDiv.style.backgroundColor = "#bee5e5"; // สีพื้นหลังเมื่อเลือก
+        } else {
+          optionDiv.style.backgroundColor = ""; // รีเซ็ตสีพื้นหลังหากไม่ได้เลือก
         }
       });
+    };
+
+    // แสดงคำถามและตัวเลือก
+    if (page <= 20) {
+      questionContainer.innerHTML = `
+      <h4>${question.title}</h4>
+      <div class="option" style="padding: 10px; border:none; border-radius: 5px; cursor: pointer; margin-bottom: 10px; font-size:20px;">
+        <input type="radio" name="answer" value="true" ${isAnswered ? "disabled" : ""}> ถูก
+      </div>
+      <div class="option" style="padding: 10px; border:none; border-radius: 5px; cursor: pointer; margin-bottom: 10px; font-size:20px;">
+        <input type="radio" name="answer" value="false" ${isAnswered ? "disabled" : ""}> ผิด
+      </div>
+    `;
     } else {
-      Swal.fire({
-        allowOutsideClick: false,
-        icon: 'success',
-        title: 'ทำข้อสอบหลังเรียนเสร็จแล้ว!',
-        text: 'กรุณายืนยันคำตอบ',
-        confirmButtonText: 'ตกลง',
-        confirmButtonColor: 'green'
-      }).then((result) => {
-        window.location.href = 'answer_maincontent.php'; // ไปหน้าเรียน
-      })
+      questionContainer.innerHTML = `
+      <h3>${question.title}</h3>
+      <ul>
+        ${question.options.map((option) => `
+          <div class="option" style="padding: 10px; border:none; border-radius: 5px; cursor: pointer; margin-bottom: 10px; font-size:20px;">
+            <input type="radio" name="answer" value="${option}" ${isAnswered ? "disabled" : ""}> ${option}
+          </div>
+        `).join('')}
+      </ul>
+    `;
     }
-  });
 
-  function startTimer(duration, display) {
-    var timer = duration,
-      minutes, seconds;
-    setInterval(function() {
-      minutes = parseInt(timer / 60, 10);
-      seconds = parseInt(timer % 60, 10);
-
-      minutes = minutes < 10 ? "0" + minutes : minutes;
-      seconds = seconds < 10 ? "0" + seconds : seconds;
-
-      display.textContent = minutes + ":" + seconds;
-
-      if (--timer < 0) {
-        clearInterval(setInterval);
-        alert('หมดเวลาทำข้อสอบ')
-      }
-    }, 1000);
+    // เพิ่ม event listener เพื่อให้แสดงพื้นหลังเมื่อเลือกคำตอบ
+    const allOptions = document.querySelectorAll('input[name="answer"]');
+    allOptions.forEach(option => {
+      option.addEventListener('change', handleAnswerSelection);
+    });
   }
 
-  window.onload = function() {
-    var fiveMinutes = 60 * 10, //คูณนาที่ที่ให้นับถอยหลัง
-      display = document.querySelector('#timer');
-    startTimer(fiveMinutes, display);
-    loadQuestion(currentQuestionIndex);
-  };
 
-  $(document).ready(function() {
-    Swal.fire({
-      allowOutsideClick: false,
-      confirmButtonColor: 'green',
-      html: `<div style="text-align: left;">
-          <h3 style="color: black;">สอบหลังเรียน บทเรียนที่ 1</h3>
-          <p style="font-size: 18px;">เรื่อง ความปลอดภัยของการพ่นสี</p>
-          <hr>
-          <div class="row">
-              <label style="font-size: 18px;">แผนก : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;สี</label>
-          </div>
-          <div class="row">
-              <label style="font-size: 18px;">จำนวน : &nbsp;&nbsp;&nbsp; 5 ข้อ</label>
-          </div>
-          <div class="row">
-              <label style="font-size: 18px;">เวลา : &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10 นาที</label>
-          </div>
-        </div>`,
-      preConfirm: () => {
-        var fiveMinutes = 60 * 10, //คูณนาที่ที่ให้นับถอยหลัง
-          display = document.querySelector('#timer');
-        startTimer(fiveMinutes, display);
-      }
-    });
-  });
+  createPagination(); // เรียกฟังก์ชันเพื่อสร้าง pagination เมื่อโหลดหน้าเว็บ
+  displayQuestion(currentPage); // แสดงข้อสอบแรกเมื่อโหลดหน้าเว็บ
 </script>

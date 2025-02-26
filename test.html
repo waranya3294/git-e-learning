@@ -2,200 +2,593 @@
 <html lang="th">
   <head>
     <meta charset="UTF-8" />
+    <!-- กำหนดการเข้ารหัสของเอกสารเป็น UTF-8 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>อนุมัติการสอบพนักงาน</title>
+    <!-- รองรับการแสดงผลในอุปกรณ์ที่มีขนาดหน้าจอแตกต่างกัน -->
+    <title>Progress Bar + Pagination</title>
+    <!-- ชื่อเรื่องของหน้าเว็บ -->
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
     />
-    <link
-      rel="stylesheet"
-      href="https://cdn.datatables.net/2.2.2/css/dataTables.bootstrap5.css"
-    />
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.25/jspdf.plugin.autotable.min.js"></script>
-    <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-    
-    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.js"></script>
-    <script src="https://cdn.datatables.net/2.2.2/js/dataTables.bootstrap5.js"></script>
+    <!-- เชื่อมโยงไฟล์ CSS ของ Bootstrap -->
+    <style>
+      .pagination {
+        display: flex; /* ใช้ flexbox ในการจัดการการวางปุ่ม */
+        flex-wrap: wrap; /* ให้ปุ่มอยู่ในแถวเดียวกันและหากเกินจะย้ายไปแถวถัดไป */
+        justify-content: center; /* จัดตำแ��น่งปุ่มให้อยู่กลาง */
+      }
+      .page-item {
+        display: inline-block; /* ให้แสดงปุ่มในแนวนอน */
+      }
+      .next-btn-container {
+        display: flex; /* ใช้ flexbox สำหรับจัดการปุ่ม "Next" */
+        align-items: center; /* จัดตำแหน่งปุ่มให้อยู่ตรงกลางในแนวตั้ง */
+        justify-content: flex-end; /* วางปุ่ม "Next" ไว้ข้างหลังสุด */
+      }
+      .option:hover {
+        background-color: rgb(214, 214, 214);
+      }
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
-    <script src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
-    <!-- fontawsome -->
-  <link rel="stylesheet" href="assets/lib/fontawsome/css/brands.css">
-  <link rel="stylesheet" href="assets/lib/fontawsome/css/solid.css">
-  <link rel="stylesheet" href="assets/lib/fontawsome/css/regular.css">
-  <link rel="stylesheet" href="assets/lib/fontawsome/css/fontawesome.css">
+      .option.selected {
+        background-color: #bee5e5;
+      }
+    </style>
   </head>
 
-  <body>
-    <div class="container mt-4">
-      <div class="card shadow-sm rounded-0">
-        <div class="card-header rounded-0 text-white text-start fs-5" style="background-color: #18B0BD;">
-         <h4>ฟอร์มเลือกข้อมูลการสอบ</h4>
-      </div>
-          <div class="card-body">
-              <div class="row">
-                  <!-- เลือกประเภทการสอบ -->
-                  <div class="col-md-4 mb-3">
-                    <label for="examType" class="fw-bold"> เลือกประเภทการสอบ</label>
-                    <select class="form-select" id="examType">
-                        <option selected>--เลือกประเภทการสอบ--</option>
-                        <option value="1">สี</option>
-                        <option value="2">เชื่อม</option>
-                        <option value="3">ประกอบ</option>
-                        <option value="4">CNC</option>
-                    </select>
-                </div>
-  
-                  <!-- เลือกโรงงาน -->
-                  <div class="col-md-4 mb-3">
-                    <label for="factory" class="fw-bold">เลือกโรงงาน</label>
-                    <select class="form-select" id="factory">
-                        <option selected>--เลือกโรงงาน--</option>
-                        <option value="1">TS (ตาสิทธิ์)</option>
-                        <option value="2">PD (ปลวกแดง)</option>
-                        <option value="3">ทั้งหมด</option>
-                    </select>
-                </div>
-  
-                  <!-- เลือกจุดปฏิบัติงาน -->
-                  <div class="col-md-4">
-                    <label class="fw-bold">เลือกจุดปฏิบัติงาน</label>
-                    <div id="section" class="border rounded p-2">
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="topcoat">
-                            <label class="form-check-label" for="topcoat">Top coat</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="smallpart">
-                            <label class="form-check-label" for="smallpart">Small Part</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="undercoat">
-                            <label class="form-check-label" for="undercoat">Under Coat</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="finalpaint">
-                            <label class="form-check-label" for="finalpaint">Final Paint</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="painting">
-                            <label class="form-check-label" for="painting">Painting</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="checkbox" id="selectAll">
-                            <label class="form-check-label" for="selectAll">เลือกทั้งหมด</label>
-                        </div>
-                    </div>
-                </div>
-              </div>
+  <body class="p-4">
+    <div class="container-fluid mt-4">
+      <h3 style="color: #585858">
+        <i class="bi bi-book-half" style="color: #00adb0"></i> แบบทดสอบหลังเรียน
+      </h3>
 
-              <label for="datetimes">เลือกวันที่: <span class="text-danger">*</span></label>
-              <div class="row " id="dateFieldsContainer">
-                  <div class="col-lg-6 d-flex align-items-center">
-                      <div class="input-group mb-2">
-                          <input type="text" id="datetimes" name="datetimes" class="form-control" required placeholder="เลือกช่วงเวลา" aria-describedby="exam_starttime_endtime">
-                          <span class="input-group-text" id="exam_starttime_endtime" style="cursor: pointer;">
-                              <i class="fa-solid fa-calendar-days"></i>
-                          </span>
-                      </div>
-                  </div>
+      <div class="card shadow-sm rounded-1" style="border: none">
+        <div class="card-body p-5">
+          <div class="mb-3">
+            <!-- ช่องแสดงความคืบหน้า -->
+            <p class="m-0">
+              ความคืบหน้า: <span id="progress-text">0/50 ข้อ</span>
+            </p>
+            <!-- แสดงจำนวนข้อที่ทำเสร็จแล้ว -->
+            <div class="progress mb-4">
+              <div
+                id="progress-bar"
+                class="progress-bar bg-success"
+                style="width: 0%"
+              >
+                0%
               </div>
-
-              <div class="row">
-                <div class="col text-center mt-4">
-                  <button class="btn btn-lg btn-secondary" id="generatePDF"><i class="fa-solid fa-magnifying-glass"></i> แสดงข้อมูล</button>
-                </div>
-              </div>
+              <!-- แถบแสดงความคืบหน้า -->
+            </div>
           </div>
+
+          <!-- Question Display -->
+          <div id="question-container" class="mb-3"></div>
+          <!-- ช่องแสดงข้อสอบ -->
+
+          <!-- Pagination -->
+          <nav aria-label="ข้อสอบ">
+            <div class="row">
+              <!-- กล่องแถวสำหรับการจัดเรียงปุ่ม -->
+              <div class="pagination" id="page-numbers">
+                <!-- ย้ายปุ่ม Next มาอยู่ใน div pagination -->
+                <div class="page-item next-btn-container">
+                  <button class="page-link" onclick="nextQuestion()">
+                    ข้อถัดไป
+                  </button>
+                  <!-- ปุ่ม "Next" ที่จะไปยังข้อถัดไป -->
+                </div>
+              </div>
+              <!-- ช่องแสดงหมายเลขหน้าที่จะถูกสร้างจาก JavaScript -->
+            </div>
+          </nav>
+        </div>
       </div>
-  </div>
+    </div>
 
-  <script>
- $(function() {
-  // ตั้งค่าภาษาไทยใน moment.js
-  moment.locale('th'); // ตั้งค่าให้ moment ใช้ภาษาไทย
+    <script>
+      const trueFalseQuestions = [
+        {
+          title:
+            "ข้อที่ 1 การใช้หน้ากากกรองอากาศเป็นสิ่งสำคัญในการพ่นสีเพื่อป้องกันการสูดดมสารเคมีที่เป็นอันตราย",
+          answer: "ถูก",
+        },
+        {
+          title:
+            "ข้อที่ 2 การทำงานในพื้นที่ที่ไม่มีการระบายอากาศไม่ส่งผลต่อความปลอดภัยในการพ่นสี",
+          answer: "ผิด",
+        },
+        {
+          title:
+            "ข้อที่ 3 การสวมถุงมือและแว่นตาเป็นวิธีที่ช่วยป้องกันสารเคมีจากการสัมผัสกับผิวหนังและดวงตา",
+          answer: "ถูก",
+        },
+        {
+          title:
+            "ข้อที่ 4 การเปิดหน้าต่างเพื่อระบายอากาศสามารถช่วยลดความเสี่ยงจากการสูดดมสารเคมีในขณะพ่นสีได้",
+          answer: "ถูก",
+        },
+        {
+          title:
+            "ข้อที่ 5 การใช้งานเครื่องมือพ่นสีโดยไม่สวมอุปกรณ์ป้องกันส่วนบุคคล(PPE) อาจเป็นอันตรายได้",
+          answer: "ถูก",
+        },
+        {
+          title:
+            "ข้อที่ 6 หากเครื่องพ่นสีเกิดการรั่วซึม ควรปล่อยให้ทำงานต่อไปจนกว่าจะเสร็จงาน",
+          answer: "ผิด",
+        },
+        {
+          title:
+            "ข้อที่ 7 สีที่ใช้พ่นควรเก็บไว้ในที่ที่มีอุณหภูมิสูงเพื่อให้สามารถใช้งานได้ดี",
+          answer: "ผิด",
+        },
+        {
+          title:
+            "ข้อที่ 8 การใช้สารเคมีในการทำงานสีควรอ่านและปฏิบัติตามคำแนะนำบนฉลากอย่างเคร่งครัด",
+          answer: "ถูก",
+        },
+        {
+          title:
+            "ข้อที่ 9 การทำงานในพื้นที่ปิดที่ไม่มีการระบายอากาศอาจเพิ่มความเสี่ยงจากการเกิดไฟไหม้จากสารเคมีที่ใช้ในงานสี",
+          answer: "ถูก",
+        },
+        {
+          title:
+            "ข้อที่ 10 หากสีเกิดการติดไฟ ควรใช้น้ำดับไฟทันทีเพื่อป้องกันการแพร่กระจายของไฟ",
+          answer: "ผิด",
+        },
+        {
+          title:
+            "ข้อที่ 11 การเตรียมพื้นผิวก่อนพ่นสีมีวัตถุประสงค์หลักเพื่ออะไร?",
+          answer: "ค. เพิ่มการยึดเกาะของสี",
+        },
+        {
+          title:
+            "ข้อที่ 12 ในการพ่นสี ควรเลือกใช้อุปกรณ์ป้องกันส่วนบุคคล(PPE)ใด เพื่อป้องกันการสูดดมสารเคมีที่อาจเป็นอันตราย?",
+          answer: "ง. หน้ากากกรองอากาศแบบไส้กรองมาตรฐาน",
+        },
+        {
+          title: "ข้อที่ 13 สีรองพื้น(primer)มีหน้าที่อะไรในกระบวนการพ่นสี?",
+          answer: "ข. ปกป้องพื้นผิวจากสนิมและเพิ่มการยึดเกาะของสีทับหน้า",
+        },
+        {
+          title:
+            "ข้อที่ 14 หากพ่นสีแล้วพบรอยคลื่นหรือฟองอากาศ ควรแก้ไขอย่างไร?",
+          answer: "ง. ปล่อยให้แห้งแล้วขัดพื้นผิวก่อนพ่นซ้ำ",
+        },
+        {
+          title:
+            "ข้อที่ 15 หน้ากากชนิดใดที่เหมาะสมที่สุดสำหรับการพ่นสีเพื่อป้องกันไอระเหยของสารเคมี?",
+          answer:
+            "ค. หน้ากากกรองอากาศชนิดครึ่งหน้า(Half-face Respirator)พร้อมไส้กรอกสารเคมี",
+        },
+        {
+          title:
+            "ข้อที่ 16 เครื่องมือใดที่ใช้ในการขัดผิวงานสีเพื่อให้พื้นผิวเรียบ?",
+          answer: "ก. กระดาษทราย",
+        },
+        {
+          title:
+            "ข้อที่ 17 เครื่องมือใดที่ใช้ในการทาสีให้พื้นผิวที่มีขนาดกว้าง เช่น ผนัง?",
+          answer: "ข. ลูกกลิ้งทาสี",
+        },
+        {
+          title: "ข้อที่ 18 หากสีทาผนังไม่ติดพื้นผิว ควรทำอย่างไร?",
+          answer: "ข. ขัดและทำความสะอาดพื้นผิวก่อนทาสีใหม่",
+        },
+        {
+          title: "ข้อที่ 19 การเลือกสีทาผนังภายในควรพิจารณาจากอะไรเป็นหลัก?",
+          answer: "ค. ความปลอดภัยและมิตรต่อสิ่งแวดล้อม",
+        },
+        {
+          title: "ข้อที่ 20 การใช้ปืนพ่นสีมีข้อดีอย่างไร?",
+          answer: "ก. สามารถทาสีได้เร็ว",
+        },
+      ];
 
-  // Date range picker setup
-  $('input[name="datetimes"]').daterangepicker({
-    timePicker: true,
-    startDate: moment().startOf('hour'),
-    endDate: moment().startOf('hour').add(32, 'hour'),
-    locale: {
-      format: 'DD/MM/YYYY', // ฟอร์แมตวันที่
-      applyLabel: 'ตกลง',
-      cancelLabel: 'ยกเลิก',
-      fromLabel: 'จาก',
-      toLabel: 'ถึง',
-      daysOfWeek: ['อา', 'จ', 'อ', 'พ', 'พฤ', 'ศ', 'ส'],
-      monthNames: ['มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 
-                   'กรกฎาคม', 'สิงหาคม', 'กันยายน', 'ตุลาคม', 'พฤศจิกายน', 'ธันวาคม'],
-      firstDay: 1 // ตั้งให้วันแรกเป็นวันจันทร์
-    }
-  });
+      const multipleChoiceQuestions = [
+        {
+          title:
+            "ข้อที่ 21 การเตรียมพื้นผิวก่อนพ่นสีมีวัตถุประสงค์หลักเพื่ออะไร?",
+          options: [
+            "ก. ทำให้สีแห้งเร็วขึ้น",
+            "ข. ลดระยะเวลาในการพ่นสี",
+            "ค. เพิ่มการยึดเกาะของสี",
+            "ง. ป้องกันพื้นผิวจากความร้อน",
+          ],
+        },
+        {
+          title:
+            "ข้อที่ 22 ในการพ่นสี ควรเลือกใช้อุปกรณ์ป้องกันส่วนบุคคล(PPE)ใด เพื่อป้องกันการสูดดมสารเคมีที่อาจเป็นอันตราย?",
+          options: [
+            "ก. หน้ากากผ้า",
+            "ข. แว่นกันแดด",
+            "ค. หมวกนิรภัย",
+            "ง. หน้ากากกรองอากาศแบบไส้กรองมาตรฐาน",
+          ],
+        },
+        {
+          title: "ข้อที่ 23 สีรองพื้น(primer)มีหน้าที่อะไรในกระบวนการพ่นสี?",
+          options: [
+            "ก. ให้สีเงางาม",
+            "ข. ปกป้องพื้นผิวจากสนิมและเพิ่มการยึดเกาะของสีทับหน้า",
+            "ค. ให้ตกแต่งเพื่อความสวยงาม",
+            "ง. ทำให้สีไม่หลุดลอก",
+          ],
+        },
+        {
+          title:
+            "ข้อที่ 24 หากพ่นสีแล้วพบรอยคลื่นหรือฟองอากาศ ควรแก้ไขอย่างไร?",
+          options: [
+            "ก. พ่นสีเพิ่มทันที",
+            "ข. ใช้ความร้อนเร่งให้ฟองอากาศแตก",
+            "ค. พ่นสีใสเคลือบทับทันที",
+            "ง. ปล่อยให้แห้งแล้วขัดพื้นผิวก่อนพ่นซ้ำ",
+          ],
+        },
+        {
+          title:
+            "ข้อที่ 25 หน้ากากชนิดใดที่เหมาะสมที่สุดสำหรับการพ่นสีเพื่อป้องกันไอระเหยของสารเคมี?",
+          options: [
+            "ก. หน้ากากผ้า",
+            "ข. หน้ากากอนามันทางการแพทย์",
+            "ค. หน้ากากกรองอากาศชนิดครึ่งหน้า(Half-face Respirator)พร้อมไส้กรอกสารเคมี",
+            "ง. หน้ากากกันฝุ่นทั่วไป",
+          ],
+        },
+        {
+          title:
+            "ข้อที่ 26 เครื่องมือใดที่ใช้ในการขัดผิวงานสีเพื่อให้พื้นผิวเรียบ?",
+          options: [
+            "ก. กระดาษทราย",
+            "ข. เครื่องขัดแบบสั่น",
+            "ค. แปรงทาสี",
+            "ง. สเปรย์เคลือบ",
+          ],
+        },
+        {
+          title:
+            "ข้อที่ 27 เครื่องมือใดที่ใช้ในการทาสีให้พื้นผิวที่มีขนาดกว้าง เช่น ผนัง?",
+          options: [
+            "ก. แปรงทาสี",
+            "ข. ลูกกลิ้งทาสี",
+            "ค. ปืนพ่นสี",
+            "ง. ไม้พาย",
+          ],
+        },
+        {
+          title: "ข้อที่ 28 หากสีทาผนังไม่ติดพื้นผิว ควรทำอย่างไร?",
+          options: [
+            "ก. พ่นสีซ้ำ",
+            "ข. ขัดและทำความสะอาดพื้นผิวก่อนทาสีใหม่",
+            "ค. ใช้สีรองพื้นเพิ่มเติม",
+            "ง. เพิ่มน้ำมันผสมสีเพื่อเพิ่มความยึดเกาะ",
+          ],
+        },
+        {
+          title: "ข้อที่ 29 การเลือกสีทาผนังภายในควรพิจารณาจากอะไรเป็นหลัก?",
+          options: [
+            "ก. ความทนทานต่อสภาพอากาศ",
+            "ข. ความเงางามของสี",
+            "ค. ความปลอดภัยและมิตรต่อสิ่งแวดล้อม",
+            "ง. สีที่มีราคาถูก",
+          ],
+        },
+        {
+          title: "ข้อที่ 30 การใช้ปืนพ่นสีมีข้อดีอย่างไร?",
+          options: [
+            "ก. สามารถทาสีได้เร็ว",
+            "ข. ใช้ในพื้นที่แคบได้ดี",
+            "ค. ได้สีที่ละเอียดและสม่ำเสมอ",
+            "ง. ใช้งานได้ในทุกสภาพอากาศ",
+          ],
+        },
+        {
+          title: "ข้อที่ 31 การทาสีด้วยแปรงมีข้อดีอย่างไร?",
+          options: [
+            "ก. ใช้ได้ดีในพื้นที่แคบ",
+            "ข. ทาสีได้เร็วกว่าเครื่องมืออื่น",
+            "ค. ทำให้ได้สีที่ละเอียดและเรียบ",
+            "ง. ไม่ต้องใช้การเตรียมพื้นผิว",
+          ],
+        },
+        {
+          title: "ข้อที่ 32 หากสีทาผนังเกิดรอยร้าว ควรทำอย่างไร?",
+          options: [
+            "ก. พ่นสีทับทันที",
+            "ข. ใช้วัสดุปิดรอยร้าวแล้วทาสีใหม่",
+            "ค. ขัดผิวรอบรอยร้าวแล้วพ่นสี",
+            "ง. ทาสีทับรอยร้าวโดยตรง",
+          ],
+        },
+        {
+          title: "ข้อที่ 33 อุปกรณ์ใดที่ใช้ในการพ่นสีที่มีคุณภาพสูง?",
+          options: [
+            "ก. ปืนพ่นสีอัตโนมัติ",
+            "ข. เครื่องพ่นสีแบบใช้มือ",
+            "ค. สเปรย์สีมืออาชีพ",
+            "ง. เครื่องพ่นสีไฟฟ้า",
+          ],
+        },
+        {
+          title: "ข้อที่ 34 หากสีหลุดลอก ควรแก้ไขด้วยวิธีใด?",
+          options: [
+            "ก. ทาสีทับทันที",
+            "ข. ขัดและทำความสะอาดพื้นที่หลุดลอกก่อนทาสีใหม่",
+            "ค. ใช้สีรองพื้นเพิ่ม",
+            "ง. ใช้แปรงขัดสี",
+          ],
+        },
+        {
+          title: "ข้อที่ 35 การใช้สารเคมีในการพ่นสีต้องมีการป้องกันอย่างไร?",
+          options: [
+            "ก. ใช้หน้ากากป้องกันสารเคมี",
+            "ข. ใช้แว่นตากันแดด",
+            "ค. ใส่ถุงมือป้องกันการสัมผัส",
+            "ง. ทุกข้อข้างต้น",
+          ],
+        },
+        {
+          title: "ข้อที่ 36 เครื่องมือใดที่ใช้ในการทาสีในพื้นที่สูง?",
+          options: [
+            "ก. แปรงทาสี",
+            "ข. ลูกกลิ้งทาสี",
+            "ค. ปืนพ่นสี",
+            "ง. ไม้พาย",
+          ],
+        },
+        {
+          title: "ข้อที่ 37 ในการพ่นสีเครื่องมือใดที่ใช้ในการควบคุมปริมาณสี?",
+          options: [
+            "ก. ปืนพ่นสี",
+            "ข. เครื่องขัด",
+            "ค. ลูกกลิ้ง",
+            "ง. แปรงทาสี",
+          ],
+        },
+        {
+          title:
+            "ข้อที่ 38 เมื่อทาสีเสร็จแล้ว ต้องทำอย่างไรเพื่อรักษาคุณภาพของสี?",
+          options: [
+            "ก. ทาสีทับซ้ำทันที",
+            "ข. ปล่อยให้สีแห้งสนิทก่อนใช้งาน",
+            "ค. ขัดพื้นผิวแล้วทาสีใหม่",
+            "ง. ใช้น้ำมันเคลือบสี",
+          ],
+        },
+        {
+          title: "ข้อที่ 39 สีประเภทใดที่เหมาะสำหรับการทาพื้นภายใน?",
+          options: [
+            "ก. สีอะครีลิก",
+            "ข. สีรองพื้น",
+            "ค. สีโพลียูรีเทน",
+            "ง. สีทาผิวไม้",
+          ],
+        },
+        {
+          title:
+            "ข้อที่ 40 การพ่นสีในที่ที่มีความชื้นสูงต้องระวังเรื่องใดเป็นพิเศษ?",
+          options: [
+            "ก. ความหนืดของสี",
+            "ข. ความเข้มข้นของสี",
+            "ค. การแห้งของสี",
+            "ง. ความเสถียรของสี",
+          ],
+        },
+        {
+          title: "ข้อที่ 41 การเลือกใช้เครื่องขัดสีควรพิจารณาจากอะไร?",
+          options: [
+            "ก. ขนาดของเครื่องขัด",
+            "ข. ความเร็วในการหมุน",
+            "ค. ประเภทของพื้นผิวที่ต้องการขัด",
+            "ง. ทุกข้อข้างต้น",
+          ],
+        },
+        {
+          title: "ข้อที่ 42 หากพบปัญหาสีไม่ยึดติดกับพื้นผิว ควรทำอย่างไร?",
+          options: [
+            "ก. ทาสีทับ",
+            "ข. ขัดพื้นผิวก่อนทาสี",
+            "ค. ใช้สีรองพื้น",
+            "ง. ล้างพื้นผิวให้สะอาด",
+          ],
+        },
+        {
+          title: "ข้อที่ 43 อุปกรณ์ใดที่ใช้ในการป้องกันอันตรายจากสีและสารเคมี?",
+          options: [
+            "ก. แว่นตากันแดด",
+            "ข. เสื้อผ้าป้องกัน",
+            "ค. หน้ากากกรองสารเคมี",
+            "ง. เสื้อกันฝุ่น",
+          ],
+        },
+        {
+          title: "ข้อที่ 44 วิธีการแก้ไขสีหลุดลอกในกรณีที่ทาสีใหม่ไม่ติด?",
+          options: [
+            "ก. ใช้สีรองพื้น",
+            "ข. ขัดผิวและทำความสะอาดก่อนทาสี",
+            "ค. ใช้เครื่องพ่นสี",
+            "ง. เพิ่มสารเคมีในสี",
+          ],
+        },
+        {
+          title: "ข้อที่ 45 หากพบว่าพื้นผิวหลังการทาสีมีฟองอากาศ ควรทำอย่างไร?",
+          options: [
+            "ก. พ่นสีทับ",
+            "ข. ขัดพื้นผิวแล้วทาสีใหม่",
+            "ค. ทิ้งให้แห้งก่อนขัด",
+            "ง. ใช้เครื่องลมระบายอากาศ",
+          ],
+        },
+        {
+          title: "ข้อที่ 46 หากเกิดการระเบิดจากสารเคมีในการพ่นสี ควรทำอย่างไร?",
+          options: [
+            "ก. ใช้ถังดับเพลิงชนิดโฟม",
+            "ข. ใช้ถังดับเพลิงชนิดผงเคมีแห้ง",
+            "ค. ใช้น้ำฉีดเพื่อดับไฟ",
+            "ง. วิ่งออกจากพื้นที่โดยไม่ต้องดับเพลิง",
+          ],
+        },
+        {
+          title:
+            "ข้อที่ 47 เครื่องมือใดที่ใช้ในการทาสีพื้นผิวที่มีลวดลายซับซ้อน?",
+          options: [
+            "ก. แปรงทาสี",
+            "ข. ลูกกลิ้งทาสี",
+            "ค. ปืนพ่นสี",
+            "ง. สเปรย์เคลือบ",
+          ],
+        },
+        {
+          title:
+            "ข้อที่ 48 การเตรียมพื้นผิวก่อนทาสีในพื้นที่ภายนอก ควรทำอย่างไร?",
+          options: [
+            "ก. ขัดพื้นผิวให้เรียบ",
+            "ข. ทำความสะอาดและล้างน้ำให้สะอาด",
+            "ค. ใช้สีรองพื้น",
+            "ง. ทุกข้อข้างต้น",
+          ],
+        },
+        {
+          title: "ข้อที่ 49 หากเกิดการแพ้สารเคมีจากการพ่นสี ควรทำอย่างไร?",
+          options: [
+            "ก. หยุดการทำงานทันทีและล้างบริเวณที่สัมผัสสารเคมี",
+            "ข. ดื่มน้ำเพื่อขับสารเคมีออกจากร่างกาย",
+            "ค. ใช้ยาฆ่าเชื้อที่ถูกต้อง",
+            "ง. ไปพบแพทย์ทันที",
+          ],
+        },
+        {
+          title: "ข้อที่ 50 ในการพ่นสีที่มีพื้นที่กว้าง ควรใช้เครื่องมือใด?",
+          options: [
+            "ก. ปืนพ่นสีแบบมืออาชีพ",
+            "ข. ปืนพ่นสีอัตโนมัติ",
+            "ค. เครื่องพ่นสีแบบพกพา",
+            "ง. ลูกกลิ้งทาสี",
+          ],
+        },
+      ];
 
-  // Show/hide sections based on exam type
-  $('#examType').change(function() {
-    if ($(this).val() == '1') { // สี
-      $('#section').show();
-    } else {
-      $('#section').hide();
-    }
-  });
+      const questions = [...trueFalseQuestions, ...multipleChoiceQuestions];
+      const totalQuestions = questions.length; // จำนวนข้อสอบทั้งหมด
+      let completed = 0; // จำนวนข้อที่ทำเสร็จ
+      let currentPage = 1; // หน้าปัจจุบัน
+      const maxVisiblePages = 15; // จำนวนข้อที่แสดงใน pagination (แสดง 10 ข้อ)
+      let answeredQuestions = Array(totalQuestions).fill(false); // ตัวแปรเก็บสถานะคำตอบของแต่ละข้อ
 
-  // ซ่อนส่วนของการเลือกจุดปฏิบัติงาน
-  $('#section').hide();
+      function createPagination() {
+        updatePagination(); // เรียกฟังก์ชันเพื่อสร้าง pagination
+      }
 
-  // ฟังก์ชัน "Select All" เพื่อเลือก/ยกเลิกเลือกทุกช่อง
-  $('#selectAll').click(function() {
-    $('input[type="checkbox"]').prop('checked', this.checked);
-  });
-});
+      function updatePagination() {
+        const pageNumbers = document.getElementById("page-numbers"); // หาช่องแสดงหมายเลขหน้าด้วย id "page-numbers"
+        pageNumbers.innerHTML = ""; // ลบเนื้อหาภายในก่อนเพื่อสร้างใหม่
 
-document.addEventListener("DOMContentLoaded", function () {
-  // สร้าง PDF เมื่อคลิกที่ปุ่ม "แสดงข้อมูล"
-  document.getElementById("generatePDF").addEventListener("click", function () {
-    const { jsPDF } = window.jspdf;
-    const doc = new jsPDF();
+        // คำนวณหน้าที่เริ่มต้นและหน้าที่สิ้นสุดที่จะแสดงใน pagination
+        const startPage = Math.max(
+          1,
+          Math.min(
+            currentPage - Math.floor(maxVisiblePages / 2),
+            totalQuestions - maxVisiblePages + 1
+          )
+        );
+        const endPage = Math.min(
+          startPage + maxVisiblePages - 1,
+          totalQuestions
+        );
 
-    // โหลดฟอนต์ Sarabun VP (กรุณาแปลงฟอนต์เป็น base64 และเพิ่มไฟล์นี้ในโปรเจคต์)
-    doc.addFileToVFS("SarabunVP-Regular.ttf", "base64_encoded_font_data"); // ใช้ base64 encoding ฟอนต์
-    doc.addFont("SarabunVP-Regular.ttf", "SarabunVP", "normal");
+        // สร้างปุ่มหมายเลขหน้าตามจำนวนที่คำนวณได้
+        for (let i = startPage; i <= endPage; i++) {
+          const li = document.createElement("li"); // สร้าง <li> สำหรับแต่ละหน้า
+          li.className = `page-item ${i === currentPage ? "active" : ""} ${
+            answeredQuestions[i - 1] ? "answered" : ""
+          }`; // กำหนดคลาสสำหรับหน้าปัจจุบันและหน้าที่ทำเสร็จ
+          li.innerHTML = `<button class="page-link" onclick="changePage(${i})" ${
+            answeredQuestions[i - 1] ? "disabled" : ""
+          }>${i}</button>`; // เพิ่ม disabled สำหรับข้อที่ทำเสร็จแล้ว
+          pageNumbers.appendChild(li); // เพิ่มปุ่มลงในช่องแสดงหมายเลขหน้า
+        }
 
-    // ตั้งค่าให้ใช้ฟอนต์ Sarabun VP
-    doc.setFont("SarabunVP");
+        // เพิ่มปุ่ม Next
+        const nextBtnContainer = document.createElement("div");
+        nextBtnContainer.className = "page-item next-btn-container";
+        nextBtnContainer.innerHTML = `<button class="page-link" onclick="nextQuestion()">ข้อถัดไป</button>`;
+        pageNumbers.appendChild(nextBtnContainer);
+      }
 
-    // เพิ่มข้อความใน PDF โดยใช้ฟอนต์ภาษาไทย
-    doc.text("รายงานข้อมูลพนักงาน", 14, 10);
+      function nextQuestion() {
+        const selectedAnswer = document.querySelector(
+          'input[name="answer"]:checked'
+        );
+        if (!selectedAnswer) {
+          alert("กรุณาเลือกคำตอบก่อนที่จะไปยังข้อถัดไป");
+          return;
+        }
 
-    // ข้อมูลที่จะใช้ใน PDF (แทนที่ด้วยข้อมูลจริง)
-    const headers = [["รหัสพนักงาน", "ชื่อ - นามสกุล", "ตำแหน่ง","ฝ่าย", "แผนก", "จุดปฏิบัติงาน", "โรงงาน","วันที่จอง","รอบเวลา","สถานะ"]];
-    const data = [
-      //   ["001", "สมชาย", "ทองคำ", "ช่างเชื่อม", "ผลิต", "ฝ่าย A", "TS (ตาสิทธิ์)"],
-      //   ["002", "สมหญิง", "เงินทอง", "ช่างสี", "คุณภาพ", "ฝ่าย B", "PD (ปลวกแดง)"]
-    ];
+        answeredQuestions[currentPage - 1] = true; // ตั้งค่าให้ข้อสอบนี้ทำเสร็จแล้ว
 
-    // ใช้ autoTable เพื่อแสดงข้อมูลในตาราง
-    doc.autoTable({
-      head: headers,
-      body: data,
-      startY: 20
-    });
+        if (completed < totalQuestions) {
+          completed++; // เพิ่มจำนวนข้อที่ทำเสร็จ
+          const progress = (completed / totalQuestions) * 100; // คำนวณความคืบหน้า
+          document.getElementById("progress-bar").style.width = progress + "%"; // อัพเดตความก้าวหน้าของแถบ
+          document.getElementById("progress-bar").innerText =
+            Math.round(progress) + "%"; // แสดงเปอร์เซ็นต์ความคืบหน้า
+          document.getElementById("progress-text").innerText =
+            completed + "/" + totalQuestions + " ข้อ"; // แสดงข้อความความคืบหน้า
 
-    // แสดง PDF ในหน้าต่างใหม่โดยไม่ต้องดาวน์โหลด
-    const pdfData = doc.output('datauristring'); // สร้าง data URI string
-    const pdfWindow = window.open();
-    pdfWindow.document.write('<html><body><iframe width="100%" height="100%" src="' + pdfData + '"></iframe></body></html>');
-  });
-});
+          if (completed !== currentPage) {
+            changePage(completed); // ถ้าหน้าใหม่ไม่ใช่หน้าปัจจุบันให้เปลี่ยนหน้า
+          }
 
-  </script>
-  
+          updatePagination(); // อัพเดต pagination
+        }
+      }
+
+      function changePage(page) {
+        if (page < 1 || page > totalQuestions) return; // ตรวจสอบให้แน่ใจว่าเลขหน้าถูกต้อง
+
+        currentPage = page; // เปลี่ยนไปที่หน้าใหม่
+        displayQuestion(page); // แสดงข้อสอบ
+        updatePagination(); // อัพเดต pagination
+      }
+
+      function displayQuestion(page) {
+        const questionContainer = document.getElementById("question-container");
+        const question = questions[page - 1];
+        if (page <= 20) {
+          questionContainer.innerHTML = `
+      <h4>${question.title}</h4>
+      <div class="option" style="padding: 10px; border:none; border-radius: 5px;
+        cursor: pointer; margin-bottom: 10px;font-size:20px;">
+        <input type="radio" name="answer" value="true" ${
+          answeredQuestions[page - 1] ? "disabled" : ""
+        }> ถูก
+      </div>
+      <div class="option" style="padding: 10px; border:none; border-radius: 5px;
+        cursor: pointer; margin-bottom: 10px;font-size:20px;">
+        <input type="radio" name="answer" value="false" ${
+          answeredQuestions[page - 1] ? "disabled" : ""
+        }> ผิด
+      </div>
+    `;
+        } else {
+          questionContainer.innerHTML = `<h3>${question.title}</h3>
+    <ul> ${question.options
+      .map(
+        (option) =>
+          `<div class="option" style="padding: 10px; border:none; border-radius: 5px;
+        cursor: pointer; margin-bottom: 10px;font-size:20px;">
+        <input type="radio" name="answer" value="${option}" ${
+            answeredQuestions[page - 1] ? "disabled" : ""
+          }> ${option}</div>`
+      )
+      .join("")}</ul>`;
+        }
+      }
+
+      createPagination(); // เรียกฟังก์ชันเพื่อสร้าง pagination เมื่อโหลดหน้าเว็บ
+      displayQuestion(currentPage); // แสดงข้อสอบแรกเมื่อโหลดหน้าเว็บ
+    </script>
   </body>
 </html>
