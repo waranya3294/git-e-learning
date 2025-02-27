@@ -153,13 +153,19 @@
               <div class="sb-sidenav-collapse-arrow"></div>
             </a>
 
-            <a class="nav-link collapsed" href="" data-bs-toggle="collapse" data-bs-target="#collapsePages2" aria-expanded="false" aria-controls="collapsePages2">
+            <a class="nav-link collapsed" href="" data-bs-toggle="collapse" data-bs-target="#collapsePages3" aria-expanded="false" aria-controls="collapsePages2">
               <div class="sb-nav-link-icon"></div>
               บทเรียนที่ 3
               <div class="sb-sidenav-collapse-arrow"></div>
             </a>
 
-            <a class="nav-link collapsed" style="cursor: pointer" onclick="window.location.href='summary_maincontent.php'" data-bs-toggle="collapse" data-bs-target="#collapsePages3" aria-expanded="false" aria-controls="collapsePages3">
+            <a class="nav-link collapsed" style="cursor: pointer" onclick="window.location.href='posttest_maincontent.php'" data-bs-toggle="collapse" data-bs-target="#collapsePages3" aria-expanded="false" aria-controls="collapsePages3">
+              <div class="sb-nav-link-icon"></div>
+              แบบทดสอบหลังเรียน
+              <div class="sb-sidenav-collapse-arrow"></div>
+            </a>
+
+            <a class="nav-link collapsed" style="cursor: pointer" onclick="window.location.href='summary_maincontent.php'" data-bs-toggle="collapse" data-bs-target="#collapsePages4" aria-expanded="false" aria-controls="collapsePages4">
               <div class="sb-nav-link-icon"></div>
               สรุปผลคะแนน
               <div class="sb-sidenav-collapse-arrow"></div>

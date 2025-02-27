@@ -1,5 +1,5 @@
 <div class="container-fluid mt-4 mb-4" style="color:#585858;">
-    <h3><i class="bi bi-book-half" style="color:#00adb0;"></i> บทเรียนที่ 1 ความปลอดภัยของการพ่นสี</h3>
+    <h3><i class="bi bi-book-half" style="color:#00adb0;"></i> บทเรียนที่ 1 ความปลอดภัยในการทำงาน</h3>
 
     <div class="card shadow-sm rounded-1 mb-3" style="border: none;border-top: 4px solid #00adb0;">
         <div class="card-body">
@@ -116,10 +116,9 @@
             <h3 >&nbsp;&nbsp;<u>คำชี้แจง</u></h3>
             <p>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1. ศึกษาบทเรียน อ่านหรือฟังเนื้อหาที่จัดเตรียมเกี่ยวกับหัวข้อการพ่นสี<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. เลือกคำตอบที่ถูกต้อง 1 ข้อ<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4. ใช้เวลาในการศึกษาบทเรียนให้ครบถ้วนภายใน 1 ชั่วโมง<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5. จำนวนข้อสอบทั้งหมด 5 ข้อ (ปรนัย)<br>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;6. ทำแบบทดสอบหลังเรียน (Post-Test)
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2. เลือกคำตอบที่ถูกต้อง 1 ข้อ<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3. ทำแบบทดสอบหลังเรียน (Post-Test)<br>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4. จำนวนข้อสอบทั้งหมด 50 ข้อ<br>
             </p>
 
             <p class="text-danger">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;** ข้อกำหนดเพิ่มเติมสำหรับการทดสอบและการเรียนรู้</p>

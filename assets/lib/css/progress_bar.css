@@ -15,12 +15,9 @@
   background-color: #bee5e5;
 }
 .pagination {
-  display: flex;
-  /* ใช้ flexbox ในการจัดการการวางปุ่ม */
-  flex-wrap: wrap;
-  /* ให้ปุ่มอยู่ในแถวเดียวกันและหากเกินจะย้ายไปแถวถัดไป */
-  justify-content: center;
-  /* จัดตำแหน่งปุ่มให้อยู่กลาง */
+  display: flex;/* ใช้ flexbox ในการจัดการการวางปุ่ม */
+  flex-wrap: wrap; /* ให้ปุ่มอยู่ในแถวเดียวกันและหากเกินจะย้ายไปแถวถัดไป */
+  justify-content: center; /* จัดตำแหน่งปุ่มให้อยู่กลาง */
 }
 
 .page-item {
