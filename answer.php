@@ -6,14 +6,17 @@
         <header class="login-header p-2" style="background-color: #18B0BD; color:white; font-size: 24px; text-align: center;">
           เฉลยข้อสอบในส่วนของคำถามประเภท ถูก/ผิด
         </header>
+
+        <!-- <div class="row">
+          <h5 class="mt-3" id="scoreDisplay">คะแนนที่ได้</h5>
+        </div> -->
         <div class="table-responsive mt-3 mb-3">
           <table id="" class="table table-bordered" style="width:100%">
             <thead>
               <tr class="align-middle">
                 <th class="text-center">โจทย์คำถาม</th>
-                <th>ตัวเลือกที่เลือก</th>
-                <th>คำตอบที่ถูก</th>
-                <th>ผลลัพธ์</th>
+                <th class="text-center">คำตอบที่เลือก</th>
+                <th class="text-center">ผลลัพธ์</th>
               </tr>
             </thead>
             <tbody id="examTableBody"></tbody>
@@ -299,10 +302,15 @@
           <div class="option">ง. ในที่มีความชื้นสูง</div>
         </div>
         <hr style="margin:0 -20px;">
-
-        <div class="text-end mt-3">
-          <button class="btn btn-success" onclick="window.location.href='summary_maincontent.php'">ถัดไป</button>
+        <div class="row">
+          <div class="col text-start mt-3">
+            <button class="btn btn-secondary" onclick="window.location.href='answer_maincontent.php'">ย้อนกลับ</button>
+          </div>
+          <div class="col text-end mt-3">
+            <button class="btn btn-success" onclick="window.location.href='summary_maincontent.php'">ถัดไป</button>
+          </div>
         </div>
+
       </div>
     </div>
   </div>
@@ -412,19 +420,30 @@
         selected: "ถูก"
       }
     ];
-
+    // let correctCount = 0; // ตัวแปรเก็บจำนวนคำตอบที่ถูกต้อง
+    // let totalQuestions = questions.length; // จำนวนคำถามทั้งหมด
     let tableBody = "";
+    
     questions.forEach((q, index) => {
-      let result = q.answer === q.selected ? '<i class="fas fa-check text-success"></i>' : '<i class="fas fa-times text-danger"></i>';
+      let result = q.answer === q.selected ?
+        '<i class="fas fa-check text-success"></i>' :
+        '<i class="fas fa-times text-danger"></i>';
+
       tableBody += `<tr>
-                                <td>${q.title}</td>
-                                <td class="text-center">${q.selected}</td>
-                                <td class="text-center">${q.answer}</td>
-                                <td class="text-center">${result}</td>
-                            </tr>`;
+                        <td>${q.title}</td>
+                        <td class="text-center">${q.selected}</td>
+                        <td class="text-center">${result}</td>
+                      </tr>`;
     });
+
     $('#examTableBody').html(tableBody);
     $('#example').DataTable();
+
+    // const selectedAnswers = document.querySelectorAll(''); 
+
+    //  // คำนวณคะแนนเป็นเปอร์เซ็นต์
+    //  let score = (correctCount / totalQuestions) * 100;
+    // $('#scoreDisplay').html(`คะแนนที่ได้: ${correctCount}/${totalQuestions} `);
   });
 
   function showNetpart() {

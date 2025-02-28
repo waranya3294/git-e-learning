@@ -136,8 +136,8 @@
 
             <a class="nav-link collapsed" href="exam_room_maincontent.php" data-bs-toggle="collapse" data-bs-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts">
               <div class="sb-nav-link-icon"></div>
-              <div class="">บทเรียนที่ 1 </div>
-              <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+              <div class="text-wrap">บทเรียนที่ 1 ความปลอดภัยในการทำงาน</div>
+              <!-- <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div> -->
             </a>
             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
               <nav class="sb-sidenav-menu-nested nav">
@@ -148,20 +148,20 @@
             </div>
 
             <a class="nav-link collapsed" href="" data-bs-toggle="collapse" data-bs-target="#collapsePages2" aria-expanded="false" aria-controls="collapsePages2">
-              <div class="sb-nav-link-icon"></div>
-              บทเรียนที่ 2 
+              <div class="sb-nav-link-icon text-wrap"></div>
+              <div class="text-wrap"> บทเรียนที่ 2 เครื่องมือและอุปกรณ์</div>
               <div class="sb-sidenav-collapse-arrow"></div>
             </a>
 
             <a class="nav-link collapsed" href="" data-bs-toggle="collapse" data-bs-target="#collapsePages3" aria-expanded="false" aria-controls="collapsePages2">
               <div class="sb-nav-link-icon"></div>
-              บทเรียนที่ 3
+              <div class="text-wrap">บทเรียนที่ 3 วิธีการทำงาน /การแก้ไขปัญหา</div>
               <div class="sb-sidenav-collapse-arrow"></div>
             </a>
 
             <a class="nav-link collapsed" style="cursor: pointer" onclick="window.location.href='posttest_maincontent.php'" data-bs-toggle="collapse" data-bs-target="#collapsePages3" aria-expanded="false" aria-controls="collapsePages3">
               <div class="sb-nav-link-icon"></div>
-              แบบทดสอบหลังเรียน
+              <div class="text-wrap">แบบทดสอบหลังเรียน</div>
               <div class="sb-sidenav-collapse-arrow"></div>
             </a>
 

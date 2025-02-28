@@ -23,7 +23,7 @@
                                 <th class="text-center"><b>จัดการ</b></th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <!-- <tbody>
                             <tr class="align-middle">
                                 <td>1</td>
                                 <td>ประเภทงานสี</td>
@@ -33,7 +33,7 @@
                                     <button class="btn btn-outline-danger btn-sm" title="ลบข้อมูล" onclick="showDelete() "><i class="bi bi-trash"></i></button>
                                 </td>
                             </tr>
-                        </tbody>
+                        </tbody> -->
                     </table>
                 </div>
             </div>

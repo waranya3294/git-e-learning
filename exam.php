@@ -43,7 +43,7 @@
                 <h4 class="m-0" onclick="showData()">บทเรียนที่ 1: ความปลอดภัยของการพ่นสี</h4>
               </div>
               <div class="col-6 text-end">
-                <button class="btn btn-sm btn-outline-warning me-2" title="แก้ไข" data-bs-toggle="modal" data-bs-target="#addSubLessonModal">
+                <button class="btn btn-sm btn-outline-warning me-2" title="แก้ไข" data-bs-toggle="modal" data-bs-target="#addSubLessonModal1">
                   <i class="bi bi-pencil-square"></i>
                 </button>
                 <button class="btn btn-sm btn-outline-danger" title="ลบ" onclick="showDelete()">
@@ -95,6 +95,41 @@
             </div>
           </div>
         </div>
+
+         <!-- Modal: เพิ่มบทเรียนย่อย -->
+         <div class="modal fade" id="addSubLessonModal1" tabindex="-1" aria-labelledby="addSubLessonModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="addSubLessonModalLabel1">เเก้ไขบทเรียนย่อย</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <label for="sub-lesson-title">ชื่อบทเรียนย่อย: <span class="text-danger">*</span></label>
+                <input type="text" id="sub-lesson-title" class="form-control mb-3" required>
+
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="preTest" onchange="toggleContent()">
+                  <label class="form-check-label" for="preTest">กรุณาเลือก หากต้องการให้มีการ ทดสอบก่อนเรียน</label>
+                </div>
+
+                <div class="form-check mb-3">
+                  <input class="form-check-input" type="checkbox" id="postTest" onchange="toggleContent()">
+                  <label class="form-check-label" for="postTest">กรุณาเลือก หากต้องการให้มีการ ทดสอบหลังเรียน</label>
+                </div>
+
+                <label for="lesson-content">เนื้อหาบทเรียนย่อย: <span class="text-danger">*</span></label>
+                <textarea id="tiny"></textarea>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-success" onclick="window.location.href='exam_maincontent.php'">
+                  <i class="fa-solid fa-floppy-disk"></i> บันทึกข้อมูล
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
