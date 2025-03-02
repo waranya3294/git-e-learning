@@ -94,7 +94,7 @@
       }
     });
     document.addEventListener("DOMContentLoaded", function() {
-      let postTotal = 39; // คะแนนที่ได้
+      let postTotal = 42; // คะแนนที่ได้
       let maxTotal = 50; // คะแนนเต็ม
       let percentage = (postTotal / maxTotal) * 100;
 

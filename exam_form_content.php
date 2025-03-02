@@ -34,10 +34,11 @@
                                                 <div class="alert alert-custom alert-outline-warning" role="alert">
                                                     <div class="alert-text">
                                                         <h4 class="text-warning">วิธีการนำเข้าไฟล์คำถาม</h4>
-                                                        1. ไฟล์คำถามต้องอยู่ในรูปแบบ Template ที่กำหนดให้
+                                                        1. ใช้แบบฟอร์ม (Template) ที่กำหนดให้เท่านั้น
                                                         <span id="downloadBtn" class="badge text-bg-primary" style="cursor: pointer;">คลิกเพื่อดาวน์โหลด Template</span>
-                                                        <br>2. ไม่สามารถนำเข้าข้อมูลที่เป็นรูปภาพ วีดีโอได้
-                                                        <br>3. รองรับไฟล์ Excel ที่มีนามสกุล .xlsx เท่านั้น
+                                                        <br>2. ไม่รองรับรูปภาพและวิดีโอในไฟล์ Excel
+                                                        <br>3. คำถามที่ไม่มีตัวเลือกจะกลายเป็นคำถามถูก/ผิด หากคุณเพิ่มคำถามแต่ไม่ได้ระบุตัวเลือกคำตอบ ระบบจะถือว่าคำถามนั้นเป็นคำถามแบบถูกหรือผิดโดยอัตโนมัติ
+                                                        <br>4. รองรับไฟล์ Excel (.xlsx) เท่านั้น
                                                     </div>
                                                 </div>
                                             </div>
@@ -50,7 +51,7 @@
                                 </div>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" id="file_data">
+                                <button type="button" class="btn btn-success " id="file_data">
                                     <i class=" fas fa-file-import"></i> นำข้อมูลเข้า
                                 </button>
                             </div>
@@ -59,13 +60,13 @@
                 </div>
 
                 <div class="md-3">
-                   <select class="form-select" id="Position">
-                   <option selected>--เลือกชื่อหัวข้อสอบ--</option>
-                    <option value="Position1">ประเภทงานสี</option>
-                    <option value="Position2">ประเภทงานเชื่อม</option>
-                    <option value="Position3">ประเภทงานประกอบ</option>
-                    <option value="Position4">ประเภทงาน CNC</option>
-                   </select>
+                    <select class="form-select" id="Position" name="Position">
+                        <option selected>--เลือกชื่อหัวข้อสอบ--</option>
+                        <option value="Position1">ประเภทงานสี</option>
+                        <option value="Position2">ประเภทงานเชื่อม</option>
+                        <option value="Position3">ประเภทงานประกอบ</option>
+                        <option value="Position4">ประเภทงาน CNC</option>
+                    </select>
                 </div>
 
                 <div class="mt-3 mb-2">
@@ -150,8 +151,8 @@
             </div>
         </div>
 
-          <!-- Preview Modal -->
-          <div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
+        <!-- Preview Modal -->
+        <div class="modal fade" id="previewModal" tabindex="-1" aria-labelledby="previewModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-xl">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -175,69 +176,104 @@
     document.getElementById('downloadBtn').addEventListener('click', () => {
         // สร้างข้อมูลสำหรับเทมเพลต
         const templateData = [
-            ['ข้อ', 'คำถาม', 'คำตอบที่ถูก', 'คำตอบที่ผิด', 'คำตอบที่ผิด', 'คำตอบที่ผิด'],
-            ['1', 'การเตรียมพื้นผิวก่อนพ่นสีมีวัตถุประสงค์หลักเพื่ออะไร', '1. ป้องกันพื้นผิวจากความร้อน', '2. เพิ่มการยึดเกาะของสี',
-                '3. ลดระยะเวลาในการพ่นสี', '4. ทำให้สีแห้งเร็วขึ้น'
-            ],
+            ['ประเภท', 'ข้อ', 'คำถาม', 'คำตอบที่ผิด', 'คำตอบที่ผิด', 'คำตอบที่ผิด', 'คำตอบที่ถูกต้อง'],
+            ['ปรนัย', '1', 'การเตรียมพื้นผิวก่อนพ่นสีมีวัตถุประสงค์หลักเพื่ออะไร', 'ป้องกันพื้นผิวจากความร้อน', 'เพิ่มการยึดเกาะของสี', 'ลดระยะเวลาในการพ่นสี', 'ทำให้สีแห้งเร็วขึ้น'],
+            ['ถูก/ผิด', '2', 'น้ำเป็นของเหลวที่ไม่มีสี', 'ถูก', 'ผิด', '', '']
         ];
-        // สร้างเวิร์กบุ๊กและชีต
-        const worksheet = XLS.utils.aoa_to_sheet(templateData);
-        const workbook = XLS.utils.book_new();
-        XLS.utils.book_append_sheet(workbook, worksheet, 'Template');
 
-        // บันทึกไฟล์ Excel
-        XLS.writeFile(workbook, 'template.xls');
+        const worksheet = XLSX.utils.aoa_to_sheet(templateData);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Template');
+        XLSX.writeFile(workbook, 'template.xlsx');
     });
+    document.getElementById('file_excel').addEventListener('change', (event) => {
+        const file = event.target.files[0];
+        if (!file) return;
 
-    // นำเข้าไฟล์ excel
-    const file_excel = document.getElementById('file_excel');
-    const previewContent = document.getElementById('previewContent');
-
-    file_data.addEventListener('click', () => {
-        if (!['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel'].includes(file_excel.files[0].type)) {
-            alert('อนุญาตเฉพาะไฟล์ .xlsx หรือ .xls เท่านั้น');
-            file_excel.value = '';
+        if (file.type !== 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet') {
+            alert('อนุญาตเฉพาะไฟล์ .xlsx เท่านั้น');
+            event.target.value = '';
             return;
         }
 
-        var reader = new FileReader();
-        reader.readAsArrayBuffer(file_excel.files[0]);
+        const reader = new FileReader();
+        reader.readAsArrayBuffer(file);
 
         reader.onload = function() {
-            var data = new Uint8Array(reader.result);
-            var work_book = XLSX.read(data, {
+            const data = new Uint8Array(reader.result);
+            const workbook = XLSX.read(data, {
                 type: 'array'
             });
-            var sheet_name = work_book.SheetNames[0];
-            var sheet_data = XLSX.utils.sheet_to_json(work_book.Sheets[sheet_name], {
+            const sheetName = workbook.SheetNames[0];
+            const sheet = workbook.Sheets[sheetName];
+
+            // ตรวจสอบว่ามีรูปภาพหรือออบเจ็กต์อยู่ในไฟล์หรือไม่
+            if (sheet['!objects'] && sheet['!objects'].length > 0) {
+                alert('ไม่สามารถนำเข้าไฟล์นี้ได้ เนื่องจากมีรูปภาพหรือวีดีโออยู่ในข้อสอบ');
+                event.target.value = ''; // รีเซ็ตค่าอัปโหลด
+                return;
+            }
+
+            // แปลงข้อมูลเป็น JSON
+            const sheetData = XLSX.utils.sheet_to_json(sheet, {
                 header: 1
             });
 
-            if (sheet_data.length > 0) {
-                var list_output = '<div class="list-group">';
-                for (var row = 1; row < sheet_data.length; row++) {
-                    list_output += '<div class="list-group-item">';
-                    list_output += '<h5>' + 'ข้อที่ ' + [row] + '.' + ' ' + sheet_data[row][1] + '</h5>'; //แสดงชื่อคำถาม
-                    list_output += '<ul>';
-                    for (var cell = 2; cell < sheet_data[row].length; cell++) {
-                        list_output += '<ul><label><input type="radio" name="exampleModal" class="me-2" style="font-size:18;">' + sheet_data[row][cell] + '</label></ul>'; //แสดงชื่อตัวเลือก
+            if (sheetData.length > 1) {
+                let listOutput = '<div class="list-group">';
+                for (let row = 1; row < sheetData.length; row++) {
+                    const type = sheetData[row][0] || '';
+                    const question = sheetData[row][2] || '';
+                    let hasOptions = false;
+                    let hasImageOrVideo = false;
+
+                    // ตรวจสอบว่ามีรูปภาพในคำถามหรือไม่
+                    if (question && (question.includes('http') || question.includes('.jpg') || question.includes('.png') || question.includes('.mp4'))) {
+                        hasImageOrVideo = true;
                     }
-                    list_output += '</ul>';
-                    list_output += '</div>';
+
+                    // ตรวจสอบว่ามีรูปภาพในตัวเลือกหรือไม่
+                    for (let cell = 3; cell <= 6; cell++) {
+                        const option = sheetData[row][cell];
+                        if (option && (option.includes('http') || option.includes('.jpg') || option.includes('.png') || option.includes('.mp4'))) {
+                            hasImageOrVideo = true;
+                        }
+                        if (option) hasOptions = true;
+                    }
+
+                    // ถ้ามีรูปภาพหรือวีดีโอในคำถามหรือในตัวเลือก ให้ข้ามข้อนี้
+                    if (hasImageOrVideo) {
+                        continue; // ข้ามการเพิ่มข้อมูลข้อสอบนี้
+                    }
+
+                    listOutput += '<div class="list-group-item">';
+                    listOutput += `<h5>ข้อที่ ${row}: ${question}</h5>`;
+                    listOutput += '<ul>';
+
+                    if (type === 'ปรนัย' || type === '') {
+                        for (let cell = 3; cell <= 6; cell++) {
+                            if (sheetData[row][cell]) {
+                                listOutput += `<ul><label><input type="radio" name="question${row}" class="me-2"> ${sheetData[row][cell]}</label></ul>`;
+                            }
+                        }
+                    }
+
+                    if (type === 'ถูก/ผิด' || (!hasOptions && type === '')) {
+                        listOutput += `<ul><label><input type="radio" name="question${row}" class="me-2"> ถูก</label></ul>`;
+                        listOutput += `<ul><label><input type="radio" name="question${row}" class="me-2"> ผิด</label></ul>`;
+                    }
+
+                    listOutput += '</ul></div>';
                 }
-                list_output += '</div>';
+                listOutput += '</div>';
 
-                // แสดงผลในพื้นที่ข้างนอก modal
-                document.getElementById('excel_display_area').innerHTML = list_output;
-
-                // ปิด modal หลังนำเข้าข้อมูล
-                const modal = bootstrap.Modal.getInstance(document.getElementById('exampleModal'));
-                modal.hide();
+                document.getElementById('excel_display_area').innerHTML = listOutput;
             }
-            // รีเซ็ตค่าของ input file
-            file_excel.value = '';
+
+            event.target.value = ''; // รีเซ็ตค่าอัปโหลดไฟล์
         };
     });
+
 
     // เพิ่มตัวเลือก
     function addOption(button) {
@@ -259,23 +295,23 @@
         const optionDiv = document.createElement('div');
         optionDiv.classList.add('row', 'align-items-center', 'mb-2', 'g-2');
         optionDiv.innerHTML = `
-        <div class="col-auto">
-            <input class="form-check-input" type="radio" name="exampleModal_${optionId}" value="${optionId}">
-        </div>
-        <div class="col-auto">
-            <label for="option_image_${optionId}" class="btn btn-outline-primary d-flex align-items-center">
-                <i class="bi bi-image" title="แทรกรูปภาพ"></i>
-            </label>
-            <input type="file" id="option_image_${optionId}" class="d-none" onchange="previewImage(this, 'option')">
-        </div>
-        <div class="col">
-            <input type="text" class="form-control" placeholder="ตัวเลือกที่ ${optionsContainer.children.length +1}">
-        </div>
-        <div class="col-auto">
-            <button class="btn" onclick="removeOption(this)" title="ลบตัวเลือก">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>`;
+    <div class="col-auto">
+        <input class="form-check-input" type="radio" name="exampleModal" value="${optionId}">
+    </div>
+    <div class="col-auto">
+        <label for="option_image_${optionId}" class="btn btn-outline-primary d-flex align-items-center">
+            <i class="bi bi-image" title="แทรกรูปภาพ"></i>
+        </label>
+        <input type="file" id="option_image_${optionId}" class="d-none" onchange="previewImage(this, 'option')">
+    </div>
+    <div class="col">
+        <input type="text" class="form-control" placeholder="ตัวเลือกที่ ${optionsContainer.children.length +1}">
+    </div>
+    <div class="col-auto">
+        <button class="btn" onclick="removeOption(this)" title="ลบตัวเลือก">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>`;
         optionsContainer.appendChild(optionDiv);
     }
 
@@ -333,7 +369,7 @@
     <button class="btn btn-danger" onclick="removeQuestion(this)" title="นำออก"><i class="bi bi-trash"></i></button>
     `;
         questionContainer.appendChild(newQuestionBox);
-        
+
 
     }
 
@@ -361,44 +397,53 @@
         });
     }
 
-    
- // แสดงตัวอย่าง
-function previewExam() {
-    const selectedTopic = document.querySelector('#Position').value;
-    const description = document.querySelector('textarea[name="description"]').value.trim();
-    const questionBoxes = document.querySelectorAll('.question-box');
 
-    const excelDisplayArea = document.getElementById('excel_display_area');
+    // แสดงตัวอย่าง
+    function previewExam() {
+        const selectedTopic = document.querySelector('#Position').value;
+        const description = document.querySelector('textarea[name="description"]').value.trim();
+        const questionBoxes = document.querySelectorAll('.question-box');
 
-    let previewHtml = `<p>${description}</p>`;
 
-    // ตรวจสอบการแสดงผลข้อมูลจาก Excel
-    if (excelDisplayArea && excelDisplayArea.innerHTML.trim()) {
-        console.log("Excel Data Loaded:", excelDisplayArea.innerHTML);
-        previewHtml += `` + excelDisplayArea.innerHTML;
-    } else {
-        console.log("Excel Data Missing or Empty");
-    }
+        const excelDisplayArea = document.getElementById('excel_display_area');
+        let previewHtml = '';
 
-    // แสดงคำถามที่กรอกในฟอร์ม
-    questionBoxes.forEach((box, index) => {
-        const question = box.querySelector('input[name="question"]').value.trim();
-        const questionImage = box.querySelector('#showimage img');
-        const options = box.querySelectorAll('.options-container .row');
+        // แสดงหัวข้อที่เลือกก่อน
+        if (selectedTopic && selectedTopic !== '--เลือกชื่อหัวข้อสอบ--') {
+            previewHtml += `<h3>หัวข้อ: ${document.querySelector(`#Position option[value="${selectedTopic}"]`).text}</h3>`;
+        }
 
-        previewHtml += `
+        // เพิ่มคำอธิบาย
+        previewHtml += `<p>${description}</p>`;
+
+
+        // ตรวจสอบการแสดงผลข้อมูลจาก Excel
+        if (excelDisplayArea && excelDisplayArea.innerHTML.trim()) {
+            console.log("Excel Data Loaded:", excelDisplayArea.innerHTML);
+            previewHtml += `` + excelDisplayArea.innerHTML;
+        } else {
+            console.log("Excel Data Missing or Empty");
+        }
+
+        // แสดงคำถามที่กรอกในฟอร์ม
+        questionBoxes.forEach((box, index) => {
+            const question = box.querySelector('input[name="question"]').value.trim();
+            const questionImage = box.querySelector('#showimage img');
+            const options = box.querySelectorAll('.options-container .row');
+
+            previewHtml += `
              ${questionImage ? `<img src="${questionImage.src}" class="img-thumbnail" style="width: 500px; height:400px;">` : ''}
-        <h3 class="mt-3"><b>ข้อที่ ${index + 1}:</b> ${question}</h3>
+        <h5 class="mt-3"><b>ข้อที่ ${index + 1}:</b> ${question}</h5>
         <ul>`;
 
-        options.forEach((option, optIndex) => {
+            options.forEach((option, optIndex) => {
                 const optionText = option.querySelector('input[type="text"]').value.trim();
                 const optionImage = option.querySelector('.option-image-preview img');
 
                 previewHtml += `
                 <ul>
                 <input type="radio" name="question${index}" id="question${index}-option${optIndex}">
-                <label style="font-size:28px;" for="question${index}-option${optIndex}">
+                <label style="font-size:18px;" for="question${index}-option${optIndex}">
                     ${optionText}
                  </label>
                  <ul>
@@ -410,9 +455,9 @@ function previewExam() {
 
             previewHtml += `</ul>`;
         });
-    // แสดงผลลัพธ์
-    document.getElementById('previewContent').innerHTML = previewHtml;
-}
+        // แสดงผลลัพธ์
+        document.getElementById('previewContent').innerHTML = previewHtml;
+    }
 
 
     function previewImage(input, type) {
