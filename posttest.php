@@ -1,29 +1,33 @@
 <style>
   .option {
-  padding: 10px;
-  /* border: 2px solid #69696930; */
-  border-radius: 5px;
-  cursor: pointer;
-  margin-bottom: 10px;
-}
+    padding: 10px;
+    /* border: 2px solid #69696930; */
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px;
+  }
 
-.option:hover {
-  background-color: rgb(214, 214, 214);
-}
+  .option:hover {
+    background-color: rgb(214, 214, 214);
+  }
 
-.option.selected {
-  background-color: #bee5e5;
-}
-.pagination {
-  display: flex;/* ใช้ flexbox ในการจัดการการวางปุ่ม */
-  flex-wrap: wrap; /* ให้ปุ่มอยู่ในแถวเดียวกันและหากเกินจะย้ายไปแถวถัดไป */
-  justify-content: center; /* จัดตำแหน่งปุ่มให้อยู่กลาง */
-}
+  .option.selected {
+    background-color: #bee5e5;
+  }
 
-.page-item {
-  display: inline-block;
-  /* ให้แสดงปุ่มในแนวนอน */
-}
+  .pagination {
+    display: flex;
+    /* ใช้ flexbox ในการจัดการการวางปุ่ม */
+    flex-wrap: wrap;
+    /* ให้ปุ่มอยู่ในแถวเดียวกันและหากเกินจะย้ายไปแถวถัดไป */
+    justify-content: left;
+    /* จัดตำแหน่งปุ่มให้อยู่กลาง */
+  }
+
+  .page-item {
+    display: inline-block;
+    /* ให้แสดงปุ่มในแนวนอน */
+  }
 </style>
 
 <div class="container-fluid mt-4">
@@ -31,13 +35,7 @@
 
   <div class="card shadow-sm rounded-1" style="border: none;">
     <div class="card-body p-3">
-    <div class="row">
-        <div class="col text-center mt-4">
-            <button class="btn btn-default time-spent rounded-pill" type="button" style="border: 2px solid #e9ecef; font-size: 24px;">
-                <span id="timestamp">00.00</span>
-            </button>
-        </div>
-    </div>
+
       <div class="mb-3">
         <!-- ช่องแสดงความคืบหน้า -->
         <p class="m-0">ความคืบหน้า: <span id="progress-text">0/50 ข้อ</span></p>
@@ -50,59 +48,65 @@
         </div>
       </div>
 
-   <div class="p-4">
-       <!-- Question Display -->
-       <div id="question-container" class="mb-3"></div>
-      <!-- ช่องแสดงข้อสอบ -->
-   </div>
+      <div class="p-4">
+        <!-- Question Display -->
+        <div id="question-container" class="mb-3"></div>
+        <!-- ช่องแสดงข้อสอบ -->
+      </div>
 
       <!-- Pagination -->
       <nav aria-label="ข้อสอบ">
-        <div class="row">
+        <div class="row d-flex align-items-center;">
           <!-- กล่องแถวสำหรับการจัดเรียงปุ่ม -->
-          <div class="pagination" id="page-numbers">
-            <!-- ย้ายปุ่ม Next มาอยู่ใน div pagination -->
-            <div class="page-item next-btn-container">
-              <button class="page-link" onclick="nextQuestion()">ข้อถัดไป</button>
-              <!-- ปุ่ม "Next" ที่จะไปยังข้อถัดไป -->
+          <div class="col-lg-2 d-flex align-items-center justify-content-center;">
+            <span id="timestamp" style="color:#e5e5e5;  text-align: left;">00.00</span>
+          </div>
+          <div class="col">
+            <div class="pagination" id="page-numbers">
+              <!-- ย้ายปุ่ม Next มาอยู่ใน div pagination -->
+              <div class="page-item next-btn-container">
+                <button class="page-link" onclick="nextQuestion()">ข้อถัดไป</button>
+                <!-- ปุ่ม "Next" ที่จะไปยังข้อถัดไป -->
+              </div>
             </div>
           </div>
-          <!-- ช่องแสดงหมายเลขหน้าที่จะถูกสร้างจาก JavaScript -->
         </div>
-      </nav>
+        <!-- ช่องแสดงหมายเลขหน้าที่จะถูกสร้างจาก JavaScript -->
     </div>
+    </nav>
   </div>
 </div>
+
 
 
 <script>
   const trueFalseQuestions = [{
       title: "ข้อที่ 1. ควรสวมหน้ากากกันสารเคมีทุกครั้งเมื่อทำงานเกี่ยวกับสี",
-       options: ["ถูก", "ผิด"],
+      options: ["ถูก", "ผิด"],
     },
     {
       title: "ข้อที่ 2. การระบายอากาศที่ดีในพื้นที่ทำงานสีช่วยลดความเสี่ยงจากไอระเหยของสารเคมี",
-       options: ["ถูก", "ผิด"],
+      options: ["ถูก", "ผิด"],
     },
     {
       title: "ข้อที่ 3. การสวมถุงมือและแว่นตาเป็นวิธีที่ช่วยป้องกันสารเคมีจากการสัมผัสกับผิวหนังและดวงตา",
-       options: ["ถูก", "ผิด"],
+      options: ["ถูก", "ผิด"],
     },
     {
       title: "ข้อที่ 4. การเปิดหน้าต่างเพื่อระบายอากาศสามารถช่วยลดความเสี่ยงจากการสูดดมสารเคมีในขณะพ่นสีได้",
-       options: ["ถูก", "ผิด"],
+      options: ["ถูก", "ผิด"],
     },
     {
       title: "ข้อที่ 5. การใช้งานเครื่องมือพ่นสีโดยไม่สวมอุปกรณ์ป้องกันส่วนบุคคล(PPE) อาจเป็นอันตรายได้",
-       options: ["ถูก", "ผิด"],
+      options: ["ถูก", "ผิด"],
     },
     {
       title: "ข้อที่ 6. หากเครื่องพ่นสีเกิดการรั่วซึม ควรปล่อยให้ทำงานต่อไปจนกว่าจะเสร็จงาน",
-       options: ["ถูก", "ผิด"],
+      options: ["ถูก", "ผิด"],
     },
     {
       title: "ข้อที่ 7. สีที่ใช้พ่นควรเก็บไว้ในที่ที่มีอุณหภูมิสูงเพื่อให้สามารถใช้งานได้ดี",
-       options: ["ถูก", "ผิด"],
+      options: ["ถูก", "ผิด"],
     },
     {
       title: "ข้อที่ 8. การใช้สารเคมีในการทำงานสีควรอ่านและปฏิบัติตามคำแนะนำบนฉลากอย่างเคร่งครัด",
@@ -110,11 +114,11 @@
     },
     {
       title: "ข้อที่ 9. การทำงานในพื้นที่ปิดที่ไม่มีการระบายอากาศอาจเพิ่มความเสี่ยงจากการเกิดไฟไหม้จากสารเคมีที่ใช้ในงานสี",
-       options: ["ถูก", "ผิด"],
+      options: ["ถูก", "ผิด"],
     },
     {
       title: "ข้อที่ 10. หากสีเกิดการติดไฟ ควรใช้น้ำดับไฟทันทีเพื่อป้องกันการแพร่กระจายของไฟ",
-       options: ["ถูก", "ผิด"],
+      options: ["ถูก", "ผิด"],
     },
     {
       "title": "ข้อที่ 11. สามารถทิ้งกระป๋องสีที่ใช้หมดแล้วลงในถังขยะปกติได้ โดยไม่ต้องคำนึงถึงการกำจัดของเสียอันตราย",
@@ -434,70 +438,87 @@
   const totalQuestions = questions.length; // จำนวนข้อสอบทั้งหมด
   let completed = 0; // จำนวนข้อที่ทำเสร็จ
   let currentPage = 1; // หน้าปัจจุบัน
-  const maxVisiblePages = 15; // จำนวนข้อที่แสดงใน pagination (แสดง 15 ข้อ)
-  let answeredQuestions = Array(totalQuestions).fill(false); // ตัวแปรเก็บสถานะคำตอบของแต่ละข้อ
+  const maxVisiblePages = 20; // จำนวนข้อที่แสดงใน pagination
+  let answeredQuestions = Array(totalQuestions).fill(false); // เก็บสถานะของคำตอบ
 
   function createPagination() {
-    updatePagination(); // เรียกฟังก์ชันเพื่อสร้าง pagination
+    updatePagination();
   }
 
   function updatePagination() {
-    const pageNumbers = document.getElementById("page-numbers"); // หาช่องแสดงหมายเลขหน้าด้วย id "page-numbers"
-    pageNumbers.innerHTML = ""; // ลบเนื้อหาภายในก่อนเพื่อสร้างใหม่
+    const pageNumbers = document.getElementById("page-numbers");
+    pageNumbers.innerHTML = "";
 
-    // คำนวณหน้าที่เริ่มต้นและหน้าที่สิ้นสุดที่จะแสดงใน pagination
-    const startPage = Math.max(
-      1,
-      Math.min(
-        currentPage - Math.floor(maxVisiblePages / 2),
-        totalQuestions - maxVisiblePages + 1
-      )
-    );
-    const endPage = Math.min(
-      startPage + maxVisiblePages - 1,
-      totalQuestions
-    );
+    const startPage = Math.max(1, Math.min(currentPage - Math.floor(maxVisiblePages / 2), totalQuestions - maxVisiblePages + 1));
+    const endPage = Math.min(startPage + maxVisiblePages - 1, totalQuestions);
 
-    // สร้างปุ่มหมายเลขหน้าตามจำนวนที่คำนวณได้
     for (let i = startPage; i <= endPage; i++) {
-      const li = document.createElement("li"); // สร้าง <li> สำหรับแต่ละหน้า
-      li.className = `page-item ${i === currentPage ? "active" : ""} ${
-            answeredQuestions[i - 1] ? "answered" : ""
-          }`; // กำหนดคลาสสำหรับหน้าปัจจุบันและหน้าที่ทำเสร็จ
-      li.innerHTML = `<button class="page-link" onclick="changePage(${i})" ${
-            answeredQuestions[i - 1] ? "disabled" : ""
-          }>${i}</button>`; // เพิ่ม disabled สำหรับข้อที่ทำเสร็จแล้ว
-      pageNumbers.appendChild(li); // เพิ่มปุ่มลงในช่องแสดงหมายเลขหน้า
+        const li = document.createElement("li");
+        li.className = `page-item ${i === currentPage ? "active" : ""}`;
+        
+        const btn = document.createElement("button");
+        btn.className = "page-link";
+        btn.innerText = i;
+
+        // ไม่ให้ย้อนกลับไปดูข้อที่ทำเสร็จแล้ว
+        if (answeredQuestions[i - 1] || i !== currentPage) {
+            btn.disabled = true;
+        } else {
+            btn.onclick = () => changePage(i);
+        }
+
+        // เปลี่ยนพื้นหลังของข้อที่ทำเสร็จแล้วให้เป็นสีเขียว แต่ขึ้นใน class "page-link"
+        if (answeredQuestions[i - 1]) {
+            btn.style.backgroundColor = "#c0c0c0"; // สีเทา
+            btn.style.color = "white";
+        }
+
+      li.appendChild(btn);
+      pageNumbers.appendChild(li);
     }
-// เพิ่มปุ่ม Next
+
+    // ปุ่ม "ข้อถัดไป"
     const nextBtnContainer = document.createElement("div");
     nextBtnContainer.className = "page-item next-btn-container";
-    nextBtnContainer.innerHTML = `<button class="page-link" onclick="nextQuestion()">ข้อถัดไป</button>`;
+
+    const nextBtn = document.createElement("button");
+    nextBtn.id = "next-btn";
+    nextBtn.className = "page-link";
+    nextBtn.innerText = currentPage === totalQuestions ? "ส่งคำตอบ" : "ข้อถัดไป";
+    nextBtn.style.color = "white";
     pageNumbers.appendChild(nextBtnContainer);
     if (currentPage === 50) {
         // ถ้าถึงข้อ 50 ให้เปลี่ยนเป็นปุ่มส่งคำตอบ
-        nextBtnContainer.innerHTML = `<button class="page-link submit-btn" style="background-color: green;color: white;" onclick="nextQuestion()">ส่งคำตอบ</button>`;
+        // nextBtnContainer.innerHTML = `<button class="page-link submit-btn" style="background-color: green;color: white;" onclick="submitExam()">ส่งคำตอบ</button>`;
     } else {
         // ปกติแสดง "ข้อถัดไป"
-        nextBtnContainer.innerHTML = `<button class="page-link next-btn" style="background-color: green;color: white;"  onclick="nextQuestion()">ข้อถัดไป</button>`;
+        // nextBtnContainer.innerHTML = `<button class="page-link next-btn" style="background-color: green;color: white;"  onclick="nextQuestion()">ข้อถัดไป</button>`;
     }
 
+    if (currentPage === totalQuestions) {
+      nextBtn.onclick = submitExam;
+    } else {
+      nextBtn.onclick = nextQuestion;
+    }
+
+    nextBtnContainer.appendChild(nextBtn);
+    pageNumbers.appendChild(nextBtnContainer);
   }
+
 
   function nextQuestion() {
     const selectedAnswer = document.querySelector('input[name="answer"]:checked');
-
     if (!selectedAnswer) {
-        Swal.fire({
-            icon: 'warning',
-            title: 'กรุณาเลือกคำตอบก่อนจะไปข้อถัดไป',
-            confirmButtonText: 'ตกลง',
-            confirmButtonColor: 'green',
-        });
-        return;
+      Swal.fire({
+        icon: 'warning',
+        title: 'กรุณาเลือกคำตอบก่อนจะไปข้อถัดไป',
+        confirmButtonText: 'ตกลง',
+        confirmButtonColor: 'green',
+      });
+      return;
     }
     answeredQuestions[currentPage - 1] = true; // บันทึกว่าทำเสร็จ
-    completed++; // เพิ่มจำนวนข้อที่ทำเสร็จ
+    completed++;
     // อัปเดต progress bar
     const progress = (completed / totalQuestions) * 100;
     document.getElementById("progress-bar").style.width = progress + "%";
@@ -505,103 +526,129 @@
     document.getElementById("progress-text").innerText = completed + "/" + totalQuestions + " ข้อ";
     updatePagination(); // อัปเดต pagination
 
-    // ใช้ setTimeout เพื่อให้ค่าทั้งหมดอัปเดตแล้วค่อยเปลี่ยนข้อ
+
     setTimeout(() => {
-        let nextUnanswered = answeredQuestions.findIndex(ans => !ans);
-        if (nextUnanswered !== -1) {
-            changePage(nextUnanswered + 1); // เปลี่ยนหน้าไปข้อถัดไปที่ยังไม่ได้ตอบ
-        } else {
-            Swal.fire({
-                icon: 'success',
-                title: 'คุณทำข้อสอบครบทุกข้อแล้ว!',
-                text:'ยืนยันการส่งคำตอบ',
-                confirmButtonText: 'ตกลง',
-                confirmButtonColor: 'green',
-            }).then((result) => {
+      let nextUnanswered = answeredQuestions.findIndex(ans => !ans);
+      if (nextUnanswered !== -1) {
+        changePage(nextUnanswered + 1);
+      } else {
+        Swal.fire({
+          icon: 'success',
+          title: 'คุณทำข้อสอบครบทุกข้อแล้ว!',
+          text: 'ยืนยันการส่งคำตอบ',
+          confirmButtonText: 'ตกลง',
+          confirmButtonColor: 'green',
+        }).then((result) => {
           if (result.isConfirmed) {
             window.location.href = 'answer_maincontent.php';
           }
         });
-        }
-    }, 100); // หน่วงเวลาเล็กน้อย (100ms)
-}
-  function changePage(page) {
-    if (page < 1 || page > totalQuestions) return; // ตรวจสอบให้แน่ใจว่าเลขหน้าถูกต้อง
+      }
+    }, 100);
+  }
 
+  function enableNextButton() {
+    const nextBtn = document.getElementById("next-btn");
+    nextBtn.disabled = false;
+    nextBtn.style.backgroundColor = "green";
+    nextBtn.onclick = nextQuestion;
+  }
+
+  function changePage(page) {
+    if (page < 1 || page > totalQuestions) return;
     currentPage = page; // เปลี่ยนไปที่หน้าใหม่
     displayQuestion(page); // แสดงข้อสอบ
     updatePagination(); // อัพเดต pagination
   }
+
   function displayQuestion(page) {
     const questionContainer = document.getElementById("question-container");
     const question = questions[page - 1];
     const isAnswered = answeredQuestions[page - 1];
 
-    // ฟังก์ชันเลือก radio อัตโนมัติเมื่อคลิกที่ตัวเลือก
     const handleOptionClick = (event) => {
-        const radio = event.currentTarget.querySelector("input[type='radio']");
-        if (radio && !radio.disabled) {
-            radio.checked = true;
-            updateOptionStyles(); // อัพเดตสีพื้นหลัง
-        }
+      const radio = event.currentTarget.querySelector("input[type='radio']");
+      if (radio && !radio.disabled) {
+        radio.checked = true;
+        enableNextButton();
+        updateOptionStyles(); // อัพเดตสีพื้นหลัง
+      }
     };
-    // แสดงคำถามและตัวเลือก
+
     if (page <= 20) {
-        questionContainer.innerHTML = `
-        <h3>${question.title}</h3>
-        <div class="option" style=" font-size: 20px; onclick="handleOptionClick(event)">
-          <input type="radio" name="answer" value="true" ${isAnswered ? "disabled" : ""}> ถูก
-        </div>
-        <div class="option"style=" font-size: 20px; onclick="handleOptionClick(event)">
-          <input type="radio" name="answer" value="false" ${isAnswered ? "disabled" : ""}> ผิด
-        </div>
-      `;
-    } else {
-        questionContainer.innerHTML = `
-        <h3>${question.title}</h3>
-        <ul>
-          ${question.options.map((option, index) => `
-            <div class="option" style=" font-size: 20px; onclick="handleOptionClick(event)">
-              <input type="radio" name="answer" value="${option}" ${isAnswered ? "disabled" : ""}> ${option}
+      questionContainer.innerHTML = `
+            <h3>${question.title}</h3>
+            <div class="option" style="font-size: 20px;" onclick="handleOptionClick(event)">
+                <input type="radio" name="answer" value="true" ${isAnswered ? "disabled" : ""}> ถูก
             </div>
-          `).join('')}
-        </ul>
-      `;
+            <div class="option" style="font-size: 20px;" onclick="handleOptionClick(event)">
+                <input type="radio" name="answer" value="false" ${isAnswered ? "disabled" : ""}> ผิด
+            </div>
+        `;
+    } else {
+      questionContainer.innerHTML = `
+            <h3>${question.title}</h3>
+            <ul>
+                ${question.options.map((option, index) => `
+                    <div class="option" style="font-size: 20px;" onclick="handleOptionClick(event)">
+                        <input type="radio" name="answer" value="${option}" ${isAnswered ? "disabled" : ""}> ${option}
+                    </div>
+                `).join('')}
+            </ul>
+        `;
     }
-    // ฟังก์ชันอัพเดตสีพื้นหลังของตัวเลือกที่ถูกเลือก
-    function updateOptionStyles() {
-        document.querySelectorAll('.option').forEach(option => {
-            const radio = option.querySelector("input[type='radio']");
-            option.style.backgroundColor = radio.checked ? "#bee5e5" : "";
-        });
-    }
-    // เพิ่ม event listener หลังจากโหลดตัวเลือกเสร็จ
+
     document.querySelectorAll(".option").forEach(option => {
-        option.addEventListener("click", handleOptionClick);
+      option.addEventListener("click", handleOptionClick);
     });
-}
-function startTimer(display) {
-    var timer = 0, minutes, seconds;
+  }
+  // ฟังก์ชันอัพเดตสีพื้นหลังของตัวเลือกที่ถูกเลือก
+  function updateOptionStyles() {
+    document.querySelectorAll('.option').forEach(option => {
+      const radio = option.querySelector("input[type='radio']");
+      option.style.backgroundColor = radio.checked ? "#bee5e5" : "";
+    });
+  }
+  // เพิ่ม event listener หลังจากโหลดตัวเลือกเสร็จ
+  document.querySelectorAll(".option").forEach(option => {
+    option.addEventListener("click", handleOptionClick);
+  });
+
+
+  function startTimer(display) {
+    var timer = 0,
+      minutes, seconds;
     var interval = setInterval(function() {
-        minutes = Math.floor(timer / 60);
-        seconds = timer % 60;
+      minutes = Math.floor(timer / 60);
+      seconds = timer % 60;
 
-        // แปลงค่าเป็น 2 หลัก
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
+      // แปลงค่าเป็น 2 หลัก
+      minutes = minutes < 10 ? "0" + minutes : minutes;
+      seconds = seconds < 10 ? "0" + seconds : seconds;
 
-        // แสดงผลในรูปแบบ mm.ss
-        display.textContent = minutes + "." + seconds;
+      // แสดงผลในรูปแบบ mm.ss
+      display.textContent = minutes + "." + seconds;
 
-        timer++;
+      timer++;
     }, 1000);
+  }
+  function submitExam() {
+  Swal.fire({
+    icon: 'info',
+    title: 'ส่งคำตอบสำเร็จ!',
+    text: 'คำตอบของคุณถูกส่งแล้ว',
+    confirmButtonText: 'ตกลง',
+    confirmButtonColor: 'green',
+  }).then(() => {
+    window.location.href = 'answer_maincontent.php';
+  });
 }
 
-window.onload = function() {
+  window.onload = function() {
     var display = document.querySelector('#timestamp'); // เปลี่ยนเป็น id="timestamp"
     startTimer(display);
     loadQuestion(currentQuestionIndex);
-};
+  };
   createPagination(); // เรียกฟังก์ชันเพื่อสร้าง pagination เมื่อโหลดหน้าเว็บ
   displayQuestion(currentPage); // แสดงข้อสอบแรกเมื่อโหลดหน้าเว็บ
 </script>

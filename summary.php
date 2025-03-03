@@ -10,7 +10,7 @@
       <div class="row">
         <div class="col">
           <div class="table-responsive">
-            <table id="example" class="table table-striped table-bordered" style="width:100%">
+            <table id="example" class="table table-bordered" style="width:100%">
               <thead>
                 <tr>
                   <th class="text-center"><b>หัวข้อ/รายละเอียด</b></th>
@@ -20,20 +20,24 @@
               <tbody>
                 <tr>
                   <td>บทเรียนที่ 1 ความปลอดภัยของการพ่นสี</td>
-                  <td class="text-center"><span class="badge text-bg-success">เรียนแล้ว</span></td>
+                  <td class="text-center"><span class="badge bg-success bg-opacity-25" style="color: black;">เรียนแล้ว</span></td>
                 </tr>
                 <tr>
                   <td>บทเรียนที่ 2 เครื่องมือและอุปกรณ์</td>
-                  <td class="text-center"><span class="badge text-bg-success">เรียนแล้ว</span></td>
+                  <td class="text-center"><span class="badge bg-success bg-opacity-25" style="color: black;">เรียนแล้ว</span></td>
                 </tr>
                 <tr>
                   <td>บทเรียนที่ 3 การทำงาน/แก้ไขปัญหา</td>
-                  <td class="text-center"><span class="badge text-bg-success">เรียนแล้ว</span></td>
+                  <td class="text-center"><span class="badge bg-success bg-opacity-25" style="color: black;">เรียนแล้ว</span></td>
                 </tr>
-                <!-- <tr>
-            <td>แบบทดสอบหลังเรียน</td>
-            <td class="text-center" data-post="42">42 คะแนน</td>
-          </tr> -->
+                <tr>
+                  <td>แบบทดสอบหลังเรียน</td>
+                  <td id="total-post" class="text-center"></td>
+                </tr>
+                <tr>
+                  <td id="percentage" class="align-middle">คิดเป็นร้อยละ</td>
+                  <td id="status" class="text-center"></td>
+                </tr>
                 <tr>
                   <td>เวลาที่ใช้ในการทำแบบทดสอบ</td>
                   <td class="text-center"><i class="fa-regular fa-clock"></i> 1 ชั่วโมง 30 นาที</td>
@@ -42,14 +46,7 @@
                   <td>รวมเวลาที่ใช้ในการเรียนและทำแบบทดสอบ</td>
                   <td class="text-center"><i class="fa-regular fa-clock"></i> 2 ชั่วโมง 30 นาที</td>
                 </tr>
-                <tr id="summary-row" style="background:#fff; font-weight: bold;">
-                  <th>แบบทดสอบหลังเรียน</th>
-                  <th id="total-post" class="text-center"></th>
-                </tr>
-                <tr>
-                  <td id="percentage">คิดเป็นร้อยละ</td>
-                  <td id="status" class="text-center"></td>
-                </tr>
+                
               </tbody>
             </table>
           </div>
@@ -88,6 +85,7 @@
       paging: false, // ปิดการแบ่งหน้า
       searching: false, // ปิดการค้นหา
       autoWidth: false, // ป้องกันการปรับขนาดอัตโนมัติ
+      sorting: false,
       language: {
         url: "assets/lib/dataTables/language.json",
         info: ""
@@ -99,10 +97,10 @@
       let percentage = (postTotal / maxTotal) * 100;
 
       document.getElementById('total-post').innerText = postTotal + ' คะแนน';
-      document.getElementById('percentage').innerText = 'คิดเป็นร้อยละ '+ percentage.toFixed(2) + '%';
+      document.getElementById('percentage').innerText = 'คิดเป็นร้อยละ ' + percentage.toFixed(2) + '%';
       document.getElementById('status').innerHTML = percentage >= 80 ?
-        '<span class="btn btn-success">ผ่าน</span>' :
-        '<span class="btn btn-danger">ไม่ผ่าน</span>';
+        '<h4><span class="badge bg-success">ผ่าน</span></h4>' :
+        '<h4><span class=" badge badge-lg bg-danger ">ไม่ผ่าน</span></h4>';
 
       if (percentage >= 80) {
         document.getElementById('solution-btn').style.display = 'inline-block';
@@ -222,5 +220,4 @@
         });
       };
     }
-
   </script>

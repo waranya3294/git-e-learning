@@ -142,8 +142,12 @@
 
                 <div id="Exam-booking-content" class="d-none">
                     <h1 class="text-end" style="color:#FF3333;">ระบบจองสอบออนไลน์</h1>
-                    <div class="card" style=" height: 400px; display: none;" id="right-content">
+                    <div class="card" style=" height: 500px; display: none;" id="right-content">
                         <div class="card-body" id="employee-info">
+                        <div class="col">
+                                <label class="form-label">ชื่อหลักสูตร</label>
+                                <input type="text" id="exam_title" class="form-control" value="">
+                            </div>
                             <div class="col">
                                 <label class="form-label">รหัสพนักงงาน</label>
                                 <input type="text" id="exam_id" class="form-control" value="">
@@ -298,6 +302,7 @@
 
             let employeeData = {
                 "518": {
+                    title:"ความปลอดภัยของการพ่นสี",
                     name: "นาย ปฏิวัฒน์ นาดี",
                     position: "CNC Controller",
                     department: "Manufacturing",
@@ -306,6 +311,7 @@
                     factory: "PD"
                 },
                 "3790": {
+                    title:"ความปลอดภัยของการพ่นสี",
                     name: "นาย เทวัน บุญยะบุตร",
                     position: "painter",
                     department: "Manufacturing",
@@ -319,6 +325,7 @@
 
             let bookingInfo = `
                 <p style="font-size:20px;"><strong>วันที่ :</strong> ${formatDateThai(selectedDate)}</p>
+                <p style="font-size:20px;"><strong>ชื่อหลักสูตร :</strong> ${employeeData.title}</p>
                 <p style="font-size:20px;"><strong>รหัสพนักงาน :</strong> ${exam_id}</p>
                 <p style="font-size:20px;"><strong>ชื่อ - นามสกุล :</strong> ${employeeData.name}</p>
                 <p style="font-size:20px;"><strong>ตำแหน่ง :</strong> ${employeeData.position}</p>
@@ -440,6 +447,7 @@
             const calendarEl = document.getElementById("calendar");
             const mockData = {
                 "518": {
+                    title:"ความปลอดภัยของการพ่นสี",
                     name: "นาย ปฏิวัฒน์ นาดี",
                     position: "CNC Controller",
                     department: "Manufacturing",
@@ -450,6 +458,7 @@
                     booking_date: "2025-02-18",
                 },
                 "3790": {
+                    title:"ความปลอดภัยของการพ่นสี",
                     name: "นาย เทวัน บุญยะบุตร",
                     position: "painter",
                     department: "Manufacturing",
@@ -530,6 +539,7 @@
                             $("#Exam").addClass("d-none"); // ซ่อนคำอธิบายกรณีจะเข้ามายกเลิกการจอง
                             $("#employee-info").html(`
                             <p style="font-size:26px;"><strong>วันที่ : ${formatDateThai(selectedDate)}</strong></p>
+                            <p style="font-size:18px;"><strong>ชื่อหลักสูตร :</strong> ${employeeData.title}</p>
                             <p style="font-size:18px;"><strong>รหัสพนักงาน :</strong> ${exam_id}</p>
                             <p style="font-size:18px;"><strong>ชื่อ - นามสกุล :</strong> ${employeeData.name}</p>
                             <p style="font-size:18px;"><strong>ตำแหน่ง :</strong> ${employeeData.position}</p>
@@ -552,6 +562,7 @@
                             $("#Exam").addClass("d-none"); // ซ่อนคำอธิบายกรณีจะเข้ามายกเลิกการจอง
                             $("#employee-info").html(`
                             <p style="font-size:26px;"><strong>วันที่ : ${formatDateThai(selectedDate)}</strong></p>
+                            <p style="font-size:18px;"><strong>ชื่อหลักสูตร :</strong> ${employeeData.title}</p>
                             <p style="font-size:18px;"><strong>รหัสพนักงาน :</strong> ${exam_id}</p>
                             <p style="font-size:18px;"><strong>ชื่อ - นามสกุล :</strong> ${employeeData.name}</p>
                             <p style="font-size:18px;"><strong>ตำแหน่ง :</strong> ${employeeData.position}</p>

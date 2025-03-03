@@ -1,6 +1,14 @@
 <div class="container-fluid mt-4 mb-4" style="color:#585858;">
-    <h3><i class="bi bi-book-half" style="color:#00adb0;"></i> บทเรียนที่ 1 ความปลอดภัยในการทำงาน</h3>
-
+    <div class="row ">
+        <div class="col text-start">
+        <h3><i class="bi bi-book-half" style="color:#00adb0;"></i> บทเรียนที่ 1 ความปลอดภัยในการทำงาน</h3>
+        </div>
+        <!-- <div class="col text-end ">
+            <button class="btn btn-default time-spent " type="button" style=" font-size: 24px;">
+                <span id="timestamp">00.00</span>
+            </button>
+        </div> -->
+    </div>
     <div class="card shadow-sm rounded-1 mb-3" style="border: none;border-top: 4px solid #00adb0;">
         <div class="card-body">
 
