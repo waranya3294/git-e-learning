@@ -23,17 +23,17 @@
                                 <th class="text-center"><b>จัดการ</b></th>
                             </tr>
                         </thead>
-                        <!-- <tbody>
+                        <tbody>
                             <tr class="align-middle">
                                 <td>1</td>
                                 <td>ประเภทงานสี</td>
-                                <td>30 ข้อ</td>
+                                <td>50 ข้อ</td>
                                 <td>
-                                    <button class="btn btn-outline-warning btn-sm" title="แก้ไขข้อมูล" onclick="window.location.href='exam_form_maincontent.php'"><i class="bi bi-pencil-square"></i></button>
+                                    <button class="btn btn-outline-warning btn-sm me-2" title="แก้ไขข้อมูล" onclick="window.location.href='exam_form_maincontent.php'"><i class="bi bi-pencil-square"></i></button>
                                     <button class="btn btn-outline-danger btn-sm" title="ลบข้อมูล" onclick="showDelete() "><i class="bi bi-trash"></i></button>
                                 </td>
                             </tr>
-                        </tbody> -->
+                        </tbody>
                     </table>
                 </div>
             </div>

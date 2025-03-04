@@ -59,6 +59,36 @@
                 </button>
               </div>
             </div>
+            <div class="row mt-2">
+              <div class="col-lg-6 col-sm-6 ">
+                <button class="btn btn-sm text-start"  style="background-color: #00adb0; color: white; width: 400px;" data-bs-toggle="modal" data-bs-target="#addSubLessonModal">
+                   บทเรียนที่ 1.1 เรื่องอุปกรณ์ความปลอดภัยในการพ่นสี
+                </button>
+              </div>
+              <div class="col-6 text-end">
+                <button class="btn btn-sm btn-outline-warning me-2" title="แก้ไข" data-bs-toggle="modal" data-bs-target="#addSubLessonModal1">
+                  <i class="bi bi-pencil-square"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-danger" title="ลบ" onclick="showDelete()">
+                  <i class="bi bi-trash3"></i>
+                </button>
+              </div>
+            </div>
+            <div class="row mt-2">
+              <div class="col-lg-6 col-sm-6 ">
+                <button class="btn btn-sm text-start"  style="background-color: #00adb0; color: white; width: 400px;" data-bs-toggle="modal" data-bs-target="#addSubLessonModal">
+                   บทเรียนที่ 1.2 เรื่องประเภทหน้ากากกรองพ่นสี
+                </button>
+              </div>
+              <div class="col-6 text-end">
+                <button class="btn btn-sm btn-outline-warning me-2" title="แก้ไข" data-bs-toggle="modal" data-bs-target="#addSubLessonModal1">
+                  <i class="bi bi-pencil-square"></i>
+                </button>
+                <button class="btn btn-sm btn-outline-danger" title="ลบ" onclick="showDelete()">
+                  <i class="bi bi-trash3"></i>
+                </button>
+              </div>
+            </div>
           </div>
         </div>
 

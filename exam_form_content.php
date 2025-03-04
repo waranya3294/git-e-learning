@@ -47,7 +47,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>เลือกไฟล์ Excel เพื่อนำเข้าข้อสอบ (นามสกุล .xlsx เท่านั้น)</label>
-                                    <input type="file" class="form-control" id="file_excel" name="file_excel" accept=".xls">
+                                    <input type="file" class="form-control" id="file_excel" name="file_excel" accept=".xlsx">
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -186,7 +186,7 @@
         XLSX.utils.book_append_sheet(workbook, worksheet, 'Template');
         XLSX.writeFile(workbook, 'template.xlsx');
     });
-    document.getElementById('file_excel').addEventListener('change', (event) => {
+    file_data.addEventListener('click', () => {
         const file = event.target.files[0];
         if (!file) return;
 
@@ -196,8 +196,9 @@
             return;
         }
 
-        const reader = new FileReader();
-        reader.readAsArrayBuffer(file);
+        var reader = new FileReader();
+        reader.readAsArrayBuffer(file_excel.files[0]);
+
 
         reader.onload = function() {
             const data = new Uint8Array(reader.result);
@@ -268,52 +269,16 @@
                 listOutput += '</div>';
 
                 document.getElementById('excel_display_area').innerHTML = listOutput;
+                
+                // ปิด modal หลังนำเข้าข้อมูล
+                const modal = bootstrap.Modal.getInstance(document.getElementById('exampleModal'));
+                modal.hide();
             }
 
             event.target.value = ''; // รีเซ็ตค่าอัปโหลดไฟล์
+
         };
     });
-
-
-    // เพิ่มตัวเลือก
-    function addOption(button) {
-        const questionBox = button.closest('.question-box');
-        const optionsContainer = questionBox.querySelector('.options-container');
-
-        if (optionsContainer.children.length >= 4) {
-            Swal.fire({
-                allowOutsideClick: false,
-                icon: 'warning',
-                title: 'เพิ่มตัวเลือกได้สูงสุด 4 ตัวเลือก',
-                confirmButtonText: 'ตกลง',
-                confirmButtonColor: 'green',
-            });
-            return;
-        }
-
-        const optionId = `${Date.now()}-${Math.random()}`; // สร้าง ID แบบไม่ซ้ำ
-        const optionDiv = document.createElement('div');
-        optionDiv.classList.add('row', 'align-items-center', 'mb-2', 'g-2');
-        optionDiv.innerHTML = `
-    <div class="col-auto">
-        <input class="form-check-input" type="radio" name="exampleModal" value="${optionId}">
-    </div>
-    <div class="col-auto">
-        <label for="option_image_${optionId}" class="btn btn-outline-primary d-flex align-items-center">
-            <i class="bi bi-image" title="แทรกรูปภาพ"></i>
-        </label>
-        <input type="file" id="option_image_${optionId}" class="d-none" onchange="previewImage(this, 'option')">
-    </div>
-    <div class="col">
-        <input type="text" class="form-control" placeholder="ตัวเลือกที่ ${optionsContainer.children.length +1}">
-    </div>
-    <div class="col-auto">
-        <button class="btn" onclick="removeOption(this)" title="ลบตัวเลือก">
-            <i class="fas fa-times"></i>
-        </button>
-    </div>`;
-        optionsContainer.appendChild(optionDiv);
-    }
 
     // ลบตัวเลือก
     function removeOption(button) {
