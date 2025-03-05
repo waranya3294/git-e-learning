@@ -438,7 +438,7 @@
   const totalQuestions = questions.length; // จำนวนข้อสอบทั้งหมด
   let completed = 0; // จำนวนข้อที่ทำเสร็จ
   let currentPage = 1; // หน้าปัจจุบัน
-  const maxVisiblePages = 20; // จำนวนข้อที่แสดงใน pagination
+  const maxVisiblePages = 15; // จำนวนข้อที่แสดงใน pagination
   let answeredQuestions = Array(totalQuestions).fill(false); // เก็บสถานะของคำตอบ
 
   function createPagination() {
