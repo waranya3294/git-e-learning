@@ -2,21 +2,16 @@
 <html lang="th">
   <head>
     <meta charset="UTF-8" />
-    <!-- กำหนดการเข้ารหัสของเอกสารเป็น UTF-8 -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- รองรับการแสดงผลในอุปกรณ์ที่มีขนาดหน้าจอแตกต่างกัน -->
-    <title>Progress Bar + Pagination</title>
-    <!-- ชื่อเรื่องของหน้าเว็บ -->
+    <title>แก้ไขข้อสอบ</title>
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
     />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <!-- fontawsome -->
-    <link rel="stylesheet" href="assets/lib/fontawsome/css/brands.css" />
-    <link rel="stylesheet" href="assets/lib/fontawsome/css/solid.css" />
-    <link rel="stylesheet" href="assets/lib/fontawsome/css/regular.css" />
-    <link rel="stylesheet" href="assets/lib/fontawsome/css/fontawesome.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
   </head>
   <body>
     <div class="container-fluid mt-4 mb-3">
@@ -26,13 +21,8 @@
           <!-- คำถามประเภทถูก/ผิด -->
           <div id="trueFalseQuestions">
             <header
-              class="login-header p-2"
-              style="
-                background-color: #18b0bd;
-                color: white;
-                font-size: 24px;
-                text-align: center;
-              "
+              class="p-2 text-white text-center"
+              style="background-color: #18b0bd; font-size: 24px"
             >
               แก้ไขข้อสอบประเภท ถูก/ผิด
             </header>
@@ -44,23 +34,8 @@
                     <th class="text-center">คำตอบ</th>
                   </tr>
                 </thead>
-                <tbody>
-                  <!-- ลูปสร้าง 20 ข้อ -->
-                  <script>
-                    for (let i = 1; i <= 20; i++) {
-                      document.write(`
-                        <tr>
-                          <td><input type="text" class="form-control" placeholder="คำถามที่ ${i}"></td>
-                          <td>
-                            <select class="form-control">
-                              <option value="true">ถูก</option>
-                              <option value="false">ผิด</option>
-                            </select>
-                          </td>
-                        </tr>
-                      `);
-                    }
-                  </script>
+                <tbody id="trueFalseTableBody">
+                  <!-- เติมข้อมูลโดย JavaScript -->
                 </tbody>
               </table>
             </div>
@@ -69,236 +44,227 @@
           <!-- คำถามประเภทปรนัย -->
           <div id="multipleChoiceQuestions">
             <header
-              class="login-header p-2"
-              style="
-                background-color: #18b0bd;
-                color: white;
-                font-size: 24px;
-                text-align: center;
-              "
+              class="p-2 text-white text-center"
+              style="background-color: #18b0bd; font-size: 24px"
             >
               แก้ไขข้อสอบประเภท ปรนัย
             </header>
             <div class="table-responsive mt-3 mb-3">
-              <!-- <table class="table table-bordered">
-                <thead>
-                  <tr>
-                    <th class="text-center">โจทย์คำถาม</th>
-                    <th class="text-center">ตัวเลือก ก</th>
-                    <th class="text-center">ตัวเลือก ข</th>
-                    <th class="text-center">ตัวเลือก ค</th>
-                    <th class="text-center">ตัวเลือก ง</th>
-                    <th class="text-center">คำตอบที่ถูกต้อง</th>
-                  </tr>
-                </thead> -->
-              <tbody>
-                <!-- ลูปสร้าง 30 ข้อ -->
-                <script>
-                  const questions = [
-                    [
-                      "การเตรียมพื้นผิวก่อนพ่นสีมีวัตถุประสงค์หลักเพื่ออะไร?",
-                      "เพิ่มการยึดเกาะของสี",
-                      "ลดความเงาของสี",
-                      "ทำให้สีแห้งเร็วขึ้น",
-                      "ลดการใช้สี",
-                      "ก"
-                    ],
-                    [
-                      "ในการพ่นสี ควรเลือกใช้อุปกรณ์ป้องกันส่วนบุคคล (PPE) ใด?",
-                      "ถุงมือยาง",
-                      "แว่นตานิรภัย",
-                      "หน้ากากกรองอากาศแบบไส้กรองมาตรฐาน",
-                      "รองเท้านิรภัย",
-                      "ค"
-                    ],
-                    [
-                      "สีรองพื้น (primer) มีหน้าที่อะไร?",
-                      "เพิ่มความเงาของสี",
-                      "ปกป้องพื้นผิวจากสนิมและเพิ่มการยึดเกาะของสีทับหน้า",
-                      "ช่วยลดต้นทุนการผลิต",
-                      "ทำให้สีติดทนนานขึ้น",
-                      "ข"
-                    ],
-                    [
-                      "หากพ่นสีแล้วพบรอยคลื่นหรือฟองอากาศ ควรแก้ไขอย่างไร?",
-                      "ล้างออกแล้วพ่นใหม่ทันที",
-                      "พ่นทับด้วยชั้นหนาๆ",
-                      "ปล่อยให้แห้งแล้วขัดพื้นผิวก่อนพ่นซ้ำ",
-                      "เพิ่มแรงลมของปืนพ่นสี",
-                      "ค"
-                    ],
-                    [
-                      "หน้ากากชนิดใดที่เหมาะสมที่สุดสำหรับการพ่นสี?",
-                      "หน้ากากกรองอากาศชนิดครึ่งหน้า (Half-face Respirator)",
-                      "หน้ากากอนามัย",
-                      "หน้ากากผ้า",
-                      "หน้ากากกันฝุ่น N95",
-                      "ก"
-                    ],
-                    [
-                      "เครื่องมือใดที่ใช้ในการขัดผิวงานสีเพื่อให้พื้นผิวเรียบ?",
-                      "แปรงทาสี",
-                      "ลูกกลิ้งทาสี",
-                      "กระดาษทราย",
-                      "เครื่องเป่าลมร้อน",
-                      "ค"
-                    ],
-                    [
-                      "เครื่องมือใดที่ใช้ในการทาสีให้พื้นผิวที่มีขนาดกว้าง เช่น ผนัง?",
-                      "แปรงทาสี",
-                      "ลูกกลิ้งทาสี",
-                      "ฟองน้ำทาสี",
-                      "ปืนพ่นสี",
-                      "ข"
-                    ],
-                    [
-                      "หากสีทาผนังไม่ติดพื้นผิว ควรทำอย่างไร?",
-                      "ทาสีทับทันที",
-                      "เพิ่มชั้นของสี",
-                      "ขัดและทำความสะอาดพื้นผิวก่อนทาสีใหม่",
-                      "ใช้สีที่เข้มขึ้น",
-                      "ค"
-                    ],
-                    [
-                      "การเลือกสีทาผนังภายในควรพิจารณาจากอะไรเป็นหลัก?",
-                      "ราคา",
-                      "ความปลอดภัยและมิตรต่อสิ่งแวดล้อม",
-                      "ยี่ห้อของสี",
-                      "ความเงาของสี",
-                      "ข"
-                    ],
-                    [
-                      "การใช้ปืนพ่นสีมีข้อดีอย่างไร?",
-                      "ได้สีที่ละเอียดและสม่ำเสมอ",
-                      "ประหยัดสี",
-                      "ทำให้แห้งเร็วขึ้น",
-                      "ลดต้นทุนแรงงาน",
-                      "ก"
-                    ]
-                  ];
-
-                  questions.forEach((q, index) => {
-                    document.write(`
-                        <ul>
-                         <div class="d-flex align-items-center mb-2 mt-3">
-                          ข้อที่ ${index + 1}: <input type="text" class="form-control me-2" value="${q[0]}">
-                          <label for="option_image_1" class="btn btn-outline-primary d-flex align-items-center">
-                                    <i class="bi bi-image" title="แทรกรูปภาพ"></i>
-                                </label>
-                                <input type="file" id="option_image_1" class="d-none" onchange="previewImage(this, 'option')">
-                          </div>
-        <ul class="list-unstyled">
-           <div class="d-flex align-items-center mb-2">
-          <input type="radio" name="choices" class="form-check-input me-2" id="radioA" value="ก">
-          <label for="choiceA" class="me-2">ก</label>
-          <input type="text" class="form-control w-auto" id="choiceA" value="${q[1]}">
-         <button class="btn" title="ลบตัวเลือก" onclick="removeOption(this)"><i class="bi bi-x"></i></button>
-          </div>
-
-
-
-  <div class="d-flex align-items-center mb-2">
-    <input type="radio" name="choices" class="form-check-input me-2" id="radioB" value="ข">
-    <label for="choiceB" class="me-2"> ข</label>
-    <input type="text" class="form-control w-auto" id="choiceB" value="${q[2]}">
-    <button class="btn" title="ลบตัวเลือก" onclick="removeOption(this)"><i class="bi bi-x"></i></button>
-                              </div>
-
-
-
-  <div class="d-flex align-items-center mb-2">
-    <input type="radio" name="choices" class="form-check-input me-2" id="radioC" value="ค">
-    <label for="choiceC" class="me-2"> ค</label>
-    <input type="text" class="form-control w-auto" id="choiceC" value="${q[3]}">
-       <button class="btn" title="ลบตัวเลือก" onclick="removeOption(this)"><i class="bi bi-x"></i></button>
-                              </div>
-
-
-  <div class="d-flex align-items-center mb-2">
-    <input type="radio" name="choices" class="form-check-input me-2" id="radioD" value="ง">
-    <label for="choiceD" class="me-2">ง</label>
-    <input type="text" class="form-control w-auto " id="choiceD" value="${q[4]}">
-    <button class="btn" title="ลบตัวเลือก" onclick="removeOption(this)"><i class="bi bi-x"></i></button>
-                              </div>
-
-
-
-                              คำตอบ:
-                                <select class="form-control">
-                                  <option value="ก" ${
-                                    q[5] === "ก" ? "selected" : ""
-                                  }>ก</option>
-                                  <option value="ข" ${
-                                    q[5] === "ข" ? "selected" : ""
-                                  }>ข</option>
-                                  <option value="ค" ${
-                                    q[5] === "ค" ? "selected" : ""
-                                  }>ค</option>
-                                  <option value="ง" ${
-                                    q[5] === "ง" ? "selected" : ""
-                                  }>ง</option>
-                                </select>
-                              </li>
-                            </ul>
-                        </ul>
-                        <hr style="margin:0 -15px;">
-                      `);
-                  });
-
-                   // ลบตัวเลือก
-                   function removeOption(button) {
-                      const optionDiv = button.closest('.d-flex');
-                      optionDiv.remove();
-                  }
-
-                  function previewImage(input, type) {
-        const file = input.files[0];
-        if (!file) return;
-
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            let imageContainer;
-
-            if (type === 'question') {
-                imageContainer = input.closest('.question-box').querySelector('#showimage');
-            } else if (type === 'option') {
-                const optionRow = input.closest('.row');
-                imageContainer = optionRow.querySelector('.option-image-preview');
-                if (!imageContainer) {
-                    imageContainer = document.createElement('div');
-                    imageContainer.classList.add('option-image-preview', 'mt-2');
-                    optionRow.appendChild(imageContainer);
-                }
-            }
-
-            imageContainer.innerHTML = `
-            <div class="d-flex align-items-center">
-                <img src="${e.target.result}" class="img-thumbnail" style="max-width: 400px; margin-right: 10px;">
-                <button class="btn btn-danger btn-sm" onclick="removeImage(this, '${type}')">ลบ</button>
-            </div>`;
-        };
-        reader.readAsDataURL(file);
-    }
-
-    function removeImage(button, type) {
-        const container = button.closest('.d-flex');
-        const inputFile = type === 'question' ?
-            container.closest('.question-box').querySelector(`#question_image`) :
-            container.closest('.row').querySelector(`input[type="file"]`);
-
-        container.remove();
-        inputFile.value = ''; // ล้างค่าของ input file
-    }
-
-                </script>
-              </tbody>
+              <div id="multipleChoiceList"></div>
             </div>
           </div>
+
           <div class="text-end">
-            <button class="btn btn-success">บันทึกการแก้ไข</button>
+            <button
+              class="btn btn-success"
+              onclick="window.location.href='examgroup_maincontent.php'"
+            >
+              บันทึกการแก้ไข
+            </button>
           </div>
         </div>
       </div>
     </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const trueFalseTableBody =
+          document.getElementById("trueFalseTableBody");
+        const multipleChoiceList =
+          document.getElementById("multipleChoiceList");
+
+        //  สร้างคำถามประเภท ถูก/ผิด
+        for (let i = 1; i <= 20; i++) {
+          trueFalseTableBody.innerHTML += `
+      <tr>
+        <td><input type="text" class="form-control" placeholder="คำถามที่ ${i}"></td>
+        <td>
+          <select class="form-control">
+            <option value="true">ถูก</option>
+            <option value="false">ผิด</option>
+          </select>
+        </td>
+      </tr>
+    `;
+        }
+
+        //  คำถามประเภท ปรนัย
+        const questions = [
+          [
+            "การเตรียมพื้นผิวก่อนพ่นสีมีวัตถุประสงค์หลักเพื่ออะไร?",
+            "เพิ่มการยึดเกาะของสี",
+            "ลดความเงาของสี",
+            "ทำให้สีแห้งเร็วขึ้น",
+            "ลดการใช้สี",
+            "ก",
+          ],
+          [
+            "ในการพ่นสี ควรเลือกใช้อุปกรณ์ป้องกันส่วนบุคคล (PPE) ใด?",
+            "ถุงมือยาง",
+            "แว่นตานิรภัย",
+            "หน้ากากกรองอากาศแบบไส้กรองมาตรฐาน",
+            "รองเท้านิรภัย",
+            "ค",
+          ],
+          [
+            "สีรองพื้น(primer)มีหน้าที่อะไรในกระบวนการพ่นสี?",
+            "ให้สีเงางาม",
+            "ปกป้องพื้นผิวจากสนิมและเพิ่มการยึดเกาะของสีทับหน้า",
+            "ให้ตกแต่งเพื่อความสวยงาม",
+            "ทำให้สีไม่หลุดลอก",
+            "ข",
+          ],
+          [
+            "หากพ่นสีแล้วพบรอยคลื่นหรือฟองอากาศ ควรแก้ไขอย่างไร?",
+            "พ่นสีเพิ่มทันที",
+            "ใช้ความร้อนเร่งให้ฟองอากาศแตก",
+            "พ่นสีใสเคลือบทับทันที",
+            "ปล่อยให้แห้งแล้วขัดพื้นผิวก่อนพ่นซ้ำ",
+            "ง",
+          ],
+          [
+            "หากหน้ากากชนิดใดที่เหมาะสมที่สุดสำหรับการพ่นสีเพื่อป้องกันไอระเหยของสารเคมี",
+            "หน้ากากผ้า",
+            "หน้ากากอนามันทางการแพทย์",
+            "หน้ากากกรองอากาศชนิดครึ่งหน้า(Half-face Respirator)พร้อมไส้กรอกสารเคมี",
+            "หน้ากากกันฝุ่นทั่วไป",
+            "ค",
+          ],
+          [
+            " เครื่องมือใดที่ใช้ในการขัดผิวงานสีเพื่อให้พื้นผิวเรียบ?",
+            "กระดาษทราย",
+            "เครื่องขัดแบบสั่น",
+            "แปรงทาสี",
+            "สเปรย์เคลือบ",
+            "ก",
+          ],
+          [
+            "เครื่องมือใดที่ใช้ในการทาสีให้พื้นผิวที่มีขนาดกว้าง เช่น ผนัง?",
+            "แปรงทาสี",
+            "ลูกกลิ้งทาสี",
+            "ปืนพ่นสี",
+            "ไม้พาย",
+            "ก",
+          ],
+          [
+            "การเลือกสีทาผนังภายในควรพิจารณาจากอะไรเป็นหลัก?",
+            "ความทนทานต่อสภาพอากาศ",
+            "ความเงางามของสี",
+            "ความปลอดภัยและมิตรต่อสิ่งแวดล้อม",
+            "สีที่มีราคาถูก",
+            "ง",
+          ],
+          [
+            "การใช้ปืนพ่นสีมีข้อดีอย่างไร?",
+            "สามารถทาสีได้เร็ว",
+            "ใช้ในพื้นที่แคบได้ดี",
+            "ได้สีที่ละเอียดและสม่ำเสมอ",
+            "ใช้งานได้ในทุกสภาพอากาศ",
+            "ง",
+          ],
+          [
+            "การทาสีด้วยแปรงมีข้อดีอย่างไร?",
+            "ใช้ได้ดีในพื้นที่แคบ",
+            "ทาสีได้เร็วกว่าเครื่องมืออื่น",
+            "ได้สีที่ละเอียดและสม่ำเสมอ",
+            "ใช้งานได้ในทุกสภาพอากาศ",
+            "ง",
+          ],
+        ];
+
+        questions.forEach((q, index) => {
+          multipleChoiceList.innerHTML += `
+      <div class="mb-4">
+        <div class="d-flex align-items-center">
+          <strong>ข้อที่ ${index + 1}:</strong>
+          <input type="text" class="form-control mx-2" value="${q[0]}">
+          <label class="btn btn-outline-primary">
+            <i class="bi bi-image"></i>
+            <input type="file" class="d-none" onchange="previewImage(this)">
+          </label>
+        </div>
+        
+        <ul class="list-unstyled">
+          ${["ก", "ข", "ค", "ง"]
+            .map(
+              (choice, i) => `
+            <div class="d-flex align-items-center mt-2">
+              <input type="radio" name="choices${index}" class="form-check-input me-2" value="${choice}">
+              <label class="me-2">${choice}</label>
+              <input type="text" class="form-control w-auto" value="${
+                q[i + 1]
+              }">
+              <button class="btn ms-2" onclick="removeOption(this)">
+                <i class="bi bi-x"></i>
+              </button>
+            </div>
+          `
+            )
+            .join("")}
+        </ul>
+
+        <strong>คำตอบ:</strong>
+        <select class="form-control">
+          ${["ก", "ข", "ค", "ง"]
+            .map(
+              (choice) => `
+            <option value="${choice}" ${
+                q[5] === choice ? "selected" : ""
+              }>${choice}</option>
+          `
+            )
+            .join("")}
+        </select>
+        <hr>
+      </div>
+    `;
+        });
+      });
+
+      //ฟังก์ชันลบตัวเลือก
+      function removeOption(button) {
+        const optionDiv = button.closest(".d-flex");
+        optionDiv.remove();
+      }
+      
+      function previewImage(input) {
+    const file = input.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onload = function (e) {
+        // หา div คำถามที่รูปควรแสดงด้านล่าง
+        const questionDiv = input.closest(".mb-4");
+
+        // ตรวจสอบว่ามี image-container หรือยัง ถ้าไม่มีให้สร้างใหม่
+        let imageContainer = questionDiv.querySelector(".image-container");
+        if (!imageContainer) {
+            imageContainer = document.createElement("div");
+            imageContainer.classList.add("image-container", "mt-3");
+
+            // เพิ่ม imageContainer เข้าไปใน questionDiv
+            questionDiv.appendChild(imageContainer);
+        }
+
+        // เพิ่มรูปภาพเข้าไป
+        const imgWrapper = document.createElement("div");
+        imgWrapper.classList.add("text-center", "mb-2");
+        imgWrapper.innerHTML = `
+         <div class="d-flex align-items-center">
+            <img src="${e.target.result}" class="img-thumbnail me-2" style="max-width: 400px;">
+            <button class="btn btn-danger btn-sm mt-2" onclick="removeImage(this)">ลบ</button>
+        </div>`;
+
+        imageContainer.appendChild(imgWrapper);
+    };
+    reader.readAsDataURL(file);
+}
+
+// ฟังก์ชันลบรูปภาพ
+function removeImage(button) {
+    button.parentElement.remove();
+}
+
+    </script>
   </body>
 </html>
