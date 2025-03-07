@@ -115,6 +115,15 @@
                         </div>
                     </div>
 
+                    <div class="col-2">
+                        <label for="">คำตอบ:</label >
+                        <select class="form-control">
+                            <option value="option1">ตัวเลือกที่ 1</option>
+                            <option value="option2">ตัวเลือกที่ 2</option>  
+                            <option value="option3">ตัวเลือกที่ 3</option>
+                            <option value="option4">ตัวเลือกที่ 4</option>
+                        </select>
+                    </div>
                     <!-- ปุ่มเพิ่มตัวเลือก -->
                     <div class="mb-4">
                         <button class="btn default" onclick="addOption(this)"><i class="fas fa-plus"></i> <u>เพิ่มตัวเลือก</u></button>
@@ -172,31 +181,21 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
 
 <script>
-    // ดาวน์โหลด template
     document.getElementById('downloadBtn').addEventListener('click', () => {
-        // สร้างข้อมูลสำหรับเทมเพลต (สร้างไฟล์ตัวอย่าง Excel)
         const templateData = [
-            ['ข้อ', 'คำถาม', 'คำตอบที่ถูก', 'คำตอบที่ผิด', 'คำตอบที่ผิด', 'คำตอบที่ผิด'], // หัวตาราง
-            ['1', 'น้ำเป็นของเหลวที่ไม่มีสี', 'ถูก', 'ผิด', '', ''] // ถ้าไม่มีตัวเลือกผิด จะถือว่าเป็นคำถามแบบถูก/ผิด
-            ['2', 'การเตรียมพื้นผิวก่อนพ่นสีมีวัตถุประสงค์หลักเพื่ออะไร', '1. ป้องกันพื้นผิวจากความร้อน', '2. เพิ่มการยึดเกาะของสี',
-                '3. ลดระยะเวลาในการพ่นสี', '4. ทำให้สีแห้งเร็วขึ้น'
-            ],
-
+            ['ข้อ', 'คำถาม', 'คำตอบที่ถูก', 'คำตอบที่ผิด', 'คำตอบที่ผิด', 'คำตอบที่ผิด'],
+            ['1', 'น้ำเป็นของเหลวที่ไม่มีสี', 'ถูก', 'ผิด', '', ''],
+            ['2', 'การเตรียมพื้นผิวก่อนพ่นสีมีวัตถุประสงค์หลักเพื่ออะไร', '1. ป้องกันพื้นผิวจากความร้อน', '2. เพิ่มการยึดเกาะของสี', '3. ลดระยะเวลาในการพ่นสี', '4. ทำให้สีแห้งเร็วขึ้น'],
         ];
 
-        // สร้างเวิร์กบุ๊กและชีต
-        const worksheet = XLS.utils.aoa_to_sheet(templateData);
-        const workbook = XLS.utils.book_new();
-        XLS.utils.book_append_sheet(workbook, worksheet, 'Template');
-
-        // บันทึกไฟล์ Excel ให้ผู้ใช้ดาวน์โหลด
-        XLS.writeFile(workbook, 'template.xls');
+        const worksheet = XLSX.utils.aoa_to_sheet(templateData);
+        const workbook = XLSX.utils.book_new();
+        XLSX.utils.book_append_sheet(workbook, worksheet, 'Template');
+        XLSX.writeFile(workbook, 'template.xls');
     });
 
-    // นำเข้าไฟล์ Excel
     const file_excel = document.getElementById('file_excel');
     const file_data = document.getElementById('file_data');
-    const previewContent = document.getElementById('previewContent');
 
     file_data.addEventListener('click', () => {
         if (file_excel.files.length === 0) {
@@ -204,26 +203,12 @@
                 icon: 'warning',
                 text: 'กรุณาเลือกไฟล์ Excel ก่อน!',
                 confirmButtonText: 'ตกลง',
-                confirmButtonColor: 'green',
+                confirmButtonColor: 'green'
             });
             return;
         }
 
         let file = file_excel.files[0];
-
-        // ตรวจสอบว่าเป็นไฟล์ Excel เท่านั้น
-        if (!['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet', 'application/vnd.ms-excel'].includes(file.type)) {
-            Swal.fire({
-                icon: 'error',
-                title: 'ข้อผิดพลาด',
-                text: 'อนุญาตเฉพาะไฟล์ .xlsx เท่านั้น',
-                confirmButtonText: 'ตกลง',
-                confirmButtonColor: 'green',
-            });
-            file_excel.value = '';
-            return;
-        }
-
         let reader = new FileReader();
         reader.readAsArrayBuffer(file);
 
@@ -232,7 +217,6 @@
             let workbook = XLSX.read(data, {
                 type: 'array'
             });
-
             let sheetName = workbook.SheetNames[0];
             let sheetData = XLSX.utils.sheet_to_json(workbook.Sheets[sheetName], {
                 header: 1,
@@ -244,11 +228,10 @@
                     icon: 'warning',
                     text: 'ไฟล์ที่อัปโหลดไม่มีข้อมูล',
                     confirmButtonText: 'ตกลง',
-                    confirmButtonColor: 'green',
+                    confirmButtonColor: 'green'
                 });
                 return;
             }
-
             // ตรวจสอบโครงสร้างของ Template
             const requiredHeaders = ['ข้อ', 'คำถาม', 'คำตอบที่ถูก', 'คำตอบที่ผิด', 'คำตอบที่ผิด', 'คำตอบที่ผิด'];
             if (sheetData[0].length < requiredHeaders.length) {
@@ -275,12 +258,12 @@
                 return;
             }
 
+
             let list_output = '<div class="list-group">';
             let newRowIndex = 1;
 
             for (let row = 1; row < sheetData.length; row++) {
                 let question = sheetData[row][1];
-
                 // ข้ามแถวที่มีรูปภาพหรือไม่มีคำถาม
                 if (typeof question !== 'string' || !question.trim()) {
                     Swal.fire({
@@ -291,22 +274,25 @@
                     });
                     continue;
                 }
+                if (!question) continue;
 
                 list_output += `<div class="list-group-item"><h5>ข้อที่ ${newRowIndex}. ${question}</h5><ul>`;
-
                 let hasOptions = false;
+
                 for (let cell = 2; cell <= 5; cell++) {
-                    if (sheetData[row][cell] && typeof sheetData[row][cell] === 'string') {
-                        list_output += `<ul><label><input type="radio" name="q${newRowIndex}"> ${sheetData[row][cell]}</label></ul>`;
+                    if (sheetData[row][cell]) {
+                        let isCorrect = (cell === 2); // คอลัมน์ที่ 2 เป็นคำตอบที่ถูก
+                        let highlightClass = isCorrect ? 'style="color: green; font-weight: bold;"' : '';
+                        list_output += `<ul><label ${highlightClass}><input type="radio" name="q${newRowIndex}"> ${sheetData[row][cell]}</label></ul>`;
                         hasOptions = true;
                     }
                 }
-
                 // ถ้าไม่มีตัวเลือก ให้เพิ่ม "ถูก" และ "ผิด"
                 if (!hasOptions) {
                     list_output += `<ul><label><input type="radio" name="q${newRowIndex}"> ถูก</label></ul>`;
                     list_output += `<ul><label><input type="radio" name="q${newRowIndex}"> ผิด</label></ul>`;
                 }
+
 
                 list_output += '</ul></div>';
                 newRowIndex++;
@@ -314,6 +300,7 @@
 
             list_output += '</div>';
             document.getElementById('excel_display_area').innerHTML = list_output;
+
 
             // ปิด modal หลังจากนำเข้าข้อมูลเสร็จ
             const modal = bootstrap.Modal.getInstance(document.getElementById('exampleModal'));
@@ -423,6 +410,7 @@
         </div>
     </div>
     <button class="btn btn-default" onclick="addOption(this)"><i class="fas fa-plus"></i> เพิ่มตัวเลือก</button>
+    
     <hr>
     <div class="mb-3 d-flex align-items-center">
         <button class="btn btn-secondary me-2" id="addNewQuestion" onclick="addNewQuestion()" title="เพิ่มคำถาม">
@@ -459,7 +447,7 @@
             }
         });
         // $('#addNewQuestion').removeClass('d-none');
-        
+
     }
 
     // แสดงตัวอย่าง
@@ -494,7 +482,7 @@
             const options = box.querySelectorAll('.options-container .row');
 
             previewHtml += `
-             ${questionImage ? `<img src="${questionImage.src}" class="img-thumbnail" style="width: 500px; height:400px;">` : ''}
+             ${questionImage ? `<img src="${questionImage.src}" class="img-thumbnail" style="width: 300px; height:200px;">` : ''}
         <h5 class="mt-3"><b>ข้อที่ :</b> ${question}</h5>
         <ul>`;
 
@@ -510,7 +498,7 @@
                     ${optionText}
                  </label>
                  <ul>
-                  ${optionImage ? `<img src="${optionImage.src}" class="img-thumbnail" style="width: 500px; height:400px;">` : ''}
+                  ${optionImage ? `<img src="${optionImage.src}" class="img-thumbnail" style="width: 300px; height:200px;">` : ''}
                  </ul>
                 
            </ul> `;
@@ -552,14 +540,43 @@
         reader.readAsDataURL(file);
     }
 
-    //ลบรูปภาพในตัวเลือก
     function removeImage(button, type) {
-        const container = button.closest('.d-flex');
-        const inputFile = type === 'question' ?
-            container.closest('.question-box').querySelector(`#question_image`) :
-            container.closest('.row').querySelector(`input[type="file"]`);
+        Swal.fire({
+            title: "คุณต้องการลบรูปภาพนี้หรือไม่?",
+            icon: "warning",
+            allowOutsideClick: false,
+            showCancelButton: true,
+            confirmButtonColor: "#d33",
+            confirmButtonText: "ใช่",
+            cancelButtonText: "ไม่ใช่",
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const container = button.closest('.d-flex');
+                const imageContainer = button.closest('.option-image-preview');
 
-        container.remove();
-        inputFile.value = ''; // ล้างค่าของ input file
+                if (imageContainer) {
+                    imageContainer.remove();
+                }
+
+                if (container) {
+                    container.remove();
+                }
+
+                const inputFile = type === 'question' ?
+                    container?.closest('.question-box')?.querySelector(`#question_image`) :
+                    container?.closest('.row')?.querySelector(`input[type="file"]`);
+
+                if (inputFile) {
+                    inputFile.value = ''; // ล้างค่าของ input file
+                }
+
+                Swal.fire({
+                    title: "ลบรูปภาพเรียบร้อยแล้ว",
+                    icon: "success",
+                    timer: 1500,
+                    showConfirmButton: false,
+                });
+            }
+        });
     }
 </script>

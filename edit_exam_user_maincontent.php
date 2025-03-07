@@ -1,5 +1,5 @@
 <?php
     require("header.php");
-    require("edituser.php");
+    require("edit_exam_user.php");
     require("footer.php");
 ?>

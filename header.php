@@ -153,7 +153,7 @@
               </nav>
             </div>
 
-            <a class="nav-link" href="edituser_maincontent.php">
+            <a class="nav-link" href="edit_exam_user_maincontent.php">
               <div class="sb-nav-link-icon"><i class="fas fa-edit" style="color:white"></i></div>
               จัดการผู้เข้าสอบ
             </a>

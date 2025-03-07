@@ -29,7 +29,7 @@
                                 <td>ประเภทงานสี</td>
                                 <td>50 ข้อ</td>
                                 <td>
-                                    <button class="btn btn-outline-warning btn-sm me-2" title="แก้ไขข้อมูล" onclick="window.location.href='editexam_form_maincontent.php'"><i class="bi bi-pencil-square"></i></button>
+                                    <button class="btn btn-outline-warning btn-sm" title="แก้ไขข้อมูล" onclick="window.location.href='editexam_form_maincontent.php'"><i class="bi bi-pencil-square"></i></button>
                                     <button class="btn btn-outline-danger btn-sm" title="ลบข้อมูล" onclick="showDelete() "><i class="bi bi-trash"></i></button>
                                 </td>
                             </tr>
