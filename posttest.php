@@ -56,12 +56,12 @@
 
       <!-- Pagination -->
       <nav aria-label="ข้อสอบ">
-        <div class="row d-flex align-items-center;">
+        <div class="row d-flex align-items-center">
           <!-- กล่องแถวสำหรับการจัดเรียงปุ่ม -->
-          <div class="col-lg-2 d-flex align-items-center justify-content-center;">
+          <div class="col-lg-2 col-sm-12 d-flex align-items-center justify-content-center;">
             <span id="timestamp" style="color:#e5e5e5;  text-align: left;">00.00</span>
           </div>
-          <div class="col">
+          <div class="col-lg-8 col-sm-12  d-flex align-items-center justify-content-center">
             <div class="pagination" id="page-numbers">
               <!-- ย้ายปุ่ม Next มาอยู่ใน div pagination -->
               <div class="page-item next-btn-container">
@@ -69,6 +69,9 @@
                 <!-- ปุ่ม "Next" ที่จะไปยังข้อถัดไป -->
               </div>
             </div>
+          </div>
+          <div class="col-lg-2 col-sm-12">
+
           </div>
         </div>
         <!-- ช่องแสดงหมายเลขหน้าที่จะถูกสร้างจาก JavaScript -->
@@ -438,7 +441,7 @@
   const totalQuestions = questions.length; // จำนวนข้อสอบทั้งหมด
   let completed = 0; // จำนวนข้อที่ทำเสร็จ
   let currentPage = 1; // หน้าปัจจุบัน
-  const maxVisiblePages = 15; // จำนวนข้อที่แสดงใน pagination
+  const maxVisiblePages = 3; // จำนวนข้อที่แสดงใน pagination
   let answeredQuestions = Array(totalQuestions).fill(false); // เก็บสถานะของคำตอบ
 
   function createPagination() {
@@ -449,29 +452,40 @@
     const pageNumbers = document.getElementById("page-numbers");
     pageNumbers.innerHTML = "";
 
-    const startPage = Math.max(1, Math.min(currentPage - Math.floor(maxVisiblePages / 2), totalQuestions - maxVisiblePages + 1));
-    const endPage = Math.min(startPage + maxVisiblePages - 1, totalQuestions);
+    // ตรวจสอบว่ากำลังใช้อุปกรณ์จอเล็กหรือไม่ (เช่น มือถือ)
+    const isSmallScreen = window.innerWidth <= 1240;
+    let startPage, endPage;
+
+    if (isSmallScreen) {
+      // แสดงแค่ 3 ตัวเลข
+      startPage = Math.max(1, currentPage - 1); // ข้อก่อนหน้า (หรือข้อแรกถ้าเป็นข้อที่ 1)
+      endPage = Math.min(totalQuestions, currentPage + 1); // ข้อถัดไป (หรือข้อสุดท้าย)
+    } else {
+      // แสดงตามปกติ (หลายข้อ)
+      startPage = Math.max(1, Math.min(currentPage - Math.floor(maxVisiblePages / 2), totalQuestions - maxVisiblePages + 1));
+      endPage = Math.min(startPage + maxVisiblePages - 1, totalQuestions);
+    }
 
     for (let i = startPage; i <= endPage; i++) {
-        const li = document.createElement("li");
-        li.className = `page-item ${i === currentPage ? "active" : ""}`;
-        
-        const btn = document.createElement("button");
-        btn.className = "page-link";
-        btn.innerText = i;
+      const li = document.createElement("li");
+      li.className = `page-item ${i === currentPage ? "active" : ""}`;
 
-        // ไม่ให้ย้อนกลับไปดูข้อที่ทำเสร็จแล้ว
-        if (answeredQuestions[i - 1] || i !== currentPage) {
-            btn.disabled = true;
-        } else {
-            btn.onclick = () => changePage(i);
-        }
+      const btn = document.createElement("button");
+      btn.className = "page-link";
+      btn.innerText = i;
 
-        // เปลี่ยนพื้นหลังของข้อที่ทำเสร็จแล้วให้เป็นสีเขียว แต่ขึ้นใน class "page-link"
-        if (answeredQuestions[i - 1]) {
-            btn.style.backgroundColor = "#c0c0c0"; // สีเทา
-            btn.style.color = "white";
-        }
+      // ไม่ให้ย้อนกลับไปดูข้อที่ทำเสร็จแล้ว
+      if (answeredQuestions[i - 1] || i !== currentPage) {
+        btn.disabled = true;
+      } else {
+        btn.onclick = () => changePage(i);
+      }
+
+      // เปลี่ยนพื้นหลังของข้อที่ทำเสร็จแล้วให้เป็นสีเขียว แต่ขึ้นใน class "page-link"
+      if (answeredQuestions[i - 1]) {
+        btn.style.backgroundColor = "#c0c0c0"; // สีเทา
+        btn.style.color = "white";
+      }
 
       li.appendChild(btn);
       pageNumbers.appendChild(li);
@@ -488,11 +502,11 @@
     nextBtn.style.color = "white";
     pageNumbers.appendChild(nextBtnContainer);
     if (currentPage === 50) {
-        // ถ้าถึงข้อ 50 ให้เปลี่ยนเป็นปุ่มส่งคำตอบ
-        // nextBtnContainer.innerHTML = `<button class="page-link submit-btn" style="background-color: green;color: white;" onclick="submitExam()">ส่งคำตอบ</button>`;
+      // ถ้าถึงข้อ 50 ให้เปลี่ยนเป็นปุ่มส่งคำตอบ
+      // nextBtnContainer.innerHTML = `<button class="page-link submit-btn" style="background-color: green;color: white;" onclick="submitExam()">ส่งคำตอบ</button>`;
     } else {
-        // ปกติแสดง "ข้อถัดไป"
-        // nextBtnContainer.innerHTML = `<button class="page-link next-btn" style="background-color: green;color: white;"  onclick="nextQuestion()">ข้อถัดไป</button>`;
+      // ปกติแสดง "ข้อถัดไป"
+      // nextBtnContainer.innerHTML = `<button class="page-link next-btn" style="background-color: green;color: white;"  onclick="nextQuestion()">ข้อถัดไป</button>`;
     }
 
     if (currentPage === totalQuestions) {
@@ -632,17 +646,18 @@
       timer++;
     }, 1000);
   }
+
   function submitExam() {
-  Swal.fire({
-    icon: 'info',
-    title: 'ส่งคำตอบสำเร็จ!',
-    text: 'คำตอบของคุณถูกส่งแล้ว',
-    confirmButtonText: 'ตกลง',
-    confirmButtonColor: 'green',
-  }).then(() => {
-    window.location.href = 'answer_maincontent.php';
-  });
-}
+    Swal.fire({
+      icon: 'info',
+      title: 'ส่งคำตอบสำเร็จ!',
+      text: 'คำตอบของคุณถูกส่งแล้ว',
+      confirmButtonText: 'ตกลง',
+      confirmButtonColor: 'green',
+    }).then(() => {
+      window.location.href = 'answer_maincontent.php';
+    });
+  }
 
   window.onload = function() {
     var display = document.querySelector('#timestamp'); // เปลี่ยนเป็น id="timestamp"

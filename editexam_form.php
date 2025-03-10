@@ -98,7 +98,7 @@
 
 
         <div class="text-end mb-3">
-            <button class="btn btn-success" onclick="window.location.href='examgroup_maincontent.php'">
+            <button class="btn btn-warning" onclick="window.location.href='examgroup_maincontent.php'">
                 บันทึกการแก้ไข
             </button>
             <button class="btn btn-secondary me-3" onclick="window.location.href='examgroup_maincontent.php'">
@@ -212,9 +212,10 @@
         </select>
     </div>
     <div class="col-lg-1">
-        <button class="btn btn-lg ms-2" onclick="removeOption(this)">
-            <i class="bi bi-x"></i>
-        </button>
+    <button class="btn btn-outline-danger me-2" onclick="removeOption(this)" title="นำออก">
+        <i class="bi bi-trash"></i>
+    </button>
+        
     </div>
 </div>
         `;
@@ -334,14 +335,6 @@
                     </button>
                 </div>`).join("")}
         </ul>
-<div class="col-2">
-<strong>คำตอบ:</strong>
-            <select class="form-control">
-                ${["ก", "ข", "ค", "ง"]
-                    .map((choice) => `
-                    <option value="${choice}" ${q[5] === choice ? "selected" : ""}>${choice}</option>`).join("")}
-            </select>
-</div>
         <div class="mb-4">
             <button class="btn default" onclick="addOption(this)"><i class="fas fa-plus"></i> <u>เพิ่มตัวเลือก</u></button>
         </div>
@@ -416,7 +409,7 @@
         </div>
         <div class="col-auto">
            <button class="btn btn-lg ms-2" onclick="removeOption(this)">
-            <i class="bi bi-x"></i>
+           <i class="fas fa-times"></i>
         </button>
  
         </div>
@@ -459,6 +452,7 @@
             </div>`;
         };
         reader.readAsDataURL(file);
+        
     }
 
 
@@ -509,7 +503,7 @@
                 <input type="file" class="d-none" onchange="previewImage(this, 'question')">
             </div>
         </div>
-        <div class="mb-2" id="showimage"></div>
+       
         <div id="options-container" class="mb-4 options-container">
             <div class="row d-flex align-items-center justify-content-center mb-2 g-2 ms-3">
                 <div class="col-auto">
@@ -530,6 +524,7 @@
                     </button>
                 </div>
             </div>
+             <div class="mb-2" id="showimage"></div>
         </div>
         <div class="mb-4">
             <button class="btn default" onclick="addOption(this)">
