@@ -71,7 +71,7 @@ $_SESSION['user_type'] = $type;
         <div class="card-body">
           <div class="row">
             <div class="col d-flex align-items-center">
-              <h2 onclick="window.location.href='exam_maincontent.php'">ประเภทงานสี</h2>
+              <h2 onclick="window.location.href='exam_maincontent.php'">สี</h2>
               <div class="col text-end p-0">
                 <button class="btn btn-sm btn-primary" onclick="window.location.href='exam_maincontent.php'" style="background-color: #23b2b5; border: none;">สร้างบทเรียน</button>
               </div>
@@ -96,7 +96,7 @@ $_SESSION['user_type'] = $type;
         <div class="card-body">
           <div class="row">
             <div class="col d-flex align-items-center">
-              <h2 onclick="window.location.href='exam_maincontent.php'">ประเภทงานเชื่อม</h2>
+              <h2 onclick="window.location.href='exam_maincontent.php'">เชื่อม</h2>
               <div class="col text-end p-0">
                 <button class="btn btn-sm btn-primary" onclick="window.location.href='exam_maincontent.php'" style="background-color: #23b2b5; border: none;">สร้างบทเรียน</button>
               </div>
@@ -121,7 +121,7 @@ $_SESSION['user_type'] = $type;
         <div class="card-body">
           <div class="row">
             <div class="col d-flex align-items-center">
-              <h2 onclick="window.location.href='exam_maincontent.php'">ประเภทงานประกอบ</h2>
+              <h2 onclick="window.location.href='exam_maincontent.php'">ประกอบ</h2>
               <div class="col text-end p-0">
                 <button class="btn btn-sm btn-primary" onclick="window.location.href='exam_maincontent.php'" style="background-color: #23b2b5; border: none;">สร้างบทเรียน</button>
               </div>
@@ -146,7 +146,7 @@ $_SESSION['user_type'] = $type;
         <div class="card-body">
           <div class="row">
             <div class="col d-flex align-items-center">
-              <h2 onclick="window.location.href='exam_maincontent.php'">ประเภทงาน CNC</h2>
+              <h2 onclick="window.location.href='exam_maincontent.php'">CNC</h2>
               <div class="col text-end p-0">
                 <button class="btn btn-sm btn-primary" onclick="window.location.href='exam_maincontent.php'" style="background-color: #23b2b5; border: none;">สร้างบทเรียน</button>
               </div>

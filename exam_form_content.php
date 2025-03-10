@@ -185,7 +185,7 @@
         XLSX.utils.book_append_sheet(workbook, worksheet, 'Template');
 
         // ดาวน์โหลดไฟล์
-        XLSX.writeFile(workbook, 'template.xls');
+        XLSX.writeFile(workbook, 'template.xlsx');
     });
 
     const file_excel = document.getElementById('file_excel');
@@ -293,15 +293,15 @@
                         list_output += `
         <div class="option-container">
             <ul class="d-flex align-items-center p-0 m-0 mt-2">
-                <label ${highlightClass} class="d-flex align-items-center w-100 option-label">
+                <label ${highlightClass}  class="d-flex align-items-center w-100 option-label">
                     <div class="d-flex align-items-center flex-grow-1">
                         <input type="radio" name="q${newRowIndex}" class="me-2 option-radio" ${checkedAttr} onchange="updateCorrectAnswer(this)">
                         <span class="option-text ms-2"></span>
-                        <input type="text" class="edit-option  form-control w-100 ms-2 border-0" value="${sheetData[row][cell]}">
+                        <input type="text" class="edit-option form-control w-100 ms-2 border-0" value="${sheetData[row][cell]}">
                     </div>
                     
                     <div class="delete ms-2 ">
-                        <button class="btn delete-btn" onclick="removeOption(this)" title="ลบตัวเลือก">
+                        <button class="btn delete-btn d-none" onclick="removeOption(this)" title="ลบตัวเลือก">
                             <i class="fas fa-times text-danger"></i>
                         </button>
                     </div>
@@ -351,7 +351,7 @@
             const modal = bootstrap.Modal.getInstance(document.getElementById('exampleModal'));
             modal.hide();
             // ซ่อนปุ่ม "ลบ"
-    
+
 
             // รีเซ็ต input file
             file_excel.value = '';
@@ -359,51 +359,59 @@
     });
 
     function editQuestion(button) {
-    const questionContainer = button.closest('.list-group-item');
+        const questionContainer = button.closest('.list-group-item');
 
-    // ซ่อนข้อความเดิม แล้วแสดงช่องแก้ไข
-    questionContainer.querySelector('.question-text').classList.add('d-none');
-    questionContainer.querySelector('.edit-question').classList.remove('d-none');
+        // ซ่อนข้อความเดิม แล้วแสดงช่องแก้ไข
+        questionContainer.querySelector('.question-text').classList.add('d-none');
+        questionContainer.querySelector('.edit-question').classList.remove('d-none');
 
-    // ซ่อนข้อความตัวเลือก แล้วแสดงช่องแก้ไข
-    questionContainer.querySelectorAll('.option-text').forEach(el => el.classList.add('d-none'));
-    questionContainer.querySelectorAll('.edit-option').forEach(el => el.classList.remove('d-none'));
+        // ซ่อนข้อความตัวเลือก แล้วแสดงช่องแก้ไข
+        questionContainer.querySelectorAll('.option-text').forEach(el => el.classList.add('d-none'));
+        questionContainer.querySelectorAll('.edit-option').forEach(el => el.classList.remove('d-none'));
 
-    // เปลี่ยนปุ่ม "แก้ไข" เป็น "บันทึก"
-    button.classList.add('d-none');
-    questionContainer.querySelector('.save-btn').classList.remove('d-none');
+        // เปลี่ยนปุ่ม "แก้ไข" เป็น "บันทึก"
+        button.classList.add('d-none');
+        questionContainer.querySelector('.save-btn').classList.remove('d-none');
 
-    // แสดงปุ่ม "ลบ"
-    questionContainer.querySelector('.delete-btn').classList.remove('d-none');
-}
+        // แสดงปุ่ม "ลบ"
+        questionContainer.querySelectorAll('.delete-btn').forEach(btn => btn.classList.remove('d-none'));
+    }
 
+    function saveQuestion(button) {
+        const questionContainer = button.closest('.list-group-item');
 
-function saveQuestion(button) {
-    const questionContainer = button.closest('.list-group-item');
+        // อัปเดตค่าที่แก้ไข
+        const newQuestionText = questionContainer.querySelector('.edit-question').value;
+        questionContainer.querySelector('.question-text').textContent = newQuestionText;
 
-    // อัปเดตค่าที่แก้ไข
-    const newQuestionText = questionContainer.querySelector('.edit-question').value;
-    questionContainer.querySelector('.question-text').textContent = newQuestionText;
+        questionContainer.querySelectorAll('.edit-option').forEach((input, index) => {
+            const optionText = questionContainer.querySelectorAll('.option-text')[index];
+            optionText.textContent = input.value;
 
-    questionContainer.querySelectorAll('.edit-option').forEach((input, index) => {
-        questionContainer.querySelectorAll('.option-text')[index].textContent = input.value;
-    });
+            // อัปเดตการไฮไลท์ตัวเลือกที่ถูกต้อง
+            if (questionContainer.querySelectorAll('.option-radio')[index].checked) {
+                optionText.style.color = 'green';
+                optionText.style.fontWeight = 'bold';
+            } else {
+                optionText.style.color = 'black';
+                optionText.style.fontWeight = '';
+            }
+        });
 
-    // ซ่อนช่องแก้ไข แล้วแสดงข้อความเดิมที่อัปเดตใหม่
-    questionContainer.querySelector('.question-text').classList.remove('d-none');
-    questionContainer.querySelector('.edit-question').classList.add('d-none');
+        // ซ่อนช่องแก้ไข แล้วแสดงข้อความเดิมที่อัปเดตใหม่
+        questionContainer.querySelector('.question-text').classList.remove('d-none');
+        questionContainer.querySelector('.edit-question').classList.add('d-none');
 
-    questionContainer.querySelectorAll('.option-text').forEach(el => el.classList.remove('d-none'));
-    questionContainer.querySelectorAll('.edit-option').forEach(el => el.classList.add('d-none'));
- // ซ่อนปุ่ม "ลบ"
- questionContainer.querySelector('.delete-btn').classList.add('d-none');
-    // เปลี่ยนปุ่ม "บันทึก" กลับเป็น "แก้ไข"
-    button.classList.add('d-none');
-    questionContainer.querySelector('.edit-btn').classList.remove('d-none');
+        questionContainer.querySelectorAll('.option-text').forEach(el => el.classList.remove('d-none'));
+        questionContainer.querySelectorAll('.edit-option').forEach(el => el.classList.add('d-none'));
 
-   
-}
+        // ซ่อนปุ่ม "ลบ"
+        questionContainer.querySelectorAll('.delete-btn').forEach(btn => btn.classList.add('d-none'));
 
+        // เปลี่ยนปุ่ม "บันทึก" กลับเป็น "แก้ไข"
+        button.classList.add('d-none');
+        questionContainer.querySelector('.edit-btn').classList.remove('d-none');
+    }
 
     // เพิ่มตัวเลือก
     function addOption(button) {
@@ -616,10 +624,11 @@ function saveQuestion(button) {
             options.forEach((option, optIndex) => {
                 const optionText = option.querySelector('input[type="text"]').value.trim();
                 const optionImage = option.querySelector('.option-image-preview img');
+                const isChecked = option.querySelector('input[type="radio"]').checked;
 
                 previewHtml += `
                 <ul class="p-0">
-                    <input type="radio" name="question${index}" id="question${index}-option${optIndex}" checked>
+                    <input type="radio" name="question${index}" id="question${index}-option${optIndex}" ${isChecked ? 'checked' : ''}>
                     <label style="font-size:20px;" for="question${index}-option${optIndex}">
                         ${optionText}
                     </label>
@@ -634,8 +643,6 @@ function saveQuestion(button) {
 
         // แสดงผลลัพธ์
         document.getElementById('previewContent').innerHTML = previewHtml;
-
-
     }
 
     //แสดงรูปภาพ
