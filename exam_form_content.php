@@ -69,17 +69,17 @@
                     </select>
                 </div>
 
-                <div class="mt-3 mb-2">
+                <div class="mt-3">
                     <textarea type="text" name="description" id="description" class="form-control" placeholder="คำชี้แจงแบบทดสอบ"></textarea>
                 </div>
                 <!-- แสดงข้อมูล excel -->
-                <div id="excel_display_area" class="mt-4"></div>
+                <div id="excel_display_area"></div>
 
-                <div class="question-box mb-4 p-4">
+                <div class="question-box mb-4">
                     <div class="row mt-3 mb-3">
                         <label for="title">ตั้งคำถาม:<span class="text-danger">*</span></label>
                         <div class="col-10">
-                            <input type="text" id="question-box" name="question" class="form-control" placeholder="เพิ่มคำถาม ?" onclick="showToolbar(this)">
+                            <input type="text" id="question-box" name="question" class="form-control" placeholder="เพิ่มคำถาม ?" onclick="showToolbar(this)" readonly>
                             <span class="text-danger required-asterisk" style="display: none;">*</span>
                         </div>
                         <div class="col-2 d-flex align-items-end justify-content-start">
@@ -105,7 +105,7 @@
                                 <input type="file" id="option_image_1" class="d-none" onchange="previewImage(this, 'option')">
                             </div>
                             <div class="col-auto flex-grow-1">
-                                <input type="text" class="form-control" placeholder="ตัวเลือกที่ 1">
+                                <input type="text" class="form-control" placeholder="ตัวเลือกที่ 1" readonly>
                             </div>
                             <div class="col-auto">
                                 <button class="btn" onclick="removeOption(this)" title="ลบตัวเลือก">
@@ -245,6 +245,7 @@
 
             let list_output = '<div class="list-group">';
             let newRowIndex = 1;
+            let imageQuestions = []; // เก็บรายการข้อที่มีรูปภาพ
 
             for (let row = 1; row < sheetData.length; row++) {
                 let question = sheetData[row][1];
@@ -258,6 +259,11 @@
                     });
                     continue;
                 }
+                let questionImage = sheetData[row][6]; // Assuming the image URL or base64 is in the 7th column
+                if (questionImage) {
+                    list_output += `<img src="${questionImage}" class="img-thumbnail" style="width: 300px; height:200px;">`;
+                    imageQuestions.push(row + 1); // เก็บเลขข้อที่มีรูปภาพ
+                }
 
                 list_output += `
                 <div class="list-group-item border-0">
@@ -268,13 +274,7 @@
                     <input type="text" class="edit-question d-none form-control border-0" style="font-size:20px;"value="ข้อที่ ${newRowIndex} ${question}">
                 </h5>
                </div>
-                <div class="col text-end" id="editQuestion">
-    <button class="btn btn-warning btn-sm edit-btn" onclick="editQuestion(this)">
-        <i class="bi bi-pencil-square" style="color:white"></i>
-    </button>
-    <button class="btn btn-success btn-sm save-btn d-none" onclick="saveQuestion(this)">บันทึก</button>
-</div>
-
+                
             </div>
             <ul class="options-list">
     `;
@@ -295,9 +295,9 @@
             <ul class="d-flex align-items-center p-0 m-0 mt-2">
                 <label ${highlightClass}  class="d-flex align-items-center w-100 option-label">
                     <div class="d-flex align-items-center flex-grow-1">
-                        <input type="radio" name="q${newRowIndex}" class="me-2 option-radio" ${checkedAttr} onchange="updateCorrectAnswer(this)">
+                        <input type="radio" name="q${newRowIndex}" class="me-2 option-radio" ${checkedAttr} onchange="updateCorrectAnswer(this)" disabled>
                         <span class="option-text ms-2"></span>
-                        <input type="text" class="edit-option form-control w-100 ms-2 border-0" value="${sheetData[row][cell]}">
+                        <input type="text" class="edit-option form-control w-100 border-0"  ${highlightClass} value="${sheetData[row][cell]}" readonly>
                     </div>
                     
                     <div class="delete ms-2 ">
@@ -317,17 +317,17 @@
                 if (!hasOptions) {
                     list_output += `
              <ul class="d-flex align-items-center p-0">
-                <input type="radio" name="q${newRowIndex}">
+                <input type="radio" name="q${newRowIndex}" >
                 <span class="option-text flex-grow-1 ms-2" style="font-size:18px;">ถูก</span>
-                <input type="text" class="edit-option d-none form-control w-100" value="ถูก">
+                <input type="text" class="edit-option d-none form-control w-100 border-0" value="ถูก">
                 <button class="btn ms-2 d-none" onclick="removeOption(this)"  title="ลบตัวเลือก">
                 <i class="fas fa-times text-danger"></i>
             </button>
             </ul>
             <ul class="d-flex align-items-center mt-2 p-0">
-                <input type="radio" name="q${newRowIndex}">
+                <input type="radio" name="q${newRowIndex}" >
                 <span class="option-text flex-grow-1 ms-2" style="font-size:18px;">ผิด</span>
-                <input type="text" class="edit-option d-none form-control w-100" value="ผิด">
+                <input type="text" class="edit-option d-none form-control w-100 border-0" value="ผิด">
             <button class="btn ms-2 d-none" onclick="removeOption(this)"  title="ลบตัวเลือก">
                 <i class="fas fa-times text-danger"></i>
             </button>
@@ -343,80 +343,29 @@
             }
             list_output += '</div>';
             document.getElementById('excel_display_area').innerHTML = list_output;
-            // $(".edit-btn, .delete-btn").addClass("d-none");
-            // $("#editQuestion").addClass("d-none");
-
 
             // ปิด modal หลังจากนำเข้าข้อมูลเสร็จ
             const modal = bootstrap.Modal.getInstance(document.getElementById('exampleModal'));
             modal.hide();
-            // ซ่อนปุ่ม "ลบ"
-
 
             // รีเซ็ต input file
             file_excel.value = '';
+
+            // 🔹 แสดงผลจำนวนข้อที่มีรูปภาพทั้งหมด
+            if (imageQuestions.length > 0) {
+                Swal.fire({
+                    icon: 'info',
+                    text: `พบข้อสอบที่มีรูปภาพทั้งหมด ${imageQuestions.length} ข้อ: ${imageQuestions.join(', ')}`,
+                    confirmButtonText: 'ตกลง',
+                    confirmButtonColor: 'blue',
+                });
+            }
         };
     });
-
-    function editQuestion(button) {
-        const questionContainer = button.closest('.list-group-item');
-
-        // ซ่อนข้อความเดิม แล้วแสดงช่องแก้ไข
-        questionContainer.querySelector('.question-text').classList.add('d-none');
-        questionContainer.querySelector('.edit-question').classList.remove('d-none');
-
-        // ซ่อนข้อความตัวเลือก แล้วแสดงช่องแก้ไข
-        questionContainer.querySelectorAll('.option-text').forEach(el => el.classList.add('d-none'));
-        questionContainer.querySelectorAll('.edit-option').forEach(el => el.classList.remove('d-none'));
-
-        // เปลี่ยนปุ่ม "แก้ไข" เป็น "บันทึก"
-        button.classList.add('d-none');
-        questionContainer.querySelector('.save-btn').classList.remove('d-none');
-
-        // แสดงปุ่ม "ลบ"
-        questionContainer.querySelectorAll('.delete-btn').forEach(btn => btn.classList.remove('d-none'));
-    }
-
-    function saveQuestion(button) {
-        const questionContainer = button.closest('.list-group-item');
-
-        // อัปเดตค่าที่แก้ไข
-        const newQuestionText = questionContainer.querySelector('.edit-question').value;
-        questionContainer.querySelector('.question-text').textContent = newQuestionText;
-
-        questionContainer.querySelectorAll('.edit-option').forEach((input, index) => {
-            const optionText = questionContainer.querySelectorAll('.option-text')[index];
-            optionText.textContent = input.value;
-
-            // อัปเดตการไฮไลท์ตัวเลือกที่ถูกต้อง
-            if (questionContainer.querySelectorAll('.option-radio')[index].checked) {
-                optionText.style.color = 'green';
-                optionText.style.fontWeight = 'bold';
-            } else {
-                optionText.style.color = 'black';
-                optionText.style.fontWeight = '';
-            }
-        });
-
-        // ซ่อนช่องแก้ไข แล้วแสดงข้อความเดิมที่อัปเดตใหม่
-        questionContainer.querySelector('.question-text').classList.remove('d-none');
-        questionContainer.querySelector('.edit-question').classList.add('d-none');
-
-        questionContainer.querySelectorAll('.option-text').forEach(el => el.classList.remove('d-none'));
-        questionContainer.querySelectorAll('.edit-option').forEach(el => el.classList.add('d-none'));
-
-        // ซ่อนปุ่ม "ลบ"
-        questionContainer.querySelectorAll('.delete-btn').forEach(btn => btn.classList.add('d-none'));
-
-        // เปลี่ยนปุ่ม "บันทึก" กลับเป็น "แก้ไข"
-        button.classList.add('d-none');
-        questionContainer.querySelector('.edit-btn').classList.remove('d-none');
-    }
 
     // เพิ่มตัวเลือก
     function addOption(button) {
         const questionBox = button.closest('.question-box');
-        const optionsContainer = questionBox.querySelector('.options-container');
 
 
         if (optionsContainer.children.length >= 4) {
@@ -435,7 +384,7 @@
         optionDiv.classList.add('row', 'align-items-center', 'mb-2', 'g-2');
         optionDiv.innerHTML = `
          <div class="col-auto">
-            <input class="form-check-input" type="radio" name="inlineRadioOptions" value="${optionId}" >
+            <input class="form-check-input" type="radio" name="inlineRadioOptions" value="${optionId}">
         </div>
         <div class="col-auto">
             <label for="option_image_${optionId}" class="btn btn-outline-primary d-flex align-items-center">
@@ -444,7 +393,7 @@
             <input type="file" id="option_image_${optionId}" class="d-none" onchange="previewImage(this, 'option')">
         </div>
         <div class="col">
-            <input type="text" class="form-control" placeholder="ตัวเลือกที่ ${optionsContainer.children.length +1}">
+            <input type="text" class="form-control" placeholder="ตัวเลือกที่ ${optionsContainer.children.length +1}" readonly>
         </div>
         <div class="col-auto">
             <button class="btn" onclick="removeOption(this)" title="ลบตัวเลือก">
@@ -498,7 +447,7 @@
      <div class="row mt-3 mb-3">
         <label for="title">ตั้งคำถาม:<span class="text-danger">*</span></label>
         <div class="col-10">
-            <input type="text" name="question" class="form-control" placeholder="เพิ่มคำถาม ?" onclick="showToolbar(this)">
+            <input type="text" name="question" class="form-control" placeholder="เพิ่มคำถาม ?" onclick="showToolbar(this)" readonly>
         </div>
         <div class="col-2 d-flex align-items-end justify-content-start">
             <label for="question_image_${questionBoxes.length + 1}" class="btn btn-outline-primary">
@@ -511,7 +460,7 @@
     <div id="options-container" class="mb-4 options-container">
         <div class="row d-flex align-items-center mb-2 g-2">
             <div class="col-auto">
-                <input class="form-check-input" type="radio" name="inlineRadioOptions" value="option1" checked>
+                <input class="form-check-input" type="radio" name="inlineRadioOptions" value="option1" checked disabled>
             </div>
             <div class="col-auto">
                 <label for="option_image_${questionBoxes.length + 1}_1" class="btn btn-outline-primary d-flex align-items-center">
@@ -520,7 +469,7 @@
                 <input type="file" id="option_image_${questionBoxes.length + 1}_1" class="d-none" onchange="previewImage(this, 'option')">
             </div>
             <div class="col flex-grow-1">
-                <input type="text" class="form-control" placeholder="ตัวเลือกที่ 1">
+                <input type="text" class="form-control" placeholder="ตัวเลือกที่ 1" readonly>
             </div>
             <div class="col-auto">
                 <button class="btn d-none" onclick="removeOption(this)" title="ลบตัวเลือก">
@@ -639,8 +588,8 @@
             });
 
             previewHtml += `</ul>`;
-        });
 
+        });
         // แสดงผลลัพธ์
         document.getElementById('previewContent').innerHTML = previewHtml;
     }
