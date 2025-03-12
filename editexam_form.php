@@ -36,7 +36,7 @@
 
 
             <div class="text-end mb-3">
-                <button class="btn btn-warning" onclick="window.location.href='examgroup_maincontent.php'" style="color:white">
+                <button class="btn btn-warning" type="submit" id="saveButton" onclick="validateForm()" style="color:white">
                     บันทึกการแก้ไข
                 </button>
                 <button class="btn btn-secondary me-3" onclick="window.location.href='examgroup_maincontent.php'">
@@ -136,10 +136,10 @@
             ];
 
             trueFalseQuestions.forEach((question, index) => {
-    let row = document.createElement("div");
-    row.classList.add("row", "mb-2"); 
+                let row = document.createElement("div");
+                row.classList.add("row", "mb-2");
 
-    row.innerHTML = `
+                row.innerHTML = `
         <div class="row d-flex align-items-center ">
             <div class="col-lg-1 text-end p-0">
                ข้อที่ ${index + 1}.
@@ -161,8 +161,8 @@
         </div>
     `;
 
-    trueFalseTableBody.appendChild(row);
-});
+                trueFalseTableBody.appendChild(row);
+            });
 
         });
 
@@ -281,7 +281,6 @@
         <hr>
     </div>
 `;
-
             } else if (q.questionText) {
 
                 // คำถามที่มีตัวเลือกเป็นรูปภาพ
@@ -300,7 +299,7 @@
                             <input type="radio" name="inlineRadioOptions${index}" class="form-check-input me-2" value="${choice[0]}">
                             <label class="me-2">${choice[0]}</label>
                             <img src="${choice[1]}" class="img-thumbnail" style="max-width: 100px;">
-                            <span class="ms-2">${choice[2]}</span>
+                            <input type="text" class="form-control border-0" value="${choice[2]}">
                             <button class="btn btn-lg ms-2" onclick="removeOption(this)">
                     <i class="fas fa-times" style="color:red"></i>
                 </button>
@@ -365,6 +364,7 @@
                         timer: 1500,
                         showConfirmButton: false,
                     });
+                    renumberQuestions();
                 }
             });
         }
@@ -386,21 +386,25 @@
             }
 
             const uniqueId = Date.now() + optionsContainer.children.length;
+            const optionDivRow = document.createElement('div');
             const optionDiv = document.createElement('div');
-            optionDiv.classList.add('d-flex', 'align-items-center', 'ms-3');
+            optionDivRow.classList.add('row');
             optionDiv.innerHTML = `
-        <input type="radio" name="inlineRadioOptions${questionBox.querySelectorAll('input[type="radio"]').length}" class="form-check-input me-2" value="new">
-        <label for="option_image_${uniqueId}" class="btn btn-outline-primary d-flex align-items-center">
-            <i class="bi bi-image" title="แทรกรูปภาพ"></i>
-        </label>
-        <input type="file" id="option_image_${uniqueId}" class="d-none" onchange="previewImage(this, 'option')">
-        <input type="text" class="form-control border-0" placeholder="ตัวเลือกที่ ${optionsContainer.children.length + 1}">
-        <button class="btn btn-lg ms-2" style="color:red" onclick="removeOption(this)">
-            <i class="fas fa-times"></i>
-        </button>
-        <div class="option-image-preview mt-2 text-center"></div>
-    `;
-            optionsContainer.appendChild(optionDiv);
+                <div class="col-12 d-flex justify-content-center align-items-center">
+                    <input type="radio" name="inlineRadioOptions${questionBox.querySelectorAll('input[type="radio"]').length}" class="form-check-input me-2" value="new">
+                    <label for="option_image_${uniqueId}" class="btn btn-outline-primary d-flex align-items-center">
+                        <i class="bi bi-image" title="แทรกรูปภาพ"></i>
+                    </label>
+                    <input type="file" id="option_image_${uniqueId}" class="d-none" onchange="previewImage(this, 'option')">
+                    <input type="text" class="form-control border-0" required placeholder="ตัวเลือกที่ ${optionsContainer.children.length + 1}">
+                    <button class="btn btn-lg ms-2" style="color:red" onclick="removeOption(this)">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="option-image-preview mt-2 text-center"></div>
+            `;
+            optionDivRow.appendChild(optionDiv);
+            optionsContainer.appendChild(optionDivRow);
         }
 
 
@@ -434,7 +438,7 @@
                         if (!imageContainer) {
                             imageContainer = document.createElement('div');
                             imageContainer.classList.add('option-image-preview', 'mt-2', 'text-center');
-                            optionRow.insertBefore(imageContainer, input.closest('.col-auto').nextSibling);
+                            optionRow.parentNode.insertBefore(imageContainer, optionRow.nextSibling);
                         }
                     }
                 }
@@ -473,112 +477,46 @@
             });
         }
 
-        function addNewQuestion() {
-            const questionContainer = document.getElementById('multipleChoiceQuestions');
-            const questionBoxes = questionContainer.querySelectorAll('.question-box');
-
-            // ซ่อนปุ่ม "เพิ่มคำถาม" ของข้อก่อนหน้า
-            if (questionBoxes.length > 0) {
-                const lastQuestionBox = questionBoxes[questionBoxes.length - 1];
-                const lastAddButton = lastQuestionBox.querySelector('.add-question-btn');
-                if (lastAddButton) {
-                    lastAddButton.classList.add('d-none'); // ซ่อนปุ่ม
-                }
-            }
-
-            const questionBox = document.createElement('div');
-            questionBox.classList.add('question-box', 'mb-4');
-            questionBox.innerHTML = `
-       <div class="question-box mb-4">
-                    <div class="row mt-3 mb-3">
-                        <label for="title">ตั้งคำถาม:<span class="text-danger">*</span></label>
-                        <div class="col-10">
-                            <input type="text" id="question-box" name="question" class="form-control" placeholder="เพิ่มคำถาม ?" onclick="showToolbar(this)" readonly>
-                            <span class="text-danger required-asterisk" style="display: none;">*</span>
-                        </div>
-                        <div class="col-2 d-flex align-items-end justify-content-start">
-                            <label for="question_image" id="question_image_label" class="btn btn-outline-primary" accept=".jpg, .jpeg, .png">
-                                <i class="bi bi-image" title="แทรกรูปภาพ"></i>
-                            </label>
-                            <input type="file" id="question_image" class="d-none" onchange="previewImage(this, 'question')">
-                        <!-- Show image -->
-                    <div class="mb-4" id="showimage"></div>
-                            </div>
-                    </div>
-                    
-                    <!-- ตัวเลือก -->
-                    <div id="options-container" class="mb-4 options-container">
-                        <!-- ตัวเลือกตัวอย่าง -->
-                        <div class="row d-flex align-items-center justify-content-center mb-2 g-2">
-                            <div class="col-auto">
-                                <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
-                            </div>
-                            <div class="col-auto">
-                                <label for="option_image_1" class="btn btn-outline-primary d-flex align-items-center" accept=".jpg, .jpeg, .png">
-                                    <i class="bi bi-image" title="แทรกรูปภาพ"></i>
-                                </label>
-                                <input type="file" id="option_image_1" class="d-none" onchange="previewImage(this, 'option')">
-                            </div>
-                            <div class="col-auto flex-grow-1">
-                                <input type="text" class="form-control" placeholder="ตัวเลือกที่ 1" readonly>
-                            </div>
-                            <div class="col-auto">
-                                <button class="btn" onclick="removeOption(this)" title="ลบตัวเลือก">
-                                    <i class="fas fa-times"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                    
-
-                    <!-- ปุ่มเพิ่มตัวเลือก -->
-                    <div class="mb-4">
-                        <button class="btn default" onclick="addOption(this)"><i class="fas fa-plus"></i> <u>เพิ่มตัวเลือก</u></button>
-                    </div>
-                    <hr>
-
-                    <!-- funtion -->
-                    <div class="row">
-                        <div class="col-12">
-                            <div class="mb-3 d-flex align-items-center ">
-                                <button class="btn btn-danger me-2" onclick="removeQuestion(this)" title="นำออก">
-                                    <i class="bi bi-trash"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-    `;
-            questionContainer.appendChild(questionBox);
-        }
-        // เพิ่มคำถาม
         function addQuestion() {
             Swal.fire({
                 title: "เพิ่มคำถาม",
                 html: `
-                <div class="md-3 text-start">
-                <label for="Exam">เลือกประเภทข้อสอบ</label>
-                    <select class="form-select" id="Exam">
-                        <option selected>--เลือกประเภทข้อสอบ--</option>
-                        <option value="Exam1">ข้อสอบประเภทถูก/ผิด</option>
-                        <option value="Exam2">ข้อสอบประเภทปรนัย</option>
-                    </select>
-                </div>
-                <div class="text-start mt-3">
-                    <label for="text">จำนวนข้อที่ต้องการเพิ่ม</label>
-                    <input type="number" class="form-control" id="text" placeholder="จำนวนข้อที่ต้องการเพิ่ม">
-                </div>
-                `,
+        <div class="md-3 text-start">
+        <label for="Exam">เลือกประเภทข้อสอบ</label>
+            <select class="form-select" id="Exam">
+                <option selected>--เลือกประเภทข้อสอบ--</option>
+                <option value="Exam1">ข้อสอบประเภทถูก/ผิด</option>
+                <option value="Exam2">ข้อสอบประเภทปรนัย</option>
+            </select>
+        </div>
+        <div class="text-start mt-3">
+            <label for="text">จำนวนข้อที่ต้องการเพิ่ม</label>
+            <input type="number" class="form-control" id="text" placeholder="จำนวนข้อที่ต้องการเพิ่ม">
+        </div>
+        `,
                 confirmButtonText: "เพิ่ม",
                 confirmButtonColor: "green",
                 showCancelButton: true,
                 cancelButtonText: "ยกเลิก",
-            }).then((result) => {
-                if (result.isConfirmed) {
+                preConfirm: () => {
                     const examType = document.getElementById('Exam').value;
                     const questionCount = parseInt(document.getElementById('text').value, 10);
+
+                    if (examType === '--เลือกประเภทข้อสอบ--' || isNaN(questionCount) || questionCount <= 0) {
+                        Swal.showValidationMessage("กรุณากรอกข้อมูลให้ครบถ้วน");
+                        return false; // หยุดการยืนยัน
+                    }
+                    return {
+                        examType,
+                        questionCount
+                    }; // ส่งข้อมูลไปยังฟังก์ชันหลังจากการยืนยัน
+                }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    const {
+                        examType,
+                        questionCount
+                    } = result.value;
 
                     if (examType === 'Exam1') {
                         addTrueFalseQuestions(questionCount);
@@ -594,30 +532,42 @@
             const currentCount = trueFalseTableBody.children.length;
 
             for (let i = 0; i < count; i++) {
+                let uniqueId = Date.now() + i; // สร้าง ID เฉพาะสำหรับ input file
                 let row = document.createElement("div");
                 row.classList.add("row", "mb-2");
                 row.innerHTML = `
-        <div class="row d-flex align-items-center">
-            <div class="col-lg-1 text-end p-0">
-                ข้อที่ ${currentCount + i + 1}.
-            </div>
-            <div class="col-lg-9">
-                <input type="text" class="form-control border-0 flex-grow-1" placeholder="เพิ่มคำถาม ?">
-            </div>
-            <div class="col-lg-1">
+            <div class="row d-flex align-items-center g-2">
+                <div class="col-lg-1 text-end p-0">
+                    ข้อที่ ${currentCount + i + 1}.
+                </div>
+                <div class="col-lg-1 text-center p-0">
+                    <label for="question_image_${uniqueId}" class="btn btn-outline-primary ">
+                    <i class="bi bi-image" title="แทรกรูปภาพ"></i>
+                    </label>
+                    <input type="file" id="question_image_${uniqueId}" class="d-none" accept=".jpg, .jpeg, .png" onchange="previewImage(this, 'question')">
+                </div>
+                <div class="col-lg-8 d-flex align-items-center">
+                    <input type="text" class="form-control border-0 text-wrap" required placeholder="เพิ่มคำถาม ?">
+                </div>
+                <div class="col-lg-1">
                 <select class="form-control">
                     <option value="true">ถูก</option>
                     <option value="false">ผิด</option>
                 </select>
-            </div>
-            <div class="col-lg-1">
-                <button class="btn btn-danger me-2" onclick="removeQuestion(this)" title="นำออก">
-                    <i class="bi bi-trash"></i>
+                </div>
+                <div class="col-lg-1 text-center">
+                <button class="btn btn-danger" onclick="removeQuestion(this)" title="นำออก">
+                 <i class="bi bi-trash"></i>
                 </button>
+                </div>
             </div>
-        </div>`;
+            <div class="row">
+            <div class="showimage"></div> <!-- ส่วนแสดงรูป -->
+            </div>
+`;
                 trueFalseTableBody.appendChild(row);
             }
+            renumberQuestions();
         }
 
         function addMultipleChoiceQuestions(count) {
@@ -629,47 +579,48 @@
                 let questionBox = document.createElement('div');
                 questionBox.classList.add('question-box', 'mb-4');
                 questionBox.innerHTML = `
-        <div class="d-flex align-items-center">
-            <div class="me-2">ข้อที่ ${currentCount + i + 21}.</div>
-            <input type="text" class="form-control border-0 me-2" placeholder="เพิ่มคำถาม ?">
-            <label for="question_image_${uniqueId}" class="btn btn-outline-primary" accept=".jpg, .jpeg, .png">
-                <i class="bi bi-image" title="แทรกรูปภาพ"></i>
-            </label>
-            <input type="file" id="question_image_${uniqueId}" class="d-none" onchange="previewImage(this, 'question')">
-        </div>
-        <div class="mb-4 showimage"></div>
-        <ul class="list-unstyled options-container">
-            <div class="d-flex align-items-center ms-3">
-                <input type="radio" name="inlineRadioOptions${uniqueId}" class="form-check-input me-2" value="option1" checked>
-                <label for="option_image_${uniqueId}_1" class="btn btn-outline-primary d-flex align-items-center" accept=".jpg, .jpeg, .png">
-                    <i class="bi bi-image" title="แทรกรูปภาพ"></i>
-                </label>
-                <input type="file" id="option_image_${uniqueId}_1" class="d-none" onchange="previewImage(this, 'option')">
-                <div class="option-image-preview mt-2 text-center"></div>
-                <input type="text" class="form-control border-0" placeholder="ตัวเลือกที่ 1">
-    
-                <button class="btn btn-lg ms-2" onclick="removeOption(this)">
-                    <i class="fas fa-times" style="color:red"></i>
-                </button>
-                
-            </div>
-        </ul>
-        <div class="mb-4">
-            <button class="btn default" onclick="addOption(this)">
-                <i class="fas fa-plus"></i> <u>เพิ่มตัวเลือก</u>
-            </button>
-        </div>
-        <hr>
-        <div class="row">
-            <div class="col-12 d-flex align-items-center">
-                <button class="btn btn-danger me-2" onclick="removeQuestion(this)" title="นำออก">
-                    <i class="bi bi-trash"></i>
-                </button>
-            </div>
-        </div>
-        `;
+                    <div class="d-flex align-items-center">
+                        <div class="me-2">ข้อที่ ${currentCount + i + 21}.</div>
+                        <input type="text" class="form-control border-0 me-2" required placeholder="เพิ่มคำถาม ?">
+                        <label for="question_image_${uniqueId}" class="btn btn-outline-primary" accept=".jpg, .jpeg, .png">
+                            <i class="bi bi-image" title="แทรกรูปภาพ"></i>
+                        </label>
+                        <input type="file" id="question_image_${uniqueId}" class="d-none" onchange="previewImage(this, 'question')">
+                    </div>
+                    <div class="mb-4 showimage ms-3"></div>
+                    <ul class="list-unstyled options-container">
+                            <div class="row">
+                                <div class="col-12 d-flex justify-content-center align-items-center">
+                                    <input type="radio" name="inlineRadioOptions${uniqueId}" class="form-check-input me-2" value="option1" checked>
+                                    <label for="option_image_${uniqueId}_1" class="btn btn-outline-primary d-flex align-items-center" accept=".jpg, .jpeg, .png">
+                                        <i class="bi bi-image" title="แทรกรูปภาพ"></i>
+                                    </label>
+                                    <input type="file" id="option_image_${uniqueId}_1" class="d-none" onchange="previewImage(this, 'option')">
+                                    <input type="text" class="form-control border-0" required placeholder="ตัวเลือกที่ 1">
+                        
+                                    <button class="btn btn-lg ms-2" onclick="removeOption(this)">
+                                        <i class="fas fa-times" style="color:red"></i>
+                                    </button>
+                                </div>
+                            </div>
+                    </ul>
+                    <div class="mb-4">
+                        <button class="btn default" onclick="addOption(this)">
+                            <i class="fas fa-plus"></i> <u>เพิ่มตัวเลือก</u>
+                        </button>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-12 d-flex align-items-center">
+                            <button class="btn btn-danger me-2" onclick="removeQuestion(this)" title="นำออก">
+                                <i class="bi bi-trash"></i>
+                            </button>
+                        </div>
+                    </div>
+                    `;
                 multipleChoiceList.appendChild(questionBox);
             }
+            renumberQuestions();
         }
 
         function previewImage(input, type) {
@@ -697,7 +648,7 @@
                         if (!imageContainer) {
                             imageContainer = document.createElement('div');
                             imageContainer.classList.add('option-image-preview', 'mt-2', 'text-center');
-                            optionRow.insertBefore(imageContainer, input.closest('.col-auto').nextSibling);
+                            optionRow.parentNode.insertBefore(imageContainer, optionRow.nextSibling);
                         }
                     }
                 }
@@ -717,4 +668,72 @@
 
             reader.readAsDataURL(files[0]);
         }
+
+        function renumberQuestions() {
+            const trueFalseQuestions = document.querySelectorAll("#trueFalseQuestions .row.mb-2");
+            const multipleChoiceQuestions = document.querySelectorAll("#multipleChoiceQuestions .question-box");
+
+            let questionNumber = 1;
+
+            trueFalseQuestions.forEach((question) => {
+                const questionLabel = question.querySelector(".col-lg-1.text-end.p-0");
+                if (questionLabel) {
+                    questionLabel.textContent = `ข้อที่ ${questionNumber}.`;
+                    questionNumber++;
+                }
+            });
+
+            multipleChoiceQuestions.forEach((question) => {
+                const questionLabel = question.querySelector(".d-flex.align-items-center .me-2");
+                if (questionLabel) {
+                    questionLabel.textContent = `ข้อที่ ${questionNumber}.`;
+                    questionNumber++;
+                }
+            });
+        }
+
+        function validateForm() {
+            // ตรวจสอบฟิลด์คำถามแบบถูก/ผิด
+            const trueFalseQuestions = document.querySelectorAll("#trueFalseTableBody .row input[type='text']");
+            for (let input of trueFalseQuestions) {
+                if (!input.value.trim()) {
+                    alert("กรุณากรอกข้อมูลคำถามให้ครบทุกข้อ");
+                    input.focus();
+                    return false;
+                }
+            }
+
+            // ตรวจสอบฟิลด์คำถามแบบเลือกตอบ
+            const multipleChoiceQuestions = document.querySelectorAll("#multipleChoiceList .question-box input[type='text']");
+            for (let input of multipleChoiceQuestions) {
+                if (!input.value.trim()) {
+                    alert("กรุณากรอกข้อมูลคำถามให้ครบทุกข้อ");
+                    input.focus();
+                    return false;
+                }
+            }
+
+            // ตรวจสอบฟิลด์ตัวเลือกในคำถามแบบเลือกตอบ
+            const options = document.querySelectorAll("#multipleChoiceList .options-container input[type='text']");
+            for (let input of options) {
+                if (!input.value.trim()) {
+                    alert("กรุณากรอกข้อมูลตัวเลือกให้ครบทุกข้อ");
+                    input.focus();
+                    return false;
+                }
+            }
+
+            return true; // ถ้าข้อมูลถูกกรอกครบทุกฟิลด์
+        }
+        // เพิ่ม Event Listener สำหรับปุ่มบันทึก
+        document.getElementById("saveButton").addEventListener("click", function(event) {
+            if (!validateForm()) {
+                event.preventDefault(); // หยุดการส่งฟอร์มถ้าข้อมูลไม่ครบ
+            } else {
+                // ถ้าข้อมูลครบถ้วน ให้เปลี่ยนเส้นทางไปยัง exam_from_content_maincontent.php
+                setTimeout(function() {
+                    window.location.href = "examgroup_maincontent.php";
+                }, 500); // หน่วงเวลาเล็กน้อยเพื่อให้เห็นผลลัพธ์ของการบันทึก
+            }
+        });
     </script>

@@ -245,17 +245,13 @@
 
             let list_output = '<div class="list-group">';
             let newRowIndex = 1;
+            let imageWarnings = [];
 
             for (let row = 1; row < sheetData.length; row++) {
                 let question = sheetData[row][1];
                 // ข้ามแถวที่มีรูปภาพหรือไม่มีคำถาม
                 if (typeof question !== 'string' || !question.trim()) {
-                    Swal.fire({
-                        icon: 'info',
-                        text: `ข้อที่ ${row} ไม่สามารถเพิ่มรูปภาพได้ กรุณาเพิ่มคำถามในระบบ`,
-                        confirmButtonText: 'ตกลง',
-                        confirmButtonColor: 'green',
-                    });
+                    imageWarnings.push(` ${row}`);
                     continue;
                 }
 
@@ -268,12 +264,6 @@
                     <input type="text" class="edit-question d-none form-control border-0" style="font-size:20px;"value="ข้อที่ ${newRowIndex} ${question}">
                 </h5>
                </div>
-                <div class="col text-end" id="editQuestion">
-    <button class="btn btn-warning btn-sm edit-btn" onclick="editQuestion(this)">
-        <i class="bi bi-pencil-square" style="color:white"></i>
-    </button>
-    <button class="btn btn-success btn-sm save-btn d-none" onclick="saveQuestion(this)">บันทึก</button>
-</div>
 
             </div>
             <ul class="options-list">
@@ -297,7 +287,7 @@
                     <div class="d-flex align-items-center flex-grow-1">
                         <input type="radio" name="q${newRowIndex}" class="me-2 option-radio" ${checkedAttr} onchange="updateCorrectAnswer(this)">
                         <span class="option-text ms-2"></span>
-                        <input type="text" class="edit-option form-control w-100 ms-2 border-0" value="${sheetData[row][cell]}">
+                        <input type="text" class="edit-option form-control w-100 ms-2 border-0" value="${sheetData[row][cell]}" readonly>
                     </div>
                     
                     <div class="delete ms-2 ">
@@ -343,9 +333,15 @@
             }
             list_output += '</div>';
             document.getElementById('excel_display_area').innerHTML = list_output;
-            // $(".edit-btn, .delete-btn").addClass("d-none");
-            // $("#editQuestion").addClass("d-none");
 
+            if (imageWarnings.length > 0) {
+                Swal.fire({
+                    icon: 'info',
+                    text: `ข้อที่ ${imageWarnings.join(', ')} ไม่สามารถเพิ่มรูปภาพได้ กรุณาเพิ่มคำถามในระบบ`,
+                    confirmButtonText: 'ตกลง',
+                    confirmButtonColor: 'green',
+                });
+            }
 
             // ปิด modal หลังจากนำเข้าข้อมูลเสร็จ
             const modal = bootstrap.Modal.getInstance(document.getElementById('exampleModal'));
@@ -358,60 +354,6 @@
         };
     });
 
-    function editQuestion(button) {
-        const questionContainer = button.closest('.list-group-item');
-
-        // ซ่อนข้อความเดิม แล้วแสดงช่องแก้ไข
-        questionContainer.querySelector('.question-text').classList.add('d-none');
-        questionContainer.querySelector('.edit-question').classList.remove('d-none');
-
-        // ซ่อนข้อความตัวเลือก แล้วแสดงช่องแก้ไข
-        questionContainer.querySelectorAll('.option-text').forEach(el => el.classList.add('d-none'));
-        questionContainer.querySelectorAll('.edit-option').forEach(el => el.classList.remove('d-none'));
-
-        // เปลี่ยนปุ่ม "แก้ไข" เป็น "บันทึก"
-        button.classList.add('d-none');
-        questionContainer.querySelector('.save-btn').classList.remove('d-none');
-
-        // แสดงปุ่ม "ลบ"
-        questionContainer.querySelectorAll('.delete-btn').forEach(btn => btn.classList.remove('d-none'));
-    }
-
-    function saveQuestion(button) {
-        const questionContainer = button.closest('.list-group-item');
-
-        // อัปเดตค่าที่แก้ไข
-        const newQuestionText = questionContainer.querySelector('.edit-question').value;
-        questionContainer.querySelector('.question-text').textContent = newQuestionText;
-
-        questionContainer.querySelectorAll('.edit-option').forEach((input, index) => {
-            const optionText = questionContainer.querySelectorAll('.option-text')[index];
-            optionText.textContent = input.value;
-
-            // อัปเดตการไฮไลท์ตัวเลือกที่ถูกต้อง
-            if (questionContainer.querySelectorAll('.option-radio')[index].checked) {
-                optionText.style.color = 'green';
-                optionText.style.fontWeight = 'bold';
-            } else {
-                optionText.style.color = 'black';
-                optionText.style.fontWeight = '';
-            }
-        });
-
-        // ซ่อนช่องแก้ไข แล้วแสดงข้อความเดิมที่อัปเดตใหม่
-        questionContainer.querySelector('.question-text').classList.remove('d-none');
-        questionContainer.querySelector('.edit-question').classList.add('d-none');
-
-        questionContainer.querySelectorAll('.option-text').forEach(el => el.classList.remove('d-none'));
-        questionContainer.querySelectorAll('.edit-option').forEach(el => el.classList.add('d-none'));
-
-        // ซ่อนปุ่ม "ลบ"
-        questionContainer.querySelectorAll('.delete-btn').forEach(btn => btn.classList.add('d-none'));
-
-        // เปลี่ยนปุ่ม "บันทึก" กลับเป็น "แก้ไข"
-        button.classList.add('d-none');
-        questionContainer.querySelector('.edit-btn').classList.remove('d-none');
-    }
 
     // เพิ่มตัวเลือก
     function addOption(button) {
